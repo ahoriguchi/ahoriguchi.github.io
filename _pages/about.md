@@ -13,9 +13,7 @@ Currently, I am a Postdoctoral Associate working with Professors Li Ma and Clibu
 - **Bayesian nonparametrics:** stick-breaking models, clustering, application to flow cytometry
 - **Bayesian regression trees:** sensitivity analysis, computer experiments, multiobjective optimization
 
-I completed my Ph.D. in Statistics at The Ohio State University in 2020, where I was advised by Professors Matthew T. Pratola and Thomas J. Santner. 
 
-I completed my B.S. in Mathematics at the University of Maryland in 2015. 
 
 
 
