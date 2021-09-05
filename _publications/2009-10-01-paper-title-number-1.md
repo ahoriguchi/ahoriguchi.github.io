@@ -1,15 +1,15 @@
 ---
-title: "Paper Title Number 1"
+title: "Assessing variable activity for Bayesian regression trees"
 collection: publications
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
-date: 2009-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper1.pdf'
-citation: 'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
+date: 2021-01-01
+venue: 'Reliability Engineering & System Safety'
+paperurl: 'https://www.sciencedirect.com/science/article/pii/S0951832020308784?casa_token=zZN4netuXQgAAAAA:Z5PhU4OgvG86aGQWutVWw35R_u56SeHKGjx2w2go8IlUg-BPWaBDfzVrrDykuWhRB15X7OaX8cI'
+citation: 'Horiguchi, Akira, Matthew T. Pratola, and Thomas J. Santner. (2021). &quot;Assessing variable activity for Bayesian regression trees.&quot; <i>Reliability Engineering & System Safety</i>. 1(1).'
 ---
-This paper is about the number 1. The number 2 is left for future work.
+Bayesian Additive Regression Trees (BART) are non-parametric models that can capture complex exogenous variable effects. In any regression problem, it is often of interest to learn which variables are most active. Variable activity in BART is usually measured by counting the number of times a tree splits for each variable. Such one-way counts have the advantage of fast computations. Despite their convenience, one-way counts have several issues. They are statistically unjustified, cannot distinguish between main effects and interaction effects, and become inflated when measuring interaction effects. An alternative method well-established in the literature is Soboĺ indices, a variance-based global sensitivity analysis technique. However, these indices often require Monte Carlo integration, which can be computationally expensive. This paper provides analytic expressions for Soboĺ indices for BART posterior samples. These expressions are easy to interpret and are computationally feasible. Furthermore, we will show a fascinating connection between first-order (main-effects) Soboĺ indices and one-way counts. We also introduce a novel ranking method, and use this to demonstrate that the proposed indices preserve the Soboĺ-based rank order of variable importance. Finally, we compare these methods using analytic test functions and the En-ROADS climate impacts simulator.
 
-[Download paper here](http://academicpages.github.io/files/paper1.pdf)
+[Download paper here](https://www.sciencedirect.com/science/article/pii/S0951832020308784?casa_token=zZN4netuXQgAAAAA:Z5PhU4OgvG86aGQWutVWw35R_u56SeHKGjx2w2go8IlUg-BPWaBDfzVrrDykuWhRB15X7OaX8cI)
 
-Recommended citation: Your Name, You. (2009). "Paper Title Number 1." <i>Journal 1</i>. 1(1).
+Horiguchi, Akira, Matthew T. Pratola, and Thomas J. Santner. (2021). "Assessing variable activity for Bayesian regression trees." <i>Reliability Engineering & System Safety</i>. 1(1).
