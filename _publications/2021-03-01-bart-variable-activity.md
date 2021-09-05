@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2021-03-01-bart-variable-activity
 <!-- excerpt: 'This paper is about assessing variable activity for BART via Soboĺ indices.' -->
 date: 2021-03-01
-<!-- venue: 'Reliability Engineering & System Safety' -->
+venue: 'Reliability Engineering & System Safety'
 citation: 'Horiguchi, Akira, Matthew T. Pratola, and Thomas J. Santner. (2021). &quot;Assessing variable activity for Bayesian regression trees.&quot; <i>Reliability Engineering & System Safety</i>. 207.'
 ---
 
