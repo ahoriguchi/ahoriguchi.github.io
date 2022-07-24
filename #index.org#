@@ -1,0 +1,108 @@
+#+Title: Akira Horiguchi  
+#+OPTIONS: num:nil
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
+# Change the background of source block.
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
+
+
+* Notes                                                            :noexport:
+** To push changes to actual website
+1. ~git add --all~
+1. ~git commit -m "commit message"~
+1. ~git push -u origin master~  (may have to generate new token from my github account)
+** TODO Add subtitle and have it span multiple lines.
+* Home
+Welcome!
+** About
+I (he/him/his) am a Postdoctoral Associate of the Department of Statistical Science at Duke University, working with Professors [[https://www2.stat.duke.edu/~lm186/][Li Ma]] and [[https://scholars.duke.edu/person/cliburn.chan][Cliburn Chan]].
+- Prior to this, I obtained my PhD from the Department of Statistics at The Ohio State University, advised by Professors [[http://www.matthewpratola.com/][Matthew T. Pratola]] and [[https://www.asc.ohio-state.edu/santner.1/][Thomas J. Santner]].
+My other relevant identifiers can be found at [[https://www.researchgate.net/profile/Akira-Horiguchi-2][Research Gate]], [[https://orcid.org/0000-0002-7523-9636][orcid]], [[https://scholars.duke.edu/person/akira.horiguchi][Scholars@Duke]].
+*** TODO Add text version of bio that others can copy and paste. :noexport:
+*** TODO Add pronunciation of my name. :noexport:
+
+** Research interests
+My research interests include
+- *Bayesian nonparametrics*: stick-breaking models, clustering, covariate-dependent mixture models, application to flow cytometry
+- *Bayesian regression trees*: sensitivity analysis, computer experiments, multiobjective optimization
+*** TODO Add explainable ML?                                 :noexport:
+*** TODO Add more of an explanation to each research interest. Or exposit what I've actually done (not necessarily a one-to-one correspondence to papers). Or list research questions I want to answer. :noexport:
+* CV
+=A PDF file can be created by first clicking on [Expand all] at the top right of the screen and then printing to save as PDF.=
+** TODO Make this disclaimer into a tip box or something.       :noexport:
+** Employment
+- Postdoctoral Associate (2021-current) :: Advised by [[https://www2.stat.duke.edu/~lm186/][Li Ma]] and [[https://scholars.duke.edu/person/cliburn.chan][Cliburn Chan]], Department of Statistical Science, Duke University
+- Dean's Distinguished University Fellow (Jan 2020 - Dec 2020) :: Graduate School, The Ohio State University 
+- Co-Instructor in Data Science (Feb 2019) :: J.P. Morgan Chase
+- Graduate Research Assistant (May 2018 - Dec 2019) :: Nationwide Insurance
+- Statistical Consultant (Jan 2018 - May 2018) :: Department of Statistics, The Ohio State University
+- Data Visualization Intern (Jun 2016 - Aug 2016) :: NORC at the University of Chicago
+- Dean’s Distinguished University Fellow (Aug 2015 - May 2017) :: Graduate School, The Ohio State University
+** Education
+- Ph.D. in Statistics, The Ohio State University (Dec 2020) :: Advised by [[http://www.matthewpratola.com/][Matthew T. Pratola]] and [[https://www.asc.ohio-state.edu/santner.1/][Thomas J. Santner]]
+- M.S. in Statistics, The Ohio State University (May 2017) ::
+- B.S. in Mathematics, University of Maryland (May 2015) :: Departmental honors and Gemstone honors college citation.
+** Awards
+- Travel Award for [[https://isbawebmaster.github.io/ISBA2022/][ISBA 2022 World Meeting]] :: Scientific Committee of ISBA 2022 World Meeting
+- Student Travel Award for [[https://ww2.amstat.org/meetings/jsm/2019/][2019 Joint Statistical Meetings]] :: Quality and Productivity Section, American Statistical Association
+- Travel Award for 2019 Industrial Math/Stat Modeling Workshop :: The Statistical and Applied Mathematical Sciences Institute (SAMSI)
+- [[https://gradsch.osu.edu/deans-distinguished-university-fellowship][Dean's Distinguished University Fellowship]] (2015) :: Graduate School, The Ohio State University, covers three years
+- [[https://mcur.umd.edu/about/undergraduate-researchers-year][Undergraduate Researcher of the Year]] (2014) :: Office of Undergraduate Studies, University of Maryland
+** Publications
+*** In preparation
+- Tree stick breaking for covariate-dependent mixtures. :: *A. Horiguchi*, L. Ma, C. Chan. 
+*** Peer-reviewed journal articles
+- [[https://www.tandfonline.com/doi/abs/10.1080/00401706.2021.2008504?journalCode=utch20][Using BART for Perform Pareto Optimization and Quantify its Uncertainties]] (2022) with [[https://arxiv.org/abs/2101.02558v2][arXiv]] and [[https://bitbucket.org/mpratola/openbt/wiki/Home][code]] :: *A. Horiguchi*, T. J. Santner, Y. Sun, and M. T. Pratola. /Technometrics, Special Issue on Industry 4.0./
+- [[https://www.sciencedirect.com/science/article/abs/pii/S0951832020308784][Assessing variable activity for Bayesian regression trees]] (2021) with [[https://arxiv.org/abs/2005.13622][arXiv]] and [[https://bitbucket.org/mpratola/openbt/wiki/Home][code]] :: *A. Horiguchi*, M. T. Pratola, and T. J. Santner. /Reliability Engineering & Safety System, Special Issue on Sensitivity Analysis of Model Outputs./ 
+*** Theses
+- [[https://etd.ohiolink.edu/apexprod/rws_olink/r/1501/10?clear=10&p10_accession_num=osu1606841319315633][Bayesian Additive Regression Trees: Sensitivity Analysis and Multiobjective Optimization]] (2020) :: *A. Horiguchi*. /OhioLink./
+- [[https://drum.lib.umd.edu/handle/1903/16762][Improving Photovoltaics with High Luminescence Efficiency Quantum Dot Layers]] (2015) :: J. Chen, D. Gagner, K. Griffiths, E. Hitz, *A. Horiguchi*, R. Joyce, B. Kim, M. Lee, S. Lee, A. Raul, D. Shyu, Z. Siegel, S. Silberholz, and D. Tran. /Digital Repository at the University of Maryland./
+*** Open-source projects
+- Contributed to the [[https://bitbucket.org/mpratola/openbt/wiki/Home][Open Bayesian Trees (OpenBT) project]] (2020-2021) :: Helped incorporate capabilities to perform BART-based Sobol' index calculations and Pareto optmization
+** Presentations
+Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
+*** TODO Figure out which reference system I want to use. :noexport:
+*** 2022
+- Using BART for Perform Pareto Optimization and Quantify its Uncertainties. [Invited Talk] :: Fall Technical Conference. Park City, UT. 
+- Tree stick breaking for covariate-dependent mixtures. (T) :: BNP13. Chile. 
+- Using BART for Perform Pareto Optimization and Quantify its Uncertainties. (IT) :: ISBA 2022 World Meeting. Montréal, Canada.
+- Tree stick breaking for covariate-dependent mixtures. (P) :: ISBA 2022 World Meeting. Montréal, Canada. 
+*** 2021
+- A flexible regression model for flow cytometry data. (T) :: Duke Center for Human Systems Immunology (CHSI) Virtual Symposium. 
+- Using BART for Multiobjective Optimization of Multiple Noisy Objectives. (T) :: Quality and Productivity Research Conference. Tallahassee, FL.
+- Assessing variable activity for Bayesian regression trees. (T) :: ISBA 2021 World Meeting. (Moved online due to COVID-19.)
+*** 2020 
+- Assessing variable activity for Bayesian regression trees. (T) :: 13th International Conference of the ERCIM WG on Computational and Methodological Statistics. (Moved online due to COVID-19.)
+- Assessing variable activity for Bayesian regression trees. (T) :: Joint Statistical Meetings. Philadelphia, PA. (Moved online due to COVID-19.)
+- Assessing variable activity for Bayesian regression trees. (T) :: Spring Research Conference, Oakland University. Rochester, MI. (Cancelled due to COVID-19.)
+*** 2019
+- Comparing Variance-Based and Count Methods for Assessing Variable Activity in Bayesian Additive Regression Trees. (P) :: Graduate Student Poster Session, Department of Statistics, The Ohio State University. Columbus, OH.
+- Comparing Variance-Based and Count Methods for Assessing Variable Activity in Bayesian Additive Regression Trees. (P) :: Joint Statistical Meetings. Denver, CO.
+*** 2015
+- Increasing Solar Cell Efficiency with a Spin-Coated Layer of Quantum Dots in PLMA. (T) :: Team Thesis Conference, University of Maryland. College Park, MD.
+*** 2014
+- Transcription Factors and Cascade Network. (T) :: Summer Undergraduate Research Symposium, The Ohio State University. Columbus, OH.
+- Increasing Solar Cell Efficiency with a Spin-Coated Layer of Quantum Dots in PLMA. (P) :: Undergraduate Research Day, University of Maryland. College Park, MD.
+*** 2013 
+- No-Analog Communities in Space and Time. (T) :: NIMBioS Undergraduate Conference, University of Tennessee. Knoxville, TN.
+** Teaching
+*** The Ohio State University
+- BUSMGT 7256: Tools for Data Analysis. Co-instructor (SP19). :: This course is designed to introduce students to commonly used software programs in data science and improve students’ problem solving skills and logical thought processes. Students will be exposed to R, SAS, and SPSS.
+- STAT 5760: Statistical Consulting Support from the SCS. Teaching assistant (SP18). :: Graduate or undergraduate students enrolled in this course will work with a graduate student consultant employed by the Statistical Consulting Service (SCS) for the purpose of making progress on their thesis or dissertation.
+- STAT 6301: Probability for Statistical Inference. Grader (AU17). :: Introduction to probability, random variables, and distribution theory; intended primarily for students in Master of Applied Statistics (MAS) degree program.
+- STAT 5302: Intermediate Data Analysis II. Grader (AU17). :: The second course in a two-semester sequence in data analysis covering simple linear regression (inference, model diagnostics), multiple regression models, variable selection, model selection, two-way ANOVA, mixed effects model.
+** Service
+- Reviewed for the Journal of the American Statistical Association (2022) ::
+- Member of ad hoc committee on junior awards and support offered by the International Society for Bayesian Analysis (2021) ::
+- Presented research at the first student-led Student Research Seminar (2020) ::
+- Presented research to prospective graduate students at Graduate Information Day (GID) at OSU (2020) ::
+- Panelist of the funding and internship session for GID at OSU (2018, 2019) ::
+- Volunteered at math booth for Maryland Day (2014, 2015) ::
+- President of Pi Mu Epsilon Math Honor Society, UMD chapter (2013-2014) ::
+* Resources                                                        
+Below are (free!) resources that I've found useful in doing research. 
+** Writing 
+- [[https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf][Mathematical Writing]] by Donald E. Knuth, Tracy Larrabee, and Paul M. Roberts :: A quick read. 
+- [[https://georgegopen.com/articles][The Science of Scientific Writing]] by George Gopen :: A classic. 
+** Computing
+Whichever language(s) you use, it helps to learn a little more than last time. 
+- [[https://adv-r.hadley.nz/][Advanced R]] by Hadley Wickham :: The "Foundations" and "Functional programming" sections seem to be universally helpful to any Statistics PhD student who mainly uses R. 
