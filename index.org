@@ -48,8 +48,8 @@ My research interests include
 - [[https://gradsch.osu.edu/deans-distinguished-university-fellowship][Dean's Distinguished University Fellowship]] (2015) :: Graduate School, The Ohio State University, covers three years
 - [[https://mcur.umd.edu/about/undergraduate-researchers-year][Undergraduate Researcher of the Year]] (2014) :: Office of Undergraduate Studies, University of Maryland
 ** Publications
-*** In preparation
-- Tree stick breaking for covariate-dependent mixtures. :: *A. Horiguchi*, L. Ma, C. Chan. 
+*** Preprints
+- Tree stick-breaking priors for covariate-dependent mixture models with [[https://arxiv.org/abs/2208.02806][arXiv (2022)]]. :: *A. Horiguchi*, C. Chan, and L. Ma. 
 *** Peer-reviewed journal articles
 - [[https://www.tandfonline.com/doi/abs/10.1080/00401706.2021.2008504?journalCode=utch20][Using BART for Perform Pareto Optimization and Quantify its Uncertainties]] (2022) with [[https://arxiv.org/abs/2101.02558v2][arXiv]] and [[https://bitbucket.org/mpratola/openbt/wiki/Home][code]] :: *A. Horiguchi*, T. J. Santner, Y. Sun, and M. T. Pratola. /Technometrics, Special Issue on Industry 4.0./
 - [[https://www.sciencedirect.com/science/article/abs/pii/S0951832020308784][Assessing variable activity for Bayesian regression trees]] (2021) with [[https://arxiv.org/abs/2005.13622][arXiv]] and [[https://bitbucket.org/mpratola/openbt/wiki/Home][code]] :: *A. Horiguchi*, M. T. Pratola, and T. J. Santner. /Reliability Engineering & Safety System, Special Issue on Sensitivity Analysis of Model Outputs./ 
@@ -106,3 +106,7 @@ Below are (free!) resources that I've found useful in doing research.
 ** Computing
 Whichever language(s) you use, it helps to learn a little more than last time. 
 - [[https://adv-r.hadley.nz/][Advanced R]] by Hadley Wickham :: The "Foundations" and "Functional programming" sections seem to be universally helpful to any Statistics PhD student who mainly uses R. 
+** Reproducible research
+- https://karl-voit.at/2017/09/23/orgmode-as-markup-only/
+- Quarto
+
