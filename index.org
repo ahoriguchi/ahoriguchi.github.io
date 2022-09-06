@@ -97,7 +97,7 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 - Presented research to prospective graduate students at Graduate Information Day (GID) at OSU (2020) ::
 - Panelist of the funding and internship session for GID at OSU (2018, 2019) ::
 - Volunteered at math booth for Maryland Day (2014, 2015) ::
-- President of Pi Mu Epsilon Math Honor Society, UMD chapter (2013-2014) ::
+  - President of Pi Mu Epsilon Math Honor Society, UMD chapter (2013-2014) ::
 * Resources                                                        
 Below are (free!) resources that I've found useful in doing research. 
 ** Writing 

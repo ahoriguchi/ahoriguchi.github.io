@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-24 Sun 13:25 -->
+<!-- 2022-08-07 Sun 19:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Akira Horiguchi</title>
@@ -75,48 +75,49 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2dbfbc3">Home</a>
+<li><a href="#org5f0b467">Home</a>
 <ul>
-<li><a href="#org68183e2">About</a></li>
-<li><a href="#orgf1ce7e0">Research interests</a></li>
+<li><a href="#orgbc67049">About</a></li>
+<li><a href="#org4a3f5b0">Research interests</a></li>
 </ul>
 </li>
-<li><a href="#org1387629">CV</a>
+<li><a href="#org9680e27">CV</a>
 <ul>
-<li><a href="#org7f1a383">Employment</a></li>
-<li><a href="#org233cbaf">Education</a></li>
-<li><a href="#org264eb67">Awards</a></li>
-<li><a href="#org4a2e686">Publications</a>
+<li><a href="#org1ebbd9b">Employment</a></li>
+<li><a href="#orgbdac178">Education</a></li>
+<li><a href="#orgf929e35">Awards</a></li>
+<li><a href="#org43d9bc3">Publications</a>
 <ul>
-<li><a href="#orgace3b35">In preparation</a></li>
-<li><a href="#org5743789">Peer-reviewed journal articles</a></li>
-<li><a href="#orgd372efe">Theses</a></li>
-<li><a href="#org5d5228a">Open-source projects</a></li>
+<li><a href="#org77c73f2">Preprints</a></li>
+<li><a href="#orgeb55550">Peer-reviewed journal articles</a></li>
+<li><a href="#org518c169">Theses</a></li>
+<li><a href="#org035e00d">Open-source projects</a></li>
 </ul>
 </li>
-<li><a href="#orge8096c1">Presentations</a>
+<li><a href="#org2d9d7c3">Presentations</a>
 <ul>
-<li><a href="#org7e202f4">2022</a></li>
-<li><a href="#org711d78b">2021</a></li>
-<li><a href="#orgacbc3ec">2020</a></li>
-<li><a href="#org20bf3d4">2019</a></li>
-<li><a href="#org96931c8">2015</a></li>
-<li><a href="#orga88d57d">2014</a></li>
-<li><a href="#orgf2757fe">2013</a></li>
+<li><a href="#orgd1e38ce">2022</a></li>
+<li><a href="#org4a89376">2021</a></li>
+<li><a href="#orgd36855d">2020</a></li>
+<li><a href="#org0baecf4">2019</a></li>
+<li><a href="#orga9bc05f">2015</a></li>
+<li><a href="#org37eecde">2014</a></li>
+<li><a href="#org9b13f35">2013</a></li>
 </ul>
 </li>
-<li><a href="#orgaa723dd">Teaching</a>
+<li><a href="#orgafd512a">Teaching</a>
 <ul>
-<li><a href="#org2ff95c9">The Ohio State University</a></li>
+<li><a href="#org620cd6d">The Ohio State University</a></li>
 </ul>
 </li>
-<li><a href="#org691588b">Service</a></li>
+<li><a href="#orgad28653">Service</a></li>
 </ul>
 </li>
-<li><a href="#org28284a2">Resources</a>
+<li><a href="#org88c4809">Resources</a>
 <ul>
-<li><a href="#org09f4b95">Writing</a></li>
-<li><a href="#orgbd4da3f">Computing</a></li>
+<li><a href="#org8565d24">Writing</a></li>
+<li><a href="#org1753722">Computing</a></li>
+<li><a href="#org4427dc5">Reproducible research</a></li>
 </ul>
 </li>
 </ul>
@@ -124,16 +125,16 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org2dbfbc3" class="outline-2">
-<h2 id="org2dbfbc3">Home</h2>
-<div class="outline-text-2" id="text-org2dbfbc3">
+<div id="outline-container-org5f0b467" class="outline-2">
+<h2 id="org5f0b467">Home</h2>
+<div class="outline-text-2" id="text-org5f0b467">
 <p>
 Welcome!
 </p>
 </div>
-<div id="outline-container-org68183e2" class="outline-3">
-<h3 id="org68183e2">About</h3>
-<div class="outline-text-3" id="text-org68183e2">
+<div id="outline-container-orgbc67049" class="outline-3">
+<h3 id="orgbc67049">About</h3>
+<div class="outline-text-3" id="text-orgbc67049">
 <p>
 I (he/him/his) am a Postdoctoral Associate of the Department of Statistical Science at Duke University, working with Professors <a href="https://www2.stat.duke.edu/~lm186/">Li Ma</a> and <a href="https://scholars.duke.edu/person/cliburn.chan">Cliburn Chan</a>.
 </p>
@@ -146,9 +147,9 @@ My other relevant identifiers can be found at <a href="https://www.researchgate.
 </div>
 </div>
 
-<div id="outline-container-orgf1ce7e0" class="outline-3">
-<h3 id="orgf1ce7e0">Research interests</h3>
-<div class="outline-text-3" id="text-orgf1ce7e0">
+<div id="outline-container-org4a3f5b0" class="outline-3">
+<h3 id="org4a3f5b0">Research interests</h3>
+<div class="outline-text-3" id="text-org4a3f5b0">
 <p>
 My research interests include
 </p>
@@ -159,16 +160,16 @@ My research interests include
 </div>
 </div>
 </div>
-<div id="outline-container-org1387629" class="outline-2">
-<h2 id="org1387629">CV</h2>
-<div class="outline-text-2" id="text-org1387629">
+<div id="outline-container-org9680e27" class="outline-2">
+<h2 id="org9680e27">CV</h2>
+<div class="outline-text-2" id="text-org9680e27">
 <p>
 <code>A PDF file can be created by first clicking on [Expand all] at the top right of the screen and then printing to save as PDF.</code>
 </p>
 </div>
-<div id="outline-container-org7f1a383" class="outline-3">
-<h3 id="org7f1a383">Employment</h3>
-<div class="outline-text-3" id="text-org7f1a383">
+<div id="outline-container-org1ebbd9b" class="outline-3">
+<h3 id="org1ebbd9b">Employment</h3>
+<div class="outline-text-3" id="text-org1ebbd9b">
 <dl class="org-dl">
 <dt>Postdoctoral Associate (2021-current)</dt><dd>Advised by <a href="https://www2.stat.duke.edu/~lm186/">Li Ma</a> and <a href="https://scholars.duke.edu/person/cliburn.chan">Cliburn Chan</a>, Department of Statistical Science, Duke University</dd>
 <dt>Dean's Distinguished University Fellow (Jan 2020 - Dec 2020)</dt><dd>Graduate School, The Ohio State University</dd>
@@ -180,9 +181,9 @@ My research interests include
 </dl>
 </div>
 </div>
-<div id="outline-container-org233cbaf" class="outline-3">
-<h3 id="org233cbaf">Education</h3>
-<div class="outline-text-3" id="text-org233cbaf">
+<div id="outline-container-orgbdac178" class="outline-3">
+<h3 id="orgbdac178">Education</h3>
+<div class="outline-text-3" id="text-orgbdac178">
 <dl class="org-dl">
 <dt>Ph.D. in Statistics, The Ohio State University (Dec 2020)</dt><dd>Advised by <a href="http://www.matthewpratola.com/">Matthew T. Pratola</a> and <a href="https://www.asc.ohio-state.edu/santner.1/">Thomas J. Santner</a></dd>
 <dt>M.S. in Statistics, The Ohio State University (May 2017)</dt><dd></dd>
@@ -191,9 +192,9 @@ My research interests include
 </dl>
 </div>
 </div>
-<div id="outline-container-org264eb67" class="outline-3">
-<h3 id="org264eb67">Awards</h3>
-<div class="outline-text-3" id="text-org264eb67">
+<div id="outline-container-orgf929e35" class="outline-3">
+<h3 id="orgf929e35">Awards</h3>
+<div class="outline-text-3" id="text-orgf929e35">
 <dl class="org-dl">
 <dt>Travel Award for <a href="https://isbawebmaster.github.io/ISBA2022/">ISBA 2022 World Meeting</a></dt><dd>Scientific Committee of ISBA 2022 World Meeting</dd>
 <dt>Student Travel Award for <a href="https://ww2.amstat.org/meetings/jsm/2019/">2019 Joint Statistical Meetings</a></dt><dd>Quality and Productivity Section, American Statistical Association</dd>
@@ -203,55 +204,55 @@ My research interests include
 </dl>
 </div>
 </div>
-<div id="outline-container-org4a2e686" class="outline-3">
-<h3 id="org4a2e686">Publications</h3>
-<div class="outline-text-3" id="text-org4a2e686">
+<div id="outline-container-org43d9bc3" class="outline-3">
+<h3 id="org43d9bc3">Publications</h3>
+<div class="outline-text-3" id="text-org43d9bc3">
 </div>
-<div id="outline-container-orgace3b35" class="outline-4">
-<h4 id="orgace3b35">In preparation</h4>
-<div class="outline-text-4" id="text-orgace3b35">
+<div id="outline-container-org77c73f2" class="outline-4">
+<h4 id="org77c73f2">Preprints</h4>
+<div class="outline-text-4" id="text-org77c73f2">
 <dl class="org-dl">
-<dt>Tree stick breaking for covariate-dependent mixtures.</dt><dd><b>A. Horiguchi</b>, L. Ma, C. Chan.</dd>
+<dt>Tree stick-breaking priors for covariate-dependent mixture models with <a href="https://arxiv.org/abs/2208.02806">arXiv (2022)</a>.</dt><dd><b>A. Horiguchi</b>, C. Chan, and L. Ma.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org5743789" class="outline-4">
-<h4 id="org5743789">Peer-reviewed journal articles</h4>
-<div class="outline-text-4" id="text-org5743789">
+<div id="outline-container-orgeb55550" class="outline-4">
+<h4 id="orgeb55550">Peer-reviewed journal articles</h4>
+<div class="outline-text-4" id="text-orgeb55550">
 <dl class="org-dl">
 <dt><a href="https://www.tandfonline.com/doi/abs/10.1080/00401706.2021.2008504?journalCode=utch20">Using BART for Perform Pareto Optimization and Quantify its Uncertainties</a> (2022) with <a href="https://arxiv.org/abs/2101.02558v2">arXiv</a> and <a href="https://bitbucket.org/mpratola/openbt/wiki/Home">code</a></dt><dd><b>A. Horiguchi</b>, T. J. Santner, Y. Sun, and M. T. Pratola. <i>Technometrics, Special Issue on Industry 4.0.</i></dd>
 <dt><a href="https://www.sciencedirect.com/science/article/abs/pii/S0951832020308784">Assessing variable activity for Bayesian regression trees</a> (2021) with <a href="https://arxiv.org/abs/2005.13622">arXiv</a> and <a href="https://bitbucket.org/mpratola/openbt/wiki/Home">code</a></dt><dd><b>A. Horiguchi</b>, M. T. Pratola, and T. J. Santner. <i>Reliability Engineering &amp; Safety System, Special Issue on Sensitivity Analysis of Model Outputs.</i></dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd372efe" class="outline-4">
-<h4 id="orgd372efe">Theses</h4>
-<div class="outline-text-4" id="text-orgd372efe">
+<div id="outline-container-org518c169" class="outline-4">
+<h4 id="org518c169">Theses</h4>
+<div class="outline-text-4" id="text-org518c169">
 <dl class="org-dl">
 <dt><a href="https://etd.ohiolink.edu/apexprod/rws_olink/r/1501/10?clear=10&amp;p10_accession_num=osu1606841319315633">Bayesian Additive Regression Trees: Sensitivity Analysis and Multiobjective Optimization</a> (2020)</dt><dd><b>A. Horiguchi</b>. <i>OhioLink.</i></dd>
 <dt><a href="https://drum.lib.umd.edu/handle/1903/16762">Improving Photovoltaics with High Luminescence Efficiency Quantum Dot Layers</a> (2015)</dt><dd>J. Chen, D. Gagner, K. Griffiths, E. Hitz, <b>A. Horiguchi</b>, R. Joyce, B. Kim, M. Lee, S. Lee, A. Raul, D. Shyu, Z. Siegel, S. Silberholz, and D. Tran. <i>Digital Repository at the University of Maryland.</i></dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org5d5228a" class="outline-4">
-<h4 id="org5d5228a">Open-source projects</h4>
-<div class="outline-text-4" id="text-org5d5228a">
+<div id="outline-container-org035e00d" class="outline-4">
+<h4 id="org035e00d">Open-source projects</h4>
+<div class="outline-text-4" id="text-org035e00d">
 <dl class="org-dl">
 <dt>Contributed to the <a href="https://bitbucket.org/mpratola/openbt/wiki/Home">Open Bayesian Trees (OpenBT) project</a> (2020-2021)</dt><dd>Helped incorporate capabilities to perform BART-based Sobol' index calculations and Pareto optmization</dd>
 </dl>
 </div>
 </div>
 </div>
-<div id="outline-container-orge8096c1" class="outline-3">
-<h3 id="orge8096c1">Presentations</h3>
-<div class="outline-text-3" id="text-orge8096c1">
+<div id="outline-container-org2d9d7c3" class="outline-3">
+<h3 id="org2d9d7c3">Presentations</h3>
+<div class="outline-text-3" id="text-org2d9d7c3">
 <p>
 Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </p>
 </div>
-<div id="outline-container-org7e202f4" class="outline-4">
-<h4 id="org7e202f4">2022</h4>
-<div class="outline-text-4" id="text-org7e202f4">
+<div id="outline-container-orgd1e38ce" class="outline-4">
+<h4 id="orgd1e38ce">2022</h4>
+<div class="outline-text-4" id="text-orgd1e38ce">
 <dl class="org-dl">
 <dt>Using BART for Perform Pareto Optimization and Quantify its Uncertainties. [Invited Talk]</dt><dd>Fall Technical Conference. Park City, UT.</dd>
 <dt>Tree stick breaking for covariate-dependent mixtures. (T)</dt><dd>BNP13. Chile.</dd>
@@ -260,9 +261,9 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </dl>
 </div>
 </div>
-<div id="outline-container-org711d78b" class="outline-4">
-<h4 id="org711d78b">2021</h4>
-<div class="outline-text-4" id="text-org711d78b">
+<div id="outline-container-org4a89376" class="outline-4">
+<h4 id="org4a89376">2021</h4>
+<div class="outline-text-4" id="text-org4a89376">
 <dl class="org-dl">
 <dt>A flexible regression model for flow cytometry data. (T)</dt><dd>Duke Center for Human Systems Immunology (CHSI) Virtual Symposium.</dd>
 <dt>Using BART for Multiobjective Optimization of Multiple Noisy Objectives. (T)</dt><dd>Quality and Productivity Research Conference. Tallahassee, FL.</dd>
@@ -270,9 +271,9 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </dl>
 </div>
 </div>
-<div id="outline-container-orgacbc3ec" class="outline-4">
-<h4 id="orgacbc3ec">2020</h4>
-<div class="outline-text-4" id="text-orgacbc3ec">
+<div id="outline-container-orgd36855d" class="outline-4">
+<h4 id="orgd36855d">2020</h4>
+<div class="outline-text-4" id="text-orgd36855d">
 <dl class="org-dl">
 <dt>Assessing variable activity for Bayesian regression trees. (T)</dt><dd>13th International Conference of the ERCIM WG on Computational and Methodological Statistics. (Moved online due to COVID-19.)</dd>
 <dt>Assessing variable activity for Bayesian regression trees. (T)</dt><dd>Joint Statistical Meetings. Philadelphia, PA. (Moved online due to COVID-19.)</dd>
@@ -280,48 +281,48 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </dl>
 </div>
 </div>
-<div id="outline-container-org20bf3d4" class="outline-4">
-<h4 id="org20bf3d4">2019</h4>
-<div class="outline-text-4" id="text-org20bf3d4">
+<div id="outline-container-org0baecf4" class="outline-4">
+<h4 id="org0baecf4">2019</h4>
+<div class="outline-text-4" id="text-org0baecf4">
 <dl class="org-dl">
 <dt>Comparing Variance-Based and Count Methods for Assessing Variable Activity in Bayesian Additive Regression Trees. (P)</dt><dd>Graduate Student Poster Session, Department of Statistics, The Ohio State University. Columbus, OH.</dd>
 <dt>Comparing Variance-Based and Count Methods for Assessing Variable Activity in Bayesian Additive Regression Trees. (P)</dt><dd>Joint Statistical Meetings. Denver, CO.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org96931c8" class="outline-4">
-<h4 id="org96931c8">2015</h4>
-<div class="outline-text-4" id="text-org96931c8">
+<div id="outline-container-orga9bc05f" class="outline-4">
+<h4 id="orga9bc05f">2015</h4>
+<div class="outline-text-4" id="text-orga9bc05f">
 <dl class="org-dl">
 <dt>Increasing Solar Cell Efficiency with a Spin-Coated Layer of Quantum Dots in PLMA. (T)</dt><dd>Team Thesis Conference, University of Maryland. College Park, MD.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orga88d57d" class="outline-4">
-<h4 id="orga88d57d">2014</h4>
-<div class="outline-text-4" id="text-orga88d57d">
+<div id="outline-container-org37eecde" class="outline-4">
+<h4 id="org37eecde">2014</h4>
+<div class="outline-text-4" id="text-org37eecde">
 <dl class="org-dl">
 <dt>Transcription Factors and Cascade Network. (T)</dt><dd>Summer Undergraduate Research Symposium, The Ohio State University. Columbus, OH.</dd>
 <dt>Increasing Solar Cell Efficiency with a Spin-Coated Layer of Quantum Dots in PLMA. (P)</dt><dd>Undergraduate Research Day, University of Maryland. College Park, MD.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgf2757fe" class="outline-4">
-<h4 id="orgf2757fe">2013</h4>
-<div class="outline-text-4" id="text-orgf2757fe">
+<div id="outline-container-org9b13f35" class="outline-4">
+<h4 id="org9b13f35">2013</h4>
+<div class="outline-text-4" id="text-org9b13f35">
 <dl class="org-dl">
 <dt>No-Analog Communities in Space and Time. (T)</dt><dd>NIMBioS Undergraduate Conference, University of Tennessee. Knoxville, TN.</dd>
 </dl>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa723dd" class="outline-3">
-<h3 id="orgaa723dd">Teaching</h3>
-<div class="outline-text-3" id="text-orgaa723dd">
+<div id="outline-container-orgafd512a" class="outline-3">
+<h3 id="orgafd512a">Teaching</h3>
+<div class="outline-text-3" id="text-orgafd512a">
 </div>
-<div id="outline-container-org2ff95c9" class="outline-4">
-<h4 id="org2ff95c9">The Ohio State University</h4>
-<div class="outline-text-4" id="text-org2ff95c9">
+<div id="outline-container-org620cd6d" class="outline-4">
+<h4 id="org620cd6d">The Ohio State University</h4>
+<div class="outline-text-4" id="text-org620cd6d">
 <dl class="org-dl">
 <dt>BUSMGT 7256: Tools for Data Analysis. Co-instructor (SP19).</dt><dd>This course is designed to introduce students to commonly used software programs in data science and improve students’ problem solving skills and logical thought processes. Students will be exposed to R, SAS, and SPSS.</dd>
 <dt>STAT 5760: Statistical Consulting Support from the SCS. Teaching assistant (SP18).</dt><dd>Graduate or undergraduate students enrolled in this course will work with a graduate student consultant employed by the Statistical Consulting Service (SCS) for the purpose of making progress on their thesis or dissertation.</dd>
@@ -331,9 +332,9 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </div>
 </div>
 </div>
-<div id="outline-container-org691588b" class="outline-3">
-<h3 id="org691588b">Service</h3>
-<div class="outline-text-3" id="text-org691588b">
+<div id="outline-container-orgad28653" class="outline-3">
+<h3 id="orgad28653">Service</h3>
+<div class="outline-text-3" id="text-orgad28653">
 <dl class="org-dl">
 <dt>Reviewed for the Journal of the American Statistical Association (2022)</dt><dd></dd>
 
@@ -352,25 +353,25 @@ Reference: (P)=Poster (T)=Talk (IT)=Invited Talk
 </div>
 </div>
 </div>
-<div id="outline-container-org28284a2" class="outline-2">
-<h2 id="org28284a2">Resources</h2>
-<div class="outline-text-2" id="text-org28284a2">
+<div id="outline-container-org88c4809" class="outline-2">
+<h2 id="org88c4809">Resources</h2>
+<div class="outline-text-2" id="text-org88c4809">
 <p>
 Below are (free!) resources that I've found useful in doing research. 
 </p>
 </div>
-<div id="outline-container-org09f4b95" class="outline-3">
-<h3 id="org09f4b95">Writing</h3>
-<div class="outline-text-3" id="text-org09f4b95">
+<div id="outline-container-org8565d24" class="outline-3">
+<h3 id="org8565d24">Writing</h3>
+<div class="outline-text-3" id="text-org8565d24">
 <dl class="org-dl">
-<dt><a href="https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf">Mathematical Writing</a> by Donald E. Knuth, Tracy Larrabee, and Paul M.</dt><dd>A quick read.</dd>
+<dt><a href="https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf">Mathematical Writing</a> by Donald E. Knuth, Tracy Larrabee, and Paul M. Roberts</dt><dd>A quick read.</dd>
 <dt><a href="https://georgegopen.com/articles">The Science of Scientific Writing</a> by George Gopen</dt><dd>A classic.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgbd4da3f" class="outline-3">
-<h3 id="orgbd4da3f">Computing</h3>
-<div class="outline-text-3" id="text-orgbd4da3f">
+<div id="outline-container-org1753722" class="outline-3">
+<h3 id="org1753722">Computing</h3>
+<div class="outline-text-3" id="text-org1753722">
 <p>
 Whichever language(s) you use, it helps to learn a little more than last time. 
 </p>
@@ -379,11 +380,20 @@ Whichever language(s) you use, it helps to learn a little more than last time.
 </dl>
 </div>
 </div>
+<div id="outline-container-org4427dc5" class="outline-3">
+<h3 id="org4427dc5">Reproducible research</h3>
+<div class="outline-text-3" id="text-org4427dc5">
+<ul class="org-ul">
+<li><a href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/">https://karl-voit.at/2017/09/23/orgmode-as-markup-only/</a></li>
+<li>Quarto</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Akira Horiguchi</p>
-<p class="date">Created: 2022-07-24 Sun 13:25</p>
+<p class="date">Created: 2022-08-07 Sun 19:34</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
