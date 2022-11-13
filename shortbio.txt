@@ -1,0 +1,1 @@
+Akira Horiguchi is a Postdoctoral Associate in the Department of Statistical Science at Duke University. He completed his Ph.D. in Statistics at The Ohio State University. His research interests include improving Bayesian nonparametric inference for flow cytometry data and developing sensitivity analysis tools for Bayesian regression trees.
