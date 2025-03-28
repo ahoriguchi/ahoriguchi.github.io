@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-03-27 Thu 20:36 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Statistical Data Science 2: Spring 2025</title>
+<meta name="author" content="Akira Horiguchi" />
+<meta name="generator" content="Org Mode" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+html,button,input,select,textarea {  color: #484C66;}html {  font-size: 90%;  line-height: 1.4;}*,*:before,*:after {  -moz-box-sizing: border-box;  -webkit-box-sizing: border-box;  box-sizing: border-box;}a {  white-space: pre;  white-space: pre-wrap;  white-space: pre-line;  white-space: -pre-wrap;  white-space: -o-pre-wrap;  white-space: -moz-pre-wrap;  white-space: -hp-pre-wrap;  word-wrap: break-word;  text-decoration: none;}a:hover {  color: #0A4C89;}/* * Remove text-shadow in selection highlight: h5bp.com/i * These selection rule sets have to be separate. * Customize the background color to match your design. */::-moz-selection {  background: #0A4C89;  color: #FFF;  text-shadow: none;}::selection {  background: #0A4C89;  color: #FFF;  text-shadow: none;}/* * A better looking default horizontal rule */hr {  display: block;  height: 1px;  border: 0;  border-top: 1px dashed #CCC;  margin: 1em 0;  padding: 0;}/* * Remove the gap between images, videos, audio and canvas and the bottom of * their containers: h5bp.com/i/440 */audio,canvas,img,video {  vertical-align: middle;}/* * Remove default fieldset styles. */fieldset {  border: 0;  margin: 0;  padding: 0;}/* * Allow only vertical resizing of textareas. */textarea {  resize: vertical;}/* ==========================================================================   Author's custom styles   ========================================================================== */.todo,.done,.tag {  font-family: "Source Pro", Monaco, "Courier New", monospace;  padding: 0 0.3em;  background-color: #EEE;  border: 1px solid #CCC;}.todo {  color: #DD4433;}.done {  color: #44934B;}.tag {  font-size: 80%;  font-weight: normal;  margin: 0 0.3em;  display: none;}.timestamp {  color: #BEBEBE;}.timestamp-kwd {  color: #5F9EA0;}.right {  margin-left: auto;  margin-right: 0px;  text-align: right;}.left {  margin-left: 0px;  margin-right: auto;  text-align: left;}.center {  margin-left: auto;  margin-right: auto;  text-align: center;}.underline {  text-decoration: underline;}#postamble p,#preamble p {  font-size: 90%;  margin: .2em;}pre,code {  font-family: "Source Pro", Monaco, "Courier New", monospace;  padding-left: 0.3em;  padding-right: 0.3em;}pre {  font-size: 90%;  padding: 8pt;  overflow: auto;  white-space: pre;  word-wrap: normal;}pre.src {  position: relative;}pre.src:before {  display: none;  position: absolute;  background-color: #FFF;  top: 0.5em;  right: 0.5em;  padding: 4px;  border: 1px solid #CCC;}pre.src-sh:before {  content: "Shell Script";}pre.src-bash:before {  content: "Bash Script";}pre.src-emacs-lisp:before {  content: "Emacs Lisp";}pre.src-R:before {  content: "R";}pre.src-perl:before {  content: "Perl";}pre.src-java:before {  content: "Java";}pre.src-sql:before {  content: "SQL";}pre.src-c:before {  content: "C";}pre.src-cpp:before {  content: "C++";}pre.src-html:before {  content: "HTML";}table {  border-collapse: collapse;  display: block;  overflow-x: auto;}caption.t-above {  caption-side: top;}caption.t-bottom {  caption-side: bottom;}td, th {  vertical-align: top;  border: 1px solid #CCC;  padding: 0.5em;}th.right {  text-align: center;}th.left {  text-align: center;}th.center {  text-align: center;}td.right {  text-align: right;}td.left {  text-align: left;}td.center {  text-align: center;}dt {  font-weight: bold;}#footnotes {  border-top: 5px solid #0A4C89;  margin-bottom: 5em;}#footnotes h2 {  display: none;}#text-footnotes {  margin-top: 1em;}.footpara:nth-child(2) {  display: inline;}.footpara {  display: block;}.footdef sup:before {  content: "[";}.footdef sup:after {  content: "]";}.footdef p {  display: inline;}figure {  margin: 0;}figure img {  max-width: 100%;}figcaption {  text-align: center;  font-size: 0.8rem;}.inlinetask {  padding: 10px;  border: 2px solid gray;  margin: 10px;  background: #ffffcc;}#org-div-home-and-up {  text-align: right;  font-size: 70%;  white-space: nowrap;}textarea {  overflow-x: auto;}.linenr {  font-size: smaller;}.code-highlighted {  background-color: #ffff00;}.org-info-js_info-navigation {  border-style: none;}#org-info-js_console-label {  font-size: 10px;  font-weight: bold;  white-space: nowrap;}.org-info-js_search-highlight {  background-color: #ffff00;  color: #000000;  font-weight: bold;}p.verse,blockquote {  margin: 0;  padding: 0;  padding-left: 3%;  border-left: 5px solid #0A4C89;}body {  font-family: Lora, Palatino, Georgia, serif;  width: 92%;  max-width: 1024px;  margin: 0 auto;  background-color: #FFF;}h2 {  line-height: 1.62em;}.title {  margin: 0 0 2em 0;  line-height: 2em;  border-bottom: 5px solid #0A4C89;  text-align: center;}#postamble {  font-size: 80%;  line-height: 1.4em;  text-align: right;}h1, h2, h3, h4, h5, h6 {  font-family: "Source Sans Pro", sans-serif;  color: #222;}.outline-2 {  margin-bottom: 4em;}.outline-2 h2 {  border-bottom: 1px solid #CCC;}.outline-text-2 code, pre {  background-color: #EEE;}#table-of-contents {  display: none;  margin-left: 0.5em;}#text-table-of-contents ul {  padding-left: 1.8em;}#text-table-of-contents li {  list-style-type: circle;  margin: 0.4em 0;}#text-table-of-contents ul ul {  margin: 0;}#text-table-of-contents li li {  font-weight: normal;  font-size: 90%;  margin: 0;}#content {  overflow: hidden;  *zoom: 1;}/* ==========================================================================   EXAMPLE Media Queries for Responsive Design.   These examples override the primary ('mobile first') styles.   Modify as content requires.   ========================================================================== */@media only screen and (min-width: 35em) {  /* Style adjustments for viewports that meet the condition */}@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {  /* Style adjustments for high resolution devices */}/* ==========================================================================   Print styles.   Inlined to avoid required HTTP connection: h5bp.com/r   ========================================================================== */@media print {  * {    background: transparent !important;    color: #000 !important;    /* Black prints faster: h5bp.com/s */    box-shadow: none !important;    text-shadow: none !important;  }  a,  a:visited {    text-decoration: underline;  }  a[href]:after {    content: " (" attr(href) ")";  }  abbr[title]:after {    content: " (" attr(title) ")";  }  /*   * Don't show links for images, or javascript/internal links   */  .ir a:after,  a[href^="javascript:"]:after,  a[href^="#"]:after {    content: "";  }  pre,  blockquote {    /* border: 1px solid #999; */    page-break-inside: avoid;  }  thead {    display: table-header-group;    /* h5bp.com/t */  }  tr,  img {    page-break-inside: avoid;  }  img {    max-width: 100% !important;  }  @page {    margin: 0.5cm;  }  p,  h2,  h3 {    orphans: 3;    widows: 3;  }  h2,  h3 {    page-break-after: avoid;  }  #table-of-contents {    display: block;    width: initial;    border: none;  }  #table-of-contents a {    text-decoration: none;  }}/* large screen */@media screen and (min-width: 40rem) {  html {    font-size: 100%;  }  #table-of-contents {    display: block;    padding: 1em;    width: 32%;    min-width: 18em;    float: right;    background-color: #EEE;    position: relative;    /* required by z-index */    z-index: 5000;    border: 1px solid #CCC;  }  .tag {    display: initial;  }}
+</style>
+<style>pre.src{background:#343131;color:white;} </style>
+</head>
+<body>
+<div id="content" class="content">
+<header>
+<h1 class="title">Statistical Data Science 2: Spring 2025</h1>
+</header>
+<div id="outline-container-org58be5be" class="outline-2">
+<h2 id="org58be5be">Syllabus</h2>
+<div class="outline-text-2" id="text-org58be5be">
+</div>
+<div id="outline-container-org04ca453" class="outline-3">
+<h3 id="org04ca453">Course Overview</h3>
+<div class="outline-text-3" id="text-org04ca453">
+<ul class="org-ul">
+<li>This course is the second of a three-course series on statistical data science; see <a href="https://statistics.ucdavis.edu/expanded-descriptions/35B">course description</a>.<br></li>
+<li>Many thanks to Spencer Frei; much of the material in this syllabus is taken from his syllabus.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgab906ba" class="outline-3">
+<h3 id="orgab906ba">Course Logistics</h3>
+<div class="outline-text-3" id="text-orgab906ba">
+<ul class="org-ul">
+<li>This course webpage will host lecture notes, homework, supplementary materials, etc.<br></li>
+<li>Canvas will be used for lab materials and for turning in labs and homework. Solutions will be posted on Canvas.<br></li>
+<li>Piazza will be used for discussion.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org266862d" class="outline-3">
+<h3 id="org266862d">Pre-requisites</h3>
+<div class="outline-text-3" id="text-org266862d">
+<p>
+This is a course on <b><b>advanced</b></b> programming and data manipulation in the R programming language. The best preparation for this course is STA 035A. If you have no experience with programming in any language, this will be a difficult course, and you will need to expend significant time into the first few weeks to familiarize yourself with R.<br>
+</p>
+
+<p>
+The more formal requirements are below. These requirements are strict.<br>
+</p>
+
+<p>
+Prerequisite(s): one of the following two options:<br>
+</p>
+
+<ul class="org-ul">
+<li>STA 013 (C- or better) or STA 013Y (C- or better) or ECS 032A (C- or better)<br></li>
+<li>STA 035A (C- or better) or STA 032 (C- or better) or STA 100 (C- or better)<br></li>
+</ul>
+
+<p>
+Pre- or co-requisite (i.e., can be concurrent):<br>
+</p>
+
+<ul class="org-ul">
+<li>MAT 016B or MAT 017B or MAT 021B.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc926647" class="outline-3">
+<h3 id="orgc926647">R and RStudio</h3>
+<div class="outline-text-3" id="text-orgc926647">
+<p>
+All computing work in this class will be done using R and RStudio.<br>
+</p>
+<ul class="org-ul">
+<li>R is a free, open-source programming language for statistical computing.<br></li>
+<li>RStudio is a free, open-source R programming environment. It contains a built-in code editor, many features to make working with R easier, and works the same way across different operating systems.<br></li>
+</ul>
+<p>
+You will use RStudio for homework, labs and exams, so a working version of RStudio is required. You can choose to download it on your personal computer, or use <a href="https://jupyterhub.ucdavis.edu">UC Davis JupyterHub</a>. You will need regular, reliable access to a computer either running an up-to-date version of R and RStudio, or with a working browser (for the JupyterHub option). If this is a problem, please let us know right away. There are resources available to support you. Some are listed <a href="https://keepteaching.ucdavis.edu">here</a>.<br>
+</p>
+
+<p>
+The room that labs are held in have computers with RStudio installed, and you may choose to use them. If you are using your own laptop, please make sure that it is charged before class.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org18397b5" class="outline-3">
+<h3 id="org18397b5">Evaluation</h3>
+<div class="outline-text-3" id="text-org18397b5">
+<p>
+The grade breakdown is:<br>
+</p>
+<ul class="org-ul">
+<li>5% labs<br></li>
+<li>5% homework<br></li>
+<li>60% midterms<br></li>
+<li>30% final<br></li>
+</ul>
+
+<p>
+Cutoffs for letter grades are:<br>
+</p>
+<ul class="org-ul">
+<li>A+: 95% or higher<br></li>
+<li>A:  85% or higher<br></li>
+<li>A-: 80% or higher<br></li>
+<li>B+: 75% or higher<br></li>
+<li>B:  65% or higher<br></li>
+<li>B-: 60% or higher<br></li>
+<li>C+: 55% or higher<br></li>
+<li>C:  45% or higher<br></li>
+<li>C-: 40% or higher<br></li>
+<li>D+: 35% or higher<br></li>
+<li>D:  25% or higher<br></li>
+<li>D-: 20% or higher<br></li>
+<li>F: lower than 20%<br></li>
+</ul>
+
+<p>
+These thresholds may be adjusted at the end of the semester in a way that improves your grade for the course.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7fd77b" class="outline-3">
+<h3 id="orgf7fd77b">Labs</h3>
+<div class="outline-text-3" id="text-orgf7fd77b">
+<ul class="org-ul">
+<li>Labs are typically due the Friday after the lab session, at 9 PM, and will be turned in via Gradescope (accessible through Canvas). Always check the course homepage and Gradescope/Canvas to ensure the correct deadline.<br></li>
+<li>Labs will be completed in <a href="https://quarto.org/">Quarto</a> format (file extension qmd). Labs will involve writing a combination of code and written prose, and the Quarto format allows for a combination of the two. Labs must be submitted only in PDF format, the result of calling “Knit PDF” from RStudio on your Quarto document. Work submitted in any other format will receive a grade of 0, without exception. All code used to produce your results must be shown in your PDF file (e.g., do not use `echo = FALSE` or `include = FALSE` as options anywhere). qmd files do not need to be submitted.<br></li>
+<li><b><b>Labs will be graded for completeness;</b></b> it will be up to you to check the solutions once they are released.<br></li>
+<li>No late labs will be accepted for any reason.<br></li>
+<li>Students may choose to collaborate with each other on the labs and homework, but must clearly indicate the names of all students with whom they collaborated.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge7c9710" class="outline-3">
+<h3 id="orge7c9710">Homework</h3>
+<div class="outline-text-3" id="text-orge7c9710">
+<ul class="org-ul">
+<li>Typically released on Mondays, due the following Monday at 9 PM. Always check Gradescope/Canvas to ensure the correct due date.<br></li>
+<li>The same policies that apply to labs will apply to homework. Homework may contain other non-coding components, and these can be typed (use any software you are comfortable with), or written and scanned.<br></li>
+<li>Submit homework as PDF.<br></li>
+<li><b><b>Homework will be graded for completeness;</b></b> it will be up to you to check the solutions once they are released.<br></li>
+<li>No late submissions accepted.<br></li>
+<li>Students may choose to collaborate with each other on the labs and homework, but must clearly indicate the names of all students with whom they collaborated.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb83edcd" class="outline-3">
+<h3 id="orgb83edcd">Midterms and Final</h3>
+<div class="outline-text-3" id="text-orgb83edcd">
+<ul class="org-ul">
+<li>There will be four midterms and one final. The midterms will be in class, during the scheduled class times.<br></li>
+<li>The lower score of the four midterms will be dropped. There will be no make-up exams. If you must miss an exam due to illness, travel, or some other reason, this will be the exam that will be dropped.<br></li>
+<li>For the final, if you have another final starting 30 minutes before or after the scheduled time, you may present documentation and request for an accommodation to start 15 minutes before or after the scheduled time.<br></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd3cb409" class="outline-3">
+<h3 id="orgd3cb409">Late Work</h3>
+<div class="outline-text-3" id="text-orgd3cb409">
+<p>
+All labs and homework will be due at 9 PM Pacific Time, on the relevant due date. No late work will be accepted for any reason. It is highly recommended that you begin working on your lab/homework as soon as it is released.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga21e013" class="outline-3">
+<h3 id="orga21e013">Attendance and Participation</h3>
+<div class="outline-text-3" id="text-orga21e013">
+<p>
+Class attendance is strongly encouraged. Please be on time. If you miss a lecture for any reason, you are responsible for all material covered and any announcements made in your absence. Active participation is encouraged, both in class and on Piazza. Cell phones, laptops, and other electronic devices must be silenced in class. Laptops are to be used in class for learning purposes related to the lecture only.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ff51a4" class="outline-3">
+<h3 id="org7ff51a4">Collaboration, Copying, and Plagiarism</h3>
+<div class="outline-text-3" id="text-org7ff51a4">
+<p>
+All students are expected to follow the UCD Code of Academic Conduct. Any student who cheats on an assignment or exam will be referred to the Office of Student Support and Judicial Affairs and will receive an automatic failing grade on the relevant assignment. A second instance of academic dishonesty will result in a failing grade in the course. More information on the nature of dishonest academic behavior or UCD policy can be found on the website of the Office of Student Support and Judicial Affairs.<br>
+</p>
+
+<p>
+Collaboration is encouraged and students are encouraged to discuss course material with classmates. All work that is turned in, however, must be your own. If students have collaborated on labs or homework, the names of all students working together must be clearly indicated.<br>
+</p>
+
+<p>
+Please do not distribute any course materials outside of this class. This is an infringement of copyright as per UC policy. Use of sites like Course Hero and Chegg are not permitted.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga0263cb" class="outline-3">
+<h3 id="orga0263cb">Getting help</h3>
+<div class="outline-text-3" id="text-orga0263cb">
+</div>
+<div id="outline-container-orgf4bf02a" class="outline-4">
+<h4 id="orgf4bf02a">Labs, office hours and Piazza</h4>
+<div class="outline-text-4" id="text-orgf4bf02a">
+<p>
+You can access Piazza by clicking on the “Piazza” link on the sidebar in Canvas, or directly through this link. Students are encouraged to answer each others’ questions, and the TA will moderate by checking in every day. The quickest way to get a question answered is likely on Piazza, since anyone in class can answer. These are the rules for posting on Piazza:<br>
+</p>
+
+<ul class="org-ul">
+<li>Be respectful. Any content deemed inappropriate will be taken down by the TA, and reported to the instructor.<br></li>
+<li>Search before you post; your question may have already been answered.<br></li>
+<li>Posting code that is part of your solutions for labs and homework, and asking “what is wrong with this code?” is not acceptable. “I don’t know either” is not an appropriate answer as it does not contribute constructively to the conversation. Along with your posted question, explain what else you tried that didn’t work. The answers to many common coding questions can be found on <a href="https://stackoverflow.com/">https://stackoverflow.com/</a>.<br></li>
+</ul>
+
+<p>
+If you have a question that requires more than a short paragraph to answer, labs and office hours are the best options.<br>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org92bd1d9" class="outline-3">
+<h3 id="org92bd1d9">Email</h3>
+<div class="outline-text-3" id="text-org92bd1d9">
+<p>
+Email will be used only for questions relating to private matters (accommodations, grading, emergencies, etc.). Questions about class logistics and content should be posted on Piazza, asked in class, during labs, or during office hours. If you must ask a question about a non-private matter via email, you must first document how you tried to answer the question for yourself or through other means (e.g., “I double checked the syllabus,” “There are conflicting responses on Piazza” …). Emails that do not follow these guidelines may not be answered.<br>
+</p>
+
+<p>
+<b><b>Please do not send me messages on Canvas. I do not monitor my Canvas inbox.</b></b><br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30237ea" class="outline-3">
+<h3 id="org30237ea">Other campus resources</h3>
+<div class="outline-text-3" id="text-org30237ea">
+<p>
+Statistics Tutors at the Academic Assistance and Tutoring Centers provide support for RStudio. More information is <a href="https://tutoring.ucdavis.edu/statistics">available here</a>.<br>
+</p>
+
+<p>
+Many students face different challenges during college, and it is healthy to seek support. <a href="https://ebeler.faculty.ucdavis.edu/resources/faq-student-resources/">This</a> is a comprehensive list of resources covering general academics, health and wellness, finances, housing, career/internship, and other topics.<br>
+</p>
+
+<p>
+Health and wellness resources are available here. If you have an emergency, call 911 immediately, or go to the nearest emergency room. Mental health staff are available 24 hours/7 days week by phone at 530-752-2349. (Follow the prompts to reach a counselor.)<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5ca6bde" class="outline-3">
+<h3 id="org5ca6bde">Accommodations for students with disabilities</h3>
+<div class="outline-text-3" id="text-org5ca6bde">
+<p>
+UC Davis is committed to educational equity in the academic setting, and in serving a diverse student body. All students who are interested in learning more about the Student Disability Center (SDC) are encouraged to contact them directly at <a href="https://sdc.ucdavis.edu">https://sdc.ucdavis.edu</a>, <a href="mailto:sdc@ucdavis.edu">sdc@ucdavis.edu</a>, or 530-752-3184. If you are a student who requires academic accommodations, please submit your SDC Letter of Accommodation to us as soon as possible, ideally within the first two weeks of this course.<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
