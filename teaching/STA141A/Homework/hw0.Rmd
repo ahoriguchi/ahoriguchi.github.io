@@ -1,0 +1,34 @@
+---
+title: 'STA 141A - Spring 2025 - Homework 0'
+subtitle: 'Instructor: Dr. Akira Horiguchi'
+author: 'Student name: ABCDE FGHIJ; Student ID: 123456789'
+output: pdf_document
+date: "Due date: Apr 02, 2025 at 9PM (PT)"
+---
+
+The assignment must be done in an [R Markdown](https://rmarkdown.rstudio.com) or [Quarto](https://quarto.org/) document. 
+The assignment must be submitted by the due date above by uploading two files:
+
+1. a .rmd or .qmd source file in CANVAS;
+2. a .pdf file in GRADESCOPE (if you can knit/compile your .rmd to a  .html file only, please save the created .html file as a .pdf file (by opening the .html file -> print -> save to .pdf)).
+
+Email submissions will not be accepted.
+
+Each answer has to be based on `R` code that shows how the result was obtained. The code has to answer the question or solve the task. For example, if you are asked to find the largest entry of a vector, the code has to return the largest element of the vector. If the code just prints all values of the vector, and you determine the largest element by hand, this will not be accepted as an answer. No points will be given for answers that are not based on `R`. This homework already contains chunks for your solution (you can also create additional chunks for each solution if needed, but it must be clear to which tasks your chunks belong).
+
+There are many possible ways to write `R` code that is needed to answer the questions or do the tasks, but for some of the questions or tasks you might have to use something that has not been discussed during the lectures or the discussion sessions. You will have to come up with a solution on your own. Try to understand what you need to do to complete the task or to answer the question, feel free to  search the Internet for possible solutions, and discuss possible solutions with other students. It is perfectly fine to ask what kind of an approach or a function other students use. However, you are not allowed to share your code or your answers with other students. Everyone has to write the code, do the tasks and answer the questions on their own. 
+
+During the discussion sessions, you may be asked to present and share your solutions.
+
+Good luck!
+
+\newpage
+
+The purpose of this homework assignment is to make sure you start coding in R right away and know how to submit your homework.
+
+# 1. Store and print (1 point)
+
+### a) (1 point) Compute the sum of the numbers $3$ and $5$ and store the result in a variable called `x`. (Use R to compute the sum -- don't just hardcode the number $8$.) Print the value of `x` using the function `print()`.
+```{r}
+# Your solution
+```
