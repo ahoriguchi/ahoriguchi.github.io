@@ -1158,7 +1158,7 @@ Akira Horiguchi
 <p>Data is now tidy, but not ideal for data analysis. Why?</p>
 <ul>
 <li><code>week</code> should ideally be a number, not a character</li>
-<li>Can use <code>readr::parse_numbers()</code> that extracts first number from string to fix.</li>
+<li>Can use <code>readr::parse_number()</code> that extracts first number from string to fix.</li>
 </ul>
 </section>
 <section id="lengthening-data-with-pivot_longer-3" class="slide level2">
@@ -1187,7 +1187,7 @@ Akira Horiguchi
 <h2>Understanding <code>pivot_longer()</code></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Consider toy dataset: three people (Ant, Bug, Cat) each with two blood pressure (BP) measurements.</p>
+<p>Consider toy dataset: three people (A, B, C) each with two blood pressure (BP) measurements.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb73-2"><a href=""></a>  <span class="sc">~</span>id,  <span class="sc">~</span>bp1, <span class="sc">~</span>bp2,</span>
