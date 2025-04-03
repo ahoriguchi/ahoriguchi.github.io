@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Akira Horiguchi">
-  <title>Transformations of vectors I</title>
+  <title>03: Transformations of vectors I</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Transformations of vectors I</h1>
+  <h1 class="title">03: Transformations of vectors I</h1>
   <p class="subtitle">STA35B: Statistical Data Science 2</p>
 
 <div class="quarto-title-authors">
@@ -1262,14 +1262,14 @@ Akira Horiguchi
 <section id="example-labelling-numbers-as-even-or-odd" class="slide level2">
 <h2>Example: labelling numbers as even or odd</h2>
 <ul>
-<li>Even number <span class="math inline">\(\Leftrightarrow\)</span> divisible by two.</li>
+<li>Number is even <span class="math inline">\(\Leftrightarrow\)</span> number is divisible by two.</li>
 <li>In R, operator <code>%%</code> (read “modulo”) does “modular arithmetic”:</li>
 <li><code>a %% b</code> returns the remainder when dividing <code>a</code> by <code>b</code>, e.g.
 <ul>
 <li><code>17 %% 12 = 5</code></li>
 <li><code>34 %% 6 = 4</code></li>
 </ul></li>
-<li>An integer <code>n</code> is even if and only if <code>n %% 2 == 0</code>; otherwise, odd.</li>
+<li>A number <code>n</code> is even if and only if <code>n %% 2 == 0</code>; otherwise, odd.</li>
 <li>We can use <code>if_else</code> to label numbers between 0 and 20 as even or odd</li>
 </ul>
 <div class="cell">
