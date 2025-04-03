@@ -199,7 +199,7 @@ x
 
 # 5. `lapply()` and `sapply()`
 
-### a) Redo questions 5b) and 5c), but instead of using `for` loops, use the `sapply()` function to perform the calculations.
+### a) Redo questions 4b) and 4c), but instead of using `for` loops, use the `sapply()` function to perform the calculations.
 ```{r}
 # Your solution
 ```
