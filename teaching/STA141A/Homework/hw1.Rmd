@@ -207,3 +207,13 @@ x
 ```{r}
 # Your solution
 ```
+
+### (d) Using the function `CreateDF()` defined below, use the `lapply()` function to create a data frame for each of the following values of beta: -5, -3, -1, 1, 3, 5. Store this list of data frames as`df_list`. Then use either the `Reduce()` function or the `purrr::reduce()` function to stack all the data frames in `df_list` into a single data frame called `final_df` that has two columns and `6*N` rows, where `N` is defined in the `CreateDF()` function (which is 10 in this case). 
+```{r}
+CreateDF <- function(beta) {
+  N <- 10
+  data.frame(beta = beta, gauss = rnorm(N, mean=beta))
+}
+# Your solution
+```
+
