@@ -67,31 +67,43 @@ Suppose that we have:
 
 # 2. Data frames
 
-### a) Create a data frame `df` with one numeric vector `indices` and two character vectors `firstNames` and `surnames` with length 7, respectively. The vector `indices` consists of randomly chosen values from 1 to 10 (the same values are NOT allowed to appear several times). The entries of `firstNames` are randomly chosen from the names 'Ant', 'Bug', 'Cat' (the same values are allowed to appear several times), and the entries of `surnames` are randomly chosen from the names 'Tolstoy' and 'Lee' (the same values are allowed to appear several times).
+### a) Create a data frame `df` with one numeric vector `index` and two character vectors `firstName` and `surname` with length 7, respectively. The vector `index` consists of randomly chosen values from 1 to 10 (the same values are NOT allowed to appear several times). The entries of `firstName` are randomly chosen from the names 'Ant', 'Bug', 'Cat' (the same values are allowed to appear several times), and the entries of `surname` are randomly chosen from the names 'Tolstoy' and 'Lee' (the same values are allowed to appear several times).
 
 ```{r}
 # Your solution
 ```
 
-### b) Select all elements of the data frame `df`, where the value of `indices` is greater than 7. 
+### b) Select all elements of the data frame `df`, where the value of `index` is greater than 7. 
 
 ```{r}
 # Your solution
 ```
 
-### c) Select all elements of the data frame `df`, where `firstNames` is 'Ant'.
+### c) Select all elements of the data frame `df`, where `firstName` is 'Ant'.
 
 ```{r}
 # Your solution
 ```
 
-### d) Select all elements of the data frame `df`, where both the value of `firstNames` is 'Bug', and the `surnames` is 'Lee'.
+### d) Select all elements of the data frame `df`, where both the value of `firstName` is 'Bug', and the `surname` is 'Lee'.
 
 ```{r}
 # Your solution
 ```
 
-### e) Return a character vector containing the names of the cars in the built-in dataset `mtcars` with horsepower (`hp`) equal to either 66, 110, 150, or 180. (Hint: use the `rownames()` function and the `%in%` operator.)
+### e) Use the function `cbind()` to add a new column to `df` called `middleName` randomly chosen from the names 'Davis' and `NA`. Store this new dataframe as `df2`.
+
+```{r}
+# Your solution
+```
+
+### f) Use the function `rbind()` to add a new row to `df2` with the values `index=11`, `firstName='Dog'`, `middleName='Leash'`, and `surname='Davis'`. Store this new dataframe as `df3`.
+
+```{r}
+# Your solution
+```
+
+### g) Return a character vector containing the names of the cars in the built-in dataset `mtcars` with horsepower (`hp`) equal to either 66, 110, 150, or 180. (Hint: use the `rownames()` function and the `%in%` operator.)
 
 ```{r}
 # Your solution
@@ -132,26 +144,6 @@ Suppose that we have:
 ```
 
 
-### f) Create the matrix `D` and the vector `y` corresponding to the matrix equation $Dx=y$, where $D\in\mathbb R^{4\times 4}$ and $x,y\in\mathbb R^4$ (Hint: it might be useful to make use of the commands `cbind()` or `rbind()`).
-
-Consider the following system of linear equations \begin{align*}
-x_1+2x_2+3x_3+2x_4&=3,\\
-2x_1+x_2+2x_3+7x_4&=-1,\\
-x_1+2x_2+x_3+2x_4&=0,\\
--x_1+3x_2+2x_3+x_4&=6.
-\end{align*}
-
-```{r}
-# Your solution
-```
-
-### g) Find the solution of the system of the linear equations by using the `solve()` function.
-
-The solution of $Dx=y$ is
-
-```{r}
-# Your solution
-```
 
 
 \newpage
