@@ -1504,36 +1504,36 @@ Akira Horiguchi
 <section id="tidy-check-2" class="slide level2">
 <h2>Tidy check</h2>
 <div class="columns">
-<div class="column" style="width:55%;">
+<div class="column" style="width:60%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href=""></a>scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
-  Student  Math Science
-  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Alice      85      90
-2 Bob        92      78
-3 Charlie    88      95</code></pre>
+  Student  Math  Chem
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Alice      85    90
+2 Bob        92    78
+3 Charlie    88    95</code></pre>
 </div>
 </div>
-<p>Make the table longer by having a column called Subject with values “Math” and “Science”.</p>
+<p>Make <code>scores</code> longer by having a column called Subject with values <code>"Math"</code> and <code>"Chem"</code>.</p>
 <ul>
 <li>Q: <strong>Is the following code correct?</strong></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href=""></a>scores <span class="sc">%&gt;%</span></span>
 <span id="cb100-2"><a href=""></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb100-3"><a href=""></a>    <span class="at">cols =</span> <span class="fu">c</span>(Math, Science),</span>
+<span id="cb100-3"><a href=""></a>    <span class="at">cols =</span> <span class="fu">c</span>(Math, Chem),</span>
 <span id="cb100-4"><a href=""></a>    <span class="at">names_to =</span> Subject,</span>
 <span id="cb100-5"><a href=""></a>    <span class="at">values_to =</span> Score</span>
 <span id="cb100-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div><div class="column fragment" style="width:45%;">
+</div><div class="column fragment" style="width:40%;">
 <p>No: <code>scores</code> tries to refer to <code>Subject</code> and <code>Score</code> which are not columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href=""></a>scores <span class="sc">%&gt;%</span></span>
 <span id="cb101-2"><a href=""></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb101-3"><a href=""></a>    <span class="at">cols =</span> <span class="fu">c</span>(Math, Science),</span>
+<span id="cb101-3"><a href=""></a>    <span class="at">cols =</span> <span class="fu">c</span>(Math, Chem),</span>
 <span id="cb101-4"><a href=""></a>    <span class="at">names_to =</span> <span class="st">"Subject"</span>,</span>
 <span id="cb101-5"><a href=""></a>    <span class="at">values_to =</span> <span class="st">"Score"</span></span>
 <span id="cb101-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1542,11 +1542,11 @@ Akira Horiguchi
   Student Subject Score
   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
 1 Alice   Math       85
-2 Alice   Science    90
+2 Alice   Chem       90
 3 Bob     Math       92
-4 Bob     Science    78
+4 Bob     Chem       78
 5 Charlie Math       88
-6 Charlie Science    95</code></pre>
+6 Charlie Chem       95</code></pre>
 </div>
 </div>
 </div></div>
@@ -1559,16 +1559,26 @@ Akira Horiguchi
 <section id="complex-calculations-1" class="slide level2">
 <h2>Complex calculations</h2>
 <p>Q: <strong>For each origin airport, compute the average flight time, in hours, for flights over 500 miles long.</strong></p>
+<div class="cell" data-output.lines="7">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href=""></a><span class="fu">colnames</span>(flights)  <span class="co"># hint: use origin, air_time, distance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "year"           "month"          "day"            "dep_time"      
+ [5] "sched_dep_time" "dep_delay"      "arr_time"       "sched_arr_time"
+ [9] "arr_delay"      "carrier"        "flight"         "tailnum"       
+[13] "origin"         "dest"           "air_time"       "distance"      
+[17] "hour"           "minute"         "time_hour"     </code></pre>
+</div>
+</div>
 </section>
 <section id="complex-calculations-2" class="slide level2">
 <h2>Complex calculations</h2>
 <p>Q: <strong>For each origin airport, compute the average flight time, in hours, for flights over 500 miles long.</strong></p>
 <div class="cell" data-output.lines="7">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb103-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb103-3"><a href=""></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb103-4"><a href=""></a>  <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span></span>
-<span id="cb103-5"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">avg_flight_time_hrs =</span> <span class="fu">mean</span>(air_time_hrs, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb105-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb105-3"><a href=""></a>  <span class="fu">filter</span>(distance <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb105-4"><a href=""></a>  <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span></span>
+<span id="cb105-5"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">avg_flight_time_hrs =</span> <span class="fu">mean</span>(air_time_hrs, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   origin avg_flight_time_hrs
@@ -1582,29 +1592,39 @@ Akira Horiguchi
 <section id="complex-calculations-3" class="slide level2">
 <h2>Complex calculations</h2>
 <p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
+<div class="cell" data-output.lines="7">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href=""></a><span class="fu">colnames</span>(flights)  <span class="co"># hint: use origin, air_time, distance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "year"           "month"          "day"            "dep_time"      
+ [5] "sched_dep_time" "dep_delay"      "arr_time"       "sched_arr_time"
+ [9] "arr_delay"      "carrier"        "flight"         "tailnum"       
+[13] "origin"         "dest"           "air_time"       "distance"      
+[17] "hour"           "minute"         "time_hour"     </code></pre>
+</div>
+</div>
 </section>
 <section id="complex-calculations-4" class="slide level2">
 <h2>Complex calculations</h2>
 <p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
 <!-- Average flight time, in minutes, per origin airport, when flight is \> 500 miles long vs. \<= 500 miles long? -->
-<p>We need to <code>group_by</code> two variables:</p>
+<p>We will need to <code>group_by()</code> two variables:</p>
 <ol type="1">
 <li>origin airport</li>
 <li>whether flight is <span class="math inline">\(&gt; 500\)</span> or <span class="math inline">\(\leq 500\)</span> miles. (We need to create this variable.)</li>
 </ol>
 <div class="cell" data-output.lines="7">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb105-2"><a href=""></a>  <span class="fu">select</span>(origin, dest, air_time, distance) <span class="sc">%&gt;%</span></span>
-<span id="cb105-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb105-4"><a href=""></a>         <span class="at">distance_greater_500mi =</span> distance <span class="sc">&gt;</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb109-2"><a href=""></a>  <span class="fu">select</span>(origin, air_time, distance) <span class="sc">%&gt;%</span>  <span class="co"># for visual clarity, not actually needed</span></span>
+<span id="cb109-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb109-4"><a href=""></a>         <span class="at">distance_greater_500mi =</span> distance <span class="sc">&gt;</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 336,776 × 6
-   origin dest  air_time distance air_time_hrs distance_greater_500mi
-   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;                 
- 1 EWR    IAH        227     1400        3.78  TRUE                  
- 2 LGA    IAH        227     1416        3.78  TRUE                  
- 3 JFK    MIA        160     1089        2.67  TRUE                  
- 4 JFK    BQN        183     1576        3.05  TRUE                  
+<pre><code># A tibble: 336,776 × 5
+   origin air_time distance air_time_hrs distance_greater_500mi
+   &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;lgl&gt;                 
+ 1 EWR         227     1400        3.78  TRUE                  
+ 2 LGA         227     1416        3.78  TRUE                  
+ 3 JFK         160     1089        2.67  TRUE                  
+ 4 JFK         183     1576        3.05  TRUE                  
 ...</code></pre>
 </div>
 </div>
@@ -1612,13 +1632,12 @@ Akira Horiguchi
 <section id="complex-calculations-5" class="slide level2">
 <h2>Complex calculations</h2>
 <p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
-<div class="cell" data-output.lines="12">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb107-2"><a href=""></a>  <span class="fu">select</span>(origin, dest, air_time, distance) <span class="sc">%&gt;%</span></span>
-<span id="cb107-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb107-4"><a href=""></a>         <span class="at">distance_greater_500mi =</span> distance <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-5"><a href=""></a>  <span class="fu">group_by</span>(origin, distance_greater_500mi) <span class="sc">%&gt;%</span></span>
-<span id="cb107-6"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">avg_flight_time_hrs =</span> <span class="fu">mean</span>(air_time_hrs, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb111-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb111-3"><a href=""></a>         <span class="at">distance_greater_500mi =</span> distance <span class="sc">&gt;</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb111-4"><a href=""></a>  <span class="fu">group_by</span>(origin, distance_greater_500mi) <span class="sc">%&gt;%</span></span>
+<span id="cb111-5"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">avg_flight_time_hrs =</span> <span class="fu">mean</span>(air_time_hrs, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
 # Groups:   origin [3]
