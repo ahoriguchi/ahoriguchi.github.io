@@ -10,7 +10,7 @@ geometry:
 ---
 
 ## Instructions
-Upload a PDF file, named with your UC Davis email ID and homework number (e.g., sfrei_hw1.pdf), to Gradescope (accessible through Canvas). You will give the commands to answer each question in its own code block, which will also produce output that will be automatically embedded in the output file.  All code used to answer the question must be supplied, as well as written statements where appropriate. 
+Upload a PDF file, named with your UC Davis email ID and homework number (e.g., ahoriguchi_hw1.pdf), to Gradescope (accessible through Canvas). You will give the commands to answer each question in its own code block, which will also produce output that will be automatically embedded in the output file.  All code used to answer the question must be supplied, as well as written statements where appropriate. 
 
 All code used to produce your results must be shown in your PDF file (e.g., do not use `echo = FALSE` or `include = FALSE` as options anywhere). Rmd/qmd files do not need to be submitted, but may be requested by the TA and must be available when the assignment is submitted.
 
