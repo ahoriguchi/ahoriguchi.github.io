@@ -1,1 +1,1 @@
-
+For .qmd and .Rmd files to retain their header code lines, we need a .nojekyll file in the root Github Pages directory. See https://github.blog/news-insights/the-library/bypassing-jekyll-on-github-pages/
