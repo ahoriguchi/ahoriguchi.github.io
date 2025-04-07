@@ -936,14 +936,14 @@ Akira Horiguchi
 <p>E.g., was there a day where:</p>
 <ul>
 <li><em>every</em> flight was delayed on departure by less than an hour?</li>
-<li><em>any</em> flight was delayed on arrival by <span class="math inline">\(\leq 5\)</span> hours?</li>
+<li><em>any</em> flight was delayed on arrival by <span class="math inline">\(\geq 5\)</span> hours?</li>
 </ul>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-output.lines="8">
 <div class="sourceCode cell-code" id="cb57" data-code-line-numbers="4,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
 <span id="cb57-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
-<span id="cb57-4"><a href=""></a>    <span class="at">all_delayed =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb57-4"><a href=""></a>    <span class="at">all_delayed =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
 <span id="cb57-5"><a href=""></a>    <span class="at">any_long_delay =</span> <span class="fu">any</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
 <span id="cb57-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
