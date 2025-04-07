@@ -406,7 +406,9 @@ Akira Horiguchi
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#/operation-with-logical-vectors" id="/toc-operation-with-logical-vectors">Operation with logical vectors</a></li>
+<li><a href="#/producing-logical-vectors" id="/toc-producing-logical-vectors">Producing logical vectors</a></li>
+<li><a href="#/summarizing-logical-vectors" id="/toc-summarizing-logical-vectors">Summarizing logical vectors</a></li>
+<li><a href="#/conditional-transformations" id="/toc-conditional-transformations">Conditional transformations</a></li>
 </ul>
 </nav>
 </section>
@@ -419,8 +421,8 @@ Akira Horiguchi
 <!-- * Missing (`NA`) -->
 </section>
 <section>
-<section id="operation-with-logical-vectors" class="title-slide slide level1 center">
-<h1>Operation with logical vectors</h1>
+<section id="producing-logical-vectors" class="title-slide slide level1 center">
+<h1>Producing logical vectors</h1>
 
 </section>
 <section id="intro" class="slide level2">
@@ -916,20 +918,29 @@ Akira Horiguchi
 <pre><code>[1] FALSE FALSE  TRUE</code></pre>
 </div>
 </div>
+</section></section>
+<section>
+<section id="summarizing-logical-vectors" class="title-slide slide level1 center">
+<h1>Summarizing logical vectors</h1>
+
 </section>
 <section id="logical-summaries" class="slide level2">
 <h2>Logical summaries</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<p>Two main functions for logical summaries:</p>
+<p>Two main functions to summarize a logical vector:</p>
 <ul>
-<li><code>any(x)</code> returns <code>TRUE</code> if any value in <code>x</code> is <code>TRUE</code></li>
-<li><code>all(x)</code> returns <code>TRUE</code> only if all values in <code>x</code> are <code>TRUE</code></li>
+<li><code>any(x)</code> returns <code>TRUE</code> if <em>any</em> value in <code>x</code> is <code>TRUE</code></li>
+<li><code>all(x)</code> returns <code>TRUE</code> only if <em>all</em> values in <code>x</code> are <code>TRUE</code></li>
 </ul>
-<p>For instance, was there a day where <em>every</em> flight was delayed on departure by less than an hour? Or a day where there were <em>any</em> flights delayed on arrival by <span class="math inline">\(\leq 5\)</span> hours?</p>
+<p>E.g., was there a day where:</p>
+<ul>
+<li><em>every</em> flight was delayed on departure by less than an hour?</li>
+<li><em>any</em> flight was delayed on arrival by <span class="math inline">\(\leq 5\)</span> hours?</li>
+</ul>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-output.lines="8">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb57" data-code-line-numbers="4,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
 <span id="cb57-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
 <span id="cb57-4"><a href=""></a>    <span class="at">all_delayed =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
@@ -952,9 +963,28 @@ Akira Horiguchi
 <section id="logical-summaries-1" class="slide level2">
 <h2>Logical summaries</h2>
 <ul>
-<li>When coerced into a numeric, TRUE coerces to 1 and FALSE coerces to 0</li>
-<li>Useful if you want to find proportions that are TRUE/FALSE, e.g.&nbsp;<code>mean()</code>, <code>sum()</code></li>
+<li>When coerced into a numeric, <code>TRUE</code> coerces to <code>1</code> and <code>FALSE</code> coerces to <code>0</code></li>
+<li>Useful if you want to find proportions that are <code>TRUE</code>/<code>FALSE</code>, e.g.&nbsp;<code>mean()</code>, <code>sum()</code></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb59-2"><a href=""></a><span class="fu">sum</span>(x)  <span class="co"># number of TRUE elements in x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="fu">mean</span>(x)  <span class="co"># proportion of TRUE elements in x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="fu">length</span>(x) <span class="sc">-</span> <span class="fu">sum</span>(x)  <span class="co"># number of FALSE elements in x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">mean</span>(x)  <span class="co"># proportion of FALSE elements in x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
 </section>
 <section id="logical-summaries-2" class="slide level2">
 <h2>Logical summaries</h2>
@@ -962,12 +992,12 @@ Akira Horiguchi
 <li>Example: proportion of flights delayed &gt; 1 hour on departure, and number of flights delayed on arrival by &gt; 5 hours:</li>
 </ul>
 <div class="cell" data-output.lines="7">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb59-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
-<span id="cb59-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb59-4"><a href=""></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb59-5"><a href=""></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb59-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
+<span id="cb67-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb67-4"><a href=""></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb67-5"><a href=""></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb67-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
 # Groups:   year, month [12]
@@ -987,13 +1017,13 @@ Akira Horiguchi
 <li>Example: proportion of flights delayed &gt; 1 hour on departure, and number of flights delayed on arrival by &gt; 5 hours:</li>
 </ul>
 <div class="cell" data-output.lines="8">
-<div class="sourceCode cell-code" id="cb61" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb61-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
-<span id="cb61-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb61-4"><a href=""></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb61-5"><a href=""></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb61-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb61-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb69-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb69-4"><a href=""></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb69-5"><a href=""></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb69-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb69-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
     year month   day prop_delayed_1hour num_long_delay
@@ -1013,62 +1043,67 @@ Akira Horiguchi
 <div class="column" style="width:50%;">
 <!-- * Can use logical vectors for subsetting -->
 <!-- * Subset operator: `[]`  -->
-<p>Compute average delay for delayed flights:</p>
+<p>Average delay for delayed flights:</p>
 <div class="cell" data-output.lines="5">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb63-2"><a href=""></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb63-3"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
-<span id="cb63-4"><a href=""></a>  <span class="fu">summarize</span>(</span>
-<span id="cb63-5"><a href=""></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay),</span>
-<span id="cb63-6"><a href=""></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb63-7"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb63-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb71-2"><a href=""></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb71-3"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb71-4"><a href=""></a>  <span class="fu">summarize</span>(</span>
+<span id="cb71-5"><a href=""></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay),</span>
+<span id="cb71-6"><a href=""></a>    <span class="at">n_flight =</span> <span class="fu">n</span>(),</span>
+<span id="cb71-7"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb71-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
-    year month   day behind     n
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
- 1  2013     1     1   32.5   461
- 2  2013     1     2   32.0   535
+    year month   day behind n_flight
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;    &lt;int&gt;
+ 1  2013     1     1   32.5      461
+ 2  2013     1     2   32.0      535
 ...</code></pre>
 </div>
 </div>
-<p><code>n()</code> gives number of delayed flights</p>
+<p><code>n()</code> gives number of delayed flights per group.</p>
 </div><div class="column" style="width:50%;">
 <p>Another way is to subset using logical vectors and the subset operator <code>[]</code>:</p>
 <div class="cell" data-output.lines="5">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb65-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
-<span id="cb65-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
-<span id="cb65-4"><a href=""></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay[arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb65-5"><a href=""></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb65-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb65-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb73-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb73-3"><a href=""></a>  <span class="fu">summarize</span>(</span>
+<span id="cb73-4"><a href=""></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay[arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb73-5"><a href=""></a>    <span class="at">n_flight =</span> <span class="fu">n</span>(),</span>
+<span id="cb73-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb73-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
-    year month   day behind     n
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
- 1  2013     1     1   32.5   842
- 2  2013     1     2   32.0   943
+    year month   day behind n_flight
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;    &lt;int&gt;
+ 1  2013     1     1   32.5      842
+ 2  2013     1     2   32.0      943
 ...</code></pre>
 </div>
 </div>
-<p><code>n()</code> gives total <span class="math inline">\(\#\)</span> of flights, not ideal.</p>
+<p><code>n()</code> gives total <span class="math inline">\(\#\)</span> of flights per group, not ideal.</p>
 </div></div>
+</section></section>
+<section>
+<section id="conditional-transformations" class="title-slide slide level1 center">
+<h1>Conditional transformations</h1>
+
 </section>
 <section id="conditional-transformations-if_else" class="slide level2">
 <h2>Conditional transformations: <code>if_else()</code></h2>
 <p><code>if_else(CONDITION, TRUE_VAL, FALSE_VAL, MISSING_VAL)</code> is useful when we want to return some value when condition is <code>TRUE</code> and return another value when condition is <code>FALSE</code>.</p>
 <!-- * When condition is TRUE, it's one value.  When FALSE, it's another value. -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span>
-<span id="cb67-2"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yay"</span>, <span class="st">"boo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span>
+<span id="cb75-2"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yay"</span>, <span class="st">"boo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "boo" "boo" "yay" "yay" NA   </code></pre>
 </div>
 </div>
 <p>The fourth argument of <code>if_else()</code> specifies what to fill <code>NA</code>’s with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yay"</span>, <span class="st">"boo"</span>, <span class="st">"idk how i feel yet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yay"</span>, <span class="st">"boo"</span>, <span class="st">"idk how i feel yet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "boo"                "boo"                "yay"               
 [4] "yay"                "idk how i feel yet"</code></pre>
@@ -1076,7 +1111,7 @@ Akira Horiguchi
 </div>
 <p>We can also use vectors as an argument.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="sc">-</span>x, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="sc">-</span>x, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  1  1  2 NA</code></pre>
 </div>
@@ -1086,9 +1121,9 @@ Akira Horiguchi
 <h2>Conditional transformations: <code>if_else()</code></h2>
 <p>We can use general vectors inside of <code>if_else()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span>
-<span id="cb73-2"><a href=""></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb73-3"><a href=""></a><span class="fu">if_else</span>(<span class="fu">is.na</span>(x1), y1, x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href=""></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span>
+<span id="cb81-2"><a href=""></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb81-3"><a href=""></a><span class="fu">if_else</span>(<span class="fu">is.na</span>(x1), y1, x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3 1 2 6</code></pre>
 </div>
@@ -1111,13 +1146,13 @@ Akira Horiguchi
 </ul>
 <p>Weird, but pretty readable:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>, <span class="cn">NA</span>)</span>
-<span id="cb75-2"><a href=""></a><span class="fu">case_when</span>(</span>
-<span id="cb75-3"><a href=""></a>  x <span class="sc">==</span> <span class="dv">0</span>   <span class="sc">~</span> <span class="st">"0"</span>,</span>
-<span id="cb75-4"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"-ve"</span>, </span>
-<span id="cb75-5"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
-<span id="cb75-6"><a href=""></a>  <span class="fu">is.na</span>(x) <span class="sc">~</span> <span class="st">"???"</span></span>
-<span id="cb75-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>, <span class="cn">NA</span>)</span>
+<span id="cb83-2"><a href=""></a><span class="fu">case_when</span>(</span>
+<span id="cb83-3"><a href=""></a>  x <span class="sc">==</span> <span class="dv">0</span>   <span class="sc">~</span> <span class="st">"0"</span>,</span>
+<span id="cb83-4"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"-ve"</span>, </span>
+<span id="cb83-5"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
+<span id="cb83-6"><a href=""></a>  <span class="fu">is.na</span>(x) <span class="sc">~</span> <span class="st">"???"</span></span>
+<span id="cb83-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-ve" "-ve" "-ve" "0"   "+ve" "+ve" "+ve" "???"</code></pre>
 </div>
@@ -1129,21 +1164,21 @@ Akira Horiguchi
 <div class="column" style="width:50%;">
 <p>If no cases match, then returns <code>NA</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>)</span>
-<span id="cb77-2"><a href=""></a><span class="fu">case_when</span>(</span>
-<span id="cb77-3"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"-ve"</span>,</span>
-<span id="cb77-4"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span></span>
-<span id="cb77-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>)</span>
+<span id="cb85-2"><a href=""></a><span class="fu">case_when</span>(</span>
+<span id="cb85-3"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"-ve"</span>,</span>
+<span id="cb85-4"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span></span>
+<span id="cb85-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-ve" "-ve" NA    "+ve" "+ve" NA   </code></pre>
 </div>
 </div>
 <p>If multiple conditions are satisfied, only the first is used – be careful!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a><span class="fu">case_when</span>(</span>
-<span id="cb79-2"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
-<span id="cb79-3"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"big"</span></span>
-<span id="cb79-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href=""></a><span class="fu">case_when</span>(</span>
+<span id="cb87-2"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
+<span id="cb87-3"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"big"</span></span>
+<span id="cb87-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA    NA    NA    "+ve" "+ve" NA   </code></pre>
 </div>
@@ -1151,11 +1186,11 @@ Akira Horiguchi
 </div><div class="column" style="width:50%;">
 <p>The argument <code>.default</code> specifies return value if condition is satisfied, or if value is <code>NA</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href=""></a><span class="fu">case_when</span>(</span>
-<span id="cb81-2"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"-ve"</span>,</span>
-<span id="cb81-3"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
-<span id="cb81-4"><a href=""></a>  <span class="at">.default =</span> <span class="st">"???"</span></span>
-<span id="cb81-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href=""></a><span class="fu">case_when</span>(</span>
+<span id="cb89-2"><a href=""></a>  x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"-ve"</span>,</span>
+<span id="cb89-3"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"+ve"</span>,</span>
+<span id="cb89-4"><a href=""></a>  <span class="at">.default =</span> <span class="st">"???"</span></span>
+<span id="cb89-5"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-ve" "-ve" "???" "+ve" "+ve" "???"</code></pre>
 </div>
@@ -1168,18 +1203,18 @@ Akira Horiguchi
 <div class="column" style="width:70%;">
 <p>Provide human-readable labels to flight delays.</p>
 <div class="cell" data-output.lines="5">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb83-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb83-3"><a href=""></a>    <span class="at">status =</span> <span class="fu">case_when</span>(</span>
-<span id="cb83-4"><a href=""></a>      <span class="fu">is.na</span>(arr_delay)      <span class="sc">~</span> <span class="st">"cancelled"</span>,</span>
-<span id="cb83-5"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">30</span>       <span class="sc">~</span> <span class="st">"very early"</span>,</span>
-<span id="cb83-6"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">15</span>       <span class="sc">~</span> <span class="st">"early"</span>,</span>
-<span id="cb83-7"><a href=""></a>      <span class="fu">abs</span>(arr_delay) <span class="sc">&lt;=</span> <span class="dv">15</span>  <span class="sc">~</span> <span class="st">"on time"</span>,</span>
-<span id="cb83-8"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="dv">60</span>        <span class="sc">~</span> <span class="st">"late"</span>,</span>
-<span id="cb83-9"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="cn">Inf</span>       <span class="sc">~</span> <span class="st">"very late"</span>,</span>
-<span id="cb83-10"><a href=""></a>    ),</span>
-<span id="cb83-11"><a href=""></a>    <span class="at">.keep =</span> <span class="st">"used"</span> <span class="co"># only returns those columns used in calculations</span></span>
-<span id="cb83-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href=""></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb91-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb91-3"><a href=""></a>    <span class="at">status =</span> <span class="fu">case_when</span>(</span>
+<span id="cb91-4"><a href=""></a>      <span class="fu">is.na</span>(arr_delay)      <span class="sc">~</span> <span class="st">"cancelled"</span>,</span>
+<span id="cb91-5"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">30</span>       <span class="sc">~</span> <span class="st">"very early"</span>,</span>
+<span id="cb91-6"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">15</span>       <span class="sc">~</span> <span class="st">"early"</span>,</span>
+<span id="cb91-7"><a href=""></a>      <span class="fu">abs</span>(arr_delay) <span class="sc">&lt;=</span> <span class="dv">15</span>  <span class="sc">~</span> <span class="st">"on time"</span>,</span>
+<span id="cb91-8"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="dv">60</span>        <span class="sc">~</span> <span class="st">"late"</span>,</span>
+<span id="cb91-9"><a href=""></a>      arr_delay <span class="sc">&lt;</span> <span class="cn">Inf</span>       <span class="sc">~</span> <span class="st">"very late"</span>,</span>
+<span id="cb91-10"><a href=""></a>    ),</span>
+<span id="cb91-11"><a href=""></a>    <span class="at">.keep =</span> <span class="st">"used"</span> <span class="co"># only returns those columns used in calculations</span></span>
+<span id="cb91-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 2
    arr_delay status 
@@ -1240,16 +1275,16 @@ Akira Horiguchi
 <p>Both <code>if_else()</code> and <code>case_when()</code> require the outputs to be of consistent types.<br>
 <!-- If not, you'll get errors, e.g. --></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href=""></a><span class="fu">if_else</span>(<span class="cn">TRUE</span>, <span class="st">"a"</span>, <span class="dv">1</span>)</span>
-<span id="cb85-2"><a href=""></a><span class="co">#&gt; Error in `if_else()`:</span></span>
-<span id="cb85-3"><a href=""></a><span class="co">#&gt; ! Can't combine `true` &lt;character&gt; and `false` &lt;double&gt;.</span></span>
-<span id="cb85-4"><a href=""></a></span>
-<span id="cb85-5"><a href=""></a><span class="fu">case_when</span>(</span>
-<span id="cb85-6"><a href=""></a>  x <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
-<span id="cb85-7"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fu">now</span>()</span>
-<span id="cb85-8"><a href=""></a>)</span>
-<span id="cb85-9"><a href=""></a><span class="co">#&gt; Error in `case_when()`:</span></span>
-<span id="cb85-10"><a href=""></a><span class="co">#&gt; ! Can't combine `..1 (right)` &lt;logical&gt; and `..2 (right)` &lt;datetime&lt;local&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href=""></a><span class="fu">if_else</span>(<span class="cn">TRUE</span>, <span class="st">"a"</span>, <span class="dv">1</span>)</span>
+<span id="cb93-2"><a href=""></a><span class="co">#&gt; Error in `if_else()`:</span></span>
+<span id="cb93-3"><a href=""></a><span class="co">#&gt; ! Can't combine `true` &lt;character&gt; and `false` &lt;double&gt;.</span></span>
+<span id="cb93-4"><a href=""></a></span>
+<span id="cb93-5"><a href=""></a><span class="fu">case_when</span>(</span>
+<span id="cb93-6"><a href=""></a>  x <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb93-7"><a href=""></a>  x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fu">now</span>()</span>
+<span id="cb93-8"><a href=""></a>)</span>
+<span id="cb93-9"><a href=""></a><span class="co">#&gt; Error in `case_when()`:</span></span>
+<span id="cb93-10"><a href=""></a><span class="co">#&gt; ! Can't combine `..1 (right)` &lt;logical&gt; and `..2 (right)` &lt;datetime&lt;local&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Most types are incompatible in order to catch errors. Compatible types:</p>
 <ul>
@@ -1273,8 +1308,8 @@ Akira Horiguchi
 <li>We can use <code>if_else</code> to label numbers between 0 and 20 as even or odd</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb86-2"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">'even'</span>, <span class="st">'odd'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb94-2"><a href=""></a><span class="fu">if_else</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">'even'</span>, <span class="st">'odd'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "even" "odd"  "even" "odd"  "even" "odd"  "even" "odd"  "even" "odd" 
 [11] "even" "odd"  "even" "odd"  "even" "odd"  "even" "odd"  "even" "odd" 
