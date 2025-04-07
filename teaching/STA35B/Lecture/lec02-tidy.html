@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Akira Horiguchi">
-  <title>tidy data and tidyverse</title>
+  <title>02: tidy data and tidyverse</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">tidy data and tidyverse</h1>
+  <h1 class="title">02: tidy data and tidyverse</h1>
   <p class="subtitle">STA35B: Statistical Data Science 2</p>
 
 <div class="quarto-title-authors">
@@ -1591,7 +1591,7 @@ Akira Horiguchi
 </section>
 <section id="complex-calculations-3" class="slide level2">
 <h2>Complex calculations</h2>
-<p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
+<p>Q: <strong>For each origin airport, compute the average flight time, in hours, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
 <div class="cell" data-output.lines="7">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href=""></a><span class="fu">colnames</span>(flights)  <span class="co"># hint: use origin, air_time, distance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1605,7 +1605,7 @@ Akira Horiguchi
 </section>
 <section id="complex-calculations-4" class="slide level2">
 <h2>Complex calculations</h2>
-<p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
+<p>Q: <strong>For each origin airport, compute the average flight time, in hours, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
 <!-- Average flight time, in minutes, per origin airport, when flight is \> 500 miles long vs. \<= 500 miles long? -->
 <p>We will need to <code>group_by()</code> two variables:</p>
 <ol type="1">
@@ -1631,7 +1631,7 @@ Akira Horiguchi
 </section>
 <section id="complex-calculations-5" class="slide level2">
 <h2>Complex calculations</h2>
-<p>Q: <strong>For each origin airport, compute the average flight time, in minutes, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
+<p>Q: <strong>For each origin airport, compute the average flight time, in hours, for flights over 500 miles long vs.&nbsp;less than or equal to 500 miles long.</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href=""></a>flights <span class="sc">%&gt;%</span></span>
 <span id="cb111-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">air_time_hrs =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
