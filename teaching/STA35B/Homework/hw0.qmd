@@ -2,11 +2,6 @@
 title: "STA035B Homework 0, due: 4/8, 9pm"
 author: "Akira Horiguchi"
 format: pdf
-# fontfamily: libertinus
-# mainfont: TeX Gyre Pagella
-# pdf-engine: xelatex
-# mainfont: Lato
-# monofont: Roboto
 geometry:
   - top=15mm
   - bottom=25mm
