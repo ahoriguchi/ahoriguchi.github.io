@@ -1,0 +1,956 @@
+---
+title: "05: Transformations of strings"
+subtitle: "STA35B: Statistical Data Science 2"
+author: "Akira Horiguchi"
+format: 
+  revealjs:
+    theme: ../ucdavis.scss
+    footer: "University of California, Davis · STA35B · Spring 2025"
+    slide-number: h.v
+    show-slide-number: all
+    toc: true
+    toc-depth: 1
+execute:
+  echo: true
+  warning: true
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(unvotes)
+library(knitr)
+
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+
+knitr::opts_chunk$set(comment = NA) # makes it so the ## doesnt appear in output for chunks
+```
+
+
+We'll focus on transforming strings. 
+
+```{r}
+library(tidyverse)
+library(babynames)
+```
+We'll primarily work with `stringr`, which has functions that start with `str_`.
+
+
+# Creating strings
+
+## Creating strings from scratch
+
+* Can create strings using either `'` or `"` - single or double quotes 
+* If you want quotes within your string, use `'` on outside and `"` on inside (or reverse)
+
+```{r, eval = FALSE}
+string1 <- "example of a string"
+string2 <- 'this string has a "quote" inside of it'
+```
+
+* In RStudio, if you highlight text and then press `'` or `"`, it puts quotes around it
+* If you forget to close a quote, console will print `+` and wait for you to complete
+  * Can lead to very confusing / never-ending errors in the console.
+
+```{r, eval=FALSE}
+> "This is a string without a closing quote
++ 
++ 
++ more text
+```
+
+
+
+## Escapes
+* To include a literal single or double quote in a string, use `\` to escape it.
+* This is what R is implicitly doing when you put quotes inside of strings.
+```{r}
+(string2 <- 'this string has a "quote" inside of it')
+(string3 <- "this string has a \"quote\" inside of it")
+string2 == string3
+```
+
+* Another special character you need to escape: `\`, using `\\`.
+```{r, eval=FALSE}
+x <- c('\'', "\"", "\\")
+```
+
+There are other special characters (next slide).
+
+
+
+## Other special characters
+
+* In addition to `\"`, `\'`, `\\`, there is:
+* `\n`: new line
+* `\t`: tab
+* `\u` or `\U`: unicode characters
+* Base R function `writeLines()` writes text, similar to `dplyr::str_view()` 
+```{r}
+x <- c("one\ntwo", "one\ttwo", "\u00b5", "\U0001f604")
+x
+writeLines(x)
+```
+
+
+
+## Examples
+
+Create a string...
+
+::::: columns
+::: {.column width="65%"}
+... with value `He said "That's amazing!"`
+```{r}
+x <- 'He said "That\'s amazing!"'
+x
+writeLines(x)
+y <- "He said \"That's amazing!\""
+y
+writeLines(y)
+```
+:::
+
+::: {.column width="35%" .fragment}
+... with value `\a\b\c`
+```{r}
+x <- "\\a\\b\\c"
+x
+writeLines(x)
+```
+:::
+:::::
+
+
+
+
+
+
+
+## Creating strings from data
+* We'll now go over ways to create new strings from tibbles.
+* There are many functions that work well with `dplyr`
+  * `str_c()`
+  * `str_glue()`
+  * `str_flatten()`
+
+## `str_c()`: create strings by concatenation
+* Concatenates any number of vectors and returns a character vector
+```{r}
+( str_c("x", "y") )
+( str_c("x", "y", "z") )
+( str_c("Hello ", c("Bug", "Dog")))  # element-wise operation
+```
+* Similar to `paste0()` in base R, but friendlier for `dplyr` --- obeys Tidyverse rules for recycling and propagating missing vals. 
+
+
+
+## Compare `str_c()` vs `paste0()`
+```{r}
+df <- tibble(nm = c("Bug", "Cat", "Ant", NA))
+df
+```
+::::: columns
+::: {.column width="50%"}
+```{r}
+df %>% 
+  mutate(gr=str_c("Hi ", nm, "!"))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+df %>% 
+  mutate(gr=paste0("Hi ", nm, "!"))
+```
+:::
+:::::
+
+
+## `str_glue()`: create strings with `{}`
+
+* If you're mixing strings with variables, lots of `"`s make it hard to read
+* `str_glue()`: anything inside of `{}` will be evaluated like it doesn't have quotes:
+*  similar to Python's f strings
+```{r}
+df %>%  # matches behavior of `paste0()`
+  mutate(gr = str_glue("Hi {nm}!"))
+```
+
+* Default behavior for `NA` is to copy over the literal `NA`; inconsistent with `str_c()`.  If you set `.na=NULL`, then matches behavior of `str_c()`
+
+## `str_glue()`: create strings with `{}`
+
+* If you're mixing strings with variables, lots of `"`s make it hard to read
+* `str_glue()`: anything inside of `{}` will be evaluated like it doesn't have quotes:
+*  similar to Python's f strings
+
+```{r}
+df %>%  # matches behavior of `str_c()`
+  mutate(gr = str_glue("Hi {nm}!", .na=NULL))
+```
+
+## `str_glue()`: create strings with `{}`
+
+* If you're mixing strings with variables, lots of `"`s make it hard to read
+* `str_glue()`: anything inside of `{}` will be evaluated like it doesn't have quotes:
+*  similar to Python's f strings
+
+```{r}
+df %>%  # For literal `{` or `}`, use double `{{` or `}}`
+  mutate(gr = str_glue("Hi {{{nm}}}!", .na=NULL))
+```
+
+
+
+
+## `str_flatten()`: create strings from a vector
+
+* If operating over vectors, `str_c()` and `str_glue()` return vectors of the same length. This is useful for `mutate()`.
+* If we instead want to e.g. concatenate all strings in a group (`summarize()`), we can use `str_flatten()`
+
+<!-- not for `summarize()`, where we want to take a vector and return a single string, e.g. concatenation of all strings in a group. -->
+```{r}
+( str_flatten(c("x", "y", "z")) )
+( str_flatten(c("x", "y", "z"), ", "))
+( str_flatten(c("x", "y", "z"), ", ", last = ", and ") )
+```
+
+
+## `str_flatten()`: create strings from a vector
+
+* Allows for easy computation of gluing together strings per group:
+
+::::: columns
+::: {.column width="30%"}
+```{r, echo=FALSE}
+df <- tribble(
+  ~ name, ~ fruit,
+  "Cat", "banana",
+  "Cat", "apple",
+  "Bug", "nectarine",
+  "Ant", "orange",
+  "Ant", "papaya",
+)
+```
+```{r}
+df
+```
+:::
+
+::: {.column width="70%" .fragment}
+```{r}
+df %>%
+  group_by(name) %>%
+  summarize(fruits = str_flatten(fruit, ", "))
+```
+:::
+:::::
+
+
+
+
+
+
+# Extracting data from strings
+
+## Extracting data from strings
+
+We'll focus on four useful `tidyr` functions for extracting data from strings:
+```{r, eval=FALSE}
+df |> separate_longer_delim(col, delim)
+df |> separate_longer_position(col, width)
+df |> separate_wider_delim(col, delim, names)
+df |> separate_wider_position(col, widths)
+```
+
+::::: columns
+::: {.column width="50%" .fragment}
+* `_longer` creates new rows / collapses columns to make df longer
+* `_wider` creates new columns / collapses rows to make df wider
+:::
+
+::: {.column width="50%" .fragment}
+* `_delim` splits up a string with a delimiter like `", "` or `" "`
+* `_position` splits at specified widths of the string, like `c(3,5,2)`
+:::
+:::::
+Examples of each will be shown in the next few slides.
+
+
+## `separate_longer_delim()`
+
+* `_longer` creates new rows / collapses columns to make df longer
+* `_delim` splits up a string with a delimiter like `", "` or `" "`
+
+::::: columns
+::: {.column width="30%" .fragment}
+```{r echo=FALSE}
+df1 <- tibble(name = c("Cat", "Bug", "Ant"), grades = c("A,B,B,A", "F", "C,D"))
+```
+```{r}
+df1
+```
+:::
+
+::: {.column width="70%" .fragment}
+```{r}
+df1 %>% 
+  separate_longer_delim(grades, delim = ",")
+```
+:::
+:::::
+
+
+## `separate_longer_delim()`
+
+* `_longer` creates new rows / collapses columns to make df longer
+* `_delim` splits up a string with a delimiter like `", "` or `" "`
+
+::::: columns
+::: {.column width="30%"}
+```{r}
+df1
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+df1 %>%   # wrong delimiter
+  separate_longer_delim(grades, delim = ".")
+```
+:::
+:::::
+
+
+## `separate_longer_delim()`
+
+* `_longer` creates new rows / collapses columns to make df longer
+* `_delim` splits up a string with a delimiter like `", "` or `" "`
+
+::::: columns
+::: {.column width="30%"}
+```{r}
+df1
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+df1 %>%   # empty delimiter
+  separate_longer_delim(grades, delim = "")
+```
+:::
+:::::
+
+
+
+
+## `separate_longer_position()`
+Less common, but sometimes each character in a value records a value itself
+
+- e.g. if you record all grades for each student in a single continuous string:
+
+::::: columns
+::: {.column width="30%"}
+```{r echo=FALSE}
+df2 <- tibble(name = c("Cat", "Bug", "Ant"), grades = c("ABBA", "F", "CD"))
+```
+```{r}
+df2
+```
+:::
+
+::: {.column width="70%" .fragment}
+```{r}
+df2 %>% 
+  separate_longer_position(grades, width = 1)
+```
+:::
+:::::
+
+## `separate_longer_position()`
+Less common, but sometimes each character in a value records a value itself
+
+- e.g. if you record all grades for each student in a single continuous string:
+
+::::: columns
+::: {.column width="30%"}
+```{r echo=FALSE}
+df2 <- tibble(name = c("Cat", "Bug", "Ant"), grades = c("ABBA", "F", "CD"))
+```
+```{r}
+df2
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+df2 %>% 
+  separate_longer_position(grades, width = 2)
+```
+:::
+:::::
+
+## `separate_longer_position()`
+Less common, but sometimes each character in a value records a value itself
+
+- e.g. if you record all grades for each student in a single continuous string:
+
+::::: columns
+::: {.column width="30%"}
+```{r echo=FALSE}
+df2 <- tibble(name = c("Cat", "Bug", "Ant"), grades = c("ABBA", "F", "CD"))
+```
+```{r}
+df2
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+df2 %>% 
+  separate_longer_position(grades, width = 3)
+```
+:::
+:::::
+
+## `separate_longer_position()`
+Less common, but sometimes each character in a value records a value itself
+
+- e.g. if you record all grades for each student in a single continuous string:
+
+::::: columns
+::: {.column width="30%"}
+```{r echo=FALSE}
+df2 <- tibble(name = c("Cat", "Bug", "Ant"), grades = c("ABBA", "F", "CD"))
+```
+```{r}
+df2
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+df2 %>% 
+  separate_longer_position(grades, width = 4)
+```
+:::
+:::::
+
+## `separate_longer_...()`
+
+Compare `delim` vs `position` based on different formatting:
+
+::::: columns
+::: {.column width="50%"}
+```{r, echo = FALSE}
+df3 <- tibble(name = c("Cat", "Ant"), grades = c("A,B,B,A", "C,D"))
+```
+```{r}
+df3
+```
+```{r}
+df3 %>% separate_longer_delim(grades, delim = ",")
+```
+:::
+
+::: {.column width="50%" .fragment}
+```{r echo=FALSE}
+df4 <- tibble(name = c("Cat", "Ant"), grades = c("ABBA", "CD"))
+```
+```{r}
+df4
+```
+```{r}
+df4 %>% separate_longer_position(grades, width = 1)
+```
+:::
+:::::
+
+
+## `separate_wider_delim()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df4 <- tibble(x = c("a10.1.2022", "b10.2.2011"))
+```
+```{r}
+df4
+```
+* `x` has a code, edition number, and year, separated by `"."`
+:::
+
+::: {.column width="60%" .fragment}
+To separate, supply delimiter and names of new columns
+```{r}
+df4 |> 
+  separate_wider_delim(
+    x,
+    delim = ".",
+    names = c("code", "edition", "year")
+  )
+```
+:::
+:::::
+
+## `separate_wider_delim()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df4 <- tibble(x = c("a10.1.2022", "b10.2.2011"))
+```
+```{r}
+df4
+```
+* `x` has a code, edition number, and year, separated by `"."`
+:::
+
+::: {.column width="60%"}
+To remove output columns, supply `NA` for name of those columns
+```{r}
+df4 |>
+  separate_wider_delim(
+    x, 
+    delim = ".",
+    names = c("code", NA, "year")
+  )
+```
+:::
+:::::
+
+## `separate_wider_delim()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df4 <- tibble(x = c("a10.1.2022", "b10.2.2011"))
+```
+```{r}
+df4
+```
+* `x` has a code, edition number, and year, separated by `"."`
+:::
+
+::: {.column width="60%"}
+To remove output columns, supply `NA` for name of those columns
+```{r}
+df4 |>
+  separate_wider_delim(
+    x, 
+    delim = ".",
+    names = c("code", NA, NA)
+  )
+```
+:::
+:::::
+
+## `separate_wider_position()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df5 <- tibble(x = c("202215TX", "202122LA", "202325CA"))
+```
+```{r}
+df5
+```
+* `x` has 
+  * year (first 4 chars)
+  * age (next 2 chars)
+  * state (next 2 chars)
+:::
+
+::: {.column width="60%"}
+To separate, supply named integer vector: 
+
+- name = name of new column, 
+- value = number of characters
+```{r}
+df5 %>% 
+  separate_wider_position(
+    x, 
+    widths = c(year=4, age=2, state=2)
+  )
+```
+:::
+:::::
+
+## `separate_wider_position()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df5 <- tibble(x = c("202215TX", "202122LA", "202325CA"))
+```
+```{r}
+df5
+```
+* `x` has 
+  * year (first 4 chars)
+  * age (next 2 chars)
+  * state (next 2 chars)
+:::
+
+::: {.column width="60%"}
+To remove output columns, omit those names in the named vector.
+```{r}
+df5 %>% 
+  separate_wider_position(
+    x, 
+    widths = c(year=4, 2, state=2)
+  )
+```
+:::
+:::::
+
+## `separate_wider_position()`
+
+Separates into columns (wider)
+
+::::: columns
+::: {.column width="40%"}
+Consider the following tibble:
+```{r,echo=FALSE}
+df5 <- tibble(x = c("202215TX", "202122LA", "202325CA"))
+```
+```{r}
+df5
+```
+* `x` has 
+  * year (first 4 chars)
+  * age (next 2 chars)
+  * state (next 2 chars)
+:::
+
+::: {.column width="60%"}
+Alternatively, just use `select(-name)`:
+```{r}
+df5 |> 
+  separate_wider_position(
+    x,
+    widths = c(year=4, age=2, state=2)
+  ) %>%
+  select(-age)
+```
+:::
+:::::
+
+
+
+<!-- ## `separate_wider_position()` -->
+
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- * We now need to supply two things: name of each column, and the width (=number of characters) per column -->
+<!-- * We do this using a  -->
+<!-- ```{r} -->
+<!-- df5 <- tibble(x = c("202215TX", "202122LA", "202325CA"))  -->
+<!-- df5 |>  -->
+<!--   separate_wider_position( -->
+<!--     x, -->
+<!--     widths = c(year = 4, age = 2, state = 2) -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="25%" .fragment} -->
+<!-- * If you want to omit values from the output (i.e. not include columns), in the named vector, do not put a name - only put the number of characters that you have to parse. -->
+<!-- * e.g. let's not include age in the output. -->
+<!-- ```{r} -->
+<!-- df5 %>%  -->
+<!--   separate_wider_position( -->
+<!--     x,  -->
+<!--     widths = c(year = 4, 2, state=2) -->
+<!--     ) -->
+<!-- ``` -->
+<!-- ::: -->
+
+
+<!-- ::: {.column width="25%" .fragment} -->
+<!-- * Alternatively, just use `select(-name)`: -->
+<!-- ```{r} -->
+<!-- df5 |>  -->
+<!--   separate_wider_position(x, -->
+<!--                           widths = c(year = 4, age = 2, state = 2) -->
+<!--   ) %>% -->
+<!--   select(-age) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::::: -->
+
+
+
+## Diagnosing widening problems
+
+`separate_wider_delim()` requires a fixed and known set of columns
+
+* Problem if some rows don't have expected number of pieces.
+* `too_few` and `too_many` args of `separate_wider_delim()` can help here.
+
+
+
+::::: columns
+::: {.column width="25%"}
+```{r, echo = FALSE}
+df <- tibble(u = c("1-1-1", "1-3", "1-3-2", "1"))
+```
+```{r}
+df
+```
+:::
+
+::: {.column width="75%" .fragment}
+```{r eval=FALSE}
+df |> 
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z")
+  )
+#> Error in `separate_wider_delim()`:
+#> ! Expected 3 pieces in each element of `x`.
+#> ! 2 values were too short.
+#> ℹ Use `too_few = "debug"` to diagnose the problem.
+#> ℹ Use `too_few = "align_start"/"align_end"` to silence this message.
+```
+Let's try its suggestion to use `debug`:
+:::
+:::::
+
+## Diagnosing widening problems: `too_few`
+
+::::: columns
+::: {.column width="66%"}
+```{r echo=FALSE}
+df <- tibble(u = c("1-1-1", "1-3", "1-3-2", "1"))
+```
+```{r}
+#| code-line-numbers: "6"
+df |> 
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_few = "debug"
+  )
+```
+:::
+
+::: {.column width="34%" .fragment}
+Three columns get added:
+
+1. `u_ok`: which inputs failed
+2. `u_pieces`: how many pieces were found
+3. `u_remainder` isn't useful when too few pieces but we will see it is useful when too many. 
+
+Using `debug` will typically reveal a problem with delimiter strategy
+
+- suggests need to preprocess the tibble
+:::
+:::::
+
+
+
+## Diagnosing widening problems: `too_few`
+
+Can fill in missing pieces with `NA`s by either...
+
+<!-- By setting `too_few = 'align_start'` or `too_few = 'align_end'`, `separate_wider_delim()` will fill in the missing pieces with `NA`s, either on the tail end (`align_start`) or on the front end (`align_end`) -->
+<!-- # ```{r} -->
+<!-- # df <- tibble(u = c("1-1-1", "1-1-2", "1-3", "1-3-2", "1")) -->
+<!-- # ``` -->
+
+::::: columns
+::: {.column width="50%"}
+...putting `NA`s at tail end
+```{r}
+#| code-line-numbers: "6"
+df %>% 
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_few = 'align_start'
+  )
+```
+:::
+
+::: {.column width="50%" .fragment}
+...putting `NA`s at front end
+```{r}
+#| code-line-numbers: "6"
+df %>% 
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_few = 'align_end'
+  )
+```
+:::
+:::::
+
+
+
+## Diagnosing widening problems: `too_many`
+
+Same principles apply for too many pieces.
+
+::::: columns
+::: {.column width="25%"}
+```{r, echo = FALSE}
+df <- tibble(u = c("1-1-1", "1-1-2", "1-3-5-6", "1-3-5-7-9"))
+```
+```{r}
+df
+```
+:::
+
+::: {.column width="75%" .fragment}
+```{r, eval = FALSE}
+df |> 
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z")
+  )
+# Error in `separate_wider_delim()`:
+# ! Expected 3 pieces in each element of `u`.
+# ! 2 values were too long.
+# ℹ Use `too_many = "debug"` to diagnose the problem.
+# ℹ Use `too_many = "drop"/"merge"` to silence this message.
+```
+:::
+:::::
+
+## Diagnosing widening problems: `too_many`
+Debugging shows purpose of `u_remainder` column:
+
+::::: columns
+::: {.column width="25%"}
+```{r}
+df
+```
+:::
+
+::: {.column width="75%"}
+```{r}
+#| code-line-numbers: "6"
+df |>
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_many = 'debug'
+  )
+```
+:::
+:::::
+
+
+## Diagnosing widening problems: `too_many`
+
+To handle too many pieces, you can either... 
+
+::::: columns
+::: {.column width="50%"}
+"merge" the extras into a single column
+```{r}
+#| code-line-numbers: "6"
+df |>
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_many = 'merge'
+  )
+```
+:::
+
+::: {.column width="50%" .fragment}
+or "drop" the extras
+```{r}
+#| code-line-numbers: "6"
+df |>
+  separate_wider_delim(
+    u,
+    delim = "-",
+    names = c("x", "y", "z"),
+    too_many = 'drop'
+  )
+```
+:::
+:::::
+
+
+
+## Individual characters in a string: `str_length()`
+
+`str_length()`: returns number of characters in the string
+```{r}
+str_length(c("a", "R for data science", NA))
+str_length(c(1, 44))
+str_length(c(TRUE, FALSE))
+```
+
+
+## Individual characters in a string: `str_sub()`
+
+`str_sub(string, start, end)`: **sub**sets `string` from `start` index to `end` index.
+
+::::: columns
+::: {.column width="55%"}
+```{r}
+x <- c("Apple", "Banana", "Orange", NA)
+str_sub(x, 1, 1)
+str_sub(x, 1, 4)
+str_sub(x, 2, 4)
+```
+:::
+
+::: {.column width="45%" .fragment}
+`start` and `end` can be negative: -1 is last char, -2 second to last, etc.
+```{r}
+str_sub(x, -3, -1)
+```
+:::
+:::::
+
+
+
