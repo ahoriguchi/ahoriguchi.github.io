@@ -52,7 +52,7 @@ Students may choose to collaborate with each other on the homework, but must cle
 
 \newpage 
 
-### Problem 1
+# Problem 1
 
 Consider the scores of students on exams:
 
@@ -67,12 +67,32 @@ scores <- tribble(
 )
 ```
 
-Return a tibble that is `scores` but with a new column, `final_grade`, that is calculated by the following:
+(a) Use the `filter()` function from `dplyr` to see which students did better on their final exam than on their midterm 1. 
+```{r}
+# put your code here
+```
 
-* midterm contribution is 40%, and consists of the largest of the two midterm scores, with missing data treated as zeros
-* final exam counting for 60%, with missing data treated as zero
+(b) Use the `select()` function from `dplyr` to select all columns that contain the character string "id". 
+```{r}
+# put your code here
+```
 
-Hint: you may find the function `replace_na()` in `dplyr` useful.
+(c) Use the `summarize()` function to find the average score for midterm 1 and the average score for midterm 2. (All averages should omit any `NA` values.) 
+```{r}
+# put your code here
+```
+
+(d) We now have some extra information! Students with `id` 1, 2, and 5 are in the `A` section of the class, while students with `id` 3 and 4 are in the `B` section. To the tibble `scores`, add a new column called `section` to the tibble `scores`, which contains the section for each student. Then, for each section, use the `summarize()` function to find the average score for midterm 1 and the average score for midterm 2. (All averages should omit any `NA` values.)
+```{r}
+# put your code here
+```
+
+(e) To the tibble `scores`, add a new column called `final_grade` that is calculated by the following:
+
+  * midterm contribution is 40%, and consists of the largest of the two midterm scores, with missing data treated as zeros
+  * final exam counting for 60%, with missing data treated as zero
+
+    *Hint*: you might find the function `replace_na()` in `dplyr` useful. You might also find the function `pmax()` useful.
 ```{r}
 # put your code here
 ```
@@ -80,11 +100,11 @@ Hint: you may find the function `replace_na()` in `dplyr` useful.
 
 \newpage 
 
-### Problem 2 
+# Problem 2 
 
 Consider the following dataset:
 
-```{r}
+```{r echo=FALSE}
 reviews <- tribble(
   ~id, ~reviewtext,
   1, "I had a great experience, the product was as described.",
@@ -93,25 +113,36 @@ reviews <- tribble(
   4, "I had an awful time.",
   5, "Excellent, excellent!"
 )
+```
+
+```{r}
 reviews
 ```
-(a) Provide code which modifies `reviews` to have two new columns, `excellent` and `awful`.
-  * `excellent` is TRUE if the sequence of characters "excellent" appears in `reviewtext` (with any lowercase/uppercase combos) and `FALSE` otherwise
-  * `awful` is TRUE if the sequence of characters "awful" appears in `reviewtext` (with any lowercase/uppercase combos) and `FALSE` otherwise
 
+
+(a) Use the function `filter()` from `dplyr` to return a tibble with only the rows where the sequence of characters "great" appears in `reviewtext` (with any lowercase/uppercase combos). *Hint*: you might find the functions `str_to_lower()` and `str_detect()` in `stringr` useful.
 ```{r}
 # put your code here
 ```
 
 
-(b) Provide code which calculates the percent of reviews where `awful` appears and the percent of reviews where `excellent` appears (any lowercase/uppercase combos), using `summarize`.
+(b) Provide code which modifies `reviews` to have two new columns, `excellent` and `awful`, where:
+  * `excellent` is `TRUE` if the sequence of characters "excellent" appears in `reviewtext` (with any lowercase/uppercase combos) and `FALSE` otherwise
+  * `awful` is `TRUE` if the sequence of characters "awful" appears in `reviewtext` (with any lowercase/uppercase combos) and `FALSE` otherwise
+  * *Hint*: you might find the functions `str_to_lower()` and `str_detect()` in `stringr` useful.
+```{r}
+# put your code here
+```
+
+
+(c) Use the `summarize()` function to calculate the percent of reviews where "awful" appears and the percent of reviews where "excellent" appears (any lowercase/uppercase combos).
 ```{r}
 # put your code here
 ```
 
 \newpage 
 
-### Problem 3
+# Problem 3
 
 Consider the following dataset with three variables,
 
@@ -119,7 +150,7 @@ Consider the following dataset with three variables,
 * `feedback`, a character string which has the input from a textbox plus `[Rating:#]` where `#` is expected to be a number between 1 and 5
 * `day`: day on which feedback is given.
 
-```{r}
+```{r echo=FALSE}
 feedback_data <- tribble(
   ~customer, ~feedback,                                           ~day,
   1,           "Loved the service! [Rating:5]",                     1,
@@ -130,11 +161,17 @@ feedback_data <- tribble(
   6,           "Not what I expected. [Rating:x]",                   2
 )
 ```
-(a) Provide code which returns a tibble, named `feedback_parsed`, with four columns, `customer`, `day`,  `feedback_text`, `rating`.
 
-* `customer` and `day` are as in the original tibble
-* `feedback_text` has all of the text of `feedback` which appears before `[Rating:#]`
-* `rating` is an integer if the `#` inside `[Rating:#]` is an integer, otherwise returns NA.
+```{r}
+feedback_data
+```
+
+
+(a) Return a tibble, named `feedback_parsed`, with four columns: `customer`, `day`,  `feedback_text`, `rating`.
+
+  * `customer` and `day` are as in the original tibble
+  * `feedback_text` has all of the text of `feedback` which appears before `[Rating:#]`
+  * `rating` is an integer if the `#` inside `[Rating:#]` is an integer, otherwise returns `NA`.
 
 ```{r, warning=FALSE}
 # put your code here
@@ -152,7 +189,7 @@ feedback_data <- tribble(
 #5        5 "Not what I expected. "              Not wha…     2      1
 #6        6 "Not what I expected. "              Not wha…     2     NA
 ```
-Provide code which computes the average rating per day in `feedback_parsed`, ignoring all rows with missing data.
+  Compute the average rating per day in `feedback_parsed`, ignoring all rows with missing data.
 
 ```{r}
 # put your code here
@@ -160,34 +197,37 @@ Provide code which computes the average rating per day in `feedback_parsed`, ign
 
 \newpage 
 
-### Problem 4
+# Problem 4
 
 Consider the following dataset: 
 
-```{r}
+```{r echo=FALSE}
 health_data <- tribble(
   ~PatientID, ~Weight_2019, ~Weight_2020, ~Height_2019, ~Height_2020,
   1, 70, 72, 170, 171,
   2, 65, 68, 165, 166,
   3, 80, 82, 180, 181
 )
+```
+
+```{r}
 health_data
 ```
 
 (a) Transform this tibble into a tibble `long_health_data` so that there are four columns:
 
-* PatientID, numeric type
-* Weight, numeric type
-* Height, numeric type
-* Year, numeric type
+  * PatientID, numeric type
+  * Weight, numeric type
+  * Height, numeric type
+  * Year, numeric type
 
-*Hint*: Inspect the arguments of `pivot_longer()` using `?pivot_longer()`.  Read the documentation for the `names_to`, `names_sep` arguments.
+    *Hint*: Use `?pivot_longer` to read the documentation for the `names_to` and `names_sep` arguments of `pivot_longer()`.
 
 ```{r}
 # put your code here
 ```
 
-(b) Provide code which transforms `long_health_data` into the tibble `wide_health_data` which is back in the wide format, with columns "Weight_2019", "Weight_2020", "Height_2019", "Height_2020".  Check that your calculation was correct by checking `all.equal(wide_health_data, health_data)`
+(b) Transform the tibble `long_health_data` from part (a) into the tibble `wide_health_data` which is back in the wide format, with columns "Weight_2019", "Weight_2020", "Height_2019", "Height_2020".  Check that your calculation was correct by checking `all.equal(wide_health_data, health_data)`.
 
 ```{r}
 # put your code here
