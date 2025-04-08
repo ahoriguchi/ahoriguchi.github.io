@@ -1304,7 +1304,7 @@ Akira Horiguchi
 <span id="cb84-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="variables.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Columns that are already variables need to be repeated for each pivoted column.</p></section>
+<img data-src="variables.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Values in columns that are already variables (here, <code>id</code>) need to be repeated for each pivoted column.</p></section>
 <section id="understanding-pivot_longer-2" class="slide level2">
 <h2>Understanding <code>pivot_longer()</code></h2>
 <div class="cell">
@@ -1316,7 +1316,7 @@ Akira Horiguchi
 <span id="cb85-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="column-names.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Pivoted column names <code>bp1,bp2</code> become values in a new variable <code>"measurement"</code>, with name given by <code>names_to</code>. They need to be repeated for each row in the original dataset.</p></section>
+<img data-src="column-names.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Pivoted column names <code>bp1,bp2</code> become values in new column <code>"measurement"</code>; values repeated for each row in <code>df</code>.</p></section>
 <section id="understanding-pivot_longer-3" class="slide level2">
 <h2>Understanding <code>pivot_longer()</code></h2>
 <div class="cell">
@@ -1837,6 +1837,7 @@ Akira Horiguchi
 </tbody>
 </table>
 </div></div>
+<p><strong>Can combine AND/OR with NOT to cover any binary Boolean operation</strong></p>
 </section>
 <section id="comparisons" class="slide level2">
 <h2>Comparisons</h2>
@@ -2090,36 +2091,20 @@ Akira Horiguchi
 <li>We might discuss later (after midterm 2) how to properly treat dates and times.</li>
 </ul>
 </section>
-<section id="boolean-algebra" class="slide level2">
-<h2>Boolean algebra</h2>
+<section id="missing-values-in-boolean-algebra" class="slide level2">
+<h2>Missing values in Boolean algebra</h2>
+<p>Logical and missing values interact in logical, but maybe counterintuitive ways.</p>
+<ul>
+<li>Think of <code>NA</code> as “unknown” logical value.</li>
+</ul>
 <div class="columns">
 <div class="column" style="width:50%;">
-<ul>
-<li>Recall the basic Boolean algebra comparators, AND and OR</li>
-<li>There is a third one, XOR, which we won’t use that often</li>
-<li><strong>Can combine AND/OR with NOT and cover any combination of a pair of Booleans</strong></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="transform.png"></p>
-<figcaption>Visualization of Boolean algebra</figcaption>
-</figure>
-</div>
-</div></div>
-</section>
-<section id="boolean-algebra-and-missing-values" class="slide level2">
-<h2>Boolean algebra and missing values</h2>
-<p>Booleans and missing values interact in logical, but maybe counterintuitive ways.</p>
-<div class="columns">
-<div class="column" style="width:54%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>))</span>
-<span id="cb164-2"><a href=""></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb164-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb164-4"><a href=""></a>    <span class="at">and_NA =</span> x <span class="sc">&amp;</span> <span class="cn">NA</span>,</span>
-<span id="cb164-5"><a href=""></a>    <span class="at">or_NA =</span> x <span class="sc">|</span> <span class="cn">NA</span></span>
-<span id="cb164-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href=""></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb164-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb164-3"><a href=""></a>    <span class="at">and_NA =</span> x <span class="sc">&amp;</span> <span class="cn">NA</span>,</span>
+<span id="cb164-4"><a href=""></a>    <span class="at">or_NA =</span> x <span class="sc">|</span> <span class="cn">NA</span></span>
+<span id="cb164-5"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   x     and_NA or_NA
@@ -2129,12 +2114,16 @@ Akira Horiguchi
 3 NA    NA     NA   </code></pre>
 </div>
 </div>
-</div><div class="column" style="width:46%;">
+</div><div class="column" style="width:50%;">
+<p>Does not depend on value of <code>NA</code>:</p>
 <ul>
-<li>NA OR TRUE returns true, since it is TRUE regardless of NA being FALSE or TRUE.</li>
-<li>NA AND TRUE returns NA since it depends on value of NA.</li>
-<li>NA OR FALSE returns NA since it depends on value of NA.</li>
-<li>NA AND FALSE returns FALSE since NA value doesn’t affect result, always false.</li>
+<li><code>NA</code> OR <code>TRUE</code> will return <code>TRUE</code>.</li>
+<li><code>NA</code> AND <code>FALSE</code> will return <code>FALSE</code>.</li>
+</ul>
+<p>Depends on value of <code>NA</code>:</p>
+<ul>
+<li><code>NA</code> AND <code>TRUE</code> will return <code>NA</code>.</li>
+<li><code>NA</code> OR <code>FALSE</code> will return <code>NA</code>.</li>
 </ul>
 </div></div>
 <!-- ## Order of operations -->
@@ -2945,63 +2934,6 @@ object length</code></pre>
 3 LGA    OMA        65.0     3</code></pre>
 </div>
 </div>
-</section>
-<section id="offsets" class="slide level2">
-<h2>Offsets</h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<ul>
-<li><code>dplyr::lag()</code> returns the “previous” values in a vector.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb265"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb265-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">35</span>)</span>
-<span id="cb265-2"><a href=""></a><span class="fu">lag</span>(x)  <span class="co"># Returns vector of same length, padded with `NA` if cannot compute.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA  2  5 11 11 19</code></pre>
-</div>
-</div>
-<ul>
-<li><code>dplyr::lead()</code> returns the “next” values in a vector.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb267"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb267-1"><a href=""></a><span class="fu">lead</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  5 11 11 19 35 NA</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:55%;">
-<p>Use cases (e.g., time series)</p>
-<ul>
-<li>change from previous to current value.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb269"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb269-1"><a href=""></a>x <span class="sc">-</span> <span class="fu">lag</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA  3  6  0  8 16</code></pre>
-</div>
-</div>
-<ul>
-<li>tells whether current value changes.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb271"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb271-1"><a href=""></a>x <span class="sc">==</span> <span class="fu">lag</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]    NA FALSE FALSE  TRUE FALSE FALSE</code></pre>
-</div>
-</div>
-<ul>
-<li>to replace the <code>NA</code>:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb273"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb273-1"><a href=""></a><span class="fu">lag</span>(x, <span class="at">default =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -1  2  5 11 11 19</code></pre>
-</div>
-</div>
-<!-- ```{r} -->
-<!-- lag(x, default = first(x)) -->
-<!-- ``` -->
-</div></div>
 <!-- ## Consecutive identifiers -->
 <!-- ::::: columns -->
 <!-- ::: {.column width="50%"} -->
@@ -3049,13 +2981,13 @@ object length</code></pre>
 </div><div class="column fragment" style="width:45%;">
 <p>Example: calculate the maximum delay and the 95th quantile of delays for flights per day.</p>
 <div class="cell" data-output.lines="6">
-<div class="sourceCode cell-code" id="cb275"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb275-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb275-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
-<span id="cb275-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb275-4"><a href=""></a>    <span class="at">maxim =</span> <span class="fu">max</span>(dep_delay, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb275-5"><a href=""></a>    <span class="at">q95 =</span> <span class="fu">quantile</span>(dep_delay, <span class="fl">0.95</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb275-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb275-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb265"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb265-1"><a href=""></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb265-2"><a href=""></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">%&gt;%</span></span>
+<span id="cb265-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb265-4"><a href=""></a>    <span class="at">maxim =</span> <span class="fu">max</span>(dep_delay, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb265-5"><a href=""></a>    <span class="at">q95 =</span> <span class="fu">quantile</span>(dep_delay, <span class="fl">0.95</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb265-6"><a href=""></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb265-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
     year month   day maxim   q95
