@@ -687,7 +687,7 @@ bear  dog  cat  ewe
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ant"</span>, <span class="st">"bug"</span>, <span class="st">"cat"</span>, <span class="st">"dog"</span>)</span>
 <span id="cb53-2"><a href=""></a><span class="fu">sample</span>(animals, <span class="at">size=</span><span class="dv">3</span>)  <span class="co"># samples without replacement</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "ant" "cat" "bug"</code></pre>
+<pre><code>[1] "cat" "dog" "ant"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -696,15 +696,15 @@ bear  dog  cat  ewe
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">sample</span>(animals, <span class="at">size=</span><span class="dv">6</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)  <span class="co"># samples with replacement</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "cat" "cat" "bug" "ant" "ant" "ant"</code></pre>
+<pre><code>[1] "ant" "dog" "cat" "ant" "bug" "dog"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="fu">runif</span>(<span class="dv">5</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)  <span class="co"># generates 3 random numbers between 0 and 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9788225 0.8003016 0.6280681 0.3277747 0.5503819</code></pre>
+<pre><code>[1] 0.1480565 0.3443080 0.6948802 0.2596952 0.4794379</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="fu">rnorm</span>(<span class="dv">5</span>)  <span class="co"># generates 3 random numbers from a standard normal distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.9372656 -0.2821098 -0.1837418  0.3782511  0.3572620</code></pre>
+<pre><code>[1]  1.3096479  0.3115038 -1.1938093 -1.3670770 -1.0312860</code></pre>
 </div>
 </div>
 </section>
@@ -721,18 +721,18 @@ bear  dog  cat  ewe
 </div>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">str</span>(x)  <span class="co"># returns the structure of the variable x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> int [1:10000] 1 1 3 1 4 1 2 2 2 1 ...</code></pre>
+<pre><code> int [1:10000] 1 2 4 2 3 3 4 1 1 1 ...</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">summary</span>(x)  <span class="co"># returns summary statistics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.00    1.00    2.00    2.01    3.00    9.00 </code></pre>
+  0.000   1.000   2.000   2.015   3.000  10.000 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">table</span>(x)  <span class="co"># counts occurrences of each value in x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x
-   0    1    2    3    4    5    6    7    8    9 
-1297 2728 2761 1775  892  382  124   29   10    2 </code></pre>
+   0    1    2    3    4    5    6    7    8    9   10 
+1371 2695 2577 1889  939  361  123   32    8    3    2 </code></pre>
 </div>
 </div>
 <!-- ## Class and mode -->
@@ -763,19 +763,19 @@ bear  dog  cat  ewe
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">7</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)</span>
 <span id="cb70-2"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5010144 0.2703274 0.3202895 0.2357799 0.9770226 0.3294604 0.1270611</code></pre>
+<pre><code>[1] 0.15153443 0.21308165 0.49793895 0.04551215 0.83195540 0.42114951 0.38850633</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a>x[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2703274</code></pre>
+<pre><code>[1] 0.2130816</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href=""></a>x[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9770226</code></pre>
+<pre><code>[1] 0.8319554</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a>x[<span class="sc">-</span><span class="dv">3</span>]  <span class="co"># returns all but the third element (different from python!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5010144 0.2703274 0.2357799 0.9770226 0.3294604 0.1270611</code></pre>
+<pre><code>[1] 0.15153443 0.21308165 0.04551215 0.83195540 0.42114951 0.38850633</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>x[<span class="dv">9</span>]  <span class="co"># x has only 7 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -790,23 +790,23 @@ bear  dog  cat  ewe
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">7</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)</span>
 <span id="cb80-2"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7741237 0.8249992 0.4733530 0.7540812 0.4197906 0.5749437 0.8433233</code></pre>
+<pre><code>[1] 0.8774323 0.7797666 0.7160577 0.6435915 0.7282974 0.2961213 0.8139053</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href=""></a>x[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7741237 0.8249992 0.8433233</code></pre>
+<pre><code>[1] 0.8774323 0.7797666 0.8139053</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href=""></a>x[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.473353</code></pre>
+<pre><code>[1] 0.7160577</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href=""></a>x <span class="sc">&lt;</span> <span class="fl">0.5</span>  <span class="co"># a logical vector!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<pre><code>[1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href=""></a>x[x <span class="sc">&lt;</span> <span class="fl">0.5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4733530 0.4197906</code></pre>
+<pre><code>[1] 0.2961213</code></pre>
 </div>
 </div>
 </section>
@@ -819,17 +819,17 @@ bear  dog  cat  ewe
 <span id="cb90-3"><a href=""></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         a          b          c          d 
- 1.3961231  0.8632551  1.3187438 -1.4221326 </code></pre>
+ 0.2196825  0.2927151 -1.5388355  0.9532625 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href=""></a><span class="fu">str</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Named num [1:4] 1.396 0.863 1.319 -1.422
+<pre><code> Named num [1:4] 0.22 0.293 -1.539 0.953
  - attr(*, "names")= chr [1:4] "a" "b" "c" "d"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href=""></a>x[<span class="fu">c</span>(<span class="st">'b'</span>, <span class="st">'a'</span>)]  <span class="co"># Selects the elements of x with the name 'b' and 'a'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        b         a 
-0.8632551 1.3961231 </code></pre>
+0.2927151 0.2196825 </code></pre>
 </div>
 </div>
 <p>To get the names of a vector, can again use <code>names(x)</code></p>
@@ -1443,12 +1443,12 @@ $name
 <span id="cb211-4"><a href=""></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age weight name
-1  11      1  Dog
-2  12      2  Cat
-3  13      3  Dog
-4  14      4  Cat
-5  15      5  Cat
-6  16      6  Cat</code></pre>
+1  11      1  Cat
+2  12      2  Bug
+3  13      3  Cat
+4  14      4  Bug
+5  15      5  Dog
+6  16      6  Dog</code></pre>
 </div>
 </div>
 </section>
@@ -1457,12 +1457,12 @@ $name
 <div class="cell">
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a href=""></a>dat[<span class="dv">1</span>, <span class="dv">3</span>]  <span class="co"># Like matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Dog"</code></pre>
+<pre><code>[1] "Cat"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb215"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb215-1"><a href=""></a>dat[<span class="dv">1</span>, ]  <span class="co"># Like matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age weight name
-1  11      1  Dog</code></pre>
+1  11      1  Cat</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb217"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a href=""></a>dat[, <span class="dv">1</span>]  <span class="co"># Like matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1471,8 +1471,8 @@ $name
 <div class="sourceCode cell-code" id="cb219"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb219-1"><a href=""></a>dat[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>), ]  <span class="co"># Like matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age weight name
-3  13      3  Dog
-1  11      1  Dog</code></pre>
+3  13      3  Cat
+1  11      1  Cat</code></pre>
 </div>
 </div>
 </section>
@@ -1482,8 +1482,8 @@ $name
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a href=""></a>dat[dat<span class="sc">$</span>weight <span class="sc">&gt;</span> <span class="dv">4</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age weight name
-5  15      5  Cat
-6  16      6  Cat</code></pre>
+5  15      5  Dog
+6  16      6  Dog</code></pre>
 </div>
 </div>
 </section>
@@ -1501,12 +1501,12 @@ $name
 <div class="sourceCode cell-code" id="cb227"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb227-1"><a href=""></a>dat[, <span class="fu">c</span>(<span class="st">'age'</span>, <span class="st">'name'</span>)]  <span class="co"># Like matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age name
-1  11  Dog
-2  12  Cat
-3  13  Dog
-4  14  Cat
-5  15  Cat
-6  16  Cat</code></pre>
+1  11  Cat
+2  12  Bug
+3  13  Cat
+4  14  Bug
+5  15  Dog
+6  16  Dog</code></pre>
 </div>
 </div>
 <!-- ## `attach()` -->
@@ -1679,7 +1679,7 @@ $name
 <div class="sourceCode cell-code" id="cb243"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb243-1"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
 <span id="cb243-2"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7 3 2 5 9</code></pre>
+<pre><code>[1] 6 4 2 1 8</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb245"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb245-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(y))  <span class="co"># sets an empty numeric vector of length 5</span></span>
 <span id="cb245-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -1687,7 +1687,7 @@ $name
 <span id="cb245-4"><a href=""></a>}</span>
 <span id="cb245-5"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 49  9  4 25 81</code></pre>
+<pre><code>[1] 36 16  4  1 64</code></pre>
 </div>
 </div>
 </section>
@@ -1697,7 +1697,7 @@ $name
 <div class="cell">
 <div class="sourceCode cell-code" id="cb247"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb247-1"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7 3 2 5 9</code></pre>
+<pre><code>[1] 6 4 2 1 8</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb249"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb249-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb249-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -1705,15 +1705,15 @@ $name
 <span id="cb249-4"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"the cumulative sum of the vector y at index"</span>, i, <span class="st">"is:"</span>, z))</span>
 <span id="cb249-5"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 7"
+<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 6"
 [1] "the cumulative sum of the vector y at index 2 is: 10"
 [1] "the cumulative sum of the vector y at index 3 is: 12"
-[1] "the cumulative sum of the vector y at index 4 is: 17"
-[1] "the cumulative sum of the vector y at index 5 is: 26"</code></pre>
+[1] "the cumulative sum of the vector y at index 4 is: 13"
+[1] "the cumulative sum of the vector y at index 5 is: 21"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb251"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb251-1"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 26</code></pre>
+<pre><code>[1] 21</code></pre>
 </div>
 </div>
 </section>
@@ -1758,27 +1758,11 @@ $name
 <span id="cb258-5"><a href=""></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> curr_step  <span class="co"># uses previous iteration's value of x</span></span>
 <span id="cb258-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
+<pre><code>[1] "moving x=0 by step of size -1"
 [1] "moving x=-1 by step of size 1"
 [1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size 1"</code></pre>
+[1] "moving x=-1 by step of size -1"
+[1] "moving x=-2 by step of size -1"</code></pre>
 </div>
 </div>
 </section>
@@ -1800,20 +1784,6 @@ $name
 <span id="cb261-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
 [1] "moving x=1 by step of size 1"
 [1] "moving x=2 by step of size 1"</code></pre>
 </div>
@@ -2412,7 +2382,7 @@ $group3
 <!-- ``` -->
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-<p>University of California, Davis · STA141A · Spring 2025</p>
+<p><a href="https://ahoriguchi.github.io/teaching/STA141A/website.html" class="uri">https://ahoriguchi.github.io/teaching/STA141A/website.html</a></p>
 </div>
 </div>
 </section></section>
