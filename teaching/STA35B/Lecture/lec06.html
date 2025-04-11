@@ -927,26 +927,39 @@ Akira Horiguchi
 <section id="counting-vowels-and-constants-in-baby-names-1" class="slide level2">
 <h2>Counting vowels and constants in baby names</h2>
 <p>Note that pattern matching is case sensitive, so “A” isn’t counted.</p>
-<ul>
-<li>Ways around this:
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Ways around this:</p>
 <ul>
 <li>Add the upper case vowels to the character class: <code>str_count(name, "[aeiouAEIOU]")</code></li>
-<li>Use <code>str_to_lower()</code> to convert the names to lower case: <code>str_count(str_to_lower(name),</code> <code>"[aeiou]")</code></li>
-</ul></li>
+<li>Convert the names to lower case: <code>str_count(str_to_lower(name), "[aeiou]")</code></li>
 </ul>
-<div class="cell" data-output.lines="4">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>babynames <span class="sc">%&gt;%</span> <span class="fu">count</span>(name) <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(</span>
-<span id="cb29-2"><a href=""></a>    <span class="at">name =</span> <span class="fu">str_to_lower</span>(name),</span>
-<span id="cb29-3"><a href=""></a>    <span class="at">vowels =</span> <span class="fu">str_count</span>(name, <span class="st">"[aeiou]"</span>),</span>
-<span id="cb29-4"><a href=""></a>    <span class="at">consonants =</span> <span class="fu">str_count</span>(name, <span class="st">"[^aeiou]"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>babynames <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">count</span>(name) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-4"><a href=""></a>    <span class="at">name =</span> <span class="fu">str_to_lower</span>(name),</span>
+<span id="cb29-5"><a href=""></a>    <span class="at">vowels =</span> <span class="fu">str_count</span>(name, <span class="st">"[aeiou]"</span>),</span>
+<span id="cb29-6"><a href=""></a>    <span class="at">consonants =</span> <span class="fu">str_count</span>(name, <span class="st">"[^aeiou]"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 97,310 × 4
    name          n vowels consonants
    &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
  1 aaban        10      3          2
-...</code></pre>
+ 2 aabha         5      3          2
+ 3 aabid         2      3          2
+ 4 aabir         1      3          2
+ 5 aabriella     5      5          4
+ 6 aada          1      3          1
+ 7 aadam        26      3          2
+ 8 aadan        11      3          2
+ 9 aadarsh      17      3          4
+10 aaden        18      3          2
+# ℹ 97,300 more rows</code></pre>
 </div>
 </div>
+</div></div>
 </section>
 <section id="replacing-and-removing-values" class="slide level2">
 <h2>Replacing and removing values</h2>
