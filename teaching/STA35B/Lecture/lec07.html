@@ -476,14 +476,14 @@ Akira Horiguchi
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">now</span>()  <span class="co"># get current date-time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-04-11 17:34:00 PDT"</code></pre>
+<pre><code>[1] "2025-04-11 17:43:44 PDT"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">tibble</span>(<span class="at">y=</span><span class="fu">today</span>(), <span class="at">x=</span><span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   y          x                  
   &lt;date&gt;     &lt;dttm&gt;             
-1 2025-04-11 2025-04-11 17:34:00</code></pre>
+1 2025-04-11 2025-04-11 17:43:44</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">class</span>(<span class="fu">today</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -757,15 +757,15 @@ Akira Horiguchi
 <pre><code># A tibble: 9 × 2
   dep_time            year               
   &lt;dttm&gt;              &lt;dttm&gt;             
-1 2013-10-11 12:00:00 2013-10-01 00:00:00
-2 2013-09-09 14:44:00 2013-09-01 00:00:00
-3 2013-10-15 22:42:00 2013-10-01 00:00:00
-4 2013-05-03 18:06:00 2013-05-01 00:00:00
-5 2013-04-05 04:56:00 2013-04-01 00:00:00
-6 2013-07-10 12:59:00 2013-07-01 00:00:00
-7 2013-08-21 17:00:00 2013-08-01 00:00:00
-8 2013-01-07 09:20:00 2013-01-01 00:00:00
-9 2013-03-16 22:05:00 2013-03-01 00:00:00</code></pre>
+1 2013-05-28 14:40:00 2013-05-01 00:00:00
+2 2013-11-07 10:37:00 2013-11-01 00:00:00
+3 2013-09-02 19:30:00 2013-09-01 00:00:00
+4 2013-07-09 23:49:00 2013-07-01 00:00:00
+5 2013-03-22 15:27:00 2013-03-01 00:00:00
+6 2013-04-17 07:03:00 2013-04-01 00:00:00
+7 2013-09-25 11:52:00 2013-09-01 00:00:00
+8 2013-11-11 20:25:00 2013-11-01 00:00:00
+9 2013-04-18 06:35:00 2013-04-01 00:00:00</code></pre>
 </div>
 </div>
 </div></div>
@@ -1102,9 +1102,9 @@ attr(,"package")
 <li><code>dyears(1) / ddays(365)</code> does not return 1, since <code>dyears()</code> is defined as the number of seconds per average year: 365.25 days.</li>
 <li><code>years(1) / days(1)</code> does not return 365, since in leap years this isn’t true.</li>
 </ul>
-<p><strong>Intervals</strong> allow for defining specific intervals of time, using pair of starting/end date times.</p>
+<p><strong>Intervals</strong> allow for defining a time interval between two specific date-times.</p>
 <div class="columns">
-<div class="column" style="width:70%;">
+<div class="column fragment" style="width:70%;">
 <ul>
 <li>Format: <code>start %--% end</code>:</li>
 </ul>
