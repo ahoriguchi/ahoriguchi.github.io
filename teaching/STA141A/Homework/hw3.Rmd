@@ -39,7 +39,7 @@ During the discussion sessions, you may be asked to present and share your solut
 # 1. PMF, PDF, CDF
 
 
-### Let $X$ be a discrete random variable with pmf $f_X(x) = (1/2)^x$ for $x=1,2,3,4,5,\ldots$.
+### Let $X$ be a discrete random variable with pmf $f_X(x) = (1/2)^x$ for $x \in \mathbb{N}$ (that is, for all natural numbers $x$).
 
 ### a) Draw or plot the pmf of the random variable $X$.
 $\vspace{2in}$
@@ -65,7 +65,7 @@ $\vspace{0.5in}$
 
 # 2. Expected value and variance
 
-### Let $X$ be a random variable with pdf $f_X(x) = |x|, x \in (-1,1).$ (Here $|x|$ denotes the absolute value of $x$.)
+### Let $X$ be a random variable with pdf $f_X(x) = |x|$ for $x \in (-1,1)$. (Here $|x|$ denotes the absolute value of $x$.)
 
 ### a) Calculate the expected value $E(X)$ by hand.
 
@@ -115,7 +115,7 @@ $\vspace{1in}$
 
 # 4. Variance and covariance
 
-Let $Z_1, Z_2, Z_3, Z_4$ be random variables each having respective pdfs $f_1, f_2, f_3, f_4$. Assume each pdf has the same variance $\sigma^2$. Also assume that the covariance between any pair of these random variables $Z_1, Z_2, Z_3, Z_4$ is $a \sigma^2$ for some $a \in [-1, 1]$. That is, assume $Cov(Z_i, Z_j) = a \sigma^2$ whenever $i \neq j$.
+Let $Z_1, Z_2, Z_3, Z_4$ be random variables (not necessarily from the same distribution) each with the same variance $\sigma^2$. Assume that the covariance between any pair of these random variables equals $a \sigma^2$ for some $a \in [-1, 1]$. That is, assume $Cov(Z_i, Z_j) = a \sigma^2$ whenever $i \neq j$.
 
 ### a) Compute the variance of $Z_1 + Z_2 + Z_3 + Z_4$.
 $\vspace{5in}$
