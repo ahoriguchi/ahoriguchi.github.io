@@ -115,32 +115,14 @@ $\vspace{1in}$
 
 # 4. Variance and covariance
 
-Let $Z_1, Z_2, Z_3, Z_4$ be random variables each having respective pdfs $f_1, f_2, f_3, f_4$. Suppose each pdf has the same variance $\sigma^2$.
-
-For parts a) and b), assume $Z_1, Z_2, Z_3, Z_4$ are mutually independent. 
+Let $Z_1, Z_2, Z_3, Z_4$ be random variables each having respective pdfs $f_1, f_2, f_3, f_4$. Assume each pdf has the same variance $\sigma^2$. Also assume that the covariance between any pair of these random variables $Z_1, Z_2, Z_3, Z_4$ is $a \sigma^2$ for some $a \in [-1, 1]$. That is, assume $Cov(Z_i, Z_j) = a \sigma^2$ whenever $i \neq j$.
 
 ### a) Compute the variance of $Z_1 + Z_2 + Z_3 + Z_4$.
-$\vspace{1in}$
+$\vspace{5in}$
 
-### b) Compute the variance of $(Z_1 + Z_2 + Z_3 + Z_4)/4$. How does it compare to the variance of just one of these random variables $Z_i$?
-$\vspace{1in}$
+### b) Compute the variance of $(Z_1 + Z_2 + Z_3 + Z_4)/4$. How does it compare to the variance of just one of these random variables $Z_i$ if $a=0$? If $a=0.9$? If $a=-0.9$? 
 
-For parts c) and d), assume the covariance between any pair of these random variables $Z_1, Z_2, Z_3, Z_4$ is $\sigma^2 / 2$. That is, assume $Cov(Z_i, Z_j) = \sigma^2/2$ whenever $i \neq j$.
 
-### c) Compute the variance of $Z_1 + Z_2 + Z_3 + Z_4$.
-$\vspace{3in}$
 
-### d) Compute the variance of $(Z_1 + Z_2 + Z_3 + Z_4)/4$. How does it compare to the variance of just one of these random variables $Z_i$?
-$\vspace{1in}$
-
-\newpage
-
-For parts e) and f), assume the covariance between any pair of these random variables $Z_1, Z_2, Z_3, Z_4$ is $-\sigma^2 / 2$. That is, assume $Cov(Z_i, Z_j) = -\sigma^2/2$ whenever $i \neq j$.
-
-### c) Compute the variance of $Z_1 + Z_2 + Z_3 + Z_4$.
-$\vspace{3in}$
-
-### d) Compute the variance of $(Z_1 + Z_2 + Z_3 + Z_4)/4$. How does it compare to the variance of just one of these random variables $Z_i$?
-$\vspace{1in}$
 
 
