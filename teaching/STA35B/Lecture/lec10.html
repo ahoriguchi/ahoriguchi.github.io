@@ -408,6 +408,7 @@ Akira Horiguchi
 <ul>
 <li><a href="#/ggplot2" id="/toc-ggplot2">ggplot2</a></li>
 <li><a href="#/exploring-the-diamonds-data-set" id="/toc-exploring-the-diamonds-data-set">Exploring the diamonds data set</a></li>
+<li><a href="#/communicating-ideas" id="/toc-communicating-ideas">Communicating ideas</a></li>
 </ul>
 </nav>
 </section>
@@ -477,28 +478,6 @@ Akira Horiguchi
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<!-- ## Goal: be able to create visualizations like this -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| out-width: '75%' -->
-<!-- knitr::include_graphics("penguins_visualization.png", dpi = 270) -->
-<!-- ``` -->
-<!-- ## Creating a ggplot -->
-<!-- * Start with function `ggplot()` -->
-<!-- * Add **layers** to this plot -->
-<!-- * Then need to define the **aesthetics** of the plot -->
-<!-- ```{r} -->
-<!-- ggplot(data = penguins) # tells ggplot to get info from penguins tibble -->
-<!-- ``` -->
-<!-- ## Creating a ggplot -->
-<!-- * Start with function `ggplot()` -->
-<!-- * Add **layers** to this plot -->
-<!-- * Then need to define the **aesthetics** of the plot -->
-<!--   * No data displayed yet, but axes are clear -->
-<!-- ```{r} -->
-<!-- ggplot(data = penguins, -->
-<!--        mapping = aes(x = flipper_length_mm, y = body_mass_g))  -->
-<!-- ``` -->
 </section>
 <section id="basic-structure-of-ggplot2" class="slide level2">
 <h2>Basic structure of <code>ggplot2</code></h2>
@@ -584,10 +563,6 @@ Akira Horiguchi
 <span id="cb5-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
 <span id="cb5-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb5-4"><a href=""></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -610,15 +585,11 @@ Akira Horiguchi
 <!-- `ggplot` assigns a unique aesthetic value (here: unique color) to each , then adds a legend explaining this -->
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb7-3"><a href=""></a>               <span class="at">y =</span> body_mass_g,</span>
-<span id="cb7-4"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href=""></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb6-3"><a href=""></a>               <span class="at">y =</span> body_mass_g,</span>
+<span id="cb6-4"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href=""></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -643,15 +614,12 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="4,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb9-3"><a href=""></a>               <span class="at">y =</span> body_mass_g,</span>
-<span id="cb9-4"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href=""></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb9-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb7-3"><a href=""></a>               <span class="at">y =</span> body_mass_g,</span>
+<span id="cb7-4"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href=""></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb7-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -676,14 +644,11 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb11-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb8-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb8-5"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -701,15 +666,12 @@ Akira Horiguchi
 <p>Let’s make the colors more friendly to color-blind viewers</p>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb13-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb13-5"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span> </span>
-<span id="cb13-6"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb9-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span> </span>
+<span id="cb9-6"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -752,16 +714,13 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb15-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
-<span id="cb15-5"><a href=""></a>                   <span class="at">shape =</span> species)) <span class="sc">+</span> </span>
-<span id="cb15-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb15-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb10-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
+<span id="cb10-5"><a href=""></a>                   <span class="at">shape =</span> species)) <span class="sc">+</span> </span>
+<span id="cb10-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span> </span>
+<span id="cb10-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -782,16 +741,13 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb17-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb17-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> species), </span>
-<span id="cb17-5"><a href=""></a>               <span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span> </span>
-<span id="cb17-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span> </span>
-<span id="cb17-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb11-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> species), </span>
+<span id="cb11-5"><a href=""></a>               <span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span> </span>
+<span id="cb11-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb11-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -812,16 +768,13 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb19-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb19-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), </span>
-<span id="cb19-5"><a href=""></a>               <span class="at">shape =</span> <span class="dv">7</span>) <span class="sc">+</span> </span>
-<span id="cb19-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb19-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb12-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), </span>
+<span id="cb12-5"><a href=""></a>               <span class="at">shape =</span> <span class="dv">7</span>) <span class="sc">+</span> </span>
+<span id="cb12-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -843,7 +796,7 @@ Akira Horiguchi
 </div><div class="column" style="width:61%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-shapes" class="quarto-float quarto-figure quarto-figure-center" alt="Mapping between shapes and the numbers that represent them: 0 - square,  1 - circle, 2 - triangle point up, 3 - plus, 4 - cross, 5 - diamond,  6 - triangle point down, 7 - square cross, 8 - star, 9 - diamond plus,  10 - circle plus, 11 - triangles up and down, 12 - square plus,  13 - circle cross, 14 - square and triangle down, 15 - filled square,  16 - filled circle, 17 - filled triangle point-up, 18 - filled diamond,  19 - solid circle, 20 - bullet (smaller circle), 21 - filled circle blue,  22 - filled square blue, 23 - filled diamond blue, 24 - filled triangle  point-up blue, 25 - filled triangle point down blue." data-fig-align="center">
+<div id="fig-shapes" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" alt="Mapping between shapes and the numbers that represent them: 0 - square,  1 - circle, 2 - triangle point up, 3 - plus, 4 - cross, 5 - diamond,  6 - triangle point down, 7 - square cross, 8 - star, 9 - diamond plus,  10 - circle plus, 11 - triangles up and down, 12 - square plus,  13 - circle cross, 14 - square and triangle down, 15 - filled square,  16 - filled circle, 17 - filled triangle point-up, 18 - filled diamond,  19 - solid circle, 20 - bullet (smaller circle), 21 - filled circle blue,  22 - filled square blue, 23 - filled diamond blue, 24 - filled triangle  point-up blue, 25 - filled triangle point down blue.">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="lec10_files/figure-revealjs/fig-shapes-1.png" class="quarto-figure quarto-figure-center" alt="Mapping between shapes and the numbers that represent them: 0 - square,  1 - circle, 2 - triangle point up, 3 - plus, 4 - cross, 5 - diamond,  6 - triangle point down, 7 - square cross, 8 - star, 9 - diamond plus,  10 - circle plus, 11 - triangles up and down, 12 - square plus,  13 - circle cross, 14 - square and triangle down, 15 - filled square,  16 - filled circle, 17 - filled triangle point-up, 18 - filled diamond,  19 - solid circle, 20 - bullet (smaller circle), 21 - filled circle blue,  22 - filled square blue, 23 - filled diamond blue, 24 - filled triangle  point-up blue, 25 - filled triangle point down blue." width="960">
@@ -867,16 +820,13 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb21-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb21-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
-<span id="cb21-5"><a href=""></a>                   <span class="at">shape =</span> species), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb21-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb21-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb13-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
+<span id="cb13-5"><a href=""></a>                   <span class="at">shape =</span> species), <span class="at">size=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb13-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb13-7"><a href=""></a>    <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -922,33 +872,22 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:39%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="7-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb23-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
-<span id="cb23-5"><a href=""></a>                   <span class="at">shape =</span> species)) <span class="sc">+</span> </span>
-<span id="cb23-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb23-7"><a href=""></a>  <span class="fu">labs</span>(</span>
-<span id="cb23-8"><a href=""></a>    <span class="at">title =</span> <span class="st">"Body mass and flipper length"</span>,</span>
-<span id="cb23-9"><a href=""></a>    <span class="at">subtitle =</span> <span class="st">"Dimensions for Adelie, Chinstrap, and Gentoo Penguins"</span>,</span>
-<span id="cb23-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Body mass (g)"</span>,</span>
-<span id="cb23-11"><a href=""></a>    <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">shape =</span> <span class="st">"Species"</span></span>
-<span id="cb23-12"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb23-13"><a href=""></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="7-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb14-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, </span>
+<span id="cb14-5"><a href=""></a>                   <span class="at">shape =</span> species)) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href=""></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-8"><a href=""></a>    <span class="at">title =</span> <span class="st">"Body mass and flipper length"</span>,</span>
+<span id="cb14-9"><a href=""></a>    <span class="at">subtitle =</span> <span class="st">"Dimensions for Adelie, Chinstrap, and Gentoo Penguins"</span>,</span>
+<span id="cb14-10"><a href=""></a>    <span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Body mass (g)"</span>,</span>
+<span id="cb14-11"><a href=""></a>    <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb14-12"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb14-13"><a href=""></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:61%;">
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1025,9 +964,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <li>Bar charts are useful for visualizing categorical variables</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href=""></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href=""></a>    <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1042,9 +981,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <li>Histograms are useful for these - use argument <code>binwidth =</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1061,9 +1000,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb29-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1074,9 +1013,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb30-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb30-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1095,9 +1034,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb31-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb31-3"><a href=""></a>    <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href=""></a>    <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1108,9 +1047,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb32-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb32-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1129,9 +1068,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb33-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1142,9 +1081,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb34-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb34-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1163,9 +1102,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb35-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1176,9 +1115,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb36-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color=</span><span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color=</span><span class="st">"purple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1204,10 +1143,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="column" style="width:50%;">
 <p>…using <code>geom_boxplot()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb37-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, </span>
-<span id="cb37-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb37-4"><a href=""></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, </span>
+<span id="cb25-3"><a href=""></a>               <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href=""></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1219,10 +1158,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div><div class="column" style="width:50%;">
 <p>…using <code>geom_density()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
-<span id="cb38-3"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb38-4"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
+<span id="cb26-3"><a href=""></a>               <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1243,11 +1182,11 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
-<span id="cb39-3"><a href=""></a>               <span class="at">color =</span> species, </span>
-<span id="cb39-4"><a href=""></a>               <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb39-5"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
+<span id="cb27-3"><a href=""></a>               <span class="at">color =</span> species, </span>
+<span id="cb27-4"><a href=""></a>               <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1258,11 +1197,11 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb40-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
-<span id="cb40-3"><a href=""></a>               <span class="at">color =</span> species, </span>
-<span id="cb40-4"><a href=""></a>               <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb40-5"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
+<span id="cb28-3"><a href=""></a>               <span class="at">color =</span> species, </span>
+<span id="cb28-4"><a href=""></a>               <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href=""></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1299,9 +1238,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="column" style="width:80%;">
 <p>We can use separate vals for color and shape</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb41-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb41-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> island))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> island))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1325,10 +1264,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb42-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb42-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb42-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1350,10 +1289,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb43-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb43-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">scales=</span><span class="st">"free_y"</span>)  <span class="co"># each panel now has its own y-axis scale</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">scales=</span><span class="st">"free_y"</span>)  <span class="co"># each panel now has its own y-axis scale</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1375,10 +1314,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb44-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb44-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb44-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1400,10 +1339,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb45-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb45-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb45-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1425,10 +1364,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb46-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb46-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb46-4"><a href=""></a>    <span class="fu">facet_grid</span>(sex<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb34-4"><a href=""></a>    <span class="fu">facet_grid</span>(sex<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1450,10 +1389,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </ul>
 </div><div class="column" style="width:77%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb47-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb47-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb47-4"><a href=""></a>    <span class="fu">facet_grid</span>(island<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href=""></a>    <span class="fu">facet_grid</span>(island<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1470,11 +1409,11 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ)) <span class="sc">+</span> </span>
-<span id="cb48-2"><a href=""></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb48-3"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> drv, <span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb48-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>), </span>
-<span id="cb48-5"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ)) <span class="sc">+</span> </span>
+<span id="cb36-2"><a href=""></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb36-3"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> drv, <span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb36-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>), </span>
+<span id="cb36-5"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1485,11 +1424,11 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ)) <span class="sc">+</span> </span>
-<span id="cb49-2"><a href=""></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb49-3"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> drv, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb49-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>), </span>
-<span id="cb49-5"><a href=""></a>        <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ)) <span class="sc">+</span> </span>
+<span id="cb37-2"><a href=""></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> drv, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>), </span>
+<span id="cb37-5"><a href=""></a>        <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1503,45 +1442,41 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <section id="can-change-order-of-levels-in-factors" class="slide level2">
 <h2>Can change order of levels in factors</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">island =</span> <span class="fu">factor</span>(island, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Dream"</span>, <span class="st">"Biscoe"</span>, <span class="st">"Torgersen"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb50-5"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">island =</span> <span class="fu">factor</span>(island, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Dream"</span>, <span class="st">"Biscoe"</span>, <span class="st">"Torgersen"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb38-5"><a href=""></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"></section>
 <section id="shapes-can-be-difficult-to-distinguish" class="slide level2">
 <h2>Shapes can be difficult to distinguish</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb52-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href=""></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-41-1.png" width="672" class="r-stretch"></section>
 <section id="sometimes-easier-to-read-by-replacing-shape-with-first-letter" class="slide level2">
 <h2>Sometimes easier to read by replacing shape with first letter</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53" data-code-line-numbers="2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb53-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">species_first_letter =</span> <span class="fu">substr</span>(species, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb53-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb53-4"><a href=""></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">label =</span> species_first_letter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">species_first_letter =</span> <span class="fu">substr</span>(species, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb40-4"><a href=""></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">label =</span> species_first_letter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-42-1.png" width="672" class="r-stretch"></section>
 <section id="might-allow-you-to-remove-the-legend" class="slide level2">
 <h2>Might allow you to remove the legend</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">species_first_letter =</span> <span class="fu">substr</span>(species, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb54-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb54-4"><a href=""></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">label =</span> species_first_letter)) <span class="sc">+</span></span>
-<span id="cb54-5"><a href=""></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">species_first_letter =</span> <span class="fu">substr</span>(species, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href=""></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">label =</span> species_first_letter)) <span class="sc">+</span></span>
+<span id="cb41-5"><a href=""></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-43-1.png" width="672" class="r-stretch"></section>
@@ -1552,19 +1487,19 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <li>Either can save whatever plot you made last:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb55-3"><a href=""></a>    <span class="fu">geom_point</span>()</span>
-<span id="cb55-4"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin-plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href=""></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb42-4"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin-plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Or you can save the plot object and save that</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>p <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb56-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb56-3"><a href=""></a>    <span class="fu">geom_point</span>()</span>
-<span id="cb56-4"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin-plot.png"</span>, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>p <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href=""></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb43-4"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin-plot.png"</span>, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -1598,7 +1533,7 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <li>Contains the prices and other attributes of almost 54,000 diamonds.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 53,940 × 10
    carat cut       color clarity depth table price     x     y     z
@@ -1623,10 +1558,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
-<span id="cb59-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb59-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">28</span>), </span>
-<span id="cb59-4"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
+<span id="cb46-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb46-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">28</span>), </span>
+<span id="cb46-4"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1637,10 +1572,10 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
-<span id="cb60-2"><a href=""></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span> </span>
-<span id="cb60-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">28</span>), </span>
-<span id="cb60-4"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
+<span id="cb47-2"><a href=""></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span> </span>
+<span id="cb47-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">28</span>), </span>
+<span id="cb47-4"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1661,9 +1596,9 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <li>Can utilize multiple <code>geom</code>s together to elucidate relationship</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
-<span id="cb61-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb61-3"><a href=""></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
+<span id="cb48-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb48-3"><a href=""></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
@@ -1671,8 +1606,8 @@ Figure&nbsp;1: R has 25 built-in shapes that are identified by numbers. There ar
 <h2>Statistical transformations</h2>
 <p>Let’s create a bar chart across cuts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut)) <span class="sc">+</span></span>
-<span id="cb62-2"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"><ul>
@@ -1719,9 +1654,9 @@ Figure&nbsp;2
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb63-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb63-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href=""></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1748,10 +1683,10 @@ Figure&nbsp;2
 </ul>
 </div><div class="column fragment" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>diamonds <span class="sc">|&gt;</span> </span>
-<span id="cb64-2"><a href=""></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb64-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb64-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1773,15 +1708,15 @@ Figure&nbsp;2
 <li>Drop entire row with the strange values, e.g.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>diamonds_filtered <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
-<span id="cb65-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">between</span>( y, <span class="dv">3</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>diamonds_filtered <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">between</span>( y, <span class="dv">3</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Replacing unusual values with missing values</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
-<span id="cb66-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">if_else</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="cn">NA</span>, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">if_else</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="cn">NA</span>, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Latter is more recommended behavior.</li>
@@ -1796,8 +1731,8 @@ Figure&nbsp;2
 <li>Can use <code>geom_freqpoly()</code> to show “frequency polygons” (similar to histogram)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
-<span id="cb67-2"><a href=""></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href=""></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-57-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
@@ -1811,8 +1746,8 @@ Figure&nbsp;2
 <li>To do this, we can use <code>after_stat(density)</code>, which does this normalization <!-- * Default behavior is `after_stat(count)` --></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> <span class="fu">after_stat</span>(density))) <span class="sc">+</span></span>
-<span id="cb68-2"><a href=""></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> <span class="fu">after_stat</span>(density))) <span class="sc">+</span></span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">binwidth =</span> <span class="dv">500</span>, <span class="at">linewidth =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
@@ -1833,8 +1768,8 @@ Figure&nbsp;2
 <li>Let’s further inspect with a box plot</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
-<span id="cb69-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lec10_files/figure-revealjs/unnamed-chunk-59-1.png" width="960" class="r-stretch"><ul>
@@ -1863,13 +1798,13 @@ Figure&nbsp;2
 <!-- ``` -->
 <!-- ] -->
 </section>
-<section id="further-inspecting-diamond-prices" class="slide level2">
-<h2>Further inspecting diamond prices</h2>
+<section id="better-quality-diamonds-are-typically-cheaper" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
 <ul>
 <li>What might be responsible for this? Recall variables: x,y,z refer to length/width/depth of diamond in mm</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="fu">colnames</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">colnames</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "carat"   "cut"     "color"   "clarity" "depth"   "table"   "price"  
  [8] "x"       "y"       "z"      </code></pre>
@@ -1878,15 +1813,12 @@ Figure&nbsp;2
 <ul>
 <li>Let’s look at <strong>size</strong> vs price.</li>
 </ul>
-<!-- ## Size vs price in diamonds -->
-<!-- <!-- * We can try doing 3 side-by-side plots by just doing 3 ggplots: -->
-<p>–&gt; <!-- ```{r} --> <!-- diamonds |>  --> <!--     mutate(length = x, width = y, depth = z) |>  --> <!--     pivot_longer(c(length, width, depth), names_to="dimension", values_to="val") |>  --> <!--     ggplot(aes(val, price)) +  --> <!--     geom_point() + --> <!--     facet_wrap(~dimension, scales="free") --> <!-- ggplot(diamonds, aes(x = x, y = price)) + geom_point() --> <!-- ggplot(diamonds, aes(x = y, y = price)) + geom_point() --> <!-- ggplot(diamonds, aes(x = z, y = price)) + geom_point() --> <!-- ``` --></p>
 </section>
-<section id="size-vs-price-in-diamonds" class="slide level2">
-<h2>Size vs price in diamonds</h2>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(x, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
-<span id="cb72-2"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(y, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
-<span id="cb72-3"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(z, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="better-quality-diamonds-are-typically-cheaper-1" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(x, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
+<span id="cb59-2"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(y, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
+<span id="cb59-3"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(z, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
@@ -1902,7 +1834,7 @@ Figure&nbsp;2
 </div>
 <ul>
 <li>Clearly some outliers - “zero” length / width / depth diamonds apparently?</li>
-<li>But still some positive correlation between x, y, z and price <!-- * Hard to see with so many dots. Let's use `alpha=` to add some transparency. --></li>
+<li>But still some positive correlation between x, y, z and price. <!-- * Hard to see with so many dots. Let's use `alpha=` to add some transparency. --></li>
 <li>Let’s clean up the tibble to only view the middle 95% of values for x, y, z.</li>
 </ul>
 <!-- ## Size vs price in diamonds -->
@@ -1917,36 +1849,55 @@ Figure&nbsp;2
 <!-- * But still some positive correlation between x, y, z and price -->
 <!-- * Let's clean up the tibble to only view the middle 95% of values for x, y, z. -->
 </section>
-<section id="size-vs-price-in-diamonds-1" class="slide level2">
-<h2>Size vs price in diamonds</h2>
+<section id="better-quality-diamonds-are-typically-cheaper-2" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
 <ul>
 <li>Let’s clean up the tibble to only view the middle 95% of values for x, y, z</li>
 </ul>
+<!-- ```{r} -->
+<!-- diamonds_middle <- diamonds |>  -->
+<!--   filter(between(x, quantile(diamonds$x, 0.025), quantile(diamonds$x, 0.975)), -->
+<!--          between(y, quantile(diamonds$y, 0.025), quantile(diamonds$y, 0.975)), -->
+<!--          between(z, quantile(diamonds$z, 0.025), quantile(diamonds$z, 0.975))) -->
+<!-- ``` -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>diamonds_middle <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
-<span id="cb73-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">between</span>(x, <span class="fu">quantile</span>(diamonds<span class="sc">$</span>x, <span class="fl">0.025</span>), <span class="fu">quantile</span>(diamonds<span class="sc">$</span>x, <span class="fl">0.975</span>)),</span>
-<span id="cb73-3"><a href=""></a>         <span class="fu">between</span>(y, <span class="fu">quantile</span>(diamonds<span class="sc">$</span>y, <span class="fl">0.025</span>), <span class="fu">quantile</span>(diamonds<span class="sc">$</span>y, <span class="fl">0.975</span>)),</span>
-<span id="cb73-4"><a href=""></a>         <span class="fu">between</span>(z, <span class="fu">quantile</span>(diamonds<span class="sc">$</span>z, <span class="fl">0.025</span>), <span class="fu">quantile</span>(diamonds<span class="sc">$</span>z, <span class="fl">0.975</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a>diamonds_middle <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">between</span>(x, <span class="fu">quantile</span>(x, <span class="fl">0.025</span>), <span class="fu">quantile</span>(x, <span class="fl">0.975</span>)),</span>
+<span id="cb60-3"><a href=""></a>         <span class="fu">between</span>(y, <span class="fu">quantile</span>(y, <span class="fl">0.025</span>), <span class="fu">quantile</span>(y, <span class="fl">0.975</span>)),</span>
+<span id="cb60-4"><a href=""></a>         <span class="fu">between</span>(z, <span class="fu">quantile</span>(z, <span class="fl">0.025</span>), <span class="fu">quantile</span>(z, <span class="fl">0.975</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>IsInMiddle95 <span class="ot">&lt;-</span> <span class="cf">function</span>(a) <span class="fu">between</span>(a, <span class="fu">quantile</span>(a, <span class="fl">0.025</span>), <span class="fu">quantile</span>(a, <span class="fl">0.975</span>))</span>
+<span id="cb61-2"><a href=""></a>diamonds_middle_v2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb61-3"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(x<span class="sc">:</span>z, IsInMiddle95))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Are the two approaches the same?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="fu">identical</span>(diamonds_middle, diamonds_middle_v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
 </div>
 </section>
-<section id="size-vs-price-in-diamonds-2" class="slide level2">
-<h2>Size vs price in diamonds</h2>
+<section id="better-quality-diamonds-are-typically-cheaper-3" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
 <ul>
 <li>Let’s clean up the tibble to only view the middle 95% of values for x, y, z</li>
 </ul>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(x, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
-<span id="cb74-2"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(y, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
-<span id="cb74-3"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(z, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(x, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
+<span id="cb64-2"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(y, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span>
+<span id="cb64-3"><a href=""></a><span class="fu">ggplot</span>(diamonds_middle, <span class="fu">aes</span>(z, price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">40</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">32</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-63-1.png" width="960"></p>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-65-1.png" width="960"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-63-2.png" width="960"></p>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-65-2.png" width="960"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-63-3.png" width="960"></p>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-65-3.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -1955,8 +1906,8 @@ Figure&nbsp;2
 <li>Let’s explore the relationship between estimated volume (x*y*z) and price</li>
 </ul>
 </section>
-<section id="size-vs-price-in-diamonds-3" class="slide level2">
-<h2>Size vs price in diamonds</h2>
+<section id="better-quality-diamonds-are-typically-cheaper-4" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
 <!-- * Appears x, y, z (length/width/depth) are highly correlated with price -->
 <ul>
 <li>Let’s look at the relationship between estimated volume (x*y*z) and price</li>
@@ -1964,61 +1915,10 @@ Figure&nbsp;2
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
-<span id="cb75-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
-<span id="cb75-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> est_volume, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb75-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-64-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<ul>
-<li>Appears to be a strong correlation.</li>
-<li>Now let’s think again as to why it was that we previously found that higher quality diamonds were cheaper.</li>
-</ul>
-</div></div>
-</section>
-<section id="size-vs-price-in-diamonds-4" class="slide level2">
-<h2>Size vs price in diamonds</h2>
-<p>Hypothesis: higher quality diamonds are smaller, lower quality diamonds are larger.</p>
-<div class="columns">
-<div class="column" style="width:30%;">
-<ul>
-<li>To investigate, we could use boxplot: we want to visualize variation in size for each category of quality</li>
-</ul>
-</div><div class="column" style="width:70%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
-<span id="cb76-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
-<span id="cb76-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cut, est_volume, <span class="at">fill=</span>cut)) <span class="sc">+</span></span>
-<span id="cb76-4"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-65-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="size-vs-price-in-diamonds-5" class="slide level2">
-<h2>Size vs price in diamonds</h2>
-<ul>
-<li>Let’s try to visualize the different cuts on the scatter plot:</li>
-</ul>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span></span>
-<span id="cb77-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span></span>
-<span id="cb77-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(est_volume, price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
-<span id="cb77-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
+<span id="cb65-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
+<span id="cb65-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> est_volume, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb65-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -2027,15 +1927,27 @@ Figure&nbsp;2
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:30%;">
+<ul>
+<li>Appears to be a strong correlation.</li>
+<li>Think about why we previously found that higher quality diamonds were cheaper.</li>
+</ul>
+</div></div>
+</section>
+<section id="better-quality-diamonds-are-typically-cheaper-5" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
+<p>Hypothesis: high quality diamonds are smaller, low quality diamonds are larger.</p>
+<ul>
+<li>To investigate, let’s visualize variation in size for each category of quality</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:33.3%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span></span>
-<span id="cb78-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span></span>
-<span id="cb78-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(est_volume, price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
-<span id="cb78-4"><a href=""></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
+<span id="cb66-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
+<span id="cb66-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cut, est_volume, <span class="at">fill=</span>cut)) <span class="sc">+</span></span>
+<span id="cb66-4"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb66-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -2044,48 +1956,99 @@ Figure&nbsp;2
 </div>
 </div>
 </div>
+</div><div class="column fragment" style="width:33.3%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
+<span id="cb67-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
+<span id="cb67-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cut, est_volume, <span class="at">fill=</span>cut)) <span class="sc">+</span></span>
+<span id="cb67-4"><a href=""></a>  <span class="fu">geom_violin</span>(<span class="at">draw_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)) <span class="sc">+</span> </span>
+<span id="cb67-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-68-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:33.3%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span> </span>
+<span id="cb68-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span> </span>
+<span id="cb68-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(est_volume, <span class="at">color=</span>cut)) <span class="sc">+</span></span>
+<span id="cb68-4"><a href=""></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb68-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="fl">0.9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-69-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:99%;">
+<p>Hypothesis seems reasonable</p>
 </div></div>
-<!-- ## Size vs price in diamonds -->
-<!-- * Let's try to visualize the different cuts on the dot plot: -->
-<!-- ```{r message=FALSE} -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-width: 5 -->
-<!-- diamonds_middle |> -->
-<!--   mutate(est_volume = x*y*z) |> -->
-<!--   ggplot(aes(x = est_volume, y = price, color = cut)) + -->
-<!--   geom_point(alpha = 0.5) -->
-<!-- diamonds_middle |> -->
-<!--   mutate(est_volume = x*y*z) |> -->
-<!--   ggplot(aes(x = est_volume, y = price, color = cut)) + -->
-<!--   geom_smooth() -->
-<!-- ``` -->
-<!-- ## Size vs. price in diamonds -->
-<!-- * We were looking at the estimated volume, but could also look at the *weight*: carat.   -->
+</section>
+<section id="better-quality-diamonds-are-typically-cheaper-6" class="slide level2">
+<h2>Better quality diamonds are typically cheaper?!</h2>
+<p>Now let’s look at size vs price <em>for each <code>cut</code></em></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span></span>
+<span id="cb69-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span></span>
+<span id="cb69-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(est_volume, price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb69-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb69-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-70-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>diamonds_middle <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">est_volume =</span> x<span class="sc">*</span>y<span class="sc">*</span>z) <span class="sc">|&gt;</span></span>
+<span id="cb70-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(est_volume, price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb70-4"><a href=""></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span> </span>
+<span id="cb70-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-71-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<!-- ## Better quality diamonds are typically cheaper?! -->
+<!-- We were looking at estimated volume, but could also look at the *weight* (`carat`) -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
 <!-- * Let's see how if weight varies by class. -->
-<!-- .pull-left[  -->
 <!-- ```{r} -->
-<!-- #| layout-ncol: 1 -->
-<!-- #| fig-width: 4 -->
 <!-- diamonds |> -->
-<!--   ggplot(aes(x = cut, y = carat)) + -->
+<!--   ggplot(aes(cut, carat, fill=cut)) + -->
 <!--   geom_boxplot() -->
 <!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- * Again appears to be a lot of outliers; let's look at middle 95%. -->
+<!-- ::: -->
+<!-- ::: {.column width="50%" .fragment} -->
+<!-- * Again many outliers; let's look at middle 95%. -->
 <!-- ```{r} -->
-<!-- #| layout-ncol: 1 -->
-<!-- #| fig-width: 4 -->
-<!-- diamonds_middle <- diamonds |> -->
-<!--   filter(between(carat, quantile(carat, 0.025), quantile(carat, 0.975))) -->
-<!-- diamonds_middle |> -->
-<!--   ggplot(aes(x = cut, y = carat)) + -->
+<!-- diamonds |>  -->
+<!--   filter(if_all(carat, IsInMiddle95)) |>  -->
+<!--   ggplot(aes(cut, carat, fill=cut)) + -->
 <!--   geom_boxplot() -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Size vs price in diamonds  -->
-<!-- .pull-left[  -->
+<!-- ::: -->
+<!-- ::::: -->
+<!-- ## Better quality diamonds are typically cheaper?! -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
 <!-- * And now let's visualize relationship between carat size and price by cut: -->
 <!-- ```{r, echo=FALSE, message=FALSE} -->
 <!-- #| layout-ncol: 1 -->
@@ -2098,8 +2061,8 @@ Figure&nbsp;2
 <!--   ggplot(aes(x = carat, y = price, color = cut)) + -->
 <!--   geom_smooth() -->
 <!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
 <!-- * Compare this to what happens if we didn't ignore outliers! -->
 <!-- ```{r, echo=FALSE, message=FALSE} -->
 <!-- #| layout-ncol: 1 -->
@@ -2112,136 +2075,261 @@ Figure&nbsp;2
 <!--   ggplot(aes(x = carat, y = price, color = cut)) + -->
 <!--   geom_smooth() -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Communicating ideas -->
-<!-- * Now we'll look at how to best display data once we've figured out some meaningful relationships between things -->
-<!-- * Packages we'll be using: `tidyverse`, `scales`, `ggrepel`, `patchwork` -->
-<!-- ```{r, echo=FALSE,message=FALSE} -->
-<!-- library(tidyverse) -->
-<!-- library(scales) -->
-<!-- library(ggrepel) -->
-<!-- library(patchwork) -->
-<!-- ``` -->
-<!-- .pull-left[ -->
-<!-- * Good labels are crucial to good figures: -->
-<!-- ```{r, eval = FALSE} -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point(aes(color = class)) + -->
-<!--   geom_smooth(se = FALSE) + -->
-<!--   labs( -->
-<!--     x = "Engine displacement (L)", -->
-<!--     y = "Highway fuel economy (mpg)", -->
-<!--     color = "Car type", -->
-<!--     title = "Fuel efficiency generally decreases with engine size", -->
-<!--     subtitle = "Two seaters (sports cars) are an exception because of their light weight", -->
-<!--     caption = "Data from fueleconomy.gov" -->
-<!--   ) -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- ```{r, echo=FALSE, message=FALSE} -->
-<!-- #| fig-width: 5.5 -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point(aes(color = class)) + -->
-<!--   geom_smooth(se = FALSE) + -->
-<!--   labs( -->
-<!--     x = "Engine displacement (L)", -->
-<!--     y = "Highway fuel economy (mpg)", -->
-<!--     color = "Car type", -->
-<!--     title = "Fuel efficiency generally decreases with engine size", -->
-<!--     subtitle = "Two seaters (sports cars) are an exception because of their light weight", -->
-<!--     caption = "Data from fueleconomy.gov" -->
-<!--   ) -->
-<!-- ``` -->
-<!-- ] -->
-<!--  -->
+<!-- ::: -->
+<!-- ::::: -->
+</section></section>
+<section>
+<section id="communicating-ideas" class="title-slide slide level1 center">
+<h1>Communicating ideas</h1>
+
+</section>
+<section id="communicating-ideas-1" class="slide level2">
+<h2>Communicating ideas</h2>
+<ul>
+<li>Now we’ll look at how to best display data once we’ve figured out some meaningful relationships between things</li>
+<li>Packages we’ll be using: <code>tidyverse</code>, <code>scales</code>, <code>ggrepel</code>, <code>patchwork</code></li>
+</ul>
+</section>
+<section id="communicating-ideas-2" class="slide level2">
+<h2>Communicating ideas</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Good labels are crucial to good figures:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb71-3"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb71-4"><a href=""></a>  <span class="fu">labs</span>(</span>
+<span id="cb71-5"><a href=""></a>    <span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>,</span>
+<span id="cb71-6"><a href=""></a>    <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>,</span>
+<span id="cb71-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"Car type"</span>,</span>
+<span id="cb71-8"><a href=""></a>    <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>,</span>
+<span id="cb71-9"><a href=""></a>    <span class="at">subtitle =</span> <span class="st">"Two seaters (sports cars) are an exception due to their light weight"</span>,</span>
+<span id="cb71-10"><a href=""></a>    <span class="at">caption =</span> <span class="st">"Data from fueleconomy.gov"</span></span>
+<span id="cb71-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-74-1.png" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 <!-- ## Annotations -->
-<!-- .pull-left[  -->
-<!-- * Often helpful to label individual observations or gruops of observations -->
-<!-- * Tool to use: `geom_text()`, similar to `geom_point` but has additional aesthetic `label`. -->
-<!-- * Sources of labels: -->
-<!--   - Tibble itself has labels -->
-<!--   - Custom, user-added labels. -->
-<!-- ```{r} -->
-<!-- label_info <- mpg |> -->
-<!--   group_by(drv) |> -->
-<!--   arrange(desc(displ)) |> -->
-<!--   slice_head(n = 1) |> -->
-<!--   mutate( -->
-<!--     drive_type = case_when( -->
-<!--       drv == "f" ~ "front-wheel drive", -->
-<!--       drv == "r" ~ "rear-wheel drive", -->
-<!--       drv == "4" ~ "4-wheel drive" -->
-<!--     ) -->
-<!--   ) |> -->
-<!--   select(displ, hwy, drv, drive_type) -->
-<!-- ``` -->
-<!--   ] -->
-<!-- .pull-right[ -->
-<!-- ```{r, eval=FALSE} -->
-<!-- label_info -->
-<!-- #> # A tibble: 3 × 4 -->
-<!-- #> # Groups:   drv [3] -->
-<!-- #>   displ   hwy drv   drive_type        -->
-<!-- #>   <dbl> <int> <chr> <chr>             -->
-<!-- #> 1   6.5    17 4     4-wheel drive     -->
-<!-- #> 2   5.3    25 f     front-wheel drive -->
-<!-- #> 3   7      24 r     rear-wheel drive -->
-<!-- ``` -->
-<!-- * Can use this to directly label groups and replace legend -->
-<!-- ] -->
-<!--  -->
-<!-- ## Annotations -->
-<!-- .pull-left[ -->
-<!-- ```{r} -->
-<!-- label_info -->
-<!-- ``` -->
-<!-- * Want to use `label_info` as the data. -->
-<!-- * x and y aesthetics the same as in the original `mpg` tibble -->
-<!-- * But then want to set `hjust` and `vjust`  -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- ```{r} -->
-<!-- #| fig-width: 4.5 -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + -->
+<!-- Often helpful to label individual observations or groups of observations -->
+<!-- ```{r message=FALSE} -->
+<!-- #| fig-width: 10 -->
+<!-- ggplot(mpg, aes(displ, hwy, color = drv)) + -->
 <!--   geom_point(alpha = 0.3) + -->
 <!--   geom_smooth(se = FALSE) + -->
-<!--   geom_text( -->
-<!--     data = label_info,  -->
-<!--     aes(x = displ, y = hwy, label = drive_type), -->
-<!--     fontface = "bold", size = 5, hjust = "right", vjust = "bottom" -->
+<!--   theme(legend.position = c(0.9, 0.8)) -->
+<!-- ``` -->
+<!-- How can we improve this plot? (What is 4, f, r?) -->
+</section>
+<section id="annotations" class="slide level2">
+<h2>Annotations</h2>
+<!-- Often helpful to label individual observations or groups of observations -->
+<div class="columns">
+<div class="column" style="width:57%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a>pp <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb72-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span> </span>
+<span id="cb72-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb72-4"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb72-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb72-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>, <span class="at">color =</span> <span class="st">"Drive train"</span>, <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-76-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>How can we improve this plot? (What is 4, f, r?)</p>
+</div></div>
+</section>
+<section id="annotations-1" class="slide level2">
+<h2>Annotations</h2>
+<p>Often helpful to label individual observations or groups of observations</p>
+<ul>
+<li><code>geom_text()</code>, similar to <code>geom_point()</code> but has additional aesthetic <code>label</code>.</li>
+<li>Label could come from tibble itself, or could use custom user-added labels</li>
+</ul>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<ul>
+<li>Let’s create custom labels</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href=""></a>label_info <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span></span>
+<span id="cb74-2"><a href=""></a>  <span class="fu">group_by</span>(drv) <span class="sc">|&gt;</span></span>
+<span id="cb74-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(displ)) <span class="sc">|&gt;</span></span>
+<span id="cb74-4"><a href=""></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb74-5"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb74-6"><a href=""></a>    <span class="at">drive_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb74-7"><a href=""></a>      drv <span class="sc">==</span> <span class="st">"f"</span> <span class="sc">~</span> <span class="st">"front-wheel drive"</span>,</span>
+<span id="cb74-8"><a href=""></a>      drv <span class="sc">==</span> <span class="st">"r"</span> <span class="sc">~</span> <span class="st">"rear-wheel drive"</span>,</span>
+<span id="cb74-9"><a href=""></a>      drv <span class="sc">==</span> <span class="st">"4"</span> <span class="sc">~</span> <span class="st">"4-wheel drive"</span></span>
+<span id="cb74-10"><a href=""></a>    )</span>
+<span id="cb74-11"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb74-12"><a href=""></a>  <span class="fu">select</span>(displ, hwy, drv, drive_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a>label_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+# Groups:   drv [3]
+  displ   hwy drv   drive_type       
+  &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;            
+1   6.5    17 4     4-wheel drive    
+2   5.3    25 f     front-wheel drive
+3   7      24 r     rear-wheel drive </code></pre>
+</div>
+</div>
+<ul>
+<li>Can use <code>label_info</code> to directly label groups and replace legend</li>
+<li>x and y aesthetics the same as in the original <code>mpg</code> tibble</li>
+</ul>
+<!-- * But then want to set `hjust` and `vjust`. -->
+</div></div>
+</section>
+<section id="annotations-2" class="slide level2">
+<h2>Annotations</h2>
+<div class="columns">
+<div class="column" style="width:57%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77" data-code-line-numbers="5-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a>pp <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb77-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span> </span>
+<span id="cb77-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb77-4"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb77-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb77-6"><a href=""></a>    <span class="at">data =</span> label_info,</span>
+<span id="cb77-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">label =</span> drive_type),</span>
+<span id="cb77-8"><a href=""></a>    <span class="at">size =</span> <span class="dv">8</span></span>
+<span id="cb77-9"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb77-10"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb77-11"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>, <span class="at">color =</span> <span class="st">"Drive train"</span>, <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-80-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="annotations-3" class="slide level2">
+<h2>Annotations</h2>
+<div class="columns">
+<div class="column" style="width:57%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a>pp <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span> </span>
+<span id="cb79-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb79-4"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb79-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb79-6"><a href=""></a>    <span class="at">data =</span> label_info,</span>
+<span id="cb79-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">label =</span> drive_type),</span>
+<span id="cb79-8"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">1.5</span>, <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">0.8</span>, </span>
+<span id="cb79-9"><a href=""></a>    <span class="at">size =</span> <span class="dv">8</span></span>
+<span id="cb79-10"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb79-11"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb79-12"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>, <span class="at">color =</span> <span class="st">"Drive train"</span>, <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-82-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="annotations-4" class="slide level2">
+<h2>Annotations</h2>
+<div class="columns">
+<div class="column" style="width:57%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81" data-code-line-numbers="5-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href=""></a>pp <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span> </span>
+<span id="cb81-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb81-4"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb81-5"><a href=""></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb81-6"><a href=""></a>    <span class="at">data =</span> label_info,</span>
+<span id="cb81-7"><a href=""></a>    <span class="fu">aes</span>(<span class="at">label =</span> drive_type),</span>
+<span id="cb81-8"><a href=""></a>    <span class="at">size =</span> <span class="dv">8</span></span>
+<span id="cb81-9"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb81-10"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb81-11"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>, <span class="at">color =</span> <span class="st">"Drive train"</span>, <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href=""></a>pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-84-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<!-- ## Annotations -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r message=FALSE} -->
+<!-- #| fig-width: 10 -->
+<!-- ggplot(mpg, aes(displ, hwy, color = drv)) + -->
+<!--   geom_point(alpha = 0.3) + -->
+<!--   geom_smooth(se = FALSE) + -->
+<!--   theme(legend.position = c(0.9, 0.8)) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r message=FALSE} -->
+<!-- #| fig-width: 10 -->
+<!-- #| code-line-numbers: 2-6 -->
+<!-- ggplot(mpg, aes(displ, hwy, color = drv)) + geom_point(alpha = 0.3) + geom_smooth(se = FALSE) + -->
+<!--   geom_text_repel( -->
+<!--     data = label_info, -->
+<!--     aes(displ, hwy, label = drive_type), -->
+<!--     # hjust = "right", vjust = "bottom",  -->
+<!--     fontface = "bold", size = 5 -->
 <!--   ) + -->
 <!--   theme(legend.position = "none") -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
+<!-- ::: -->
+<!-- ::::: -->
 <!-- ## Annotations -->
-<!-- .pull-left[ -->
-<!-- ```{r, echo=FALSE, message = FALSE} -->
-<!-- #| fig-width: 4.5 -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + -->
-<!--   geom_point(alpha = 0.3) + -->
-<!--   geom_smooth(se = FALSE) + -->
-<!--   geom_text( -->
-<!--     data = label_info,  -->
-<!--     aes(x = displ, y = hwy, label = drive_type), -->
-<!--     fontface = "bold", size = 5, hjust = "right", vjust = "bottom" -->
-<!--   ) + -->
-<!--   theme(legend.position = "none") -->
-<!-- ``` -->
-<!-- * Two things to address: (1) What are `hjust` and `vjust` doing, why is text appearing where it does? (2)  -->
-<!-- * Let's look at `label_info` -->
-<!-- ```{r, eval = FALSE} -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- Why does text appear where it does? -->
+<!-- * What are `hjust` and `vjust` doing? -->
+<!-- * Let's look at `label_info` again -->
+<!-- ```{r} -->
 <!-- label_info -->
-<!-- #>   displ   hwy drv   drive_type        -->
-<!-- #>   <dbl> <int> <chr> <chr>             -->
-<!-- #> 1   6.5    17 4     4-wheel drive     -->
-<!-- #> 2   5.3    25 f     front-wheel drive -->
-<!-- #> 3   7      24 r     rear-wheel drive -->
 <!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
 <!-- * We can use ``ggrepel::geom_label_repel()` to make text repel other text labels. -->
 <!-- ```{r} -->
 <!-- #| fig-width: 4 -->
@@ -2249,94 +2337,112 @@ Figure&nbsp;2
 <!--   geom_point(alpha = 0.3) + -->
 <!--   geom_smooth(se = FALSE) + -->
 <!--   geom_label_repel( -->
-<!--     data = label_info,  -->
+<!--     data = label_info, -->
 <!--     aes(x = displ, y = hwy, label = drive_type), -->
 <!--     fontface = "bold", size = 5, nudge_y = 2 -->
 <!--   ) + -->
 <!--   theme(legend.position = "none") -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
+<!-- ::: -->
+<!-- ::::: -->
+</section>
+<section id="annotations-5" class="slide level2">
+<h2>Annotations</h2>
+<p>Same idea can be used to highlight points on plot, e.g.&nbsp;outliers</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb83" data-code-line-numbers="1|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href=""></a>potential_outliers <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> <span class="fu">filter</span>(hwy <span class="sc">&gt;</span> <span class="dv">40</span> <span class="sc">|</span> (hwy <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> displ <span class="sc">&gt;</span> <span class="dv">5</span>))</span>
+<span id="cb83-2"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb83-3"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb83-4"><a href=""></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> potential_outliers, <span class="fu">aes</span>(<span class="at">label =</span> model)) <span class="sc">+</span></span>
+<span id="cb83-5"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> potential_outliers, <span class="at">shape =</span> <span class="st">"circle open"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb83-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement (L)"</span>, <span class="at">y =</span> <span class="st">"Highway fuel economy (mpg)"</span>, <span class="at">color =</span> <span class="st">"Drive train"</span>, <span class="at">title =</span> <span class="st">"Fuel efficiency generally decreases with engine size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
 <!-- ## Annotations -->
-<!-- .pull-left[  -->
-<!-- * Same idea can be used to highlight points on plot, e.g. outliers -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- Same idea can be used to highlight points on plot, e.g. outliers -->
 <!-- ```{r, eval=FALSE} -->
 <!-- potential_outliers <- mpg |> -->
 <!--   filter(hwy > 40 | (hwy > 20 & displ > 5)) -->
 <!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
 <!--   geom_point() + -->
 <!--   geom_text_repel(data = potential_outliers, aes(label = model)) + -->
-<!--   geom_point(data = potential_outliers, color = "red") + -->
 <!--   geom_point( -->
 <!--     data = potential_outliers, -->
 <!--     color = "red", size = 3, shape = "circle open" -->
 <!--   ) -->
 <!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
 <!-- ```{r, echo=FALSE} -->
 <!-- potential_outliers <- mpg |> -->
 <!--   filter(hwy > 40 | (hwy > 20 & displ > 5)) -->
 <!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
 <!--   geom_point() + -->
 <!--   geom_text_repel(data = potential_outliers, aes(label = model)) + -->
-<!--   geom_point(data = potential_outliers, color = "red") + -->
 <!--   geom_point( -->
 <!--     data = potential_outliers, -->
 <!--     color = "red", size = 3, shape = "circle open" -->
 <!--   ) -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Annotations -->
-<!-- * Other annotations which you might encounter / could be useful: -->
-<!--   * `geom_hline()`, `geom_vline()`: create horizontal / vertical lines -->
-<!--   * `geom_rect()`: rectangle around points of interest, require specifying `xmin`, `xmax`, `ymin`, `ymax` -->
-<!--   * `geom_segment()`: draw an arrow from one point to another -->
-<!-- * Function which allows for doing any of these: `annotate()` -->
-<!-- * Let's say we want to add some text to our plot, but split lines every 30 characters using `str_wrap()` -->
-<!-- ```{r} -->
-<!-- trend_text <- "Larger engine sizes tend to have lower fuel economy." |> -->
-<!--   str_wrap(width = 30) -->
-<!-- trend_text -->
-<!-- ``` -->
-<!--  -->
-<!-- ## Annotations -->
-<!-- .pull-left[ -->
-<!-- * Let's add a text label in red using `annotate(geom = 'label')` -->
-<!-- * ... and then add a line segment giving general trend -->
-<!-- ```{r, eval=FALSE} -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point() + -->
-<!--   annotate( -->
-<!--     geom = "label", x = 3.5, y = 38, -->
-<!--     label = trend_text, -->
-<!--     hjust = "left", color = "red" -->
-<!--   ) + -->
-<!--   annotate( -->
-<!--     geom = "segment", -->
-<!--     x = 3, y = 35, xend = 5, yend = 25, color = "red", -->
-<!--     arrow = arrow(type = "closed") -->
-<!--   ) -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- ```{r, echo=FALSE} -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point() + -->
-<!--   annotate( -->
-<!--     geom = "label", x = 3.5, y = 38, -->
-<!--     label = trend_text, -->
-<!--     hjust = "left", color = "red" -->
-<!--   ) + -->
-<!--   annotate( -->
-<!--     geom = "segment", -->
-<!--     x = 3, y = 35, xend = 5, yend = 25, color = "red", -->
-<!--     arrow = arrow(type = "closed") -->
-<!--   ) -->
-<!-- ``` -->
-<!-- ] -->
-<!--  -->
+<!-- ::: -->
+<!-- ::::: -->
+<img data-src="lec10_files/figure-revealjs/unnamed-chunk-85-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="annotations-6" class="slide level2">
+<h2>Annotations</h2>
+<ul>
+<li>Other annotations which you might encounter / could be useful:
+<ul>
+<li><code>geom_hline()</code>, <code>geom_vline()</code>: create horizontal / vertical lines</li>
+<li><code>geom_rect()</code>: rectangle around points of interest, require specifying <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, <code>ymax</code></li>
+<li><code>geom_segment()</code>: draw an arrow from one point to another</li>
+</ul></li>
+<li>Function which allows for doing any of these: <code>annotate()</code></li>
+<li>Let’s say we want to add some text to our plot, but split lines every 30 characters using <code>str_wrap()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href=""></a>trend_text <span class="ot">&lt;-</span> <span class="st">"Larger engine sizes tend to have lower fuel economy."</span> <span class="sc">|&gt;</span></span>
+<span id="cb84-2"><a href=""></a>  <span class="fu">str_wrap</span>(<span class="at">width =</span> <span class="dv">30</span>)</span>
+<span id="cb84-3"><a href=""></a>trend_text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Larger engine sizes tend to\nhave lower fuel economy."</code></pre>
+</div>
+</div>
+</section>
+<section id="annotations-7" class="slide level2">
+<h2>Annotations</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li>Let’s add a text label in red using <code>annotate(geom = 'label')</code></li>
+<li>… and then add a line segment giving general trend</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb86-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb86-3"><a href=""></a>  <span class="fu">annotate</span>(</span>
+<span id="cb86-4"><a href=""></a>    <span class="at">geom =</span> <span class="st">"label"</span>, <span class="at">x =</span> <span class="fl">3.5</span>, <span class="at">y =</span> <span class="dv">38</span>,</span>
+<span id="cb86-5"><a href=""></a>    <span class="at">label =</span> trend_text,</span>
+<span id="cb86-6"><a href=""></a>    <span class="at">hjust =</span> <span class="st">"left"</span>, <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb86-7"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb86-8"><a href=""></a>  <span class="fu">annotate</span>(</span>
+<span id="cb86-9"><a href=""></a>    <span class="at">geom =</span> <span class="st">"segment"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">35</span>, </span>
+<span id="cb86-10"><a href=""></a>    <span class="at">xend =</span> <span class="dv">5</span>, <span class="at">yend =</span> <span class="dv">25</span>, <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb86-11"><a href=""></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">type =</span> <span class="st">"closed"</span>)</span>
+<span id="cb86-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-88-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 <!-- ## Scales -->
 <!-- * By default, ggplot2 automatically adds scales for you, e.g. this code -->
 <!-- ```{r, eval=FALSE} -->
@@ -2352,31 +2458,83 @@ Figure&nbsp;2
 <!--   scale_y_continuous() + -->
 <!--   scale_color_discrete() -->
 <!-- ``` -->
-<!--  -->
-<!-- ## Axis ticks -->
-<!-- * Axes and legends are called **guides** in R.  Axes used for x,y aesthetics, legends for everything else -->
-<!-- * Ticks on axes and keys on legend affected by args `breaks` and `labels`. -->
-<!-- .pull-left[ -->
-<!-- ```{r} -->
-<!-- #| fig-width: 4 -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + -->
-<!--   geom_point() + -->
-<!--   scale_y_continuous(breaks = seq(15, 40, by = 5))  -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- ```{r} -->
-<!-- #| fig-width: 4 -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy, color = drv)) + -->
-<!--   geom_point() + -->
-<!--   scale_x_continuous(labels = NULL) + -->
-<!--   scale_y_continuous(labels = NULL) + -->
-<!--   scale_color_discrete(labels = c("4" = "4-wheel", "f" = "front", "r" = "rear")) -->
-<!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Axis ticks -->
-<!-- * Specifying `labels` and `breaks` gives a lot of flexibility on how to plot -->
+</section>
+<section id="axis-ticks" class="slide level2">
+<h2>Axis ticks</h2>
+<p>Axes and legends are called <strong>guides</strong> in R.</p>
+<ul>
+<li>Axes used for x,y aesthetics, legends for everything else</li>
+<li>Ticks on axes and keys on legend affected by args <code>breaks</code> and <code>labels</code>.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span></span>
+<span id="cb87-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb87-3"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">15</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-89-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> drv)) <span class="sc">+</span></span>
+<span id="cb88-2"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb88-3"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb88-4"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb88-5"><a href=""></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"4"</span> <span class="ot">=</span> <span class="st">"4-wheel"</span>, <span class="st">"f"</span> <span class="ot">=</span> <span class="st">"front"</span>, <span class="st">"r"</span> <span class="ot">=</span> <span class="st">"rear"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-90-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="axis-ticks-1" class="slide level2">
+<h2>Axis ticks</h2>
+<ul>
+<li>Specifying <code>labels</code> and <code>breaks</code> provides a lot of flexibility on how to plot</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(price, cut, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
+<span id="cb89-2"><a href=""></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb89-3"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>()) <span class="sc">+</span> </span>
+<span id="cb89-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-91-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(price, cut, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
+<span id="cb90-2"><a href=""></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb90-3"><a href=""></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb90-4"><a href=""></a>    <span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">1000</span>, <span class="at">suffix =</span> <span class="st">"K"</span>),</span>
+<span id="cb90-5"><a href=""></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1000</span>, <span class="dv">19000</span>, <span class="at">by =</span> <span class="dv">4000</span>) </span>
+<span id="cb90-6"><a href=""></a>  ) <span class="sc">+</span> </span>
+<span id="cb90-7"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-92-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 <!-- ```{r} -->
 <!-- #| fig-width: 4.5 -->
 <!-- #| layout-ncol: 2 -->
@@ -2388,30 +2546,33 @@ Figure&nbsp;2
 <!-- ggplot(diamonds, aes(x = price, y = cut)) + -->
 <!--   geom_boxplot(alpha = 0.05) + -->
 <!--   scale_x_continuous( -->
-<!--     labels = label_dollar(scale = 1/1000, suffix = "K"),  -->
+<!--     labels = label_dollar(scale = 1/1000, suffix = "K"), -->
 <!--     breaks = seq(1000, 19000, by = 6000) ) -->
 <!-- ``` -->
-<!--  -->
-<!-- ## Legends -->
-<!-- .pull-left[  -->
-<!-- * To control location of legend, use `theme()` (themes control non data parts of a plot) -->
-<!-- ```{r} -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-width: 4 -->
-<!-- #| eval: false -->
-<!-- base <- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point(aes(color = class)) -->
-<!-- base + theme(legend.position = "right") # the default -->
-<!-- base + theme(legend.position = "left") -->
-<!-- base +  -->
-<!--   theme(legend.position = "top") + -->
-<!--   guides(color = guide_legend(nrow = 3)) -->
-<!-- base +  -->
-<!--   theme(legend.position = "bottom") + -->
-<!--   guides(color = guide_legend(nrow = 3)) -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
+</section>
+<section id="legends" class="slide level2">
+<h2>Legends</h2>
+<p>To control location of legend, use <code>theme()</code> (controls non data parts of a plot)</p>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href=""></a>base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class))</span>
+<span id="cb91-2"><a href=""></a></span>
+<span id="cb91-3"><a href=""></a>base <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)  <span class="co"># the default</span></span>
+<span id="cb91-4"><a href=""></a>base <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)</span>
+<span id="cb91-5"><a href=""></a>base <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-93-1.png" width="384"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-93-2.png" width="384"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-93-3.png" width="384"></p>
+</div>
+</div>
+</div>
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
 <!-- ```{r} -->
 <!-- #| layout-ncol: 2 -->
 <!-- #| fig-width: 3 -->
@@ -2420,120 +2581,203 @@ Figure&nbsp;2
 <!--   geom_point(aes(color = class)) -->
 <!-- base + theme(legend.position = "right") # the default -->
 <!-- base + theme(legend.position = "left") -->
-<!-- base +  -->
+<!-- base + -->
 <!--   theme(legend.position = "top") + -->
 <!--   guides(color = guide_legend(nrow = 3)) -->
-<!-- base +  -->
+<!-- base + -->
 <!--   theme(legend.position = "bottom") + -->
 <!--   guides(color = guide_legend(nrow = 3)) -->
 <!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Replacing scales -->
-<!-- .pull-left[  -->
-<!-- * It's often useful to consider transformations of data, e.g. log transformations -->
-<!-- ```{r} -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-width: 3 -->
-<!-- # Left -->
-<!-- ggplot(diamonds, aes(x = carat, y = price)) + -->
-<!--   geom_point(alpha = 0.02) -->
-<!-- # Right -->
-<!-- ggplot(diamonds, aes(x = log10(carat), y = log10(price))) + -->
-<!--   geom_point(alpha = 0.02) -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- * A useful geom for large-sample-size datasets: `geom_bin2d()` -->
-<!-- ```{r} -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-width: 3 -->
-<!-- # Left -->
-<!-- ggplot(diamonds, aes(x = carat, y = price)) + -->
-<!--   geom_bin2d() -->
-<!-- # Right -->
-<!-- ggplot(diamonds, aes(x = log10(carat), y = log10(price))) + -->
-<!--   geom_bin2d() -->
-<!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Replacing scales -->
+<!-- ::: -->
+<!-- ::::: -->
+</section>
+<section id="replacing-scales" class="slide level2">
+<h2>Replacing scales</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Often useful to transform data, e.g.&nbsp;log transformations</li>
+</ul>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href=""></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb92-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb92-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.02</span>)</span>
+<span id="cb92-4"><a href=""></a>diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb92-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">log10</span>(carat), <span class="fu">log10</span>(price))) <span class="sc">+</span></span>
+<span id="cb92-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.02</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-94-1.png" width="960"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-94-2.png" width="960"></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>A useful geom for large-sample-size datasets: <code>geom_bin2d()</code></li>
+</ul>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href=""></a><span class="co"># Left</span></span>
+<span id="cb93-2"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb93-3"><a href=""></a>  <span class="fu">geom_bin2d</span>()</span>
+<span id="cb93-4"><a href=""></a><span class="co"># Right</span></span>
+<span id="cb93-5"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="fu">log10</span>(carat), <span class="fu">log10</span>(price))) <span class="sc">+</span></span>
+<span id="cb93-6"><a href=""></a>  <span class="fu">geom_bin2d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-95-1.png" width="960"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-95-2.png" width="960"></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="replacing-scales-1" class="slide level2">
+<h2>Replacing scales</h2>
 <!-- * Not ideal that previous plots had `log10(carat)` on the x axis, hard to interpret -->
-<!-- * Can use `scale_x_log10()` and `scale_y_log190)` to plot regular values, but with ticks that are spread using a log scale -->
+<ul>
+<li>Can use <code>scale_x_log10()</code> and <code>scale_y_log190)</code> to plot regular values, but with ticks that are spread using a log scale</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb94-2"><a href=""></a>  <span class="fu">geom_bin2d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-96-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href=""></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span></span>
+<span id="cb95-2"><a href=""></a>  <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
+<span id="cb95-3"><a href=""></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-97-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 <!-- ```{r} -->
 <!-- #| layout-ncol: 2 -->
 <!-- #| fig-width: 4.5 -->
-<!-- # Left -->
-<!-- ggplot(diamonds, aes(x = carat, y = price)) + -->
+<!-- ggplot(diamonds, aes(carat, price)) + -->
 <!--   geom_bin2d() -->
-<!-- # Right -->
-<!-- ggplot(diamonds, aes(x = carat, y = price)) + -->
-<!--   geom_bin2d() +  -->
-<!--   scale_x_log10() + scale_y_log10()  -->
+<!-- ggplot(diamonds, aes(carat, price)) + -->
+<!--   geom_bin2d() + -->
+<!--   scale_x_log10() + scale_y_log10() -->
 <!-- ``` -->
-<!--  -->
-<!-- ## Replacing scales -->
-<!-- .pull-left[  -->
-<!-- * Color scales are also often replaced; especially using `scale_color_brewer` -->
-<!-- ```{r} -->
-<!-- #| fig-align: default -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-width: 3 -->
-<!-- #| fig-alt: | -->
-<!-- #|   Two scatterplots of highway mileage versus engine size where points are  -->
-<!-- #|   colored by drive type. The plot on the left uses the default  -->
-<!-- #|   ggplot2 color palette and the plot on the right uses a different color  -->
-<!-- #|   palette. -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point(aes(color = drv)) -->
-<!-- ggplot(mpg, aes(x = displ, y = hwy)) + -->
-<!--   geom_point(aes(color = drv)) + -->
-<!--   scale_color_brewer(palette = "Set1") -->
-<!-- ``` -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- * Many different options for color brewer -->
-<!-- ```{r} -->
-<!-- #| label: fig-brewer -->
-<!-- #| echo: false -->
-<!-- #| fig-cap: All colorBrewer scales. -->
-<!-- #| fig-asp: 2.5 -->
-<!-- #| fig-alt: | -->
-<!-- #|   All colorBrewer scales. One group goes from light to dark colors.  -->
-<!-- #|   Another group is a set of non ordinal colors. And the last group has  -->
-<!-- #|   diverging scales (from dark to light to dark again). Within each set  -->
-<!-- #|   there are a number of palettes. -->
-<!-- par(mar = c(0, 3, 0, 0)) -->
-<!-- RColorBrewer::display.brewer.all() -->
-<!-- ``` -->
-<!-- ] -->
-<!--  -->
-<!-- ## Manual color scaling -->
-<!-- .pull-left[ -->
-<!-- * `scale_color_manual()` allows for you to give specific colors for groups in the tibble, e.g. -->
-<!-- ```{r} -->
-<!-- presidential -->
-<!-- ``` -->
-<!-- * Takes argument `values` which should be a named list, with entries of the form `group=color`.   -->
-<!-- * `color` can be either English names ("blue", "red") or hexadecimal color codes -->
-<!-- ] -->
-<!-- .pull-right[ -->
-<!-- ```{r} -->
-<!-- #| fig-alt: | -->
-<!-- #|   Line plot of id number of presidents versus the year they started their  -->
-<!-- #|   presidency. Start year is marked with a point and a segment that starts  -->
-<!-- #|   there and ends at the end of the presidency. Democratic presidents are  -->
-<!-- #|   represented in blue and Republicans in red. -->
-<!-- presidential |> -->
-<!--   mutate(id = 33 + row_number()) |> -->
-<!--   ggplot(aes(x = start, y = id, color = party)) + -->
-<!--   geom_point() + -->
-<!--   geom_segment(aes(xend = end, yend = id)) + -->
-<!--   scale_color_manual( -->
-<!--     values = c(Republican = "#E81B23", -->
-<!--                Democratic = "#00AEF3")) -->
-<!-- ``` -->
-<!-- ] -->
+</section>
+<section id="replacing-scales-2" class="slide level2">
+<h2>Replacing scales</h2>
+<ul>
+<li>Color scales are also often replaced; especially using <code>scale_color_brewer()</code></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb96-2"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> drv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-98-1.png" alt="Two scatterplots of highway mileage versus engine size where points are colored by drive type. The plot on the left uses the default ggplot2 color palette and the plot on the right uses a different color palette." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href=""></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> drv)) <span class="sc">+</span></span>
+<span id="cb97-3"><a href=""></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-99-1.png" alt="Two scatterplots of highway mileage versus engine size where points are colored by drive type. The plot on the left uses the default ggplot2 color palette and the plot on the right uses a different color palette." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="replacing-scales-3" class="slide level2">
+<h2>Replacing scales</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Many options for color brewer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href=""></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-100-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>One group goes from light to dark colors.</li>
+<li>Another group is a set of non ordinal colors.</li>
+<li>Last group has diverging scales (from dark to light to dark again).</li>
+</ul>
+</div></div>
+</section>
+<section id="manual-color-scaling" class="slide level2">
+<h2>Manual color scaling</h2>
+<div class="columns">
+<div class="column" style="width:57%;">
+<p><code>scale_color_manual()</code> allows giving specific colors for groups in the tibble</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href=""></a>presidential <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  name       start      end        party     
+  &lt;chr&gt;      &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;     
+1 Eisenhower 1953-01-20 1961-01-20 Republican
+2 Kennedy    1961-01-20 1963-11-22 Democratic
+3 Johnson    1963-11-22 1969-01-20 Democratic
+4 Nixon      1969-01-20 1974-08-09 Republican
+5 Ford       1974-08-09 1977-01-20 Republican
+6 Carter     1977-01-20 1981-01-20 Democratic</code></pre>
+</div>
+</div>
+<ul>
+<li>Takes argument <code>values</code>: a named vector, with entries of the form <code>group=color</code>.</li>
+<li><code>color</code> can be either English names (“blue”, “red”) or hexadecimal color codes</li>
+</ul>
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href=""></a>presidential <span class="sc">|&gt;</span></span>
+<span id="cb101-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb101-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(start, id, <span class="at">color =</span> party)) <span class="sc">+</span></span>
+<span id="cb101-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb101-5"><a href=""></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> end, <span class="at">yend =</span> id)) <span class="sc">+</span></span>
+<span id="cb101-6"><a href=""></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb101-7"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republican =</span> <span class="st">"#E81B23"</span>,</span>
+<span id="cb101-8"><a href=""></a>               <span class="at">Democratic =</span> <span class="st">"#00AEF3"</span>)) <span class="sc">+</span> </span>
+<span id="cb101-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec10_files/figure-revealjs/unnamed-chunk-102-1.png" alt="Line plot of id number of presidents versus the year they started their presidency. Start year is marked with a point and a segment that starts there and ends at the end of the presidency. Democratic presidents are represented in blue and Republicans in red." width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 <!-- # More examples -->
 <!-- ## Can change order of levels in factors -->
 <!-- ```{r} -->
