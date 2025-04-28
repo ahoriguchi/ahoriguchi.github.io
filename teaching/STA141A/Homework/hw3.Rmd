@@ -54,8 +54,9 @@ $\vspace{0.5in}$
 
 ```
 
-### d) Let $C$ be the event that $X \in \{1,3\}$, and let $D$ be the event that $X \geq 4$. Compute $P(C) + P(D)$. 
-- *Hint*: the solution can be written in just one line of math.
+<!-- ### d) Let $C$ be the event that $X \in \{1,3\}$, and let $D$ be the event that $X \geq 4$. Compute $P(C) + P(D)$.  -->
+<!-- - *Hint*: the solution can be written in just one line of math. -->
+### d) Compute $P(X \in \{1,3\}) + P(X \geq 4)$. *Hint*: the solution can be written in just one line of math.
 $\vspace{0.5in}$
 
 ### e) Let $A$ be the event that $X$ is even, and let $B$ be the event that $X$ is odd. Are $A$ and $B$ independent? Are $A$ and $B$ disjoint? What is $P(A) + P(B)$? Justify your answer.
@@ -67,17 +68,17 @@ $\vspace{0.5in}$
 
 ### Let $X$ be a random variable with pdf $f_X(x) = |x|$ for $x \in (-1,1)$. (Here $|x|$ denotes the absolute value of $x$.)
 
-### a) Calculate the expected value $E(X)$ by hand.
+### a) Calculate the expected value $E(X)$ without using R.
 
 $\vspace{2.5in}$
 
-### b) Calculate the expected value $E(3X + 5)$ by hand. *Hint*: use your answer from part a).
+### b) Calculate the expected value $E(3X + 5)$ without using R. *Hint*: use your answer from part a).
 $\vspace{0.5in}$
 
-### c) Calculate the variance $Var(X)$ by hand.
+### c) Calculate the variance $Var(X)$ without using R.
 $\vspace{2.5in}$
 
-### d) Calculate the variance $Var(3X + 5)$ by hand. *Hint*: use your answer from part c).
+### d) Calculate the variance $Var(3X + 5)$ without using R. *Hint*: use your answer from part c).
 $\vspace{1in}$
 
 
@@ -85,15 +86,15 @@ $\vspace{1in}$
 
 # 3. Monte Carlo integration
 
-Suppose we want to compute the expected value $$\mathbb{E} g(X) = \int g(x) f_X(x) \, dx$$ for a continuous random variable $X$ with pdf $f_X(x)$, where $g(x)$ is a function of $x$. The exact value of this expected value can be difficult to compute if the function $g$ or the pdf $f_X$ is complicated. However, by noting that $$\lim_{N \rightarrow \infty} \frac{1}{N} \sum_{i=1}^N g(x_i) = \int g(x) f_X(x) \, dx$$ for samples $x_1, x_2, \ldots, x_N$ drawn according to pdf $f_X$, we can approximate the expected value $\mathbb{E} g(X)$.
+Suppose we want to compute the expected value $$\mathbb{E} [g(X)] = \int g(x) f_X(x) \, dx$$ for a continuous random variable $X$ with pdf $f_X(x)$, where $g(x)$ is a function of $x$. The exact value of this expected value can be difficult to compute if the function $g$ or the pdf $f_X$ is complicated. However, by noting that $$\lim_{N \rightarrow \infty} \frac{1}{N} \sum_{i=1}^N g(x_i) = \int g(x) f_X(x) \, dx$$ for samples $x_1, x_2, \ldots, x_N$ independently drawn according to pdf $f_X$, we can approximate the expected value $\mathbb{E} g(X)$.
 
 For this problem, suppose the random variable $X$ follows a standard uniform distribution, and $g(x) = x^2$. 
 
-### a) Compute the expected value $\mathbb{E} g(X)$ by hand.
+### a) Compute the expected value $\mathbb{E} [g(X)]$ without using R.
 
 $\vspace{2in}$
 
-### b) Estimate the expected value $\mathbb{E} g(X)$ using R and this Monte Carlo method described above.
+### b) Estimate the expected value $\mathbb{E} [g(X)]$ using R and this Monte Carlo method described above.
 
 - *Hint*: Step 1 is to draw $N$ samples $x_1, x_2, \ldots, x_N$ according to the distribution of $X$. Step 2 is to compute the sample mean of $g(x_1), g(x_2), \ldots, g(x_N)$.
 
