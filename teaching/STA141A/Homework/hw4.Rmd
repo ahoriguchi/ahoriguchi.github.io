@@ -100,7 +100,7 @@ With this dataset, fit a linear regression model for each of the four $x$-$y$ pa
 
 1. What are the estimated coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$?
 2. How about the $R^2$? 
-3. Plot $y$ against $x$, along with the fitted regression line. For the plots, comment on your findings. 
+3. Plot $y$ against $x$, along with the fitted regression line. (You can use `plot()` and `abline()` in base R, or `geom_line()` and `geom_smooth(method = "lm")` in ggplot2 -- see slide deck s3.5) For the plots, comment on your findings. 
 
 ```{r}
 ### Your Solution (Code)
