@@ -56,7 +56,9 @@ GenerateData_v1 <- function(n) {
 test_data <- GenerateData_v1(n=100000)
 ```
 
-### (a) Generate a training dataset with $n=10$ points using the function `GenerateData_v1()`. Fit a simple linear regression model to this dataset. Compute the training MSE. Compute the test MSE using the dataset `test_data`. How do the two MSEs compare? *Hint*: you may want to use the functions `lm()` and `predict()`.
+### (a) Use the function `GenerateData_v1()` to generate a training dataset with $n=10$ points. Fit a simple linear regression model to this dataset. What are the estimated coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$? Compute the training MSE. Compute the test MSE using the dataset `test_data`. How do the two MSEs compare? 
+
+- *Hint*: you may want to use the functions `lm()` and `predict()`.
 ```{r}
 ### Your Solution (Code)
 ```
@@ -79,7 +81,7 @@ test_data <- GenerateData_v1(n=100000)
 ### Your Solution (Text)
 \vskip 1in
 
-### (d) As $n$ increases, what value do the test MSEs seem to converge to? How does this value relate to the noise standard deviation in the data generation process? 
+### (d) As $n$ increases, what values do the estimated coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$ seem to converge to? As $n$ increases, what value do the test MSEs seem to converge to, and how does this value relate to the noise standard deviation in the data generation process? 
 
 ### Your Solution (Text)
 
