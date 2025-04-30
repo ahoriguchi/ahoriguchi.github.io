@@ -23,10 +23,9 @@ header-includes:
 ---
 
 The assignment must be done in an [R Markdown](https://rmarkdown.rstudio.com) or [Quarto](https://quarto.org/) document. 
-The assignment must be submitted by the due date above by uploading two files:
+The assignment must be submitted by the due date above by uploading:
 
-1. a .rmd or .qmd source file in CANVAS;
-2. a .pdf file in GRADESCOPE (if you can knit/compile your .rmd to a  .html file only, please save the created .html file as a .pdf file (by opening the .html file -> print -> save to .pdf)).
+1. a .pdf file in GRADESCOPE (if you can knit/compile your .rmd to a  .html file only, please save the created .html file as a .pdf file (by opening the .html file -> print -> save to .pdf)).
 
 Email submissions will not be accepted.
 
@@ -36,7 +35,13 @@ There are many possible ways to write `R` code that is needed to answer the ques
 
 During the discussion sessions, you may be asked to present and share your solutions.
 
-Good luck!
+Also, for your information, you can write python code chunks in RMarkdown or Quarto documents. For example, the following code chunk shows how to print the numbers from 0 to 3 in Python: 
+
+```{python}
+for i in range(4):
+    print("Current iteration:", i)
+```
+(You will need Python already installed to run the following code chunk. If this causes an error and you don't plan to use Python, feel free to delete this chunk and stick with R for this course.)
 
 \newpage
 
@@ -48,7 +53,7 @@ GenerateData_v1 <- function(n) {
   y <- -2 + 3 * x + rnorm(n, sd = 0.5)
   data.frame(x = x, y = y)
 }
-test_data <- GenerateData_v1(100000)
+test_data <- GenerateData_v1(n=100000)
 ```
 
 ### (a) Generate a training dataset with $n=10$ points using the function `GenerateData_v1()`. Fit a simple linear regression model to this dataset. Compute the training MSE. Compute the test MSE using the dataset `test_data`. How do the two MSEs compare? *Hint*: you may want to use the functions `lm()` and `predict()`.
@@ -74,7 +79,7 @@ test_data <- GenerateData_v1(100000)
 ### Your Solution (Text)
 \vskip 1in
 
-### (d) As $n$ increases, to what value do the test MSEs seem to converge to? How does this value relate to the noise standard deviation in the data generation process? 
+### (d) As $n$ increases, what value do the test MSEs seem to converge to? How does this value relate to the noise standard deviation in the data generation process? 
 
 ### Your Solution (Text)
 
