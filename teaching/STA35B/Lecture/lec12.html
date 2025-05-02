@@ -511,7 +511,11 @@ Figure&nbsp;1: A scatterplot showing head length against total length for 104 br
 <h2>Linear model</h2>
 <p>A <strong>linear model</strong> is a general framework that describes a linear relationship between a dependent variable and one or more independent variables.</p>
 <ul>
-<li>In statistics, usually call them the <strong>response</strong> variable and the <strong>predictor</strong> variable(s)</li>
+<li>In statistics, usually call them:
+<ul>
+<li>dependent variable <span class="math inline">\(\rightarrow\)</span> <strong>response</strong> variable</li>
+<li>independent variable(s) <span class="math inline">\(\rightarrow\)</span> <strong>predictor</strong> variable(s)</li>
+</ul></li>
 <li>For this slide deck, assume just one predictor variable</li>
 </ul>
 </section>
@@ -808,16 +812,17 @@ Figure&nbsp;2: Three datasets where a linear model may be useful even if the dat
 <ul>
 <li>Before we introduce <strong>correlation</strong>, let’s recall some basic summary statistics:</li>
 </ul>
-<p>Suppose we have a set of values <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span> whose distribution we want to summarize using a few statistics.</p>
+<p>Suppose we want to summarize a set of values <span class="math inline">\(a_1,a_2,\ldots,a_n\)</span>.</p>
+<!-- whose distribution we want to summarize using a few statistics.  -->
 <!-- To quantify a "representative value" of a set of values $a_1,a_2,\ldots,a_n$ -->
 <div class="columns">
-<div class="column" style="width:45%;">
-<p>We can quantify a “representative value” using the <strong>sample mean</strong> <code>mean()</code>: <span class="math display">\[\bar{a} =  \frac{1}{n} \sum_{i=1}^n a_i.\]</span></p>
-</div><div class="column" style="width:55%;">
+<div class="column" style="width:50%;">
+<p>We can quantify a “representative value” using <strong>sample mean</strong> <code>mean()</code>: <span class="math display">\[\bar{a} =  \frac{1}{n} \sum_{i=1}^n a_i.\]</span></p>
+</div><div class="column" style="width:50%;">
 <p>We can quantify the “spread” using</p>
 <ul>
-<li>the <strong>sample variance</strong> <code>var()</code>: <span class="math display">\[s_a^2 =  \frac{1}{n-1} \sum_{i=1}^n (a_i - \bar{a})^2\]</span></li>
-<li>or the <strong>sample standard deviation</strong> <code>sd()</code>: <span class="math display">\[s_a = \sqrt{s_a^2}\]</span></li>
+<li><strong>sample variance</strong> <code>var()</code>: <span class="math display">\[s_a^2 =  \frac{1}{n-1} \sum_{i=1}^n (a_i - \bar{a})^2\]</span></li>
+<li>or <strong>sample standard deviation</strong> <code>sd()</code>: <span class="math display">\[s_a = \sqrt{s_a^2}\]</span></li>
 </ul>
 <!-- - $s_a$ has the same units as the values and the sample mean -->
 </div></div>
@@ -877,33 +882,49 @@ Figure&nbsp;2: Three datasets where a linear model may be useful even if the dat
 <ul>
 <li>Turns out to be equivalent to the squared value of the correlation</li>
 </ul>
-<p>Interpretation in <code>possum</code> example: About <span class="math inline">\(R^2 = 0.48\)</span> or <span class="math inline">\(48\%\)</span> of the variation in <code>head_l</code> is explained by the linear model.</p>
+<p>Interpretation for <code>possum</code>: <span class="math inline">\(R^2 = 0.48\)</span> or <span class="math inline">\(48\%\)</span> of the variation in <code>head_l</code> is explained by the linear model.</p>
 </section>
 <section id="categorical-predictors-with-two-levels" class="slide level2">
 <h2>Categorical predictors with two levels</h2>
 <!-- * Let's fit a linear regression model with the `bankruptcy` categorical predictor -->
-<p>Earlier we used continuous (numeric) predictor variables. Categorical variables are also useful in predicting outcomes.</p>
 <ul>
-<li>Consider a categorical predictor <code>bankruptcy</code> with two levels/categories: 0 if no history of bankruptcy, 1 if there is. <span class="math display">\[
-\widehat{\texttt{interest_rate}} = b_0 + b_1 \times \texttt{bankruptcy}
-\]</span></li>
-<li>A 0-1 variable is also called an <strong>indicator variable</strong>.</li>
+<li>So far we have used continuous (numeric) predictor variables.</li>
+<li>Categorical variables are also useful in predicting outcomes.</li>
 </ul>
 </section>
 <section id="categorical-predictors-with-two-levels-1" class="slide level2">
 <h2>Categorical predictors with two levels</h2>
-<p>Let’s see what the interest rates look like for the two levels</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>loans <span class="ot">&lt;-</span> loans_full_schema <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">bankruptcy =</span> <span class="fu">as.factor</span>(<span class="fu">if_else</span>(public_record_bankrupt <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb17-3"><a href=""></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(bankruptcy, interest_rate)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="lec12_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"><ul>
-<li>Seems plausible that bankruptcy is associated with a higher interest rate</li>
+<p>Example: Predict the interest rate for someone based on whether that person has filed for bankruptcy. (Data from <code>openintro::loans_full_schema</code>.)</p>
+<p><span class="math display">\[
+\widehat{\texttt{interest_rate}} = b_0 + b_1 \times \texttt{bankruptcy}
+\]</span></p>
+<ul>
+<li>A categorical predictor <code>bankruptcy</code> with two levels/categories:
+<ul>
+<li>0 if no history of bankruptcy, 1 if there is.</li>
+<li>A 0-1 variable is also called an <strong>indicator variable</strong>.</li>
+</ul></li>
+<li>Interpretation:
+<ul>
+<li><span class="math inline">\(b_0\)</span> is the predicted interest rate for those w/o bankruptcy</li>
+<li><span class="math inline">\(b_0 + b_1\)</span> is the predicted interest rate for those w bankruptcy</li>
+</ul></li>
 </ul>
 </section>
 <section id="categorical-predictors-with-two-levels-2" class="slide level2">
+<h2>Categorical predictors with two levels</h2>
+<p>Let’s see what the interest rates look like for the two levels</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>loans <span class="ot">&lt;-</span> loans_full_schema <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">bankruptcy =</span> <span class="fu">as.factor</span>(<span class="fu">if_else</span>(public_record_bankrupt <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb17-3"><a href=""></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(bankruptcy, interest_rate)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>bankruptcy)) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="lec12_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Seems plausible that bankruptcy is associated with a higher interest rate</li>
+</ul>
+</section>
+<section id="categorical-predictors-with-two-levels-3" class="slide level2">
 <h2>Categorical predictors with two levels</h2>
 <p>Let’s inspect the least-squares linear model resulting from this</p>
 <div class="cell">
