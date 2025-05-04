@@ -430,7 +430,7 @@ Akira Horiguchi
 </section>
 <section id="linear-regression-with-multiple-predictors" class="slide level2">
 <h2>Linear regression with multiple predictors</h2>
-<p>Multiple regression extends single predictor regression by allowing multiple predictors <span class="math inline">\(x_1, x_2, x_3, \ldots,\)</span>:</p>
+<p>Multiple regression extends single predictor regression by allowing multiple predictors <span class="math inline">\(x_1, x_2, x_3, \ldots\)</span></p>
 <p><span class="math display">\[y = b_0 + b_1 x_1 + b_2 x_2 + \cdots\]</span></p>
 <ul>
 <li>Data: <code>loans_full_schema</code> data with tidying</li>
@@ -671,7 +671,7 @@ Akira Horiguchi
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "0" "1"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">lm</span>(interest_rate <span class="sc">~</span> bankruptcy, <span class="at">data =</span> loans) <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">lm</span>(interest_rate <span class="sc">~</span> bankruptcy, <span class="at">data=</span>loans) <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
@@ -704,7 +704,7 @@ Akira Horiguchi
 </div>
 <ul>
 <li>Second term is called <code>bankruptcy1</code>: refers to level “1”. The slope estimate is the estimated difference in <code>interest_rate</code> of level “1” from level “0”.</li>
-<li>Intercept estimate is the estimated <code>interest_rate</code> for level “0” (<strong>reference level</strong>)</li>
+<li>Intercept estimate is the estimated <code>interest_rate</code> for “0” (<strong>reference level</strong>)</li>
 </ul>
 <p><span class="math display">\[
 \widehat{\texttt{interest_rate}} = b_0 + b_1 \times \texttt{bankruptcy}
@@ -721,7 +721,7 @@ Akira Horiguchi
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Not Verified"    "Source Verified" "Verified"       </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">lm</span>(interest_rate <span class="sc">~</span> verified_income, <span class="at">data =</span> loans) <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">lm</span>(interest_rate <span class="sc">~</span> verified_income, <span class="at">data=</span>loans) <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
@@ -767,28 +767,76 @@ Akira Horiguchi
 </div>
 </div>
 <ul>
-<li>Note the names of second and third terms. Regression model equation is</li>
+<li>Look at the names of second and third terms. Regression model equation is</li>
 </ul>
 <!-- estimates in these rows represent the estimated difference in `interest_rate` against the **previous level** -->
 <!-- * Each row represents the relative difference for each level of verified income -->
 <!-- * The level "Not Verified" is missing - this is because it is the **reference level**, default level that other levels are measured against -->
 <p><span class="math display">\[\begin{align}
-\widehat{\texttt{interest_rate}} &amp;= 11.10 \\
+\widehat{\texttt{interest_rate}}
+= 11.10
 &amp;+ 1.42 \times \texttt{verified_income}_{\texttt{Source Verified}} \\
 &amp;+ 3.25 \times \texttt{verified_income}_{\texttt{Verified}}
 \end{align}\]</span></p>
 </section>
 <section id="indicators-and-categorical-variables-2" class="slide level2">
 <h2>Indicators and categorical variables</h2>
-<p>The regression model equation now has <strong>two</strong> indicator variables.</p>
+<p>Regression model equation is</p>
+<p><span class="math display">\[\begin{align}
+\widehat{\texttt{interest_rate}}
+= 11.10
+&amp;+ 1.42 \times \texttt{verified_income}_{\texttt{Source Verified}} \\
+&amp;+ 3.25 \times \texttt{verified_income}_{\texttt{Verified}}
+\end{align}\]</span></p>
 <ul>
-<li>Average interest rate for borrowers whose <code>verified_income</code> value is…
+<li>The regression model equation now has <strong>two</strong> indicator variables: <span class="math display">\[\texttt{verified_income}_{\texttt{Source Verified}} \qquad \text{and} \qquad \texttt{verified_income}_{\texttt{Verified}}\]</span>
 <ul>
-<li>…“Not Verified”: <span class="math display">\[\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 0 + 3.25 \times 0 = 11.10\]</span></li>
-<li>…“Source Verified”: <span class="math display">\[\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 1 + 3.25 \times 0 = 12.52\]</span></li>
-<li>…“Verified”: <span class="math display">\[\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 1 + 3.25 \times 1 = 15.77\]</span></li>
+<li>Recall: the value of an indicator variable is either 0 or 1</li>
 </ul></li>
 </ul>
+</section>
+<section id="indicators-and-categorical-variables-3" class="slide level2">
+<h2>Indicators and categorical variables</h2>
+<p>Regression model equation is</p>
+<p><span class="math display">\[\begin{align}
+\widehat{\texttt{interest_rate}}
+= 11.10
+&amp;+ 1.42 \times \texttt{verified_income}_{\texttt{Source Verified}} \\
+&amp;+ 3.25 \times \texttt{verified_income}_{\texttt{Verified}}
+\end{align}\]</span></p>
+<ul>
+<li>Average interest rate for borrowers whose <code>verified_income</code> value is…</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p>“Not Verified”:</p>
+<p><span class="math display">\[\begin{align}
+11.10
+&amp;+ 1.42 \times 0 \\
+&amp;+ 3.25 \times 0 \\
+&amp;= 11.10
+\end{align}\]</span></p>
+</div><div class="column" style="width:33%;">
+<p>“Source Verified”:</p>
+<p><span class="math display">\[\begin{align}
+11.10
+&amp;+ 1.42 \times 1 \\
+&amp;+ 3.25 \times 0 \\
+&amp;= 12.52
+\end{align}\]</span></p>
+</div><div class="column" style="width:33%;">
+<p>“Verified”:</p>
+<p><span class="math display">\[\begin{align}
+11.10
+&amp;+ 1.42 \times 1 \\
+&amp;+ 3.25 \times 1 \\
+&amp;= 15.77
+\end{align}\]</span></p>
+</div></div>
+<!-- * Average interest rate for borrowers whose `verified_income` value is... -->
+<!--     * ..."Not Verified": $$\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 0 + 3.25 \times 0 = 11.10$$ -->
+<!--     * ..."Source Verified": $$\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 1 + 3.25 \times 0 = 12.52$$ -->
+<!--     * ..."Verified": $$\widehat{\texttt{interest_rate}} = 11.10 + 1.42 \times 1 + 3.25 \times 1 = 15.77$$ -->
 <!-- ## Indicators and categorical variables -->
 <!-- The regression model equation now has **two** indicator variables.  -->
 <!-- * When `verified_income` takes value "Not Verified": -->
@@ -935,7 +983,7 @@ SSE = e_1^2 + \cdots + e_{10000}^2 = \sum_{i=1}^n e_i^2.
 <section id="multiple-predictors-in-a-linear-model-2" class="slide level2">
 <h2>Multiple predictors in a linear model</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:61%;">
 <p>The fitted model from previous slide has regression equation:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -951,7 +999,7 @@ SSE = e_1^2 + \cdots + e_{10000}^2 = \sum_{i=1}^n e_i^2.
 &amp;- 0.04 \times \texttt{issue_month}_{\texttt{Mar-2018}}
 \end{aligned}
 \]</span></p>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:39%;">
 <p>Categorical predictors <code>verified_income</code> and <code>issue_month</code>: we have <em>two</em> coefficients for each.</p>
 <ul>
 <li>If a categorical predictor has <span class="math inline">\(p\)</span> different levels, we get an additional <span class="math inline">\(p-1\)</span> terms</li>
@@ -1053,7 +1101,7 @@ R^2 &amp;= 1 - \frac{\text{variability in residuals}}{\text{variability in the o
 <li><em>forward selection</em>: Start from a small model and add variables one-by-one.</li>
 </ul></li>
 <li>Different criteria can be used to guide whether to add/eliminate variables.</li>
-<li>We’ll mainly use adjusted R-squared
+<li>We’ll mainly use adjusted R-squared <span class="math inline">\(R^2_{adj}\)</span>
 <ul>
 <li>improvement = larger adjusted R-squared</li>
 </ul></li>
@@ -1061,7 +1109,7 @@ R^2 &amp;= 1 - \frac{\text{variability in residuals}}{\text{variability in the o
 </section>
 <section id="model-selection-backward-elimination" class="slide level2">
 <h2>Model selection: backward elimination</h2>
-<p><code>lm(interest_rate ~ ., data = loans)</code> results in a linear model with <span class="math inline">\(R^2_{adj} = 0.2597\)</span>, using variables <code>verified_income</code>, <code>debt_to_income</code>, <code>credit_util</code>, <code>bankruptcy</code>, <code>term</code>, <code>credit_checks</code>, <code>issue_month</code>.</p>
+<p><code>lm(interest_rate ~ ., data=loans)</code> results in a linear model with <span class="math inline">\(R^2_{adj} = 0.2597\)</span>, using variables <code>verified_income</code>, <code>debt_to_income</code>, <code>credit_util</code>, <code>bankruptcy</code>, <code>term</code>, <code>credit_checks</code>, <code>issue_month</code>.</p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
@@ -1078,7 +1126,7 @@ R^2 &amp;= 1 - \frac{\text{variability in residuals}}{\text{variability in the o
 </ul>
 </div><div class="column fragment" style="width:40%;">
 <ul>
-<li>Since removing <code>issue_month</code> has adjusted <span class="math inline">\(R^2\)</span> of 0.2598 &gt; 0.2597, we drop <code>issue_month</code> from the model.</li>
+<li>Removing <code>issue_month</code> has <span class="math inline">\(R^2_{adj}\)</span> of 0.2598 &gt; 0.2597, so we drop <code>issue_month</code> from the model.</li>
 <li>Now we have six variables.</li>
 <li>We then continue and see if also removing one of these six variables produces a larger adjusted <span class="math inline">\(R^2\)</span>.</li>
 <li>Repeat the process as long as the removal increases <span class="math inline">\(R^2_{adj}\)</span>.</li>
@@ -1264,15 +1312,21 @@ R^2 &amp;= 1 - \frac{\text{variability in residuals}}{\text{variability in the o
 </section>
 <section id="example-housing-prices-1" class="slide level2">
 <h2>Example: housing prices</h2>
-<ul>
-<li>Let’s do some exploratory data analysis</li>
-</ul>
-
-<img data-src="lec13_files/figure-revealjs/fig-single-scatter-1.png" id="fig-single-scatter" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption">
-Figure&nbsp;1
-</p><ul>
-<li>Seems that all variables are positively associated with price</li>
-</ul>
+<div class="columns">
+<div class="column" style="width:85%;">
+<p>Let’s do some exploratory data analysis</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec13_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:15%;">
+<p>Seems all variables are positively associated with price</p>
+</div></div>
 </section>
 <section id="example-housing-prices-2" class="slide level2">
 <h2>Example: housing prices</h2>
@@ -1408,18 +1462,22 @@ Figure&nbsp;1
 <li>This forms the predictive model</li>
 </ul>
 <p><span class="math display">\[\begin{align}
-\widehat{\texttt{price}} &amp;= -2,910,715 + 102 \times \texttt{area} - 13,692 \times \texttt{bed} \\
-&amp;+ 41,076 \times \texttt{bath} + 1,459 \times \texttt{year_built}\\
-&amp;+ 84,065 \times \texttt{cooling}_{\texttt{central}} + 356,141 \times \texttt{lot}
+\widehat{\texttt{price}} &amp;= -2,910,715 \\
+&amp;\quad+ 102 \times \texttt{area} \\
+&amp;\quad- 13,692 \times \texttt{bed} \\
+&amp;\quad+ 41,076 \times \texttt{bath} \\
+&amp;\quad+ 1,459 \times \texttt{year_built}\\
+&amp;\quad+ 84,065 \times \texttt{cooling}_{\texttt{central}} \\
+&amp;\quad+ 356,141 \times \texttt{lot}
 \end{align}\]</span></p>
 </div></div>
 </section>
 <section id="modeling-price-with-multiple-variables-1" class="slide level2">
 <h2>Modeling price with multiple variables</h2>
 
-<img data-src="lec13_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"><ul>
+<img data-src="lec13_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
 <li>Residuals appear to be randomly scattered around zero, but again pretty large residuals for expensive homes</li>
-<li>One apparent outlier at -750k predicted value.</li>
+<li>One apparent outlier at <span class="math inline">\(-\$750K\)</span> predicted value.</li>
 </ul>
 </section>
 <section id="backward-elimination" class="slide level2">
@@ -1430,11 +1488,14 @@ Figure&nbsp;1
 <li>Let’s see if excluding certain variables helps to improve the model’s <span class="math inline">\(R^2_{adj}\)</span></li>
 <li>Helpful function in R: <code>update()</code></li>
 <li>Takes <code>lm()</code> output and allows you to specify what changes you’d like to make</li>
-<li>“. ~ . - variable” &lt;–&gt; use same formula as before, but now remove “variable” from the formula</li>
+<li><code>. ~ . - variable</code> &lt;–&gt; use same formula as before, but now remove <code>variable</code> from the formula</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">update</span>(m_full, . <span class="sc">~</span> . <span class="sc">-</span> area, <span class="at">data =</span> duke_forest) <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">update</span>(m_full, . <span class="sc">~</span> . <span class="sc">-</span> area, </span>
+<span id="cb13-2"><a href=""></a>       <span class="at">data =</span> duke_forest) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href=""></a>  broom<span class="sc">::</span><span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
@@ -1515,10 +1576,12 @@ Figure&nbsp;1
 <li>Will dropping a predictor improve <span class="math inline">\(R^2_{adj}\)</span>?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># Compute adjusted R^2 for model `m_full` after removing predictor `area`</span></span>
-<span id="cb16-2"><a href=""></a><span class="fu">update</span>(m_full, . <span class="sc">~</span> . <span class="sc">-</span> area, <span class="at">data =</span> duke_forest) <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a href=""></a>    <span class="fu">glance</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb16-4"><a href=""></a>    <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># Compute adjusted R^2 for model `m_full` </span></span>
+<span id="cb16-2"><a href=""></a><span class="co"># after removing predictor `area`</span></span>
+<span id="cb16-3"><a href=""></a><span class="fu">update</span>(m_full, . <span class="sc">~</span> . <span class="sc">-</span> area, </span>
+<span id="cb16-4"><a href=""></a>       <span class="at">data =</span> duke_forest) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">glance</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-6"><a href=""></a>  <span class="fu">pull</span>(adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5062002</code></pre>
 </div>
@@ -1539,7 +1602,7 @@ Figure&nbsp;1
 <ul>
 <li>Excluding <code>bed</code> improves adjusted <span class="math inline">\(R^2\)</span>, so we eliminate this
 <ul>
-<li>Excluding <code>bed</code> and <code>area</code>: 0.51</li>
+<li>Excluding <code>bed</code> and <code>area</code>: 0.506</li>
 <li>Excluding <code>bed</code> and <code>bath</code>: 0.586</li>
 <li>Excluding <code>bed</code> and <code>year_built</code>: 0.586</li>
 <li>Excluding <code>bed</code> and <code>cooling</code>: 0.563</li>
@@ -1572,7 +1635,7 @@ Figure&nbsp;1
 <p><span class="math display">\[
 \begin{aligned}
 \widehat{\texttt{price}} &amp;= -2,952,641 + 99 \times \texttt{area}\\
-&amp;+ 36,228 \times \texttt{bath} + 1,466 \times \texttt{year\_built}\\
+&amp;+ 36,228 \times \texttt{bath} + 1,466 \times \texttt{year_built}\\
 &amp;+ 83,856 \times \texttt{cooling}_{\texttt{central}} + 357,119 \times \texttt{lot}
 \end{aligned}
 \]</span></p>
