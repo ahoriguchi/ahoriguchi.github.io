@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Confidence intervals with bootstrapping</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Akira Horiguchi   Figures taken from [IMS], Cetinkaya-Rundel and Hardin text" />
+    <script src="lec15_files/header-attrs-2.29/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Confidence intervals with bootstrapping
+]
+.subtitle[
+## <br><br> STA35B: Statistical Data Science 2
+]
+.author[
+### Akira Horiguchi <br> Figures taken from [IMS], Cetinkaya-Rundel and Hardin text
+]
+
+---
+
+  
+
+
+  
+
+
+
+### Based on Ch 12 of IMS
+
+.pull-left[
+We'll now talk a bit about *confidence intervals*: 
+
+&lt;!-- * Core idea: use a sample proportion to estimate a population proportion --&gt;
+* Provides a plausible range of values (an interval) where we expect to find the true population proportion
+* To construct such an interval from our data, we can use the same randomization idea we used to test the null hypothesis.
+
+We saw how to use randomization to see whether difference in sample proportions was due to chance  
+
+* useful for yes/no questions (e.g., Does this vaccine make it less likely to get a disease? Does drinking caffeine affect athletic performance?)
+* We will now discuss how to *estimate* the value of an unknown parameter (e.g. How much less likely am I to get a disease if I get a vaccine? How much faster can I run if I have caffeine?)
+
+]
+
+.pull-right[
+&lt;!-- The technique we'll focus on is called *bootstrapping* --&gt;
+We will construct confidence intervals using a technique called *bootstrapping*
+
+* Goal is to understand the variability inherent in a statistic (e.g., the sample mean)
+* If we can understand how different sample means are from the population mean, then we can make decisions about what was due to random chance vs. what is a true property of the population
+
+]
+
+---
+
+.pull-left[ 
+#### Medical consultant study
+Consider the following setting: People seek out a medical consultant for navigating the donation of a liver.
+
+* The average complication rate for liver donor surgeries is 10%
+* One consultant claims that her clients have only had 3 complications in the 62 liver surgeries she has facilitated
+* Is this strong evidence that her work meaningfully contributes to reduced complications?
+* Let `\(p\)` = true complication rate for liver donors working with this consultant
+* We estimate `\(p\)` using data; label estimate as `\(\hat p\)`
+* In this sample, complication rate is `\(3/62 = 0.048 = \hat p\)`. 
+]
+
+.pull-right[
+What can we infer from this estimate?
+
+* It is NOT possible to assess the consultant's claim using this data.
+* The claim is about a *causal* connection, but we are only looking at *observational data*.
+* There could be confounders (e.g. she refuses to take patients that are likely to have failed surgeries; or those which have medical consultants are richer / healthier and result in fewer complications)
+* What we *can* do is to get a sense of the consultant's true rate of complications.
+]
+
+---
+
+.pull-left[
+#### Bootstrapping: the main idea
+Suppose we have `\(x_1, \dots, x_n\)` as a random sample from a population
+
+* If we **resample** subsets of `\(x_1, \dots, x_n\)` (with replacement), this "mimics" as if we sample from the true population
+* For the medical consultant setting, this means imagining we have a big bucket of index cards, with 3 that say "complication" and 59 that say "no complication"
+* We shuffle the bucket, reach in, record what it says, then put the card *back into the bucket*, and continue
+* Since we are randomly sampling from our *subsample*, and the initial subsample was a random sample, we can get an idea of sample-to-sample randomness
+]
+
+.pull-right[
+&lt;img src="boot1prop2.png" width="675" /&gt;
+
+- Each resample is called a *bootstrap sample*
+- The diagram shows `\(k\)` bootstrap samples
+- Typically each bootstrap sample has the same number of observations as the original sample (but does not have to be the case)
+]
+
+---
+
+
+
+&lt;img src="boot1propboth.png" width="80%" /&gt;
+
+
+---
+
+.pull-left[
+* What happens if we take 10,000 bootstrap samples of the medical consultant data.
+* Remember that original data had 62 observations, 3 of which had "complications"; `\(\hat p = 3/62 \approx 0.0484\)`. 
+
+
+&lt;img src="lec15_files/figure-html/fig-MedConsBSSim-1.png" width="432" /&gt;
+
+]
+
+.pull-right[
+* Since the 2.5% percentile is at 0, 97.5th percentile at 0.113, we are confident that in the population, the true probability of a complication from the medical consultant is between 0% and 11.3%.
+* We were asked to compare this to the national rate of 10%.
+* Since our interval of 0-11.3% *includes* 10%, we cannot say that the consultant's work was associated with a lower risk of complications -- it could just be randomness
+* Even if the interval did not include 10%, we could not make a claim about causality. 
+]
+
+---
+
+.pull-left[
+#### Example: tappers and listeners
+Consider this study: a person conducts an experiment using the "tapper-listener" game.
+
+* Goal: pick a simple, well-known song; tap the tune on your desk; and see if the other person can guess the song
+* Data: 120 tappers, 120 listeners, 50% of tappers expected the listener would be able to guess the song.
+  - Is 50% a reasonable guess?
+  - In study, 3 / 120 (`\(\hat p = 0.025\)`) listeners were able to guess the song
+  - Given this, what are typical values one could expect for the proportion?
+* We can use bootstrapping as before: imagine we have a jar with 120 marbles, 3 are green (guessed correctly) and 117 are red (could not guess the song)
+]
+.pull-right[
+&lt;!-- * Bootstrapping corresponds to shuffling the jar, grabbing a marble, recording the response, then putting the marble back in, and repeating; e.g. the first 5 times we get --&gt;
+
+&lt;!-- |   W   |   W   |   W   |    R    |   W   | --&gt;
+&lt;!-- |:-----:|:-----:|:-----:|:-------:|:-----:| --&gt;
+&lt;!-- | Wrong | Wrong | Wrong | Correct | Wrong | --&gt;
+
+
+* We repeat this 10,000 times and visualize: 
+
+&lt;img src="lec15_files/figure-html/fig-tappers-bs-sim-1.png" width="432" /&gt;
+* Expect between 0-5.83% are able to guess tapper's tune 
+
+
+]
+
+---
+.pull-left[
+#### Bootstrap confidence interval
+**Confidence interval**: plausible range of values for (unknown) population parameter `\(p\)`
+
+**Bootstrap procedure**: if we have `\(n\)` observations, responses in two categories, with initial estimated proportion `\(\hat p\)` for proportion in category #1
+- Randomly sample the `\(n\)` observations **with replacement**
+- Each resample is called a "bootstrap sample"; let's index the bootstrap samples as `\(i=1,2, \ldots, m\)`, where `\(m\)` could be 100 or 1000 or 10000, etc.
+- Each bootstrap sample produces a different proportion estimate `\(\hat p_{boot, i}\)`
+&lt;!-- - Each time we randomly sample `\(n\)` observations with replacement, we get the `\(i\)`-th "bootstrap sample", each one with a different estimate `\(\hat p_{boot, i}\)` --&gt;
+- We examine the **distribution** of the `\(\hat p_{boot, i}\)` (dot plot, histogram, ...)
+- All the `\(\hat p_{boot,i}\)` will be centered around baseline `\(\hat p\)`
+- Original `\(\hat p\)` is centered around the population `\(p\)`
+- Thus interval estimate for `\(p\)` can be computed using `\(\hat p_{boot, i}\)`
+]
+
+.pull-right[
+
+More formally, the 95% bootstrap confidence interval for parameter `\(p\)` can be estimated using the (ordered) `\(\hat p_{boot, i}\)` values
+* Call `\(a\)`= 2.5% bootstrapped proportion, `\(b\)`= 97.5% bootstrapped proportion
+* 95% bootstrapped confidence interval: `\((a, b)\)` = those values between `\(a\)` and `\(b\)`
+]
+
+---
+
+.pull-left[
+#### Example: Youtube Videos
+Want to estimate proportion of YouTube videos taking place outdoors
+
+* We sample 128 videos and find 37 take place outdoors
+* Want to estimate proportion of all youtube videos which take place outside via bootstrap confidence interval; we get the following
+&lt;img src="lec15_files/figure-html/unnamed-chunk-5-1.png" width="432" /&gt;
+
+]
+
+.pull-right[
+* What is the relevant statistic and parameter for this problem?
+  - Statistic: sample proportion `\(\hat p = 37/128 \approx 0.289\)`; parameter: population proportion (`\(p\)`; unknown)
+* If we want to be 90% confident that between `\(a\)`% and `\(b\)`% of YouTube videos that take place outdoors, how should we find `\(a\)` and `\(b\)`?
+  - We want 5% of values to be below `\(a\)`, and 5% of values to be above `\(b\)`
+  - The interval should be centered at `\(\hat p \approx 0.289\)` (so, `\(\hat p = (a + b)/2\)`)
+  - From the graph, we see that `\(a\approx 0.22\)` and `\(b\approx 0.35\)` is correct. 
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
