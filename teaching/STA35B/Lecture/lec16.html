@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference II</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Akira Horiguchi   Figures taken from [IMS], Cetinkaya-Rundel and Hardin text" />
+    <script src="lec16_files/header-attrs-2.29/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference II
+]
+.subtitle[
+## <br><br> STA35B: Statistical Data Science 2
+]
+.author[
+### Akira Horiguchi <br> Figures taken from [IMS], Cetinkaya-Rundel and Hardin text
+]
+
+---
+
+  
+
+
+  
+
+
+
+### Inference with mathematical models  (Based on Ch 13 of IMS)
+
+
+
+
+.pull-left[ 
+
+Previously we addressed questions about **population parameters** by estimating them using **sample statistics**. For example,
+
+- In the sex discrimination study, we asked if `\(p_M - p_F &gt; 0\)` by estimating this proportion difference using `\(\hat{p}_M - \hat{p}_F\)`.
+- In the college student savings study, we asked if `\(p_T - p_C &gt; 0\)` by estimating this proportion difference using `\(\hat{p}_T - \hat{p}_C\)`.
+- In the medical consultant study, we asked if `\(p &lt; 0.1\)` by estimating this proportion using `\(\hat{p}\)`.
+
+We tried to reject the null hypothesis `\(H_0\)` by seeing if the sample statistic was "unusual" under `\(H_0\)`.
+
+- That is, we tried to see if **sample-to-sample variability** could have explained how far the test statistic was from the null value if `\(H_0\)` had been true. 
+
+]
+
+.pull-right[ 
+
+&lt;!-- We addressed questions about population parameters by using **computational techniques**, which allowed us to measure the variability of a statistic (e.g. estimated population proportion `\(\hat{p}_M - \hat{p}_F\)` in the sex discrimination study, . --&gt;
+
+So far, we estimated the variability of a statistic using **computational techniques**:
+
+* With randomization tests, the data were permuted assuming the null hypothesis.
+* With bootstrapping, the data were resampled in order to measure the variability.
+
+&lt;!-- * We've talked about how to do bootstrapping and randomization tests --&gt;
+We'll now measure a statistic's variability by using **mathematical formulas** derived from statistical models we impose on the data. 
+
+- Next we will discuss what these statistical models are and why they seem justified to use.
+
+]
+
+---
+.pull-left[ 
+### Sampling distributions
+In both randomization and bootstrapping, we formed **sampling distributions**
+
+&lt;!-- : distribution of all possible values of a *sample statistics* from samples of a population --&gt;
+
+* A **sampling distribution** is the distribution of all possible values of a sample statistic from samples of a given sample size from a given population.
+* Describes how much sample statistics vary from one sample to another
+
+In contrast, a **data distribution** shows the variability of the observed data values. 
+
+* The data distribution can be visualized from the observations themselves.
+
+Because a sampling distribution describes sample statistics computed from many studies, it cannot be visualized directly from a single dataset.
+
+* Can only be visualized after using computational methods / mathematical models.
+ 
+]
+
+.pull-right[
+In previous examples, we ran 10,000 simulations under the null hypothesis
+
+* Each simulation provided a version of the sample statistic under the null hypothesis
+* These 10,000 versions allow us to estimate the *sampling distribution* of the sample statistic under the null hypothesis, i.e. **null distribution** 
+* We visualize our estimated null distributions below
+
+
+
+&lt;img src="lec16_files/figure-html/unnamed-chunk-2-1.png" width="720" /&gt;
+* These distribution shapes look oddly similar to each other...
+]
+
+---
+.pull-left[
+#### The central limit theorem and normal distributions
+
+The "central limit theorem": With enough *independent* samples from a population, the sample proportion/mean will increasingly resemble a **normal distribution**: a bell-shaped curve that looks like
+
+&lt;img src="lec16_files/figure-html/fig-er6895997-1.png" width="432" /&gt;
+* `\(\mu\)` is the distribution mean (a location parameter)
+* `\(\sigma\)` is the distribution "standard deviation" (a scale parameter)
+
+]
+
+.pull-right[
+Values of `\(\mu\)`, `\(\sigma\)` may change from plot to plot, but the shape remains the same. For example:
+
+* The sample proportion `\(\hat p\)` will look like a normal distribution centered at population proportion `\(p\)` provided:
+  - The observations in the sample are *independent*: samples are truly randomly sampled from a population
+  - Sample size is *large enough*: we can make this exact, but generally need `\(&gt;= 10\)` observed examples in each class (treatment/control)
+* Same ideas hold for sample mean `\(\bar x\)`: centered at population mean `\(\mu\)`
+]
+
+---
+
+.pull-left[
+
+#### Normal distribution model
+
+&lt;!-- The normal distribution curve follows the following formula:  --&gt;
+
+&lt;!-- `$$f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$` --&gt;
+
+* Symmetric, unimodal, bell-shaped.
+* Exact values of center / spread can change.
+* Mean `\(\mu\)` shifts from left to right, standard deviation `\(\sigma\)` squishes to be larger or smaller.
+* Area under the curve always integrates to 1.
+
+Two normal curves. The left curve has `\(\mu=0\)` and `\(\sigma=1\)`. The right curve has `\(\mu=19\)` and `\(\sigma=4\)`.
+&lt;img src="lec16_files/figure-html/fig-twoSampleNormals-1.png" width="100%" /&gt;
+
+
+The two curves plotted together on the same scale.
+&lt;img src="lec16_files/figure-html/fig-twoSampleNormalsStacked-1.png" width="100%" /&gt;
+
+]
+
+.pull-right[
+We denote "normal distribution with mean `\(k\)` and standard deviation `\(r\)`" as `\(N(\mu = k, \sigma = r)\)`.
+
+- If `\(k=0\)`, `\(r=1\)`, i.e. `\(N(\mu=0, \sigma=1)\)`, we call this the **standard normal distribution**
+- Left curve has `\(N(\mu=0, \sigma=1)\)`; right curve has `\(N(\mu=19, \sigma=4)\)`. 
+
+The way to quantify how "unusual"/"extreme" an event was is to look at how many standard deviations `\(\sigma\)` away from the mean `\(\mu\)` the quantity `\(x\)` is. 
+* This is called the `\(Z\)` score:
+$$ Z := \frac{ x - \mu}{\sigma}. $$
+
+E.g. which is more extreme:
+
+1. value of 27 under `\(N(\mu=19, \sigma=4)\)`, or 
+2. value of 3 under `\(N(\mu=0, \sigma=1)\)`?
+  
+- Z-score of `\(\frac{27-19}{4} = 2\)` vs Z-score of `\(\frac{3-0}{1} = 3\)`.
+- The second value is more extreme.
+]
+---
+
+.pull-left[
+#### Z-score examples
+SAT scores are approximately normal distribution with mean 1500 and standard deviation 300; ACT scores are approximately normal with mean 21 and standard deviation 5.
+
+* If Ant scored 1800 on the SAT and Bug scored 24 on the ACT, who performed better?
+  - Z-score for Ant: (1800 - 1500) / 300 = 1
+  - Z-score for Bug: (24 - 21) / 5 = 0.6
+  - Ant performed better
+* What score corresponds to a z-score of 2.5 in each of the SAT and ACT?
+  - SAT: 1500 + 2.5 * 300 = 1950
+  - ACT: 21 + 2.5 * 5 = 33.5
+]
+
+.pull-right[
+#### Normal probability calculations
+Suppose that Cat scored 1800 on SAT.  What is the **percentile** of this score?  
+
+&lt;img src="lec16_files/figure-html/fig-satBelow1800-1.png" width="85%" /&gt;
+* Total area under any normal curve is equal to 1.
+* Proportion of people who scored below Cat is equal to the area of the shaded region, which we can calculate to be 0.8413 using a computer.
+* R and other statistical software can calculate probabilities/percentiles as a function of the z-score. 
+* We know this corresponds to a Z-score of 1.
+]
+
+---
+.pull-left[
+#### Normal probability calculations in R
+* `pnorm()` function in base R provides percentile associated with a cutoff in the normal curve.  
+  - E.g. Cat got 1800 on SAT, which has mean 1500 and sd 300:
+
+``` r
+pnorm(1800, mean = 1500, sd = 300)
+#&gt; [1] 0.8413447
+```
+
+* `normTail()` function in **openintro** draws associated normal curve:
+
+``` r
+normTail(m = 1500, s = 300, L = 1800)
+```
+
+&lt;img src="lec16_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+We can also do the reverse calculation: identify the Z score associated with a percentile.
+
+* `qnorm()`: identifies **quantile** for given percentage 
+
+``` r
+qnorm(0.841, mean = 1500, sd = 300)
+#&gt; [1] 1799.573
+```
+
+``` r
+normTail(m = 0, s = 1, L = 0.841)
+```
+
+&lt;img src="lec16_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+* **quantile** and **percentile** are inverse operations:
+
+``` r
+qnorm(pnorm(3, mean = 0, sd = 1), mean = 0, sd = 1)
+#&gt; [1] 3
+pnorm(qnorm(0.99, mean = 5, sd = 3), mean = 5, sd = 3)
+#&gt; [1] 0.99
+```
+
+
+]
+
+---
+
+.pull-left[
+#### Normal probability calculations
+Again consider SAT scores: normal, mean `\(\mu=1500\)`, s.d. `\(\sigma=300\)`.
+
+* Suppose we take a random SAT taker.  What is the probability they score `\(\geq 1630\)` on the SAT?
+* Draw the normal curve and visualize the problem:
+
+&lt;img src="lec16_files/figure-html/fig-subtractingArea-1.png" width="432" /&gt;
+
+]
+.pull-right[
+* Calculate Z score of 1630:
+$$ Z = \frac{x - \mu}{\sigma} = \frac{1630 - 1500}{300} = \frac{130}{300} = 0.433.$$
+* Then we want to calculate the **p**ercentile:
+
+``` r
+pnorm(130/300, mean = 0, sd = 1)
+#&gt; [1] 0.6676137
+pnorm(1630, mean = 1500, sd = 300)
+#&gt; [1] 0.6676137
+```
+* Thus proportion of 0.668 have people with Z score **lower** than 0.433
+* To compute area **above**, need to take one minus this (total area = 1)
+  - Total proportion: `\(1-0.668 = 0.332\)`.
+  - Probability of scoring at least 1630 is 0.332, or 33.2%. 
+
+]
+
+---
+
+.pull-left[
+Suppose Dog scored 1400 on SAT.  What percentile is this?
+
+* Draw a picture: 
+
+&lt;img src="lec16_files/figure-html/fig-edward-percentile-1.png" width="60%" /&gt;
+* Calculate Z score:
+$$ Z = \frac{x - \mu}{\sigma} = \frac{1400 - 1500}{300} = \frac{-100}{300} = -0.333.$$
+* `pnorm()` returns percentile 
+
+``` r
+pnorm(-100/300, mean = 0, sd = 1)
+#&gt; [1] 0.3694413
+pnorm(1400, mean = 1500, sd = 300)
+#&gt; [1] 0.3694413
+```
+* Dog did better than ~37% of SAT takers
+]
+
+.pull-right[
+Suppose the height of men is approx. normal with avg 70" and standard deviation 3.3"
+
+* If Ewe is 5'7", Fox 6'4", what percentile of men are their heights? Draw a picture and use `pnorm()` to calculate the percentage. 
+  - 5'7" = 67"; 6'4" = 76" 
+
+&lt;img src="lec16_files/figure-html/fig-kamron-adrian-percentiles-1.png" width="50%" /&gt;&lt;img src="lec16_files/figure-html/fig-kamron-adrian-percentiles-2.png" width="50%" /&gt;
+
+``` r
+pnorm(67, mean = 70, sd = 3.3)
+#&gt; [1] 0.1816511
+pnorm(76, mean = 70, sd = 3.3)
+#&gt; [1] 0.9654818
+```
+
+]
+
+---
+
+.pull-left[
+* Let's now try and calculate what the 40th percentile for height is
+* Mean: 70", s.d.: 3.3"
+* Always draw a picture first:
+
+
+``` r
+normTail(70, 3.3, L = qnorm(0.4, 70, 3.3), col = IMSCOL["blue", "full"])
+text(67, 0.03, "40%\n(0.40)", cex = 1, col = IMSCOL["black", "full"])
+```
+
+&lt;img src="lec16_files/figure-html/unnamed-chunk-18-1.png" width="100%" /&gt;
+
+* Z score associated with 40th percentile:
+
+``` r
+qnorm(0.4, mean = 0, sd = 1)
+#&gt; [1] -0.2533471
+```
+
+]
+
+.pull-right[
+* With Z-score, mean, and s.d., we can calculate the height:
+$$-0.253 = Z = \frac{x-\mu}{\sigma} = \frac{x - 70}{3.3} $$
+$$ \implies x - 70 = 3.3 \times -0.253 $$
+$$ \implies x = 70 - 3.3\times 0.253 = 69.18 $$
+* 69.18" is approximately 5'9"
+]
+
+---
+
+### Quantifying the variability of statistics
+.pull-left[
+Most of the statistics we have seen (sample proportion, sample mean, difference in two sample proportions/means, slope of a linear model fit to data) are **approximately normal** when the data is independent and there are enough samples.
+
+* It is thus very useful to have an intuition for how much variability there is within a few standard deviations of the mean in a normal distribution.
+* **68 - 95 - 99.7 rule**: pictorally,
+
+&lt;img src="lec16_files/figure-html/unnamed-chunk-20-1.png" width="100%" /&gt;
+
+]
+
+.pull-right[
+* 68% of the data lies within 1 s.d. of the mean
+* 95% lies within 2 s.d.'s
+* 99.7% lies within 3 s.d.'s
+* Only 0.3% lies more than 3 s.d.'s away from the mean. 
+* We can confirm this with `pnorm()` in R:
+
+``` r
+pnorm(1, mean=0, sd=1) - pnorm(-1, mean=0, sd=1)
+#&gt; [1] 0.6826895
+pnorm(2, mean=0, sd=1) - pnorm(-2, mean=0, sd=1)
+#&gt; [1] 0.9544997
+pnorm(3, mean=0, sd=1) - pnorm(-3, mean=0, sd=1)
+#&gt; [1] 0.9973002
+2 * pnorm(-3, mean=0, sd=1)
+#&gt; [1] 0.002699796
+```
+
+]
+
+---
+.pull-left[
+#### Z score tables
+In addition to using `pnorm()`, people use "Z score tables"
+
+* It's important to be able to read and interpret these - imagine if all computers disappeared :) 
+
+Example: what is the percentile corresponding to a Z score of -2.33?
+- Draw! (see chalkboard)
+- Look for -2.3 on the table
+- Go to column of 0.03
+- Read out value: 0.0099
+- 0.99% 
+- Sanity check with 68 / 95 / 99.7 rule: 
+* 5% of data &gt; 2 s.d.'s from mean; 2.5% below -2 s.d.'s (Z of -2) of mean
+* 0.3% of data &gt; 3 s.d.'s from mean; 0.15% below -3 s.d.'s (Z of -3) of mean
+]
+
+.pull-right[
+&lt;img src="zscores.png" width="411" /&gt;
+]
+
+
+---
+.pull-left[
+#### Z score tables
+Example: What is the percentile corresponding to a Z score of 1.37? 
+- Draw! (see chalkboard)
+- By symmetry, percentile of Z score of 1.37 corresponds to one minus the percentile corresponding to percentile of -1.37 (draw!)
+- Look for -1.3 on the table
+- Go to column of 0.07
+- Read out value: 0.0853
+- 8.53% percentile for Z = -1.3
+- 1 - 0.0853 = 0.9147 --&gt; 91.47 percentile for Z of 1.37 
+- Sanity check with 68 / 95 / 99.7 rule: 
+- 68% of data within 1 s.d. of mean; 34% between mean and 1 s.d. above mean; thus 84% (=50+34) are less than 1 s.d. above mean.
+* 95% of data within 2 s.d. of mean; 47.5% between mean and 2 s.d. above mean; thus 97.5% (=50+47.5) are less than 2 s.d. above mean.
+]
+
+.pull-right[
+&lt;img src="zscores.png" width="411" /&gt;
+]
+
+---
+
+.pull-left[
+#### Standard error
+*  Whenever we estimate proportions/means, these estimates vary from sample to sample
+* This variability is quantified using the **standard error**: corresponds to standard deviation of the statistic
+* Actual variability of the statistic in the population is unknown -- we use data to estimate the standard error (just as we use data to estimate the unknown population proportion/mean)
+* We typically estimate standard error using the "central limit theorem" - will see how to calculate this in future lectures 
+
+]
+
+.pull-right[
+#### Margin of error
+You may also see the term "margin of error": describes how far away observations are from the mean (distance from the mean). 
+For example: 
+
+- 68% of the observations are within one margin of error of the mean.
+- 95% of the observations are within two margins of error of the mean.
+- 99.7% of the observations are within three margins of error of the mean.
+
+&lt;!-- * Margin of error = `\(z^* \times \mathsf{StdError}\)`, where `\(z^*\)` is a cutoff value from the normal distribution --&gt;
+&lt;!-- * E.g. if we have `\(z^* = 1.96 \approx 2\)`, then margin of error corresponds to variability associated w/ 95% of sampled statistics --&gt;
+
+]
+
+---
+.pull-left[
+#### Opportunity cost case study
+Recall the study where students are reminded about being  able to save $15 if they don't spend it on video game right now
+
+* We estimated that difference in proportions (buy vs not buy when given reminder) was 0.20.
+* We then used a randomization test to look at the variability in difference of proportions under *null hypothesis*: difference in proportions does NOT depend on being presented with reminder
+
+
+&lt;img src="lec16_files/figure-html/fig-OpportunityCostDiffs-w-normal-1.png" width="432" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="lec16_files/figure-html/OpportunityCostDiffs_normal_only-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+Z-score in a hypothesis test is given by substituting the standard error for the standard deviation:
+`$$Z = \frac{\text{observed difference} - \text{null value}}{SE}$$`
+
+* Here: let's assume we know the standard error is 0.078 (methods to calculate: to come)
+
+`$$Z = \frac{0.20 - 0}{0.078} = 2.56$$`
+
+``` r
+1 - pnorm(0.2/0.078, mean = 0, sd = 1)
+#&gt; [1] 0.005172149
+```
+
+]
+
+---
+
+.pull-left[
+#### Z score tables
+What is the percentile corresponding to a Z score of 2.56? 
+
+- Draw! (see chalkboard)
+- By symmetry, percentile of Z score of 2.56 corresponds to one minus the percentile corresponding to percentile of -2.56 (draw!)
+- Look for -2.5 on the table
+- Go to column of 0.06
+- Read out value: 0.0052
+- 0.52% percentile for Z = -2.56
+- 1 - 0.0052 = 0.9948 --&gt; 99.48 percentile for Z of -2.56 
+- Sanity check with 68 / 95 / 99.7 rule: 
+* 95% of data within 2 s.d. of mean; 47.5% between mean and 2 s.d. above mean; thus 97.5% (=50+47.5) are less than 2 s.d. above mean.
+* 99.7% of data within 3 s.d. of mean; 49.85% between mean and 3 s.d. above mean; thus 99.85% (=50+49.85) are less than 3 s.d. above mean.
+]
+
+.pull-right[
+&lt;img src="zscores.png" width="411" /&gt;
+]
+
+---
+#### Drawbacks of the central limit theorem / normal approximation
+* Under certain conditions, we can be guaranteed that the sample mean and sample proportions will be approximately normal, with appropriate mean `\(\mu\)` and s.d. `\(\sigma\)`
+* We require:
+  - Independent samples (no correlation between them!)
+  - Large number of samples (&gt;= 10 per treatment for proportions)
+* We sometimes cannot be certain samples are independent
+* The normal approximation assigns a positive chance for EVERY value to occur - this is not ideal if you are talking about things like time or other variables with constraints (e.g., time is always &gt;= 0)
+* Developing statistics which incorporate *constraints* into the variables is more challenging, and requires mathematical work 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
