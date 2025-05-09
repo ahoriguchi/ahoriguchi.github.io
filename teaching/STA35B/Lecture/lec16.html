@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Inference II</title>
+    <title>Inference with mathematical models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Akira Horiguchi   Figures taken from [IMS], Cetinkaya-Rundel and Hardin text" />
     <script src="lec16_files/header-attrs-2.29/header-attrs.js"></script>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Inference II
+# Inference with mathematical models
 ]
 .subtitle[
 ## <br><br> STA35B: Statistical Data Science 2
@@ -45,7 +45,7 @@ Previously we addressed questions about **population parameters** by estimating 
 
 We tried to reject the null hypothesis `\(H_0\)` by seeing if the sample statistic was "unusual" under `\(H_0\)`.
 
-- That is, we tried to see if **sample-to-sample variability** could have explained how far the test statistic was from the null value if `\(H_0\)` had been true. 
+- That is, we tried to see if **sample-to-sample variability** could have explained how far the test statistic was from the null value if `\(H_0\)` was true. 
 
 ]
 
@@ -471,9 +471,8 @@ Z-score in a hypothesis test is given by substituting the standard error for the
 
 .pull-left[
 #### Z score tables
-What is the percentile corresponding to a Z score of 2.56? 
+What is the percentile corresponding to a Z score of 2.56? Draw! (see chalkboard)
 
-- Draw! (see chalkboard)
 - By symmetry, percentile of Z score of 2.56 corresponds to one minus the percentile corresponding to percentile of -2.56 (draw!)
 - Look for -2.5 on the table
 - Go to column of 0.06
@@ -498,6 +497,11 @@ What is the percentile corresponding to a Z score of 2.56?
 * We sometimes cannot be certain samples are independent
 * The normal approximation assigns a positive chance for EVERY value to occur - this is not ideal if you are talking about things like time or other variables with constraints (e.g., time is always &gt;= 0)
 * Developing statistics which incorporate *constraints* into the variables is more challenging, and requires mathematical work 
+
+
+---
+
+&lt;img src="summary.png" width="60%" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
