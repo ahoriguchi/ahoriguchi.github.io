@@ -30,17 +30,19 @@ class: center, middle, inverse, title-slide
 
 
 
-### Inference for proportions
-.pull-left[
-We'll now focus on a more thorough treatment of inference for proportions
 
-* In this setting, for each observation there is only a single (categorical) variable taking one of two values measuring success or failure 
-    * (e.g. "surgical complication" or "no complication")
+.pull-left[
+### A more thorough treatment of inference for proportions
+In this setting, for each observation there is only a single (categorical) variable taking one of two values measuring success or failure 
+
+* e.g. "surgical complication" or "no complication"
 * Since there's only a single variable, no way to do a randomization test, so we resort to bootstrapping and mathematical models
-* Let's return to the medical consultant example: one consultant tries to attract patients by saying although US average complication rate for surgeries is 10%, only 3 of her 62 clients (4.8%) received them
+
 ]
 
 .pull-right[
+Let's return to the medical consultant example: 
+* A consultant tries to attract patients by saying although US average complication rate for surgeries is 10%, only 3 of her 62 clients (4.8%) received them
 * Not a randomized trial, so no way to actually assess whether her actions cause lower complication rate (she could have selectively chosen healthy patients)
 * However, we can assess whether `\(\hat p = 0.048\)` would occur due to random chance given population average of `\(p_0 = 0.10\)`. 
 * Can formulate this as a hypothesis test:
@@ -95,9 +97,9 @@ How do we do this in R?
 
 * For each bootstrap sample of size `\(n=62\)`, we calculated the **proportion of succcesses**, where probability of a complication is `\(p\)` for each donor:
 $$ \hat p_{sim} = \frac{\text{\# complications}}{\text{\# donors}} = \frac{\text{\# complications}}{62}. $$
-* The number of complications follows a **binomial distribution** with parameters `\(n=62\)` and `\(p=0.1\)`. This is denoted as **Binomial(n,p)**. 
+* `\(\#\)` complications follows a **binomial distribution** with parameters `\(n=62\)` and `\(p=0.1\)`. &lt;br&gt;This is denoted as **Binomial(n,p)**. 
 
-More generally, **Binomial(n,p)** models the number of "successes" in `\(n\)` independent trials when each "trial" has probability `\(p\)` of success.
+More generally, **Binomial(n,p)** models the number of successes in `\(n\)` independent trials when each trial has probability `\(p\)` of success.
 * To create the 10,000 bootstrap proportions, use: 
 `rbinom(n_samples, n_trials, p_success)`
     * This generates a vector of length `n_samples`, where each component is the outcome of `n_trials` where probability of success in each trial is `p_success`
@@ -152,7 +154,7 @@ medical_consultant_sim_dist &lt;- tibble(
 The sampling distribution for `\(\hat{p}\)` based on a sample of size `\(n\)` from a population with a true proportion `\(p\)` is nearly normal when:
 
 1.  The sample's observations are independent, e.g., are from a simple random sample.
-1.  We expected to see at least 10 successes and 10 failures in the sample, i.e., `\(np\geq10\)` and `\(n(1-p)\geq10.\)` This is called the **success-failure condition**.
+1.  We expected to see at least 10 successes and 10 failures in the sample, i.e., `\(np\geq10\)` and `\(n(1-p)\geq10.\)`&lt;br&gt; This is called the **success-failure condition**.
 
 When these conditions are met, then the sampling distribution of `\(\hat{p}\)` is nearly normal with mean `\(p\)` and standard error of `\(\hat{p}\)` as `\(SE(\hat{p}) = \sqrt{\frac{\ p(1-p)\ }{n}}.\)`
 
@@ -281,8 +283,6 @@ We use **Z scores** to quickly assess how likely/unlikely the sample proportion 
 then `\(Z\)` is approximately a standard normal distribution `\(N(0,1)\)`.
 
 ]
-
---
 
 .pull-right[
 &lt;!-- Example: let's again consider whether payday loan borrowers support regulation on the loans that require evaluating debt payments.  Suppose we have a random sample of 826 borrowers, and 51% said they support regulation.  Is it reasonable to use a normal distribution to model `\(\hat p\)`?  What hypothesis should we be testing? --&gt;
