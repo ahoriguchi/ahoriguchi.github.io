@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Inference for a single proportion</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Akira Horiguchi   Figures taken from [IMS], Cetinkaya-Rundel and Hardin text" />
+    <script src="lec18_files/header-attrs-2.29/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Inference for a single proportion
+]
+.subtitle[
+## <br><br> STA35B: Statistical Data Science 2
+]
+.author[
+### Akira Horiguchi <br> Figures taken from [IMS], Cetinkaya-Rundel and Hardin text
+]
+
+---
+
+  
+
+
+  
+
+
+
+### Inference for proportions
+.pull-left[
+We'll now focus on a more thorough treatment of inference for proportions
+
+* In this setting, for each observation there is only a single (categorical) variable taking one of two values measuring success or failure 
+    * (e.g. "surgical complication" or "no complication")
+* Since there's only a single variable, no way to do a randomization test, so we resort to bootstrapping and mathematical models
+* Let's return to the medical consultant example: one consultant tries to attract patients by saying although US average complication rate for surgeries is 10%, only 3 of her 62 clients (4.8%) received them
+]
+
+.pull-right[
+* Not a randomized trial, so no way to actually assess whether her actions cause lower complication rate (she could have selectively chosen healthy patients)
+* However, we can assess whether `\(\hat p = 0.048\)` would occur due to random chance given population average of `\(p_0 = 0.10\)`. 
+* Can formulate this as a hypothesis test:
+  - `\(H_0\)`: no association between consultant contributions and complication rate; `\(p=0.10\)`
+  - `\(H_A\)`: patients with consultant associated with lower complication rate; `\(p&lt;0.10\)` 
+* We'll estimate a "p-value": if the null hypothesis is true, what is the probability of observing a test statistic `\((\hat p)\)` that is as extreme as the one we saw?
+]
+
+---
+
+.pull-left[
+
+### Sampling under the null hypothesis
+
+What is the *sampling distribution* of the test statistic `\(\hat p\)` (proportion of complications) if `\(H_0\)` is true?
+
+* Dataset: 3 of 62 donors had complications
+* Under `\(H_0\)`, 10% of donors have complications
+* Now we want to simulate additional datasets of size 62, where with probability 10%, the donor has a complication.
+* Each simulated dataset will produce a proportion `\(\hat{p}_{sim} = (\# \text{ complications}) / 62\)`
+
+Histogram will show the distribution of these simulated proportions for 10000 simulated datasets.
+
+&lt;!-- * How to simulate?  Imagine a bag of marbles with 10% red marbles and 90% white marbles --&gt;
+&lt;!-- * Pull a marble out, if red then complication, if white no complication; return marble and shuffle --&gt;
+&lt;!-- * Repeat 62 times for a single bootstrap sample --&gt;
+
+&lt;!-- * Simulating observations u
+sing hypothesized null parameter value = **parametric bootstrap simulation** --&gt;
+]
+
+.pull-right[
+
+
+
+
+&lt;img src="lec18_files/figure-html/fig-nullDistForPHatIfLiverTransplantConsultantIsNotHelpful-1.png" width="100%" /&gt;
+&lt;!-- * Above has results of 10,000 simulated studies,  --&gt;
+&lt;!-- * Proportions `\(\leq \hat{p} = 3/62 \approx 0.0484\)` are shaded. --&gt;
+* Shaded = sample proportions under null that are as extreme as observed `\(\hat{p} = 3/62 \approx 0.0484\)`. 
+* 1170 simulated sample proportions were `\(\leq 3/62\)`
+* We use these to construct the null distribution's left-tail area and find the p-value:
+
+`$$\text{left area} = \frac{\text{# sims w/ }\hat{p}_{sim} \leq \text{ (3/62)}}{\text{total # sims}}$$`
+
+* Estimated p-value is equal to this tail area: 0.117.
+]
+
+---
+.pull-left[
+How do we do this in R?
+
+* For each bootstrap sample of size `\(n=62\)`, we calculated the **proportion of succcesses**, where probability of a complication is `\(p\)` for each donor:
+$$ \hat p_{sim} = \frac{\text{\# complications}}{\text{\# donors}} = \frac{\text{\# complications}}{62}. $$
+* The number of complications follows a **binomial distribution** with parameters `\(n=62\)` and `\(p=0.1\)`. This is denoted as **Binomial(n,p)**. 
+
+More generally, **Binomial(n,p)** models the number of "successes" in `\(n\)` independent trials when each "trial" has probability `\(p\)` of success.
+* To create the 10,000 bootstrap proportions, use: 
+`rbinom(n_samples, n_trials, p_success)`
+    * This generates a vector of length `n_samples`, where each component is the outcome of `n_trials` where probability of success in each trial is `p_success`
+
+
+&lt;!-- * The "distribution" of the number of successes in `\(n\)` trials when each "trial" has probability `\(p\)` of success is known as the **Binomial(n,p)** distribution.  --&gt;
+
+&lt;!-- $$ \text{complication, complication, no complication, complication} $$ --&gt;
+&lt;!-- $$ \longrightarrow \hat p_{sim} = \frac{\text{\# success}}{\text{\# people}} = \frac{ 3}{4}. $$ --&gt;
+
+]
+
+.pull-right[
+* Some examples of `rbinom()`:
+
+``` r
+rbinom(10, 5, 0.3)
+#&gt;  [1] 3 0 0 3 0 1 2 0 2 1
+rbinom(10, 5, 0.3)
+#&gt;  [1] 2 0 2 1 1 2 2 0 4 3
+rbinom(10, 5, 0.3)
+#&gt;  [1] 1 0 1 0 1 3 1 0 3 4
+```
+* To convert number of successes to proportion, need to divide by number of trials
+
+
+
+``` r
+n_trials &lt;- 62
+p_success &lt;- 0.1
+n_bootstrap_samples &lt;- 10000
+n_successes &lt;- rbinom(
+  n_bootstrap_samples,
+  n_trials,
+  p_success
+)
+                        
+medical_consultant_sim_dist &lt;- tibble(
+  stat = n_successes / n_trials)
+```
+
+
+]
+
+---
+
+.pull-left[
+### Mathematical model
+
+&lt;!-- When sample size is large enough and sample observations are independent, we can use the normal distribution to describe sampling distribution of sample proportion --&gt;
+
+The sampling distribution for `\(\hat{p}\)` based on a sample of size `\(n\)` from a population with a true proportion `\(p\)` is nearly normal when:
+
+1.  The sample's observations are independent, e.g., are from a simple random sample.
+1.  We expected to see at least 10 successes and 10 failures in the sample, i.e., `\(np\geq10\)` and `\(n(1-p)\geq10.\)` This is called the **success-failure condition**.
+
+When these conditions are met, then the sampling distribution of `\(\hat{p}\)` is nearly normal with mean `\(p\)` and standard error of `\(\hat{p}\)` as `\(SE(\hat{p}) = \sqrt{\frac{\ p(1-p)\ }{n}}.\)`
+
+]
+
+.pull-right[
+
+&lt;!-- Recall that the margin of error is defined by the standard error. --&gt;
+
+&lt;!-- * The margin of error for `\(\hat{p}\)` is `\(z^\star \times SE(\hat{p})\)` where `\(z^\star\)` is calculated from a specified percentile on the normal distribution. --&gt;
+&lt;!--   - e.g. `\(z^* = 2\)` corresponds to 95% margin of error, `\(z^*=3\)` for 99% --&gt;
+#### Checking the two conditions
+
+How do we check the success-failure condition when typically we don't know the true proportion `\(p\)`? 
+
+We can estimate `\(p\)` with...
+
+- ...the sample proportion `\(\hat{p}\)`, if computing confidence intervals;
+- ...the null value `\(p_0\)`, if performing a hypothesis test.
+
+The independence condition is a more nuanced requirement (outside the scope of this class).
+
+]
+
+---
+
+.pull-left[
+### Confidence interval
+Provides a range of plausible values for proportion `\(p\)`
+
+* When the sample proportion `\(\hat{p}\)` can be modeled using a normal distribution, a confidence interval for proportion `\(p\)` takes the form
+$$ \hat p \pm z^* \times SE(\hat{p})$$
+where
+$$ SE(\hat p) = \sqrt{\frac{p(1-p)}n}.$$
+* Since `\(p\)` is unknown, we typically use
+`$$SE(\hat{p}) \approx \sqrt{\frac{(\mbox{best guess of }p)(1 - \mbox{best guess of }p)}{n}}$$`
+* `\(z^*\)` is a threshold depending upon level of confidence desired `\((z^*=1.96\)`: 95% level)
+
+
+&lt;!-- * For hypothesis testing, null `\(p_0\)` is used; for confidence intervals, `\(\hat p\)`.  --&gt;
+]
+
+
+.pull-right[
+Example: random sample of 826 payday loan borrowers, assessing interest in regulation for payday loans.  70% of the responders say they support regulations.
+
+
+1.  Is it reasonable to model the sample-to-sample variability of `\(\hat{p}\)` using a normal distribution?
+
+1.  Estimate the standard error of `\(\hat{p}.\)`
+
+1.  Construct a 95% confidence interval for `\(p,\)` the proportion of payday borrowers who support increased regulation for payday lenders.
+]
+
+---
+
+
+.pull-left[
+
+]
+.pull-right[
+
+1. Data are a random sample, so reasonable to assume independent observations that represent the population. Need to check success-failure condition.  We don't have `\(p\)`, so have to use `\(\hat p\)` to estimate it:
+    - `\(\text{Support: } n p \approx 826 \times 0.70 = 578\)`
+    - `\(\text{Not: } n (1 - p) \approx 826 \times (1 - 0.70) = 248\)`
+Both are &gt;10, so success-failure holds. 
+2.  Since `\(p\)` is unknown, we use `\(\hat p\)` to estimate the standard error,
+`$$SE = \sqrt{\frac{p(1-p)}{n}} \approx \sqrt{\frac{0.70 (1 - 0.70)} {826}} = 0.016.$$`
+3. Using the point estimate `\(\hat{p} = 0.70\)`, `\(z^{\star} = 1.96\)` for a 95% confidence interval, and the standard error `\(SE = 0.016\)` from above:
+`$$\hat{p} \pm z^{\star} \times SE = 0.70 \pm 1.96 \times 0.016$$`
+The confidence interval is then `\((0.669, 0.731)\)`.
+
+&lt;!-- - `\(\hat{p} \pm z^{\star} \times 0.016 = (0.669, 0.731)\)`. --&gt;
+
+&lt;!-- \begin{align} --&gt;
+&lt;!-- \text{point estimate} \ &amp;\pm \ z^{\star} \times \ SE \\ --&gt;
+&lt;!-- 0.70 \ &amp;\pm \ 1.96 \ \times \ 0.016 \\  --&gt;
+&lt;!-- (0.669 \ &amp;, \ 0.731) --&gt;
+&lt;!-- \end{align} --&gt;
+
+
+]
+
+---
+.pull-left[
+### Changing the confidence level
+
+If we want more confidence that our confidence interval contains `\(p\)`, the interval should be LARGER to account for greater uncertainty.
+
+&lt;!-- If we want to increase our confidence level, the confidence interval should be LARGER, to account for greater uncertainty; decrease our confidence level, interval should be smaller. --&gt;
+
+* The 95% conf. interval takes the form 
+`$$\text{point estimate} \ \pm \ 1.96 \ \times \ SE$$`
+* 1.96 corresponds to the 95% confidence level
+* 2.58 corresponds to 99% confidence level
+* Where do these numbers come from? The normal approximation. 
+
+]
+
+.pull-right[
+
+&lt;img src="lec18_files/figure-html/fig-choosingZForCI-1.png" width="90%" /&gt;
+* We can compute these more exactly using `qnorm()`: quantile function
+* 99% confidence interval corresponds to 0.5% tail on each side. (0.5% + 99% + 0.5% = 100%)
+* By symmetry, we can just look for the value corresponding to 0.5th percentile.
+
+``` r
+qnorm(0.005) # for 99%
+#&gt; [1] -2.575829
+qnorm(0.025) # for 95%
+#&gt; [1] -1.959964
+```
+]
+
+---
+.pull-left[
+### Hypothesis test for a proportion
+We use **Z scores** to quickly assess how likely/unlikely the sample proportion differs from a hypothesized proportion.
+
+* It normalizes the observed difference by the standard error (expected variability in the sample proportion) under the null hypothesis.  
+
+`$$Z = \frac{\hat{p} - p_0}{SE(p_0)} = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}}$$`
+
+* When null hypothesis is true, and when the samples are independent and we have sufficiently many samples,
+`$$np_0 \geq 10, \quad n(1-p_0)\geq 10,$$`
+then `\(Z\)` is approximately a standard normal distribution `\(N(0,1)\)`.
+
+]
+
+--
+
+.pull-right[
+&lt;!-- Example: let's again consider whether payday loan borrowers support regulation on the loans that require evaluating debt payments.  Suppose we have a random sample of 826 borrowers, and 51% said they support regulation.  Is it reasonable to use a normal distribution to model `\(\hat p\)`?  What hypothesis should we be testing? --&gt;
+
+&lt;!-- * Independence holds because it's a random sample; and `\(np_0 = 413\)` and `\(n(1-p_0)=413\)` (we are using the null parameter `\(p_0=0.5\)` here).  Thus normal model is applicable. --&gt;
+&lt;!-- * `\(H_0\)`: not support for regulation, `\(p\leq 0.5\)`. --&gt;
+&lt;!-- * `\(H_A\)`: support for regulation, `\(p&gt;0.5\)`.  --&gt;
+&lt;!-- * `\(SE = \sqrt{\frac{p_0(1-p_0)}n} = \sqrt{\frac{0.5(1-0.5)}{826}} = 0.017\)`.  --&gt;
+]
+
+---
+
+.pull-left[
+Example: let's again consider whether payday loan borrowers support regulation on the loans that require evaluating debt payments.  Suppose we have a random sample of 826 borrowers, and 51% said they support regulation.
+
+Is it reasonable to model `\(\hat p\)` w/ a normal distribution?  
+* Independence holds because it's a random sample; and `\(np_0 = 413\)` and `\(n(1-p_0)=413\)` (we are using the null parameter `\(p_0=0.5\)` here).  Thus normal model is reasonable.
+
+What hypothesis should we be testing?
+* `\(H_0\)`: not support for regulation, `\(p\leq 0.5\)`.
+* `\(H_A\)`: support for regulation, `\(p&gt;0.5\)`. 
+
+Under a significance level `\(\alpha = 0.05\)`, should we reject `\(H_0\)` given the data?
+* Let's first try deciding using Z-score.
+* `\(SE(p_0) = \sqrt{\frac{p_0(1-p_0)}n} = \sqrt{\frac{0.5(1-0.5)}{826}} = 0.017\)`. 
+]
+
+.pull-right[
+
+* Based on the normal model, the test statistic can be computed as the Z score of the point estimate:
+`$$Z = \frac{\hat{p} - p_0}{SE(p_0)} = \frac{0.51 - 0.5}{0.017} = 0.59$$`
+`\(\hat{p}\)` within 1 std dev of the mean, so don't reject `\(H_0\)`
+* Now try p-value (area of shaded region).
+&lt;img src="lec18_files/figure-html/fig-normTail-51-1.png" width="100%" /&gt;
+
+
+
+&lt;!-- $$ --&gt;
+&lt;!-- \begin{align} --&gt;
+&lt;!-- Z &amp;= \frac{\text{point estimate} - \text{null value}}{SE} \\ --&gt;
+&lt;!--   &amp;= \frac{0.51 - 0.50}{0.017} \\ --&gt;
+&lt;!--   &amp;= 0.59 --&gt;
+&lt;!-- \end{align}  --&gt;
+&lt;!-- $$ --&gt;
+
+* Tail area which represents the p-value is 0.2776.
+* B/c p-value is larger than 0.05, do not reject `\(H_0.\)` 
+
+Conclusion: The poll does not provide convincing enough evidence that a majority of payday loan borrowers support loan regulations.
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
