@@ -131,10 +131,10 @@ str(openintro::cpr)
 
 * Proportion of treatment patients who survive: `\(\hat p_T = \frac{14}{40} = 0.35\)`
 * Proportion of control patients who survive: `\(\hat p_C = \frac{11}{50} = 0.22\)`
-* Difference `\(\hat p_T - \hat p_C = 0.13\)` - how likely would this occur due to random chance?
+* Difference `\(\hat p_T - \hat p_C = 0.13\)` -- how likely would this occur due to random chance?
 * Formulate a hypothesis test, and a randomization procedure to examine the hypothesis.
-  - `\(H_0\)`: blood thinners after CPR is independent of survival, `\(p_1-p_2=0\)`.
-  - `\(H_A\)`: blood thinners after CPR increase chance of survival, `\(p_1-p_2&gt;0\)`
+  - `\(H_0\)`: blood thinners after CPR&lt;br&gt; is independent of survival: `\(p_1-p_2=0\)`.
+  - `\(H_A\)`: blood thinners after CPR&lt;br&gt; increase chance of survival: `\(p_1-p_2&gt;0\)`
 * Since the assignment of treatment/control was random initially, if we reject the null, we can say the difference we due to usage of blood thinners (causal statement)
 ]
 
@@ -143,13 +143,12 @@ str(openintro::cpr)
 .pull-right[
 #### Randomization test
 
-* We assume same number of people died / survived, then look at what happens if we randomly assign treatment or control to each
-* Then calculate proportions `\(\hat p_{1,sim} - \hat p_{2,sim}\)` within each simulated treatment/control group.
+* Assume same number of people died (65) / survived (25), then see what happens if we randomly assign treatment or control to each
+* For each simulated treatment/control group,&lt;br&gt; calculate proportion `\(\hat p_{1,sim} - \hat p_{2,sim}\)`
 &lt;!-- * We plot the difference in 100 randomizations below.  --&gt;
 &lt;img src="lec19_files/figure-html/fig-cpr-rand-dot-plot-1.png" width="432" /&gt;
 * 12/100 simulations had a difference of &gt;= 13%
-* If null were true, about 12% chance of differences like we saw; this is pretty likely
-* Cannot reject `\(H_0\)`: we don't have enough evidence to suggest blood thinners are effective 
+* If `\(H_0\)` were true, about 12% chance of differences like we saw, so we cannot reject `\(H_0\)` under significance level `\(\alpha = 0.05\)`: not enough evidence to claim that  blood thinners improve survival rate 
 
 ]
 
