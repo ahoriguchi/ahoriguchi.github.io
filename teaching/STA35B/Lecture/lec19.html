@@ -212,8 +212,8 @@ quantile(cpr_boot_dist$stat, c(0.025, 0.975))
 #&gt;        2.5%       97.5% 
 #&gt; -0.06631288  0.32429733
 ```
-* 95% conf interval: (-0.0588, 0.3034) 
-  - 95% confidence that in the population, true difference in probability of survival for people receiving blood thinners post CPR is between 0.032 lower and 0.3034 higher
+* These two values are the end points of the bootstrap 95% confidence interval:
+  - 95% confidence that in the population, true difference in survival rate for people receiving blood thinners post CPR is between 0.066 lower and 0.324 higher than survival rate for non receivers
 * Similar calculation for 90% conf interval:
 
 ``` r
@@ -221,7 +221,8 @@ quantile(cpr_boot_dist$stat, c(0.05, 0.95))
 #&gt;          5%         95% 
 #&gt; -0.03240614  0.28406692
 ```
-* 90% conf interval: (-0.029, 0.280)
+&lt;!-- * 90% conf interval: (-0.029, 0.280) --&gt;
+* These two values are the end points of the bootstrap 90% confidence interval:
   - Even at 90% confidence, still includes 0
 ]
 
