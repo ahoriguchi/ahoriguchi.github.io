@@ -1,0 +1,203 @@
+---
+title: 'STA 141A - Spring 2025 - Homework 6'
+subtitle: 'Instructor: Dr. Akira Horiguchi'
+author: 'Student name: ABCDE FGHIJ; Student ID: 123456789'
+output: pdf_document
+date: "Due date: May 21, 2025 at 9 PM (PT)"
+geometry:
+  - top=15mm
+  - bottom=20mm
+  - left=12mm
+  - right=12mm
+urlcolor: blue
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage{lastpage}
+  - \pagestyle{fancy}
+  - \fancyhf{} % sets both header and footer to nothing
+  - \renewcommand{\headrulewidth}{0pt}
+  - \fancyhead[RO,RE]{}
+  - \fancyhead[LO,LE]{}
+  - \fancyfoot[LE,LO]{}
+  - \fancyfoot[LE,CO]{Page \thepage\ of \pageref{LastPage}}
+---
+
+The assignment must be done in an [R Markdown](https://rmarkdown.rstudio.com) or [Quarto](https://quarto.org/) document. 
+The assignment must be submitted by the due date above by uploading two files:
+
+1. a .pdf file in GRADESCOPE (if you can knit/compile your .rmd to a  .html file only, please save the created .html file as a .pdf file (by opening the .html file -> print -> save to .pdf)).
+
+Email submissions will not be accepted.
+
+Each answer has to be based on `R` code that shows how the result was obtained. The code has to answer the question or solve the task. For example, if you are asked to find the largest entry of a vector, the code has to return the largest element of the vector. If the code just prints all values of the vector, and you determine the largest element by hand, this will not be accepted as an answer. No points will be given for answers that are not based on `R`. This homework already contains chunks for your solution (you can also create additional chunks for each solution if needed, but it must be clear to which tasks your chunks belong).
+
+There are many possible ways to write `R` code that is needed to answer the questions or do the tasks, but for some of the questions or tasks you might have to use something that has not been discussed during the lectures or the discussion sessions. You will have to come up with a solution on your own. Try to understand what you need to do to complete the task or to answer the question, feel free to  search the Internet for possible solutions, and discuss possible solutions with other students. It is perfectly fine to ask what kind of an approach or a function other students use. However, you are not allowed to share your code or your answers with other students. Everyone has to write the code, do the tasks and answer the questions on their own. 
+
+During the discussion sessions, you may be asked to present and share your solutions.
+
+
+\newpage
+
+
+# 1. Cross-validation
+
+We perform cross-validation on a simulated data set.
+
+```{r}
+set.seed(1)
+x = runif(100) # 100 values being uniformly distributed (btw 0 and 1) are generated
+y = 1 + x -  x^2  + rnorm(100, 0, 0.1)
+```
+
+### (a) Create a scatterplot where `y` is plotted against `x`. Describe your findings.
+
+```{r}
+### Your Solution (Code)
+
+
+```
+
+### Your Solution (Text)
+
+
+\vskip 1.25in
+
+
+### (b) Use `lm()` to fit the three models below. Print the summary tables for the three fitted models and comment your findings.
+
+- Model I: $Y = \beta_0 + \beta_1 X + \varepsilon$
+- Model II: $Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \varepsilon$
+- Model III: $Y = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3 + \varepsilon$
+
+
+```{r}
+### Your Solution (Code)
+
+
+```
+
+### Your Solution (Text)
+
+
+\vskip 1.25in
+
+
+
+### (c) Calculate the leave-one-out-cross-validation mean squared error for each model I-III.
+
+```{r}
+### Your Solution (Code)
+
+
+```
+
+\newpage 
+
+### (d) Calculate the $k$-fold cross-validation mean squared error for each model I-III for $k=10.$
+
+
+```{r}
+### Your Solution (Code)
+
+
+```
+
+
+\vskip 1.5in
+
+### (e) Which model has the smallest cross-validation error based on your results in (c) and (d)? Briefly explain why.
+
+### Your Solution (Text)
+
+
+\vskip 1.5in
+
+
+### (f) Explain the individual concepts and the relationship between the validation set approach, leave-one-out cross-validation and $k$-fold cross-validation in about 1/2 page (maximum one page).
+
+### Your Solution (Text)
+
+\newpage
+
+# 2. Bootstrap 
+
+Herein, the `iris` data set is used.
+
+### (a) Provide an estimate for the population mean of `Sepal.Width`, which is hereafter denoted by $\hat{\mu}.$ 
+```{r}
+### Your Solution (Code)
+
+```
+
+\vskip 1in
+
+### (b) Provide an estimate of the standard error of $\hat{\mu}.$ Interpret this result. (Hint: We can compute the standard error of the sample mean by dividing the sample standard deviation by the square root of the number of observations.)
+```{r}
+### Your Solution (Code)
+
+```
+
+\vskip 1in
+
+### (c) Estimate the standard error of $\hat{\mu}$ by using the bootstrap. How does this compare to your answer from (b)?
+```{r}
+### Your Solution (Code)
+
+```
+### Your Solution (Text)
+
+\vskip 1in
+
+### (d) Based on your bootstrap estimate from (c), provide a 95% confidence interval for the mean of `Sepal.Width`. Compare it to the results obtained by using `t.test(iris$Sepal.Width)`. *Hint*: You can approximate a 95% confidence interval using the formula $$\Big(\hat{\mu} - 2SE(\hat{\mu}), \, \hat{\mu} + 2SE(\hat{\mu})\Big)$$
+```{r}
+### Your Solution (Code)
+
+```
+
+\newpage
+
+# 3. $K$-means clustering
+
+Recall the $K$-means clustering algorithm (Sec 9, page 8 of the lecture notes). Consider the following dataset where $n=6$ and $p=2$:
+```{r echo=FALSE}
+( toy <- data.frame(tag=c(1,1,2,1,2,2), x1=c(1,0,0,5,6,6), x2=c(4,3,4,2,2,0)) ) |> kableExtra::kable()
+```
+
+### (a) Let $K=2$ and consider the clustering induced by using `tag` as the cluster labels. Using this clustering as step 1 of the algorithm, perform each iteration of step 2 of the algorithm until the induced clusters stop changing.
+### Your Solution (Text)
+
+\newpage
+
+
+Problems (b) and (c) are from Problem 12.6.1 of ISLR2, and involve the $K$-means clustering algorithm. 
+
+### (b) Prove the following identity:
+\begin{align}
+\label{eq:identity}
+\frac{1}{|C|} \sum_{i,i' \in C} \sum_{j=1}^p (x_{i,j} - x_{i',j})^2 = 2 \sum_{i \in C} \sum_{j=1}^p (x_{i,j} - \bar{x}_{C,j})^2
+\end{align}
+
+- $\bar{x}_{C,j} = \frac{1}{|C|} \sum_{i \in C} x_{i,j}$ is the mean of the $j$-th feature of the points in cluster $C$,
+- $|C|$ is the number of points in cluster $C$,
+- $\|\cdot\|_2$ is the usual Euclidean norm.
+(The left-hand side of either panel above is exactly the within-cluster variation from Sec 9, page 6 of the lecture notes.)
+*Hint*: you might get more insight by writing Equation \eqref{eq:identity} in vector notation.
+
+
+### Your Solution (Text)
+
+\vskip 3in
+
+
+### (c) Denote the value in Equation \eqref{eq:identity} above as $W(C)$. Suppose someone has chosen a value of $K$ (a positive integer). On the basis of the above identity, argue that each iteration of Step 2 of the $K$-means clustering algorithm (Sec 9, page 8 of the lecture notes) decreases the objective $\sum_{k=1}^K W(C_k)$, where $C_k$ is the cluster $k\in \{1,\ldots,K\}$ of $K$ clusters.
+
+### Your Solution (Text)
+
+
+
+
+\newpage
+
+# 4. Principal Component Analysis
+
+### Consider the real-valued random variables $X_1, X_2, X_3$. Suppose the random variable $X_1$ is independent of the random variable $X_2 + X_3$. Also suppose that the correlation between $X_2$ and $X_3$ is 0.5. Suppose we measure $X_1, X_2, X_3$ on $n=100$ observations (so here $p=3$). For this data, what are reasonable directions for the first two principal components? (You can write each direction as a unit vector pointing to that direction.) Explain your reasoning.
