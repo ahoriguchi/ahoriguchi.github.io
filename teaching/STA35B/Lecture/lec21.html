@@ -349,7 +349,7 @@ T score is a ratio of how the groups differ as compared to how the observations 
 
 `$$T = \frac{\text{point est.} - \text{null}}{SE} = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$$`
 
-When the null hypothesis is true and the conditions are met, T has a t-distribution with `\(df = min(n_1 - 1, n_2 -1).\)`
+When the null hypothesis is true and the conditions are met, T has a t-distribution with `\(df = \min(n_1, n_2) - 1.\)`
 
 Conditions:
 
@@ -417,7 +417,7 @@ $$ T = \frac{\bar x_1 - \bar x_2 - 0}{SE} = \frac{6.68-7.27}{0.155} = -3.69$$
 
 .pull-right[ 
 
-* degrees of freedom = `\(\min(n_1-1, n_2-1) = 113\)`
+* degrees of freedom = `\(\min(n_1, n_2)-1 = 113\)`
 * Compute the one-sided tail area: 
 
 ``` r
@@ -442,12 +442,6 @@ The `\(t\)`-distribution can be used for inference when working with the standar
 -   *Independence* (extended). The data are independent within and between the two groups, e.g., the data come from independent random samples or from a randomized experiment.
 -   *Normality*. We check the outliers for each group separately.
 
-The standard error may be computed as
-
-`$$SE = \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \approx \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$`
-
-Degrees of freedom: `\(\min(n_1-1, n_2-1)\)` 
-
 
 ]
 
@@ -455,13 +449,24 @@ Degrees of freedom: `\(\min(n_1-1, n_2-1)\)`
 
 .pull-right[
 
+The standard error may be computed as
+
+`$$SE = \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \approx \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$`
+
+Degrees of freedom: `\(\min(n_1, n_2)-1\)` 
+
 The margin of error for `\(\bar{x}_1 - \bar{x}_2\)` can be directly obtained from `\(SE(\bar{x}_1 - \bar{x}_2).\)`
 
 $$ \text{Margin of error} = t^\star_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}},$$
 
 `\(t^\star_{df}\)`: calculated from percentile of t-distr w/ *df* d.o.f.
+]
 
-* 95% confidence interval for effect of ESC on change in heart pump capacity: 
+---
+
+.pull-left[
+
+Let's compute 95% confidence interval for effect of ESC on change in heart pump capacity: 
 
 `$$\begin{aligned}
 \bar{x}_{esc} - \bar{x}_{control} &amp;= 7.83 \\
@@ -470,14 +475,40 @@ SE &amp;= \sqrt{\frac{5.17^2}{9} + \frac{2.76^2}{9}} = 1.95
 
 Critical value of `\(t^{\star}_{8} = 2.31\)` for a 95% conf. interval: `qt(0.025, 8)` returns -2.31
 
+
+]
+
+.pull-right[
+
+95% conf. interval is then 
+&lt;!-- $$ --&gt;
+&lt;!-- \begin{aligned} --&gt;
+&lt;!-- &amp;\text{point estimate} \ \pm\ t^{\star} \times SE \\  --&gt;
+&lt;!-- &amp;\implies 7.83 \ \pm\ 2.31\times 1.95 \\  --&gt;
+&lt;!-- &amp;\implies (3.32, 12.34) --&gt;
+&lt;!-- \end{aligned}  --&gt;
+&lt;!-- $$ --&gt;
+
 $$
 \begin{aligned}
-\text{point estimate} \ &amp;\pm\ t^{\star} \times SE \implies 
-7.83 \ \pm\ 2.31\times 1.95
+\text{point estimate} \ \pm\ t^{\star} \times SE \\ 
+\end{aligned} 
+$$
+
+$$
+\begin{aligned}
+\implies 7.83 \ \pm\ 2.31\times 1.95 \\ 
+\end{aligned} 
+$$
+
+$$
+\begin{aligned}
+\implies (3.32, 12.34)
 \end{aligned} 
 $$
 
 95% confident that heart pumping function in those that received ESC cells is between 3.32% and 12.34% higher than for those that did not receive ESC
+
 ]
 
 &lt;!-- --- --&gt;
