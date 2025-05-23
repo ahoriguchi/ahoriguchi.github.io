@@ -138,7 +138,7 @@ Summary statistics for how students performed on these two exams are shown below
 
 &lt;img src="lec21_files/figure-html/fig-randexamspval-1.png" width="396" style="display: block; margin: auto;" /&gt;
 * In our actual data, the observed difference (highlighted above) was 75.1 - 71.96 = 3.14. 
-* 1195 out of 10,000 bootstrap trials produce difference greater than 3.14, 
+* 1195 out of 10,000 randomization trials produce difference greater than 3.14, 
 * 1173 produce difference less than -3.14
 * p-value is then `\(\approx\)` (1195 + 1173) / 10000 = 0.2368
 * Larger than `\(\alpha = 0.05\)` threshold: fail to reject `\(H_0\)`
@@ -343,13 +343,14 @@ We'll now describe a mathematical approach for testing difference in means
 ---
 .pull-left[
 #### Variability of the statistic
-* The **test statistic for comparing two means** is a T score
-
-T score is a ratio of how the groups differ as compared to how the observations within a group vary.
+The **test statistic for comparing two means** is a&lt;br&gt; **T score**
 
 `$$T = \frac{\text{point est.} - \text{null}}{SE} = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$$`
+- Ratio of how the groups differ compared to how the observations within a group vary.
+- If observed difference is much larger than observed within-group variability, then the absolute value of the T score will be large
 
-When the null hypothesis is true and the conditions are met, T has a t-distribution with `\(df = \min(n_1, n_2) - 1.\)`
+
+When the null hypothesis is true and the conditions below are met, T score has a t-distribution with `\(df = \min(n_1, n_2) - 1.\)`
 
 Conditions:
 
@@ -362,9 +363,9 @@ Conditions:
 
 .pull-right[
 
-* We want to model the difference in sample means using `\(t\)`-distribution; need to check required assumptions
+Back to smoking example: we want to model the difference in sample means using `\(t\)`-distribution;&lt;br&gt; check required assumptions
   1. **Independence**: since randomly sampled, samples are independent
-  2. **Nearly-normal data**: both groups have `\(&gt;30\)` observations, so we need to look at data to see if there are any extreme outliers
+  2. **Nearly-normal data**: both groups have `\(&gt;30\)` obsns; does data show any extreme outliers?
 
 &lt;img src="lec21_files/figure-html/fig-babySmokePlotOfTwoGroupsToExamineSkew-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
@@ -507,7 +508,7 @@ $$
 \end{aligned} 
 $$
 
-95% confident that heart pumping function in those that received ESC cells is between 3.32% and 12.34% higher than for those that did not receive ESC
+Conclude: we are 95% confident that heart pumping function in those that received ESC treatment is between 3.32% and 12.34% higher than for those that did not receive ESC
 
 ]
 
