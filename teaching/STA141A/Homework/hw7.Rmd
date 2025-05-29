@@ -1,0 +1,48 @@
+---
+title: 'STA 141A - Spring 2025 - Homework Extra Credit'
+subtitle: 'Instructor: Dr. Akira Horiguchi'
+author: 'Student name: ABCDE FGHIJ; Student ID: 123456789'
+output: pdf_document
+date: "Due date: June 4, 2025 at 9 PM (PT)"
+geometry:
+  - top=15mm
+  - bottom=20mm
+  - left=12mm
+  - right=12mm
+urlcolor: blue
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage{lastpage}
+  - \pagestyle{fancy}
+  - \fancyhf{} % sets both header and footer to nothing
+  - \renewcommand{\headrulewidth}{0pt}
+  - \fancyhead[RO,RE]{}
+  - \fancyhead[LO,LE]{}
+  - \fancyfoot[LE,LO]{}
+  - \fancyfoot[LE,CO]{Page \thepage\ of \pageref{LastPage}}
+---
+
+The assignment must be submitted by the due date above by uploading:
+
+1. a .pdf file in GRADESCOPE.
+
+Email submissions will not be accepted.
+
+For this assignment, the problems will come directly from the ISLR book, namely from Section 8.4 (Tree-based methods). 
+
+
+\newpage
+
+# Conceptual exercise 2 
+
+\newpage 
+
+# Conceptual exercise 4
+
+\newpage 
+
+# Conceptual exercise 5
+
+\newpage 
+
+# Applied exercise 12
