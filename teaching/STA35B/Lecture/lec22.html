@@ -467,12 +467,15 @@ anova(lm_class) |&gt; tidy() |&gt; kable(digits=3)
 
 
 
-* Degrees of freedom `\(df_1, df_2\)` found in column `\(df\)`
-* F statistic and p value can be found in final two columns
+* `df`: degrees of freedom `\(df_1=k-1\)` and `\(df_2=n-k\)`
+* `sumsq`: SSG (top) and SSE (bottom)
+* `meansq`: MSG (top) and MSE (bottom)
+* `statistic`: F statistic: `\(F = \frac{MSG}{MSE}\)`
+* `p.value`: p-value for the F statistic
 ]
 --
 .pull-right[
-Is this p-value valid? Need to check conditions from slide 2:
+Is this p-value valid? Need to check conditions:
 
 - Independence: if data comes from simple random sample, this holds. For students we aren't sure, so this might present problems, but let's assume it's OK
 - Approximate normality - when sample size is large and no extreme outliers, then this is ok
@@ -480,6 +483,7 @@ Is this p-value valid? Need to check conditions from slide 2:
 
 &lt;img src="lec22_files/figure-html/unnamed-chunk-12-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
+* Thus, we can use to reject `\(H_0\)`, which we do because it is smaller than 0.05
 
 &lt;!-- - **Independence.** If the data are a simple random sample, this condition can be assumed to be --&gt;
 &lt;!-- satisfied. For processes and experiments, carefully consider whether the data may be independent --&gt;
@@ -642,13 +646,31 @@ anova(mod) |&gt; tidy() |&gt; kable(digits=3)
 &lt;!--                 latex_options = c("striped", "hold_position"), full_width = TRUE) --&gt;
 &lt;!-- ``` --&gt;
 
-* Degrees of freedom `\(df_1, df_2\)` in column `\(df\)`
-* F statistic and p value in final two columns
-* p-value is smaller than 0.05, so we can reject the null hypothesis
 
 ]
 
 .pull-right[
+
+How to read ANOVA output table?
+
+* `df`: degrees of freedom `\(df_1=k-1\)` and `\(df_2=n-k\)`
+* `sumsq`: SSG (top) and SSE (bottom)
+* `meansq`: MSG (top) and MSE (bottom)
+* `statistic`: F statistic: `\(F = \frac{MSG}{MSE}\)`
+* `p.value`: p-value for the F statistic
+* p-value is smaller than 0.05, so we can reject the null hypothesis
+
+
+Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc p-value from the statistic)
+
+* `meansq`: `sumsq` divided by `df`
+* `statistic`: quotient of the two `meansq` values
+* For `p.value`, can use `pf`:
+    
+    ``` r
+    1 - pf(5.077, df1 = 2, df2 = 426)
+    #&gt; [1] 0.006621471
+    ```
 ]
 
 ---
