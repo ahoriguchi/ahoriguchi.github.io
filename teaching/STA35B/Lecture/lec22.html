@@ -58,7 +58,7 @@ Must check three conditions on the data before performing ANOVA:
 ### Example
 College departments often run multiple sections of the same intro course each semester due to high demand.
 
-* Consider a statistics department that runs three sections of an introductory statistics course.
+* Consider three sections of an intro stats course.
 * Are there substantial differences in first exam scores in these three sections (A, B, and C)?
 * Describe appropriate hypotheses to determine if there are any differences between the three sections.
 
@@ -97,13 +97,15 @@ Look at data below; does it look like the differences in group means could come 
 &lt;!--   scale_y_continuous(breaks=seq(-10, 10, by=2)) + --&gt;
 &lt;!--   facet_wrap(~group2, nrow = 1, scales = "free_x") + --&gt;
 &lt;!--   labs(x = "Group", y = "Outcome") + --&gt;
-&lt;!--   theme(strip.text = element_text(size=20), axis.text = element_text(size=20), axis.title=element_text(size=20)) --&gt;
+&lt;!--   theme(strip.text = element_text(size=20), axis.text = element_text(size=16), axis.title=element_text(size=20)) --&gt;
 &lt;!-- ``` --&gt;
 
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="lec22_files/figure-html/fig-toyANOVA-1.png" alt="Data shown as points. Crosses indicate group means." width="432" /&gt;
 &lt;p class="caption"&gt;Data shown as points. Crosses indicate group means.&lt;/p&gt;
 &lt;/div&gt;
+
+- group I has same center as group IV;&lt;br&gt; group II has same center as group V;&lt;br&gt; group III has same center as group VI.
 ]
 
 --
@@ -158,13 +160,13 @@ For within-group variability, consider the&lt;br&gt; **sum of squares errors (SS
 .pull-right[
 
 SSG: variability of group means (weighted by group size)
-&lt;img src="lec22_files/figure-html/unnamed-chunk-2-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="lec22_files/figure-html/unnamed-chunk-2-1.png" width="396" style="display: block; margin: auto;" /&gt;
 
 
 SSE: variability within each group
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="lec22_files/figure-html/unnamed-chunk-3-1.png" alt="Data shown as points. Crosses indicate group means." width="432" /&gt;
+&lt;img src="lec22_files/figure-html/unnamed-chunk-3-1.png" alt="Data shown as points. Crosses indicate group means." width="396" /&gt;
 &lt;p class="caption"&gt;Data shown as points. Crosses indicate group means.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -184,7 +186,7 @@ SSE: variability within each group
 &lt;!--   scale_y_continuous(breaks=seq(-10, 10, by=2)) + --&gt;
 &lt;!--   facet_wrap(~group2, nrow = 1, scales = "free_x") + --&gt;
 &lt;!--   labs(x = NULL, y = "Outcome") + --&gt;
-&lt;!--   theme(strip.text = element_text(size=20), axis.text = element_text(size=20), axis.title=element_text(size=20)) --&gt;
+&lt;!--   theme(strip.text = element_text(size=20), axis.text = element_text(size=16), axis.title=element_text(size=20)) --&gt;
 &lt;!-- ``` --&gt;
 ]
 
@@ -245,14 +247,15 @@ Let's now do a randomization test using this F statistic to see if the differenc
 #### Example: class data
 &lt;!-- Recall the exams data which demonstrated a two-sample randomization test for a comparison of means. --&gt;
 
-Suppose a teacher gave three versions (A, B, C) of the same exam.
+A teacher gave three versions (A, B, C) of an exam.
 
-* We provide a summary of the data including version C in table and boxplot to the right.
-* Want to investigate whether the exam difficulty is the same across the three versions.
-* Hypothesis test:
+* Data is summarized in table/plot to the right.
+* Is the exam difficulty the same across the three versions?
 
-  -   `\(H_0: \mu_A = \mu_B = \mu_C.\)` The inherent average difficulty is the same across the three versions
-  -   `\(H_A:\)` not `\(H_0.\)` At least one version is inherently more (or less) difficult than the others.
+Hypothesis test:
+
+-   `\(H_0\)`: All three versions are equally difficult. `$$\mu_A = \mu_B = \mu_C$$`
+-   `\(H_A\)`: not `\(H_0.\)` At least one version is inherently more (or less) difficult than the others.
 
 ]
 
@@ -260,7 +263,7 @@ Suppose a teacher gave three versions (A, B, C) of the same exam.
 &lt;table class="table table-striped table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Exam &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Version &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; n &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Mean &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; SD &lt;/th&gt;
@@ -298,7 +301,7 @@ Suppose a teacher gave three versions (A, B, C) of the same exam.
 
 
 
-&lt;img src="lec22_files/figure-html/fig-boxplotThreeVersionsOfExams-1.png" width="432" /&gt;
+&lt;img src="lec22_files/figure-html/fig-boxplotThreeVersionsOfExams-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -306,9 +309,11 @@ Suppose a teacher gave three versions (A, B, C) of the same exam.
 ---
 
 .pull-left[
-Idea of the randomization test with many means is the same as in two means
+Randomization test with *many* means: 
 
-- The version of the test (A or B or C) is randomly allocated to the test scores, under the null assumption that the tests are equally difficult.
+- Idea is the same as in *two* means.
+- Null assumption: versions are equally difficult.
+- Exam version (A or B or C) is randomly allocated to the exam scores, under the null assumption.
 
 &lt;img src="randANOVA.png" width="100%" /&gt;
 
@@ -318,11 +323,16 @@ Idea of the randomization test with many means is the same as in two means
 
 .pull-right[
 
-Since the groups are randomized, the population means under the randomization are the same, so we can see the types of outcomes that result from pure random sampling
+&lt;!-- Since the groups are randomized, the population means under the randomization are the same, so we can see the types of outcomes that result from pure random sampling --&gt;
 
 &lt;img src="lec22_files/figure-html/fig-rand3exams-1.png" width="90%" style="display: block; margin: auto;" /&gt;
-* Our data's observed test statistic had `\(F = 3.48\)`
-* We see this is quite unlikely due to chance - in this randomization test, fewer than 3% of instances where means are equal produce this (or more) extreme of a value.
+- 297 of 10,000 simulations had an F statistic greater than or equal to the observed value 3.48.
+- p-value 0.0297 is below 0.05, so we reject `\(H_0\)`.
+- Conclusion: our observed value is unlikely due to chance if null assumption is true.
+
+&lt;!-- - Randomization test p-value is then 0.0297 --&gt;
+&lt;!-- * Our data's observed test statistic had `\(F = 3.48\)` --&gt;
+&lt;!-- * We see this is quite unlikely due to chance - in this randomization test, fewer than 3% of instances where means are equal produce this (or more) extreme of a value. --&gt;
 ]
 
 ---
@@ -386,7 +396,7 @@ Why do we care about the F-distribution?
 &lt;table class="table table-striped table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Exam &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Version &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; n &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; Mean &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; SD &lt;/th&gt;
@@ -481,7 +491,7 @@ Is this p-value valid? Need to check conditions:
 - Approximate normality - when sample size is large and no extreme outliers, then this is ok
 - Approximately constant variance - each group has approximately the same variance
 
-&lt;img src="lec22_files/figure-html/unnamed-chunk-12-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="lec22_files/figure-html/unnamed-chunk-12-1.png" width="396" style="display: block; margin: auto;" /&gt;
 
 * Thus, we can use to reject `\(H_0\)`, which we do because it is smaller than 0.05
 
@@ -599,7 +609,7 @@ Conditions for F statistic/ANOVA analysis
 - Approximately constant variance - variance within each group is approximately the same across groups
 ]
 .pull-right[
-&lt;img src="lec22_files/figure-html/unnamed-chunk-16-1.png" width="432" /&gt;
+&lt;img src="lec22_files/figure-html/unnamed-chunk-16-1.png" width="432" style="display: block; margin: auto;" /&gt;
 * Does appear to be approximately normal, no extreme outliers
 * We see that variability across the groups is quite similar
 * So our F statistic analysis can proceed
