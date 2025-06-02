@@ -112,13 +112,22 @@ Look at data below; does it look like the differences in group means could come 
 
 .pull-right[
 
-* Groups I/II/III: it is plausible that difference in group centers is due to random chance.
-* Groups IV/V/VI: difference in group centers seem large relative to variability within each group, possibly due to true differences across groups.
-
 Consider the ratio
 `$$\frac{\text{between-group variability}}{\text{within-group variability}}$$`
 
 - What does this look like for Groups I/II/III?&lt;br&gt; For groups IV/V/VI?
+- What does a **large** ratio value suggest?&lt;br&gt; What does a **small** ratio value suggest? 
+
+----------------------
+
+.pull-left[
+Groups I/II/III:&lt;br&gt; it is plausible that difference in group centers is due to random chance.
+]
+
+.pull-right[
+Groups IV/V/VI: difference in group centers seem large relative to variability within each group, possibly due to true differences across groups.
+]
+
 ]
 
 ---
@@ -695,13 +704,9 @@ Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc
 * For `p.value`, can use `pf`:
     
     ``` r
-    1 - pf(statistic, df1 = 2, df2 = 426)
+    1 - pf(statistic, df1 = df1, df2 = df2)
     ```
     
-    
-
-
-
 ]
 
 .pull-right[
@@ -717,6 +722,8 @@ Let's try it
 ]
 
 ---
+
+.pull-left[
 ### Practice 
 * IMS 22.9(a, b)
 * IMS 22.9c
@@ -726,9 +733,12 @@ Let's try it
 * Take 3 minutes to think about the problem, discuss with your neighbors
 * I'll call on one of you and ask what your thoughts are for how to approach the problem
 * Not expecting you to have the right answer!  Just want to hear how you approach the problem, then help guide you through thinking about the next steps 
+    
+]
 
+.pull-right[
 
-
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
