@@ -199,56 +199,56 @@ d. The correlation coeﬀicient for number of cans of beer and BAC is 0.89. Calc
 e. Suppose we visit a bar in our own town, ask people how many drinks they have had, and also measure their BAC. Would the relationship between number of drinks and BAC would be as strong as the relationship found in the Ohio State study? Why?
 
 
-\newpage
+<!-- \newpage -->
 
-## Problem 6: [IMS] 25.5.3 Cherry trees, collinear predictors
+<!-- ## Problem 6: [IMS] 25.5.3 Cherry trees, collinear predictors -->
 
-Timber yield is approximately equal to the volume of
-a tree, however, this value is diﬀicult to measure without first cutting the tree down. Instead,
-other variables, such as height and diameter, may be used to predict a tree’s volume and yield.
-Researchers wanting to understand the relationship between these variables for black cherry
-trees collected data from 31 such trees in the Allegheny National Forest, Pennsylvania. Height
-is measured in feet, diameter in inches (at 54 inches above ground), and volume in cubic feet.5
-(Hand 1994) The plots below display the distribution of each of these variables (on the diagonal)
-as well as provide information on the pairwise correlations between them.
+<!-- Timber yield is approximately equal to the volume of -->
+<!-- a tree, however, this value is diﬀicult to measure without first cutting the tree down. Instead, -->
+<!-- other variables, such as height and diameter, may be used to predict a tree’s volume and yield. -->
+<!-- Researchers wanting to understand the relationship between these variables for black cherry -->
+<!-- trees collected data from 31 such trees in the Allegheny National Forest, Pennsylvania. Height -->
+<!-- is measured in feet, diameter in inches (at 54 inches above ground), and volume in cubic feet.5 -->
+<!-- (Hand 1994) The plots below display the distribution of each of these variables (on the diagonal) -->
+<!-- as well as provide information on the pairwise correlations between them. -->
 
-```{r}
-#| echo: false
-#| message: false
-#| out.width: 70%
-#| fig.align: center
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
+<!-- #| out.width: 70% -->
+<!-- #| fig.align: center -->
 
-openintro::cherry |> 
-    GGally::ggpairs() + 
-    theme_bw()
-```
+<!-- openintro::cherry |>  -->
+<!--     GGally::ggpairs() +  -->
+<!--     theme_bw() -->
+<!-- ``` -->
 
-Also provided below are three regression model outputs: `volume` vs. `diam`, `volume` vs. `height`, and `volume` vs. `height` + `diam`.
+<!-- Also provided below are three regression model outputs: `volume` vs. `diam`, `volume` vs. `height`, and `volume` vs. `height` + `diam`. -->
 
-```{r}
-#| echo: false
-#| message: false
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
 
-openintro::cherry |> 
-    lm(volume ~ diam, data=_) |> 
-    summary() |> 
-    broom::tidy() |> 
-    kable(digits = 3, caption = "Volume vs. Diameter")
+<!-- openintro::cherry |>  -->
+<!--     lm(volume ~ diam, data=_) |>  -->
+<!--     summary() |>  -->
+<!--     broom::tidy() |>  -->
+<!--     kable(digits = 3, caption = "Volume vs. Diameter") -->
 
-openintro::cherry |> 
-    lm(volume ~ height, data=_) |> 
-    summary() |> 
-    broom::tidy() |> 
-    kable(digits = 3, caption = "Volume vs. Height")
+<!-- openintro::cherry |>  -->
+<!--     lm(volume ~ height, data=_) |>  -->
+<!--     summary() |>  -->
+<!--     broom::tidy() |>  -->
+<!--     kable(digits = 3, caption = "Volume vs. Height") -->
 
-openintro::cherry |> 
-    lm(volume ~ height + diam, data=_) |> 
-    summary() |> 
-    broom::tidy() |> 
-    kable(digits = 3, caption = "Volume vs. Height and Diameter")
-```
+<!-- openintro::cherry |>  -->
+<!--     lm(volume ~ height + diam, data=_) |>  -->
+<!--     summary() |>  -->
+<!--     broom::tidy() |>  -->
+<!--     kable(digits = 3, caption = "Volume vs. Height and Diameter") -->
+<!-- ``` -->
 
-\newpage
-a. There are three variables described in the figure, and each is paired with each other to create three different scatterplots. Rate the pairwise relationships from most correlated to least correlated.
-b. When using only one variable to model a tree’s volume, is `diameter` a discernible predictor? Is `height` a discernible predictor? Explain your reasoning.
-c. When using both `diameter` and `height` to predict a tree's `volume`, are both predictors still discernible? Explain your reasoning.
+<!-- \newpage -->
+<!-- a. There are three variables described in the figure, and each is paired with each other to create three different scatterplots. Rate the pairwise relationships from most correlated to least correlated. -->
+<!-- b. When using only one variable to model a tree’s volume, is `diameter` a discernible predictor? Is `height` a discernible predictor? Explain your reasoning. -->
+<!-- c. When using both `diameter` and `height` to predict a tree's `volume`, are both predictors still discernible? Explain your reasoning. -->
