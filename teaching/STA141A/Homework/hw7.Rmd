@@ -31,9 +31,9 @@ Email submissions will not be accepted.
 For this assignment, the problems will come directly from the ISLR book, namely from Section 8.4 (Tree-based methods). 
 
 
-\newpage
+<!-- \newpage -->
 
-# Conceptual exercise 2 
+<!-- # Conceptual exercise 2  -->
 
 \newpage 
 
@@ -43,6 +43,6 @@ For this assignment, the problems will come directly from the ISLR book, namely 
 
 # Conceptual exercise 5
 
-\newpage 
+<!-- \newpage  -->
 
-# Applied exercise 12
+<!-- # Applied exercise 12 -->
