@@ -439,8 +439,8 @@ Why do we care about the F-distribution?
 * Mathematical approach for calculating `\(p\)`-value:
     
     ``` r
-    df2 &lt;- 58+55+51 - 3  # n-k
     df1 &lt;- 3 - 1  # k-1
+    df2 &lt;- 58+55+51 - 3  # n-k
     pf(3.48, df1 = df1, df2 = df2)
     #&gt; [1] 0.9668556
     ```
@@ -465,15 +465,15 @@ Alternatively, we can perform analysis of variance using `lm()` and `anova()`:
 #&gt; Coefficients:
 #&gt; (Intercept)        examB        examC  
 #&gt;      75.103       -3.140        3.838
-anova(lm_class) |&gt; tidy() |&gt; kable(digits=3)
+anova(lm_class) |&gt; tidy() |&gt; kable(digits=c(0, 0, 0, 0, 3, 3))
 ```
 
 
 
-|term      |  df|     sumsq|  meansq| statistic| p.value|
-|:---------|---:|---------:|-------:|---------:|-------:|
-|exam      |   2|  1290.114| 645.057|     3.484|   0.033|
-|Residuals | 161| 29810.130| 185.156|        NA|      NA|
+|term      |  df| sumsq| meansq| statistic| p.value|
+|:---------|---:|-----:|------:|---------:|-------:|
+|exam      |   2|  1290|    645|     3.484|   0.033|
+|Residuals | 161| 29810|    185|        NA|      NA|
 
 
 
@@ -592,7 +592,7 @@ Is this p-value valid? Need to check conditions:
 
 Null and alternative hypotheses:
 
-- `\(H_0\)`: the OBP for outfielders, in-fielders, and catchers is the same; `$$\mu_{OF} = \mu_{IF} = \mu_C$$`
+- `\(H_0\)`: the OBP for these three groups (outfielders, in-fielders, and catchers) is the same; `$$\mu_{OF} = \mu_{IF} = \mu_C$$`
 - `\(H_A\)`: there is some difference among these three groups: `\(\mu_{OF} \neq \mu_{IF}\)`, `\(\mu_{IF} \neq \mu_C\)`, or `\(\mu_{OF} \neq \mu_C\)`
 ]
 
@@ -632,15 +632,17 @@ To do analysis of variance, we use `lm()` and `anova()`:
 #&gt; (Intercept)   positionIF    positionC  
 #&gt;    0.319819    -0.001433    -0.017881
 
-anova(mod) |&gt; tidy() |&gt; kable(digits=3)
+anova(mod) |&gt; 
+    tidy() |&gt; 
+    kable(digits=c(0,0,3,4,2,3))
 ```
 
 
 
 |term      |  df| sumsq| meansq| statistic| p.value|
 |:---------|---:|-----:|------:|---------:|-------:|
-|position  |   2| 0.016|  0.008|     5.077|   0.007|
-|Residuals | 426| 0.674|  0.002|        NA|      NA|
+|position  |   2| 0.016| 0.0080|      5.08|   0.007|
+|Residuals | 426| 0.674| 0.0016|        NA|      NA|
 
 
 
@@ -668,7 +670,7 @@ How to read ANOVA output table?
 * `meansq`: MSG (top) and MSE (bottom)
 * `statistic`: F statistic: `\(F = \frac{MSG}{MSE}\)`
 * `p.value`: p-value for the F statistic
-* p-value is smaller than 0.05, so we can reject the null hypothesis
+    * p-value is smaller than 0.05, so we can reject the null hypothesis
 
 
 Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc p-value from the statistic)
@@ -684,6 +686,37 @@ Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc
 ]
 
 ---
+
+.pull-left[
+Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc p-value from the statistic)
+
+* `meansq`: `sumsq` divided by `df`
+* `statistic`: quotient of the two `meansq` values
+* For `p.value`, can use `pf`:
+    
+    ``` r
+    1 - pf(statistic, df1 = 2, df2 = 426)
+    ```
+    
+    
+
+
+
+]
+
+.pull-right[
+Let's try it
+
+
+|term      |  df| sumsq|meansq |statistic |p.value |
+|:---------|---:|-----:|:------|:---------|:-------|
+|position  |   2| 0.016|X      |X         |X       |
+|Residuals | 426| 0.674|X      |NA        |NA      |
+
+
+]
+
+---
 ### Practice 
 * IMS 22.9(a, b)
 * IMS 22.9c
@@ -693,6 +726,9 @@ Can derive this entire tibble by using just `df` and `sumsq` (and `pf()` to calc
 * Take 3 minutes to think about the problem, discuss with your neighbors
 * I'll call on one of you and ask what your thoughts are for how to approach the problem
 * Not expecting you to have the right answer!  Just want to hear how you approach the problem, then help guide you through thinking about the next steps 
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
