@@ -474,6 +474,8 @@ Let's compute 95% confidence interval for effect of ESC on change in heart pump 
 SE &amp;= \sqrt{\frac{5.17^2}{9} + \frac{2.76^2}{9}} = 1.95
 \end{aligned}$$`
 
+Degrees of freedom is `\(\min\{9, 9\} - 1 = 8\)`.
+
 Critical value of `\(t^{\star}_{8} = 2.31\)` for a 95% conf. interval: `qt(0.025, 8)` returns -2.31
 
 
@@ -492,7 +494,7 @@ Critical value of `\(t^{\star}_{8} = 2.31\)` for a 95% conf. interval: `qt(0.025
 
 $$
 \begin{aligned}
-\text{point estimate} \ \pm\ t^{\star} \times SE \\ 
+\text{point estimate} \ \pm\ t^{\star}_8 \times SE \\ 
 \end{aligned} 
 $$
 
