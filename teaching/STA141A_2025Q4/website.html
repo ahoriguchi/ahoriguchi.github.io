@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-09-23 Tue 21:24 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>STA 141A course page: Fundamentals of Statistical Data Science</title>
+<meta name="author" content="Akira Horiguchi" />
+<meta name="generator" content="Org Mode" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+html,button,input,select,textarea {  color: #484C66;}html {  font-size: 90%;  line-height: 1.4;}*,*:before,*:after {  -moz-box-sizing: border-box;  -webkit-box-sizing: border-box;  box-sizing: border-box;}a {  white-space: pre;  white-space: pre-wrap;  white-space: pre-line;  white-space: -pre-wrap;  white-space: -o-pre-wrap;  white-space: -moz-pre-wrap;  white-space: -hp-pre-wrap;  word-wrap: break-word;  text-decoration: none;}a:hover {  color: #0A4C89;}/* * Remove text-shadow in selection highlight: h5bp.com/i * These selection rule sets have to be separate. * Customize the background color to match your design. */::-moz-selection {  background: #0A4C89;  color: #FFF;  text-shadow: none;}::selection {  background: #0A4C89;  color: #FFF;  text-shadow: none;}/* * A better looking default horizontal rule */hr {  display: block;  height: 1px;  border: 0;  border-top: 1px dashed #CCC;  margin: 1em 0;  padding: 0;}/* * Remove the gap between images, videos, audio and canvas and the bottom of * their containers: h5bp.com/i/440 */audio,canvas,img,video {  vertical-align: middle;}/* * Remove default fieldset styles. */fieldset {  border: 0;  margin: 0;  padding: 0;}/* * Allow only vertical resizing of textareas. */textarea {  resize: vertical;}/* ==========================================================================   Author's custom styles   ========================================================================== */.todo,.done,.tag {  font-family: "Source Pro", Monaco, "Courier New", monospace;  padding: 0 0.3em;  background-color: #EEE;  border: 1px solid #CCC;}.todo {  color: #DD4433;}.done {  color: #44934B;}.tag {  font-size: 80%;  font-weight: normal;  margin: 0 0.3em;  display: none;}.timestamp {  color: #BEBEBE;}.timestamp-kwd {  color: #5F9EA0;}.right {  margin-left: auto;  margin-right: 0px;  text-align: right;}.left {  margin-left: 0px;  margin-right: auto;  text-align: left;}.center {  margin-left: auto;  margin-right: auto;  text-align: center;}.underline {  text-decoration: underline;}#postamble p,#preamble p {  font-size: 90%;  margin: .2em;}pre,code {  font-family: "Source Pro", Monaco, "Courier New", monospace;  padding-left: 0.3em;  padding-right: 0.3em;}pre {  font-size: 90%;  padding: 8pt;  overflow: auto;  white-space: pre;  word-wrap: normal;}pre.src {  position: relative;}pre.src:before {  display: none;  position: absolute;  background-color: #FFF;  top: 0.5em;  right: 0.5em;  padding: 4px;  border: 1px solid #CCC;}pre.src-sh:before {  content: "Shell Script";}pre.src-bash:before {  content: "Bash Script";}pre.src-emacs-lisp:before {  content: "Emacs Lisp";}pre.src-R:before {  content: "R";}pre.src-perl:before {  content: "Perl";}pre.src-java:before {  content: "Java";}pre.src-sql:before {  content: "SQL";}pre.src-c:before {  content: "C";}pre.src-cpp:before {  content: "C++";}pre.src-html:before {  content: "HTML";}table {  border-collapse: collapse;  display: block;  overflow-x: auto;}caption.t-above {  caption-side: top;}caption.t-bottom {  caption-side: bottom;}td, th {  vertical-align: top;  border: 1px solid #CCC;  padding: 0.5em;}th.right {  text-align: center;}th.left {  text-align: center;}th.center {  text-align: center;}td.right {  text-align: right;}td.left {  text-align: left;}td.center {  text-align: center;}dt {  font-weight: bold;}#footnotes {  border-top: 5px solid #0A4C89;  margin-bottom: 5em;}#footnotes h2 {  display: none;}#text-footnotes {  margin-top: 1em;}.footpara:nth-child(2) {  display: inline;}.footpara {  display: block;}.footdef sup:before {  content: "[";}.footdef sup:after {  content: "]";}.footdef p {  display: inline;}figure {  margin: 0;}figure img {  max-width: 100%;}figcaption {  text-align: center;  font-size: 0.8rem;}.inlinetask {  padding: 10px;  border: 2px solid gray;  margin: 10px;  background: #ffffcc;}#org-div-home-and-up {  text-align: right;  font-size: 70%;  white-space: nowrap;}textarea {  overflow-x: auto;}.linenr {  font-size: smaller;}.code-highlighted {  background-color: #ffff00;}.org-info-js_info-navigation {  border-style: none;}#org-info-js_console-label {  font-size: 10px;  font-weight: bold;  white-space: nowrap;}.org-info-js_search-highlight {  background-color: #ffff00;  color: #000000;  font-weight: bold;}p.verse,blockquote {  margin: 0;  padding: 0;  padding-left: 3%;  border-left: 5px solid #0A4C89;}body {  font-family: Lora, Palatino, Georgia, serif;  width: 92%;  max-width: 1024px;  margin: 0 auto;  background-color: #FFF;}h2 {  line-height: 1.62em;}.title {  margin: 0 0 2em 0;  line-height: 2em;  border-bottom: 5px solid #0A4C89;  text-align: center;}#postamble {  font-size: 80%;  line-height: 1.4em;  text-align: right;}h1, h2, h3, h4, h5, h6 {  font-family: "Source Sans Pro", sans-serif;  color: #222;}.outline-2 {  margin-bottom: 4em;}.outline-2 h2 {  border-bottom: 1px solid #CCC;}.outline-text-2 code, pre {  background-color: #EEE;}#table-of-contents {  display: none;  margin-left: 0.5em;}#text-table-of-contents ul {  padding-left: 1.8em;}#text-table-of-contents li {  list-style-type: circle;  margin: 0.4em 0;}#text-table-of-contents ul ul {  margin: 0;}#text-table-of-contents li li {  font-weight: normal;  font-size: 90%;  margin: 0;}#content {  overflow: hidden;  *zoom: 1;}/* ==========================================================================   EXAMPLE Media Queries for Responsive Design.   These examples override the primary ('mobile first') styles.   Modify as content requires.   ========================================================================== */@media only screen and (min-width: 35em) {  /* Style adjustments for viewports that meet the condition */}@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {  /* Style adjustments for high resolution devices */}/* ==========================================================================   Print styles.   Inlined to avoid required HTTP connection: h5bp.com/r   ========================================================================== */@media print {  * {    background: transparent !important;    color: #000 !important;    /* Black prints faster: h5bp.com/s */    box-shadow: none !important;    text-shadow: none !important;  }  a,  a:visited {    text-decoration: underline;  }  a[href]:after {    content: " (" attr(href) ")";  }  abbr[title]:after {    content: " (" attr(title) ")";  }  /*   * Don't show links for images, or javascript/internal links   */  .ir a:after,  a[href^="javascript:"]:after,  a[href^="#"]:after {    content: "";  }  pre,  blockquote {    /* border: 1px solid #999; */    page-break-inside: avoid;  }  thead {    display: table-header-group;    /* h5bp.com/t */  }  tr,  img {    page-break-inside: avoid;  }  img {    max-width: 100% !important;  }  @page {    margin: 0.5cm;  }  p,  h2,  h3 {    orphans: 3;    widows: 3;  }  h2,  h3 {    page-break-after: avoid;  }  #table-of-contents {    display: block;    width: initial;    border: none;  }  #table-of-contents a {    text-decoration: none;  }}/* large screen */@media screen and (min-width: 40rem) {  html {    font-size: 100%;  }  #table-of-contents {    display: block;    padding: 1em;    width: 32%;    min-width: 18em;    float: right;    background-color: #EEE;    position: relative;    /* required by z-index */    z-index: 5000;    border: 1px solid #CCC;  }  .tag {    display: initial;  }}
+</style>
+<style>pre.src{background:#343131;color:white;} </style>
+</head>
+<body>
+<div id="content" class="content">
+<header>
+<h1 class="title">STA 141A course page: Fundamentals of Statistical Data Science</h1>
+</header>
+<div id="outline-container-org10226a2" class="outline-2">
+<h2 id="org10226a2">Fall 2025</h2>
+<div class="outline-text-2" id="text-org10226a2">
+<p>
+<b><b>Instructor:</b></b> Akira Horiguchi (ahoriguchi@ucdavis.edu)
+</p>
+
+<p>
+<b><b>Lectures:</b></b> Mondays, Wednesdays and Fridays, 9:00 AM - 9:50 AM, (TLC 1215)
+</p>
+
+<p>
+<b><b>Labs:</b></b> Run by TAs, (Wellman 115) 
+</p>
+<ul class="org-ul">
+<li>Section A01: Tuesday, 12:10 PM - 1:00 PM,  Kwan Ho Lee (ksjlee@ucdavis.edu)</li>
+<li>Section A02: Tuesday, 1:10 PM - 2:00 PM, Pascal (Mingqian) Zhang (pazhang@ucdavis.edu)</li>
+</ul>
+
+<p>
+<b><b>Office hours (TBD):</b></b>
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Day, time</th>
+<th scope="col" class="org-left">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Akira Horiguchi</td>
+<td class="org-left">TBD</td>
+<td class="org-left">Physical and Data Sciences Building 0003 (in the basement; ignore the scary signs), <a href="https://www.google.com/maps/dir//38.537312,-121.75084/@38.5372831,-121.7514872,19z?entry=ttu&amp;g_ep=EgoyMDI1MDMyNS4xIKXMDSoASAFQAw%3D%3D">Google Map</a></td>
+</tr>
+
+<tr>
+<td class="org-left">Kwan Ho Lee</td>
+<td class="org-left">TBD</td>
+<td class="org-left">TBD</td>
+</tr>
+
+<tr>
+<td class="org-left">Pascal (Mingqian) Zhang</td>
+<td class="org-left">TBD</td>
+<td class="org-left">TBD</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<b><b>Syllabus:</b></b> <a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/syllabus.pdf">here</a>
+</p>
+
+<p>
+<b><b>Piazza:</b></b> See Canvas
+</p>
+
+<p>
+<b><b>Textbooks:</b></b> Four "main" textbooks and one "supplemental" textbook will be used for the course. They are all freely available online.
+</p>
+
+<ul class="org-ul">
+<li>"Main":
+<ul class="org-ul">
+<li>[R4DS2] <b>R for Data Science, 2nd edition</b>. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund. 2023.  <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a></li>
+<li>[IP] <b>Introduction to probability, statistics, and random processes</b>. H. Pishro-Nik. 2014.  <a href="https://www.probabilitycourse.com">https://www.probabilitycourse.com</a></li>
+<li>[MC] <b>Introducing Monte Carlo Methods with R</b>. C. Robert G. Casella. 2010. <a href="https://link.springer.com/book/10.1007/978-1-4419-1576-4">https://link.springer.com/book/10.1007/978-1-4419-1576-4</a>
+<ul class="org-ul">
+<li>You can access the PDF for free using your university credentials.</li>
+</ul></li>
+<li>[ISLR2] <b>An Introduction to Statistical Learning with Applications in R, 2nd ed</b>. G. James, D. Witten, T. Hastie, and R. Tibshirani. 2021.  <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>
+<ul class="org-ul">
+<li>In 2023 the authors published a <a href="https://www.statlearning.com/resources-python">Python version of this book</a>, but our course will use the <a href="https://www.statlearning.com/resources-second-edition">R version of this book</a>.</li>
+</ul></li>
+</ul></li>
+
+<li>"Supplemental":
+<ul class="org-ul">
+<li>[IR] <b>An Introduction to R.</b> W. N. Venables, D. M. Smith, and the R Core Team. 2020.  <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf">https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf</a></li>
+</ul></li>
+</ul>
+
+
+<p>
+<b><b>Helpful (Optional) Links</b></b>
+</p>
+<ul class="org-ul">
+<li><a href="https://video.ucdavis.edu/media/Developing+Your+Data+Science+Portfolio+-+2024-02-13/1_mfvunlam">https://video.ucdavis.edu/media/Developing+Your+Data+Science+Portfolio+-+2024-02-13/1_mfvunlam</a></li>
+<li><a href="https://events.library.ucdavis.edu/event/davis-r-users-group-2025fall">https://events.library.ucdavis.edu/event/davis-r-users-group-2025fall</a> (Thursdays, 10am-12pm)</li>
+</ul>
+</div>
+
+
+
+<div id="outline-container-org52eec03" class="outline-3">
+<h3 id="org52eec03">Class Schedule</h3>
+<div class="outline-text-3" id="text-org52eec03">
+<p>
+The exam, project, and homework dates are set, but the lecture topics are subject to change.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Week</th>
+<th scope="col" class="org-left">Day of Lecture</th>
+<th scope="col" class="org-left">Topics</th>
+<th scope="col" class="org-left">Slides</th>
+<th scope="col" class="org-left">Additional references</th>
+<th scope="col" class="org-left">Homework</th>
+<th scope="col" class="org-left">Lab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Sep 24 (W)</td>
+<td class="org-left">1 (Class overview, basic R)</td>
+<td class="org-left"><a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/Lecture/Sec1.pdf">part 1</a>  <a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/Lecture/sec1_R.html#/title-slide">part 2</a></td>
+<td class="org-left">IR</td>
+<td class="org-left">HW 1 released <a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/Homework/hw1.pdf">pdf</a> <a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/Homework/hw1.qmd">qmd</a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Sep 26 (F)</td>
+<td class="org-left">2 (Vectors, matrices, arrays, lists, data frames)</td>
+<td class="org-left"><a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/Lecture/sec2.html">html</a></td>
+<td class="org-left">IR</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Sep 29 (M)</td>
+<td class="org-left">2 (Functions, loops, apply, conditional execution)</td>
+<td class="org-left">(see above)</td>
+<td class="org-left">IR</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Sep 30: Lab 1</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 1 (W)</td>
+<td class="org-left"><b><b>Discuss project</b></b>, 3 (Explore data: import, subset, inspect)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch3</td>
+<td class="org-left"><b><b>HW 1 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 3 (F)</td>
+<td class="org-left">3 (Explore data: reshape)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch5</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Oct 6 (M)</td>
+<td class="org-left">3 (Explore data: transforming)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch12-13</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Oct 7: Lab 2</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 8 (W)</td>
+<td class="org-left">3 (Explore data: transforming)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch12-13</td>
+<td class="org-left"><b><b>HW 2 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 10 (F)</td>
+<td class="org-left">3 (Explore data: visualizing)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch9-10</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Oct 13 (M)</td>
+<td class="org-left">3 (Explore data: joins)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R4DS2, Ch16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Oct 14: Lab 3</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 15 (W)</td>
+<td class="org-left">4 (Probability)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">IP, Ch1,3-5</td>
+<td class="org-left"><b><b>Project proposal due, 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 17 (F)</td>
+<td class="org-left">4 (Probability)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">IP, Ch1,3-5</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Oct 20 (M)</td>
+<td class="org-left">4 (Probability: Random variable generation)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">MC, Ch2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Oct 21: Lab 4</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 22 (W)</td>
+<td class="org-left">4 (Probability: Monte Carlo integration)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">MC, Ch3</td>
+<td class="org-left"><b><b>HW 3 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 24 (F)</td>
+<td class="org-left">5 (Overview of statistical learning)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch1-2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">Oct 27 (M)</td>
+<td class="org-left"><b><b>Midterm exam 1</b></b> (9:10 AM - 9:50 AM)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Oct 28: Lab 5</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 29 (W)</td>
+<td class="org-left">5 (Overview of statistical learning)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch1-2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Oct 31 (F)</td>
+<td class="org-left">6 (Regression)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">Nov 3 (M)</td>
+<td class="org-left">6 (Regression)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Nov 4: Lab 6</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 5 (W)</td>
+<td class="org-left">7 (Classification)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch4</td>
+<td class="org-left"><b><b>HW 4 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 7 (F)</td>
+<td class="org-left">7 (Classification)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">Nov 10 (M)</td>
+<td class="org-left">7 (Classification)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b><b>Nov 11: no lab (Veterans Day holiday)</b></b></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 12 (W)</td>
+<td class="org-left">8 (Resampling methods)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch5</td>
+<td class="org-left"><b><b>HW 5 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 14 (F)</td>
+<td class="org-left">8 (Resampling methods)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch5</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">Nov 17 (M)</td>
+<td class="org-left">9 (Unsupervised learning)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch12</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Nov 18: Lab 7</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 19 (W)</td>
+<td class="org-left">9 (Unsupervised learning)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch12</td>
+<td class="org-left"><b><b>HW 6 due 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 21 (F)</td>
+<td class="org-left">9 (Unsupervised learning)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch12</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">Nov 24 (M)</td>
+<td class="org-left"><b><b>Midterm exam 2</b></b> (9:10 AM - 9:50 AM)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Nov 25: Lab 8</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 26 (W)</td>
+<td class="org-left">TBD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Nov 28 (F)</td>
+<td class="org-left"><b><b>Thanksgiving Holiday, no class</b></b></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">Dec 1 (M)</td>
+<td class="org-left">TBD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ISLR2, Ch8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Dec 2: Lab 9</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Dec 3 (W)</td>
+<td class="org-left">TBD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">Dec 5 (F)</td>
+<td class="org-left">TBD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;</td>
+<td class="org-left"><b><b>No final exam</b></b> &#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b><b>Final project due Dec 9, 11:59pm</b></b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
