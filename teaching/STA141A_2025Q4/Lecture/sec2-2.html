@@ -578,7 +578,7 @@ Akira Horiguchi
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
 <span id="cb15-2"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 7 1 4 6</code></pre>
+<pre><code>[1] 10  2  3  8  7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(y))  <span class="co"># sets an empty numeric vector of length 5</span></span>
 <span id="cb17-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -586,7 +586,7 @@ Akira Horiguchi
 <span id="cb17-4"><a href=""></a>}</span>
 <span id="cb17-5"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  9 49  1 16 36</code></pre>
+<pre><code>[1] 100   4   9  64  49</code></pre>
 </div>
 </div>
 </section>
@@ -596,7 +596,7 @@ Akira Horiguchi
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 7 1 4 6</code></pre>
+<pre><code>[1] 10  2  3  8  7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb21-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -604,15 +604,15 @@ Akira Horiguchi
 <span id="cb21-4"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"the cumulative sum of the vector y at index"</span>, i, <span class="st">"is:"</span>, z))</span>
 <span id="cb21-5"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 3"
-[1] "the cumulative sum of the vector y at index 2 is: 10"
-[1] "the cumulative sum of the vector y at index 3 is: 11"
-[1] "the cumulative sum of the vector y at index 4 is: 15"
-[1] "the cumulative sum of the vector y at index 5 is: 21"</code></pre>
+<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 10"
+[1] "the cumulative sum of the vector y at index 2 is: 12"
+[1] "the cumulative sum of the vector y at index 3 is: 15"
+[1] "the cumulative sum of the vector y at index 4 is: 23"
+[1] "the cumulative sum of the vector y at index 5 is: 30"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21</code></pre>
+<pre><code>[1] 30</code></pre>
 </div>
 </div>
 </section>
@@ -658,16 +658,6 @@ Akira Horiguchi
 <span id="cb30-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size -1"
-[1] "moving x=-2 by step of size 1"
-[1] "moving x=-1 by step of size -1"
-[1] "moving x=-2 by step of size 1"
-[1] "moving x=-1 by step of size -1"
-[1] "moving x=-2 by step of size 1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size 1"
 [1] "moving x=1 by step of size 1"
 [1] "moving x=2 by step of size 1"</code></pre>
 </div>
@@ -691,20 +681,8 @@ Akira Horiguchi
 <span id="cb33-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size 1"
-[1] "moving x=0 by step of size 1"
 [1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size -1"
-[1] "moving x=0 by step of size -1"
-[1] "moving x=-1 by step of size -1"
-[1] "moving x=-2 by step of size -1"</code></pre>
+[1] "moving x=2 by step of size 1"</code></pre>
 </div>
 </div>
 </section>
@@ -1356,7 +1334,7 @@ $group3
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'h.v',
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
