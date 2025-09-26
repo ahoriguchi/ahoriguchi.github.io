@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Akira Horiguchi">
-  <title>s2: R code execution</title>
+  <title>2.2 R code execution</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">s2: R code execution</h1>
+  <h1 class="title">2.2 R code execution</h1>
   <p class="subtitle">STA141A: Fundamentals of Statistical Data Science</p>
 
 <div class="quarto-title-authors">
@@ -578,7 +578,7 @@ Akira Horiguchi
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
 <span id="cb15-2"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 10  2  3  8  7</code></pre>
+<pre><code>[1]  1 10  8  7  3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(y))  <span class="co"># sets an empty numeric vector of length 5</span></span>
 <span id="cb17-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -586,7 +586,7 @@ Akira Horiguchi
 <span id="cb17-4"><a href=""></a>}</span>
 <span id="cb17-5"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 100   4   9  64  49</code></pre>
+<pre><code>[1]   1 100  64  49   9</code></pre>
 </div>
 </div>
 </section>
@@ -596,7 +596,7 @@ Akira Horiguchi
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 10  2  3  8  7</code></pre>
+<pre><code>[1]  1 10  8  7  3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>z <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb21-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -604,15 +604,15 @@ Akira Horiguchi
 <span id="cb21-4"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"the cumulative sum of the vector y at index"</span>, i, <span class="st">"is:"</span>, z))</span>
 <span id="cb21-5"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 10"
-[1] "the cumulative sum of the vector y at index 2 is: 12"
-[1] "the cumulative sum of the vector y at index 3 is: 15"
-[1] "the cumulative sum of the vector y at index 4 is: 23"
-[1] "the cumulative sum of the vector y at index 5 is: 30"</code></pre>
+<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 1"
+[1] "the cumulative sum of the vector y at index 2 is: 11"
+[1] "the cumulative sum of the vector y at index 3 is: 19"
+[1] "the cumulative sum of the vector y at index 4 is: 26"
+[1] "the cumulative sum of the vector y at index 5 is: 29"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
+<pre><code>[1] 29</code></pre>
 </div>
 </div>
 </section>
@@ -680,9 +680,9 @@ Akira Horiguchi
 <span id="cb33-5"><a href=""></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> curr_step  <span class="co"># uses previous iteration's value of x</span></span>
 <span id="cb33-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size 1"</code></pre>
+<pre><code>[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size -1"
+[1] "moving x=-2 by step of size -1"</code></pre>
 </div>
 </div>
 </section>
