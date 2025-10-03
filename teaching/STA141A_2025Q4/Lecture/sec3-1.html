@@ -1086,7 +1086,7 @@ Akira Horiguchi
 <p>adds new column(s) to the data frame using values from extant columns.</p>
 <div class="cell" data-output.lines="9">
 <div class="sourceCode cell-code" id="cb76" data-code-line-numbers="3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb76-2"><a href=""></a>  <span class="fu">select</span>(air_time, distance, air_time) <span class="sc">|&gt;</span></span>
+<span id="cb76-2"><a href=""></a>  <span class="fu">select</span>(air_time, distance) <span class="sc">|&gt;</span></span>
 <span id="cb76-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
 <span id="cb76-4"><a href=""></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1338,9 +1338,11 @@ Akira Horiguchi
 <li>Each observation is a song.</li>
 <li>First three columns (<code>artist</code>, <code>track</code>, <code>date.entered</code>) describe the song.</li>
 <li>The next 76 columns (<code>wk1</code>, <code>wk2</code>, …, <code>wk76</code>) say song’s rank in each week.</li>
-<li>But week should be a <em>variable</em>.</li>
-<li>Each observation should be <code>artist-track-date.entered-week-rank</code>.</li>
-<li>To make it tidy, each observation should be a row. Need to make the dataframe longer.</li>
+</ul>
+<p>If we want each observation to be a week ranking…</p>
+<ul>
+<li>Each observation should be <code>artist - track - date.entered - week - rank</code>.</li>
+<li>Each observation should be a row. Need to lengthen the dataframe.</li>
 </ul>
 <!-- - The column names (`week`) are actually a *variable*, while the cell values are another variable (the `rank`) -->
 </section>
