@@ -408,6 +408,7 @@ Akira Horiguchi
 <ul>
 <li><a href="#/operating-on-logical-vectors" id="/toc-operating-on-logical-vectors">Operating on logical vectors</a></li>
 <li><a href="#/operating-on-numeric-vectors" id="/toc-operating-on-numeric-vectors">Operating on numeric vectors</a></li>
+<li><a href="#/operating-on-character-vectors" id="/toc-operating-on-character-vectors">Operating on character vectors</a></li>
 </ul>
 </nav>
 </section>
@@ -800,12 +801,12 @@ Akira Horiguchi
 <p>Problem: <code>R</code> is treating <code>dep_time</code> and <code>sched_dep_time</code> as integers, not time!</p>
 <ul>
 <li>5:54 is only 6 minutes away from 6:00, rather than 46.</li>
-<li>We might discuss later (after midterm 2) how to properly treat dates and times.</li>
+<li>See Ch 17 (Dates and times) of R4DS2 on how to properly treat dates and times.</li>
 </ul>
 </section>
 <section id="missing-values-in-boolean-algebra" class="slide level2">
 <h2>Missing values in Boolean algebra</h2>
-<p>Logical and missing values interact in logical, but maybe counterintuitive ways.</p>
+<p>Logical and missing values interact in logical ways, but requires some thought.</p>
 <ul>
 <li>Think of <code>NA</code> as “unknown” logical value.</li>
 </ul>
@@ -1644,6 +1645,37 @@ object length</code></pre>
 </div>
 </div>
 </div></div>
+</section></section>
+<section>
+<section id="operating-on-character-vectors" class="title-slide slide level1 center">
+<h1>Operating on character vectors</h1>
+
+</section>
+<section id="glueglue" class="slide level2">
+<h2><code>glue::glue()</code></h2>
+<p>Similar to f-strings in Python. Can be less clunky than R’s <code>paste()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href=""></a><span class="fu">library</span>(glue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href=""></a><span class="fu">tibble</span>(</span>
+<span id="cb120-2"><a href=""></a>  <span class="at">Student =</span> <span class="fu">c</span>(<span class="st">"Ant"</span>, <span class="st">"Bug"</span>, <span class="st">"Cat"</span>, <span class="st">"Ant"</span>, <span class="st">"Bug"</span>, <span class="st">"Cat"</span>),</span>
+<span id="cb120-3"><a href=""></a>  <span class="at">Subject =</span> <span class="fu">c</span>(<span class="st">"Math"</span>, <span class="st">"Math"</span>, <span class="st">"Math"</span>, <span class="st">"Chem"</span>, <span class="st">"Chem"</span>, <span class="st">"Chem"</span>),</span>
+<span id="cb120-4"><a href=""></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">95</span>)</span>
+<span id="cb120-5"><a href=""></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb120-6"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Msg =</span> <span class="fu">glue</span>(<span class="st">'Superstar {Student} scored {Score} in {Subject}'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  Student Subject Score Msg                            
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;glue&gt;                         
+1 Ant     Math       85 Superstar Ant scored 85 in Math
+2 Bug     Math       92 Superstar Bug scored 92 in Math
+3 Cat     Math       88 Superstar Cat scored 88 in Math
+4 Ant     Chem       90 Superstar Ant scored 90 in Chem
+5 Bug     Chem       78 Superstar Bug scored 78 in Chem
+6 Cat     Chem       95 Superstar Cat scored 95 in Chem</code></pre>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://ahoriguchi.github.io/teaching/STA141A_2025Q4/website.html" class="uri">https://ahoriguchi.github.io/teaching/STA141A_2025Q4/website.html</a></p>
