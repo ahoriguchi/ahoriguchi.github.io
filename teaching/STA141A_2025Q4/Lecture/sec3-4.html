@@ -494,10 +494,11 @@ Akira Horiguchi
 </div>
 </div></div>
 </section>
-<section id="lets-combine-1" class="slide level2">
-<h2>Let’s combine</h2>
+<section id="how-do-we-augment-the-data-in-exams_a" class="slide level2">
+<h2>How do we augment the data in <code>exams_a</code>…</h2>
+<p>…with the students’ majors and gpa from the table <code>info_a</code>?</p>
 <div class="columns">
-<div class="column" style="width:30%;">
+<div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>exams_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -509,8 +510,7 @@ Akira Horiguchi
 3 Cat        85    70</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:70%;">
-<p>Suppose we want to augment this data in <code>exams_a</code> with the students’ majors and gpa from the following table:</p>
+</div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>info_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -525,39 +525,67 @@ Akira Horiguchi
 </div>
 </div>
 </div></div>
-<p>How do we combine <code>exams_a</code> and <code>info_a</code>?</p>
 <ul>
 <li>If we look at the data frames and think about what each row corresponds to, it becomes clear that <code>rbind()</code> or <code>cbind()</code> won’t work for this task.</li>
+<li>Combining two tables requires specifying the <em>relation</em>ship between them.</li>
+<li>Many valid relations; the appropriate one(s) will be dictated by what the user knows about the data and about the end goal of the analysis.</li>
 </ul>
+<!-- ## Let's combine -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="30%"} -->
+<!-- ```{r} -->
+<!-- exams_a -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="70%"} -->
+<!-- Suppose we want to augment this data in `exams_a` with the students' majors and gpa from the following table: -->
+<!-- ```{r echo=FALSE} -->
+<!-- info_a <- tribble( -->
+<!--   ~student, ~major, ~gpa, -->
+<!--   "Ant", "Math", 3.5, -->
+<!--   "Bug", "CS", 2.5, -->
+<!--   "Cat", "EE", 1.5, -->
+<!--   "Dog", "Math", 2.0, -->
+<!--   "Ewe", "CS", 3.0, -->
+<!-- ) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- info_a -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::::: -->
+<!-- How do we combine `exams_a` and `info_a`? -->
+<!-- -   If we look at the data frames and think about what each row corresponds to, it becomes clear that `rbind()` or `cbind()` won't work for this task. -->
 </section></section>
 <section>
 <section id="joins" class="title-slide slide level1 center">
 <h1>Joins</h1>
 <p>Collectively, multiple tables of data are called <strong>relational data</strong> because it is the relations, not just the individual datasets, that are important.</p>
-<p>Relations are always defined between a pair of tables. All other relations are built up from this simple idea: the relations of three or more tables are always a property of the relations between each pair.</p>
-<!-- To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data: -->
-<p>Here we will <strong>join</strong> the two tables together. First we need to understand how two tables can be connected through a pair of keys.</p>
-</section>
-<section id="aside" class="slide level2">
-<h2>Aside</h2>
+<ul>
+<li>Relations are always defined between a pair of tables.</li>
+<li>The relations of three or more tables are always a property of the relations between each pair.</li>
+</ul>
+<!-- The most common place to find relational data is in a relational database management system, a term that encompasses almost all modern databases.  -->
+<!-- - If you've used a database before, you've almost certainly used SQL --- Structured Query Language. -->
+<!-- - Here we will **join** the two tables together. First we need to understand how two tables can be connected through a pair of keys. -->
+<!-- ## Aside -->
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:70%;">
 <p>The most common place to find relational data is in a relational database management system, a term that encompasses almost all modern databases.</p>
 <ul>
 <li>If you’ve used a database before, you’ve almost certainly used SQL — Structured Query Language.</li>
 </ul>
-</div><div class="column fragment" style="width:50%;">
+</div><div class="column fragment" style="width:30%;">
 <p><img data-src="GoogleAd.png"></p>
 </div></div>
 </section>
 <section id="keys" class="slide level2">
 <h2>Keys</h2>
-<p>In a tidy data frame, each row corresponds to an observation. How can we index these observations? What variables uniquely identify each row in a table?</p>
+<!-- How can we index these observations? What variables uniquely identify each row in a table? -->
+<p>Here we will <strong>join</strong> the two tables together. First we need to understand how two tables can be connected through a pair of keys.</p>
 <ul>
-<li>If each observation can be uniquely identified by a single variable, the variable is called a <strong>primary key</strong>.
-<ul>
+<li>If each observation can be uniquely identified by a single variable, the variable is called a <strong>primary key</strong>.</li>
 <li>If each observation requires multiple variables to be uniquely identified, the combination of variables is called a <strong>compound key</strong>.</li>
-</ul></li>
 </ul>
 <p><strong>Exercise</strong>: what are the primary keys for the datasets <code>info_a</code> and <code>exams_a</code>?</p>
 <div class="columns">
@@ -588,6 +616,7 @@ Akira Horiguchi
 </div>
 </div>
 </div></div>
+<!-- - Motivates a tidy principle: each row corresponds to an observation.  -->
 </section>
 <section id="primary-key" class="slide level2">
 <h2>Primary key</h2>
@@ -651,11 +680,14 @@ Akira Horiguchi
 <section>
 <section id="basic-joins" class="title-slide slide level1 center">
 <h1>Basic joins</h1>
-
+<p>Two categories of joins:</p>
+<ul>
+<li><strong>mutating joins</strong>: combines variables from two data frames. (make bigger)</li>
+<li><strong>filtering joins</strong>: filter the rows of a data frame using another. (make smaller)</li>
+</ul>
 </section>
-<section id="two-categories-of-joins-mutating-joins-and-filtering-joins" class="slide level2">
-<h2>Two categories of joins: <strong>mutating joins</strong> and <strong>filtering joins</strong></h2>
-<p>For our examples, we will use</p>
+<section id="for-our-examples-we-will-use" class="slide level2">
+<h2>For our examples, we will use</h2>
 <div class="columns">
 <div class="column" style="width:33%;">
 <div class="cell">
