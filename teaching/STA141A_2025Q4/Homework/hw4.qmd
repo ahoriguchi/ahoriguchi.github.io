@@ -44,6 +44,8 @@ During the discussion sessions, you may be asked to present and share your solut
 
 # 1. Cross-validation
 
+(Code examples: <https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch5-resample-lab.html>)
+
 We perform cross-validation on a simulated data set.
 
 ```{r}
@@ -107,6 +109,8 @@ y <- 1 + x -  x^2  + rnorm(100, 0, 0.1)
 
 
 # 2. Linear Regression with a generated dataset
+
+(Code examples: <https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch3-linreg-lab.html>)
 
 ```{r}
 GenerateData_v1 <- function(n) {
