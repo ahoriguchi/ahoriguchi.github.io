@@ -77,6 +77,8 @@ set.seed(2025*4)  # do not change this; this helps to reproduce the "random" res
 
 # 1. Cross-validation
 
+(Code examples: <https://hastie.su.domains/ISLR2/Labs/Rmarkdown_Notebooks/Ch5-resample-lab.html>)
+
 We perform cross-validation on a simulated data set.
 
 ```{r}
