@@ -68,72 +68,20 @@ library(titanic)  # run every time
 
 ```
 
-\newpage
-
-# 2. Linear Discriminant Analysis
-
-We now perform Linear Discriminant Analysis (LDA) on a subset of the `iris` dataset. The `iris` data set is a data frame with 150 samples (rows) and 5 variables (columns) named `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, and `Species`.
-
-
-(a) Create a subset of the `iris` data frame, where the rows for the species `virginica` and the columns  `Sepal.Length` and `Petal.Width` are excluded.
-
-```{r}
-### Your Solution (Code)
-
-
-
-```
-
-\vskip 0.5in
-
-(b) Create a scatter plot, where `Petal.Length` is plotted against `Sepal.Width`, and where each dot is colored by its corresponding species. 
-
-```{r}
-### Your Solution (Code)
-
-
-
-```
-
-\vskip 0.5in
-
-(c) Perform LDA using the created subset, and print the fitted model. Explain the values of `Prior probabilities of groups`, `Group means`, `Coefficients of linear discriminants`. (Hint: The package `MASS` is required for the `lda()` function)
-
-```{r}
-### Your Solution (Code)
-
-
-
-```
-
-\vskip 0.5in
-
-(d) Create the plot in (b) and add the LDA line that discriminates between the two classes.
-
-```{r}
-### Your Solution (Code)
-
-
-
-```
-
-\vskip 0.5in
-
-(e) Obtain the predicted class using the fitted model on the created training dataset. Further, print the confusion matrix. What is the train accuracy for this classifier? (`help(predict)`)
-
-```{r}
-### Your Solution (Code)
-
-
-
-```
-
 
 \newpage 
 
-# 3. Logistic Regression by hand
+# 2. Logistic Regression by hand
 
 We would like to individuals with a certain balance to the class ”default” or to ”no default” by using logistic regression. We calculated the estimates $\hat{\beta}_0 = -10.4$ and $\hat{\beta}_1 = 0.007$ for the true, but unknown parameters $\beta_0$ and $\beta_1$ in the logistic regression model, respectively. To which class would you assign individuals with balances $X=\$1,000$ and $X = \$1,750$, given that we conservatively assign individuals with balance $X = x$ to the class "default" if $P(X = x) \geq 0.2$.
+
+\newpage
+
+
+# 3. Odds by hand
+
+ISLR2 Section 4.8 Exercise 9
+
 
 \newpage
 
@@ -141,6 +89,7 @@ We would like to individuals with a certain balance to the class ”default” o
 # 4. Log odds by hand
 
 ISLR2 Section 4.8 Exercise 12
+
 
 \newpage
 
