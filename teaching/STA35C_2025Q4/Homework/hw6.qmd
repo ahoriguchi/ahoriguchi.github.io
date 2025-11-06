@@ -40,7 +40,7 @@ During the discussion sessions, you may be asked to present and share your solut
 
 \newpage
 
-# 1. LASSO coding
+# 1. LASSO experiment
 
 ISLR2 Section 6.6 Exercise 8a, b, e
 
