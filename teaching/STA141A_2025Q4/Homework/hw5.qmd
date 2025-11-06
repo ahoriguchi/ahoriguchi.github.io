@@ -60,17 +60,7 @@ library(titanic)  # run every time
 
 \vskip 1in
 
-(b) Find the confusion matrix of the train data. Calculate the accuracy.
-
-```{r}
-### Your Solution (Code)
-
-
-```
-
-\vskip 1in
-
-(c) Predict the survival status (binary) using the `titanic_test` dataset. What portion of passengers are predicted to survive?
+(b) Predict the survival status (binary) using the `titanic_test` dataset. What portion of passengers are predicted to survive?
 
 ```{r}
 ### Your Solution (Code)
@@ -80,7 +70,7 @@ library(titanic)  # run every time
 
 \newpage
 
-# 2. Linear Discrimant Analysis
+# 2. Linear Discriminant Analysis
 
 We now perform Linear Discriminant Analysis (LDA) on a subset of the `iris` dataset. The `iris` data set is a data frame with 150 samples (rows) and 5 variables (columns) named `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, and `Species`.
 
