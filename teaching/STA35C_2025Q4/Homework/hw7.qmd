@@ -1,5 +1,5 @@
 ---
-title: 'STA 35C: Homework 6'
+title: 'STA 35C: Homework 7'
 subtitle: 'Instructor: Akira Horiguchi'
 author: "Student name: ABCDE FGHIJ; Student ID: 123456789"
 date: "2025-11-19 23:59:00 PDT"
@@ -83,58 +83,14 @@ library(titanic)  # run every time
 
 # 2. Confusion matrix by hand
 
-We assigned 80 individuals to a certain class based on their numbers of hours they regularly do sports a week. Afterwards, we asked them if they feel down or balanced, in other words, if they belong to class "I" (Null) or class "II" (Non-null). We obtained the confusion matrix:\
+We assigned 80 individuals to a certain class based on their numbers of hours they regularly do sports a week. Afterwards, we asked them if they feel down or balanced, in other words, if they belong to class "I" (Null) or class "II" (Non-null). We obtained the confusion matrix:
 
-```         
+    
 | Predicted / True |   I |  II | Total |
 |-----------------:|----:|----:|:-----:|
 |                I |  35 |   8 |  43   |
 |               II |   3 |  34 |  37   |
 |            Total |  38 |  42 |  80   |
 
-: Confusion matrix
-```
 
 Calculate the accuracy, the false positive rate, the true positive rate, the positive predictive value, and the negative predictive value.
-
-\newpage
-
-# 3. Basis functions
-
-(a) Suppose we fit a curve with basis functions $b_1(X) = X$ and 
-$b_2(X) = (X - 1)^2 1_{[1,\infty)}(X).$ We fit the linear regression model 
-\begin{align}
-      Y = \beta_0 + \beta_1b_1(X) + \beta_2b_2(X) + \varepsilon,
-\end{align} 
-and obtain the coefficient estimates $\hat{\beta}_0 = 1, \hat{\beta}_1 = 1, \hat{\beta}_2 = -2.$ Sketch the estimated curve for all $X \in [-1, 2]$ by evaluating it at $X=-1, X=-0.75, \dots, X=2,$ and connect the values in a meaningful way.
-
-\vskip 7cm
-
-(b) Suppose we fit a curve with basis functions 
-$b_1(X) = 1_{[0,2)}(X) - X1_{[1,2)}(X), b_2(X) = (X - 3)1_{[2,3)}(X), b_3(X) = X^21_{[1,3)}(X).$ 
-We fit the linear regression model 
-\begin{align}
-  Y = \beta_0 + \beta_1b_1(X) + \beta_2b_2(X) + \beta_3b_3(X) + \varepsilon,
-\end{align} 
-and obtain the coefficient estimates 
-$\hat{\beta}_0 = 5, \hat{\beta}_1 = 1, \hat{\beta}_2 = 3, \hat{\beta}_3 = 1.$ 
-Sketch the estimated curve for all $X \in [-0.5, 3.5]$ by evaluating it at $X=-0.5, X=-0.25, \dots, X=3.5$ and connect the values in a meaningful way.
-
-
-\newpage
-
-# 4. Applied
-
-ISLR Chapter 7, exercise 6. In this exercise, you will further analyze the `Wage` data set considered throughout this chapter.
-
-(a) Perform polynomial regression to predict `wage` using `age`. Use cross-validation to select the optimal degree $d$ for the polynomial. What degree was chosen? Make a plot of the resulting polynomial fit to the data.
-
-```{r}
-### Your Solution (Code)
-
-
-```
-
-\vskip 7cm
-
-(b) Fit a step function to predict `wage` using `age`, and perform cross-validation to choose the optimal number of cuts. Make a plot of the fit obtained.
