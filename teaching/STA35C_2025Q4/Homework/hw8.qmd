@@ -40,57 +40,11 @@ During the discussion sessions, you may be asked to present and share your solut
 
 \newpage
 
-# 1. Basis functions
-
-(a) Suppose we fit a curve with basis functions $b_1(X) = X$ and 
-$b_2(X) = (X - 1)^2 1_{[1,\infty)}(X).$ We fit the linear regression model 
-\begin{align}
-      Y = \beta_0 + \beta_1b_1(X) + \beta_2b_2(X) + \varepsilon,
-\end{align} 
-and obtain the coefficient estimates $\hat{\beta}_0 = 1, \hat{\beta}_1 = 1, \hat{\beta}_2 = -2.$ Sketch the estimated curve for all $X \in [-1, 2]$ by evaluating it at $X=-1, X=-0.75, X=-0.5, \dots, X=1.75, X=2,$ and connect the values in a meaningful way.
-
-```{r}
-### Your Solution (Code)
-
-
-```
-
-\vskip 7cm
-
-(b) Suppose we fit a curve with basis functions 
-$b_1(X) = 1_{[0,2)}(X) - X1_{[1,2)}(X), b_2(X) = (X - 3)1_{[2,3)}(X), b_3(X) = X^21_{[1,3)}(X).$ 
-We fit the linear regression model 
-\begin{align}
-  Y = \beta_0 + \beta_1b_1(X) + \beta_2b_2(X) + \beta_3b_3(X) + \varepsilon,
-\end{align} 
-and obtain the coefficient estimates 
-$\hat{\beta}_0 = 5, \hat{\beta}_1 = 1, \hat{\beta}_2 = 3, \hat{\beta}_3 = 1.$ 
-Sketch the estimated curve for all $X \in [-0.5, 3.5]$ by evaluating it at $X=-0.5, X=-0.25, X=0, \dots, X=3.25, X=3.5$ and connect the values in a meaningful way.
-
-```{r}
-### Your Solution (Code)
-
-
-```
-
-
-\newpage
-
-# 2. Applied
+# 1. Applied
 
 ISLR Chapter 7, exercise 6. In this exercise, you will further analyze the `Wage` data set considered throughout this chapter.
 
-(a) Perform polynomial regression to predict `wage` using `age`. Use cross-validation to select the optimal degree $d$ for the polynomial. What degree was chosen? Make a plot of the resulting polynomial fit to the data.
-
-```{r}
-### Your Solution (Code)
-
-
-```
-
-\vskip 7cm
-
-(b) Fit a step function to predict `wage` using `age`, and perform cross-validation to choose the optimal number of cuts. Make a plot of the fit obtained.
+Perform polynomial regression to predict `wage` using `age`. Use cross-validation to select the optimal degree $d$ for the polynomial. What degree was chosen? Make a plot of the resulting polynomial fit to the data.
 
 ```{r}
 ### Your Solution (Code)
@@ -100,7 +54,7 @@ ISLR Chapter 7, exercise 6. In this exercise, you will further analyze the `Wage
 
 \newpage
 
-# 3. $K$-means clustering
+# 2. $K$-means clustering
 
 Recall the $K$-means clustering algorithm. Consider the following dataset where $n=6$ and $p=2$:
 ```{r echo=FALSE}
@@ -109,3 +63,9 @@ Recall the $K$-means clustering algorithm. Consider the following dataset where 
 
 Consider the clustering induced by using `init` as the cluster labels. Using this clustering as step 1 of the algorithm, perform each iteration of step 2 of the algorithm until the induced clusters stop changing.
 
+
+\newpage
+
+# 3. $K$-means clustering (applied)
+
+ISLR Chapter 12, exercise 7 (a), (c), (d), and (e). In this problem, you will generate simulated data, and then perform PCA and K-means clustering on the data.
