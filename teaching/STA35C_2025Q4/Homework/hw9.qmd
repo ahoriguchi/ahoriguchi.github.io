@@ -1,5 +1,5 @@
 ---
-title: 'STA 35C: Homework 8'
+title: 'STA 35C: Homework 9'
 subtitle: 'Instructor: Akira Horiguchi'
 author: "Student name: ABCDE FGHIJ; Student ID: 123456789"
 date: "2025-11-26 23:59:00 PDT"
@@ -38,41 +38,43 @@ There are many possible ways to write `R` code that is needed to answer the ques
 
 During the discussion sessions, you may be asked to present and share your solutions.
 
+**There might be more questions to come. I am posting these just in case you want to get started early or have already started these problems.**
+
 \newpage
 
-# 1. Applied
+# 1. $K$-means clustering
 
-ISLR Chapter 7, exercise 6. In this exercise, you will further analyze the `Wage` data set considered throughout this chapter.
-
-Perform polynomial regression to predict `wage` using `age`. Use cross-validation to select the optimal degree $d$ for the polynomial. What degree was chosen? Make a plot of the resulting polynomial fit to the data.
-
-```{r}
-### Your Solution (Code)
-
-
+Recall the $K$-means clustering algorithm. Consider the following dataset where $n=6$ and $p=2$:
+```{r echo=FALSE}
+( toy <- data.frame(init=c(1,1,2,1,2,2), x1=c(1,0,0,5,6,6), x2=c(4,3,4,2,2,0)) ) |> kableExtra::kable()
 ```
 
+Consider the clustering induced by using `init` as the cluster labels. Using this clustering as step 1 of the algorithm, perform each iteration of step 2 of the algorithm until the induced clusters stop changing.
+
+
 \newpage
 
-# 2. Counting subsets
+# 2. $K$-means clustering (code)
 
-In lecture (Monday 11/24), we mentioned that 
+ISLR Chapter 12, exercise 10 (a), (c), (d), and (e). In this problem, you will generate simulated data, and then perform $K$-means clustering on the data.
 
-- $2^n$ is the number of possible subsets of a set with $n$ items;
-- $\binom{n}{K}$ is the number of possible subsets **of size $K$** of a set with $n$ items.
+(i) Generate a simulated data set with 20 observations in each of
+three classes (i.e. 60 observations total), and 50 variables.
 
-The formula for "$n$ choose $K$" is $$\binom{n}{K} = \frac{n!}{K! (n-K)!}$$ and can be computed using the R function `choose()`. The exclamation point is called "factorial", so $n!$ is "$n$ factorial"; this can be computed using the R function `factorial()`.
+Hint: There are a number of functions in R that you can use to
+generate data. One example is the `rnorm()` function; `runif()` is
+another option. Be sure to add a mean shift to the observations
+in each class so that there are three distinct classes.
 
-(These are identities/quantities that are fundamental to counting, which itself is fundamental to probability and hence will be helpful for when you take either MAT 135A or STA 131A. Thus I want to make sure you understand them.)
+(ii) Perform $K$-means clustering of the observations with $K = 3$. How well do the clusters that you obtained in K-means clustering compare to the true class labels?
 
-(a) Compute the number of possible subsets of size $0$ of a set with $50$ items. How many digits are there in this number? *Hint: you do not need to use R to compute this.* Verify your solution using R.
+Hint: You can use the `table()` function in R to compare the true
+class labels to the class labels obtained by clustering. Be careful
+how you interpret the results: $K$-means clustering will arbitrarily
+number the clusters, so you cannot simply check whether the true
+class labels and clustering labels are the same.
 
-(b) Compute the number of possible subsets of size $1$ of a set with $50$ items. How many digits are there in this number? *Hint: you do not need to use R to compute this.* Verify your solution using R.
+(iii) Perform $K$-means clustering with $K = 2$. Describe your results.
 
-(c) Compute the number of possible subsets of size $2$ of a set with $50$ items. How many digits are there in this number? Do this calculation by hand (or by TeX), and verify your solution using R. For examples of doing this calculation by hand, you can watch this video [https://www.youtube.com/watch?v=nMQQUaa3d2c](https://www.youtube.com/watch?v=nMQQUaa3d2c). 
-
-(d) Compute the number of possible subsets of size $3$ of a set with $50$ items. How many digits are there in this number? Do this calculation by hand (or by TeX), and verify your solution using R.
-
-(e) Compute the number of possible subsets of a set with $50$ items. How many digits are there in this number? No need to do this calculation by hand -- you can just use R for this.
-
-(f) Use the `sapply()` function to compute $\sum_{K=0}^{50} \binom{n}{K}$. Use R to verify that it equals your solution to part (e).
+(iv) Now perform $K$-means clustering with $K = 4$, and describe your
+results.
