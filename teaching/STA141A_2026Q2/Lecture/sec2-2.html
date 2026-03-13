@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="sec2-2_files/libs/revealjs/dist/theme/quarto-48d7e74a2b62b3f7151fe5000c925ee6.css">
+  <link rel="stylesheet" href="sec2-2_files/libs/revealjs/dist/theme/quarto-bb40d2f65da2b5b175496c641c30d208.css">
   <link href="sec2-2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="sec2-2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="sec2-2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -383,7 +383,7 @@ Akira Horiguchi
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
 <span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  5  4  3 10  9</code></pre>
+<pre><code>[1] 6 7 1 5 3</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(y))  <span class="co"># sets an empty numeric vector of length 5</span></span>
 <span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -391,7 +391,7 @@ Akira Horiguchi
 <span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb18-5"><a href="" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  25  16   9 100  81</code></pre>
+<pre><code>[1] 36 49  1 25  9</code></pre>
 </div>
 </div>
 </section>
@@ -401,7 +401,7 @@ Akira Horiguchi
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  5  4  3 10  9</code></pre>
+<pre><code>[1] 6 7 1 5 3</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -409,15 +409,15 @@ Akira Horiguchi
 <span id="cb22-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"the cumulative sum of the vector y at index"</span>, i, <span class="st">"is:"</span>, z))</span>
 <span id="cb22-5"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 5"
-[1] "the cumulative sum of the vector y at index 2 is: 9"
-[1] "the cumulative sum of the vector y at index 3 is: 12"
-[1] "the cumulative sum of the vector y at index 4 is: 22"
-[1] "the cumulative sum of the vector y at index 5 is: 31"</code></pre>
+<pre><code>[1] "the cumulative sum of the vector y at index 1 is: 6"
+[1] "the cumulative sum of the vector y at index 2 is: 13"
+[1] "the cumulative sum of the vector y at index 3 is: 14"
+[1] "the cumulative sum of the vector y at index 4 is: 19"
+[1] "the cumulative sum of the vector y at index 5 is: 22"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 31</code></pre>
+<pre><code>[1] 22</code></pre>
 </div>
 </div>
 </section>
@@ -462,13 +462,9 @@ Akira Horiguchi
 <span id="cb31-5"><a href="" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> curr_step  <span class="co"># uses previous iteration's value of x</span></span>
 <span id="cb31-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size -1"
+<pre><code>[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size 1"
 [1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
 [1] "moving x=1 by step of size -1"
 [1] "moving x=0 by step of size -1"
 [1] "moving x=-1 by step of size -1"
@@ -493,11 +489,17 @@ Akira Horiguchi
 <span id="cb34-5"><a href="" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> curr_step  <span class="co"># uses previous iteration's value of x</span></span>
 <span id="cb34-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "moving x=0 by step of size 1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size -1"
-[1] "moving x=1 by step of size 1"
-[1] "moving x=2 by step of size 1"</code></pre>
+<pre><code>[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size -1"
+[1] "moving x=-2 by step of size 1"
+[1] "moving x=-1 by step of size 1"
+[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size 1"
+[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size 1"
+[1] "moving x=0 by step of size -1"
+[1] "moving x=-1 by step of size -1"
+[1] "moving x=-2 by step of size -1"</code></pre>
 </div>
 </div>
 </section>
