@@ -819,11 +819,12 @@ Akira Horiguchi
 1             872          695</code></pre>
 </div>
 </div>
+<!-- #| code-line-numbers: "2" -->
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb70-2"><a href=""></a>  <span class="fu">group_by</span>(origin) <span class="sc">|&gt;</span></span>
-<span id="cb70-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">median_distance =</span> <span class="fu">median</span>(distance, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb70-4"><a href=""></a>            <span class="at">max_air_time =</span> <span class="fu">max</span>(air_time, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin) <span class="sc">|&gt;</span></span>
+<span id="cb70-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median_distance =</span> <span class="fu">median</span>(distance, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb70-4"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_air_time =</span> <span class="fu">max</span>(air_time, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   origin median_distance max_air_time
@@ -855,11 +856,12 @@ Akira Horiguchi
 1             872          695</code></pre>
 </div>
 </div>
+<!-- #| code-line-numbers: "2" -->
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb74-2"><a href=""></a>  <span class="fu">group_by</span>(origin, dest) <span class="sc">|&gt;</span>  <span class="co"># can group by multiple variables</span></span>
-<span id="cb74-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">median_distance =</span> <span class="fu">median</span>(distance, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb74-4"><a href=""></a>            <span class="at">max_air_time =</span> <span class="fu">max</span>(air_time, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb74-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, dest) <span class="sc">|&gt;</span>  <span class="co"># can group by multiple variables</span></span>
+<span id="cb74-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median_distance =</span> <span class="fu">median</span>(distance, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb74-4"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_air_time =</span> <span class="fu">max</span>(air_time, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 224 × 4
 # Groups:   origin [3]
@@ -887,11 +889,12 @@ Akira Horiguchi
 <section id="mutate-1" class="slide level2">
 <h2><code>mutate()</code></h2>
 <p>adds new column(s) to the data frame using values from extant columns.</p>
+<!-- #| code-line-numbers: "3-4" -->
 <div class="cell" data-output.lines="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76" data-code-line-numbers="3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb76-2"><a href=""></a>  <span class="fu">select</span>(air_time, distance) <span class="sc">|&gt;</span></span>
-<span id="cb76-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb76-4"><a href=""></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb76-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(air_time, distance) <span class="sc">|&gt;</span></span>
+<span id="cb76-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb76-4"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 4
    air_time distance hours mi_per_hour
@@ -910,11 +913,12 @@ Akira Horiguchi
 <section id="mutate-2" class="slide level2">
 <h2><code>mutate()</code></h2>
 <p>adds new column(s) to the data frame using values from extant columns.</p>
+<!-- #| code-line-numbers: "4" -->
 <div class="cell" data-output.lines="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb78-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb78-3"><a href=""></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours, </span>
-<span id="cb78-4"><a href=""></a>         <span class="at">.keep =</span> <span class="st">"used"</span>)  <span class="co"># retains only the columns used in creating new columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb78-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb78-3"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours, </span>
+<span id="cb78-4"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="at">.keep =</span> <span class="st">"used"</span>)  <span class="co"># retains only the columns used in creating new columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 4
    air_time distance hours mi_per_hour
@@ -933,11 +937,12 @@ Akira Horiguchi
 <section id="mutate-3" class="slide level2">
 <h2><code>mutate()</code></h2>
 <p>adds new column(s) to the data frame using values from extant columns.</p>
+<!-- #| code-line-numbers: "4" -->
 <div class="cell" data-output.lines="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href=""></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb80-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb80-3"><a href=""></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours, </span>
-<span id="cb80-4"><a href=""></a>         <span class="at">.keep =</span> <span class="st">"none"</span>)  <span class="co"># retains only grouping variables and the newly created columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb80-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb80-3"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="at">mi_per_hour =</span> distance <span class="sc">/</span> hours, </span>
+<span id="cb80-4"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="at">.keep =</span> <span class="st">"none"</span>)  <span class="co"># retains only grouping variables and the newly created columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 2
    hours mi_per_hour
