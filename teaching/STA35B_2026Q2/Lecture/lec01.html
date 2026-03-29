@@ -237,15 +237,16 @@ Akira Horiguchi
 <section id="course-content" class="slide level2 scrollable">
 <h2>Course content</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
+<div class="column" style="width:50%;">
 <ol type="1">
 <li><strong>Advanced R</strong></li>
 </ol>
 <ul>
 <li>dplyr, transforming vectors, numbers, strings, factors, dates, times</li>
-<li>ggplot visualizations</li>
+<li>ggplot2 visualizations</li>
 <li>Functions</li>
 </ul>
+</div><div class="column" style="width:50%;">
 <ol start="2" type="1">
 <li><strong>Correlation, regression, and inference</strong></li>
 </ol>
@@ -254,8 +255,7 @@ Akira Horiguchi
 <li>Analysis of variance</li>
 <li>Permutation tests</li>
 </ul>
-</div><div class="column" style="width:40%;">
-<p>Prerequisite(s): see <a href="https://statistics.ucdavis.edu/expanded-descriptions/35B">Expanded course description</a> <!-- Prerequisite(s): one of the following two options: --></p>
+<p><!-- Prerequisite(s): see [Expanded course description](https://statistics.ucdavis.edu/expanded-descriptions/35B) --> <!-- Prerequisite(s): one of the following two options: --></p>
 <!-- -   STA 013 (C- or better) or STA 013Y (C- or better) or ECS 032A (C- or better) -->
 <!-- -   STA 035A (C- or better) or STA 032 (C- or better) or STA 100 (C- or better) -->
 <!-- NOTE: If you only took STA 13, this will be a difficult course! -->
@@ -331,10 +331,10 @@ Akira Horiguchi
 </ul>
 <p>Example default weekly schedule (6 hours/week outside of class/discussion)</p>
 <ul>
-<li><em>Monday</em>: study homework solutions (1 hour)</li>
-<li><em>Monday</em>-<em>Thursday</em>: work on homework (3 hours)</li>
-<li><em>Thursday</em>: work on exercises during discussion section, ask questions</li>
-<li><em>Friday</em>: submit homework</li>
+<li><em>Thursday</em>: study homework solutions (1 hour)</li>
+<li><em>Thursday</em>: work on exercises during discussion section, ask questions to TA</li>
+<li><em>Friday</em>-<em>Wed</em>: work on homework (3 hours), go to my office hours if needed</li>
+<li><em>Wednesday</em>: submit homework</li>
 </ul>
 <p>This leaves 2 hours for office hours, extra studying, etc.</p>
 <ul>
@@ -419,32 +419,28 @@ Akira Horiguchi
 <li>These will not be executed</li>
 </ul></li>
 </ul>
+<!-- ## R Markdown (more details [here](https://rmarkdown.rstudio.com/)) or Quarto (more details [here](https://quarto.org/)) -->
 </section>
-<section id="r-markdown-more-details-here" class="slide level2">
-<h2>R Markdown (more details <a href="https://rmarkdown.rstudio.com/">here</a>)</h2>
+<section id="r-markdown-or-quarto" class="slide level2">
+<h2><a href="https://rmarkdown.rstudio.com/">R Markdown</a> or <a href="https://quarto.org/">Quarto</a></h2>
 
 <img data-src="knit.png" class="r-stretch quarto-figure-center"><p class="caption">Screenshot of RStudio IDE with Knit button highlighted.</p><ul>
-<li><p>R Markdown is a tool to integrate <strong>code</strong> and <strong>written prose</strong> in reproducible computational documents.</p>
+<li><p>R Markdown (or Quarto) is a tool to integrate <strong>code</strong> and <strong>written prose</strong> in reproducible computational documents.</p>
 <ul>
 <li>Code goes in <strong>chunks</strong>, defined by three backticks.</li>
 <li>Narrative goes outside of chunks.</li>
 </ul></li>
-<li><p>R Markdown files have the <code>rmd</code> extension. Each time you “Knit,” the analysis is run from the beginning.</p></li>
+<li><p>R Markdown files have the <code>rmd</code> extension. Quarto files have the <code>qmd</code> extension.</p></li>
+<li><p>Each time you “Knit” or “Render”, the analysis is run from the beginning.</p></li>
 <li><p>HW will be completed in R Markdown (or Quarto).</p></li>
 </ul>
-</section>
-<section id="quarto-more-details-here" class="slide level2">
-<h2>Quarto (more details <a href="https://quarto.org/">here</a>)</h2>
-
-<img data-src="knit.png" class="r-stretch quarto-figure-center"><p class="caption">Screenshot of RStudio IDE with Knit button highlighted.</p><ul>
-<li><p>Quarto is a tool to integrate <strong>code</strong> and <strong>written prose</strong> in reproducible computational documents.</p>
-<ul>
-<li>Code goes in <strong>chunks</strong>, defined by three backticks.</li>
-<li>Narrative goes outside of chunks.</li>
-</ul></li>
-<li><p>Quarto files have the <code>qmd</code> extension. Each time you “Render,” the analysis is run from the beginning.</p></li>
-<li><p>HW will be completed in Quarto (or R Markdown).</p></li>
-</ul>
+<!-- ## Quarto (more details [here](https://quarto.org/)) -->
+<!-- ![Screenshot of RStudio IDE with Knit button highlighted.](knit.png) -->
+<!-- -   Quarto is a tool to integrate **code** and **written prose** in reproducible computational documents. -->
+<!--     -   Code goes in **chunks**, defined by three backticks. -->
+<!--     - Narrative goes outside of chunks. -->
+<!-- -   Quarto files have the `qmd` extension. Each time you "Render," the analysis is run from the beginning. -->
+<!-- -   HW will be completed in Quarto (or R Markdown). -->
 </section>
 <section id="keyboard-shortcuts" class="slide level2">
 <h2>Keyboard shortcuts</h2>
@@ -526,7 +522,6 @@ Akira Horiguchi
 <li>Integer (<code>1</code>)</li>
 <li>Character / string (<code>"You are here"</code>)</li>
 <li>Logical / boolean (<code>TRUE</code>, <code>FALSE</code>)</li>
-<li>Missing (<code>NA</code>)</li>
 </ul>
 </div><div class="column fragment" style="width:50%;">
 <div class="cell">
