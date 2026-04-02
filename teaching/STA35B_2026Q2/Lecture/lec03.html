@@ -635,53 +635,38 @@ Akira Horiguchi
 <li>We will later see how to properly treat dates and times.</li>
 </ul>
 </section>
-<section id="boolean-algebra" class="slide level2">
-<h2>Boolean algebra</h2>
+<section id="missing-values-in-boolean-algebra" class="slide level2">
+<h2>Missing values in Boolean algebra</h2>
+<p>Logical and missing values interact in logical ways, but requires some thought.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<ul>
-<li>Recall the basic Boolean algebra comparators, AND and OR.</li>
-<li>There is a third one, XOR, which we won’t use that often.</li>
-<li>Can combine AND/OR with NOT and cover any combination of a pair of Booleans.</li>
-</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">|</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE   NA</code></pre>
+</div>
+</div>
 </div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="transform.png"></p>
-<figcaption>Visualization of Boolean algebra</figcaption>
-</figure>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">&amp;</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]    NA FALSE</code></pre>
+</div>
 </div>
 </div></div>
-</section>
-<section id="boolean-algebra-and-missing-values" class="slide level2">
-<h2>Boolean algebra and missing values</h2>
-<p>Booleans and missing values interact in logical, but maybe counterintuitive ways.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>OR</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>) <span class="sc">|</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE   NA   NA</code></pre>
-</div>
-</div>
+<p>Think of <code>NA</code> as an <em>unknown</em> logical value.</p>
 <ul>
-<li>NA OR TRUE returns TRUE, since it is TRUE regardless of NA being FALSE or TRUE.</li>
-<li>NA OR FALSE returns NA since it depends on value of NA.</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>AND</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>) <span class="sc">&amp;</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]    NA FALSE    NA</code></pre>
-</div>
-</div>
+<li><p>Does not depend on value of <code>NA</code>:</p>
 <ul>
-<li>NA AND FALSE returns FALSE since NA value doesn’t affect result, always false.</li>
-<li>NA AND TRUE returns NA since it depends on value of NA.</li>
+<li><code>NA</code> OR <code>TRUE</code> will return <code>TRUE</code>.</li>
+<li><code>NA</code> AND <code>FALSE</code> will return <code>FALSE</code>.</li>
+</ul></li>
+<li><p>Depends on value of <code>NA</code>:</p>
+<ul>
+<li><code>NA</code> AND <code>TRUE</code> will return <code>NA</code>.</li>
+<li><code>NA</code> OR <code>FALSE</code> will return <code>NA</code>.</li>
+</ul></li>
 </ul>
-</div></div>
 </section>
 <section id="consider-finding-all-flights-departing-in-november-or-december." class="slide level2">
 <h2>Consider finding all flights departing in November or December.</h2>
@@ -712,33 +697,45 @@ Akira Horiguchi
 <ul>
 <li>R first evaluates <code>month==11</code>, creating a logical vector <code>vec</code>.</li>
 <li>R then compares <code>vec | 12</code>.</li>
-<li>When comparing a number to a logical, any nonzero number is considered as <code>TRUE</code>.</li>
-<li>So <code>vec | 12</code> returns a vector with <code>TRUE</code> for every element.</li>
+<li>When comparing a logical to a number, any nonzero number is considered as <code>TRUE</code>.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2 -1  0  1  2  3  4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+</div>
+<ul>
+<li>So <code>vec | 12</code> returns a vector with <code>TRUE</code> for every element. (Why?)</li>
 </ul>
 </section>
 <section id="in" class="slide level2">
 <h2><code>%in%</code></h2>
 <p>Instead of worrying about <code>|</code> and <code>==</code> in order, just use <code>%in%</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE</code></pre>
 </div>
 </div>
 <p>So to find all flights from November and December:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb66-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><code>%in%</code> obeys different rules for <code>NA</code> vs.&nbsp;<code>==</code>, since <code>NA %in% NA</code> is TRUE:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="sc">==</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="sc">==</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA NA NA</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="sc">%in%</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="sc">%in%</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE</code></pre>
 </div>
@@ -760,18 +757,18 @@ Akira Horiguchi
 </ul>
 <p>E.g., was there a day where:</p>
 <ul>
-<li><em>every</em> flight was delayed on departure by less than an hour?</li>
+<li><em>every</em> flight was delayed on departure by <span class="math inline">\(&lt;\)</span> 1 hour?</li>
 <li><em>any</em> flight was delayed on arrival by <span class="math inline">\(\geq 5\)</span> hours?</li>
 </ul>
 </div><div class="column" style="width:60%;">
 <!-- #| code-line-numbers: "4,5" -->
 <div class="cell" data-output.lines="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb71-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
-<span id="cb71-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb71-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_delayed =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb71-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">any_long_delay =</span> <span class="fu">any</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb71-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb75-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb75-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb75-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_delayed =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb75-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">any_long_delay =</span> <span class="fu">any</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb75-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
 # Groups:   year, month [12]
@@ -793,20 +790,20 @@ Akira Horiguchi
 <li>Useful if you want to find proportions that are <code>TRUE</code>/<code>FALSE</code>, e.g.&nbsp;<code>mean()</code>, <code>sum()</code></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb73-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)  <span class="co"># number of TRUE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb77-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)  <span class="co"># number of TRUE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)  <span class="co"># proportion of TRUE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)  <span class="co"># proportion of TRUE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x) <span class="sc">-</span> <span class="fu">sum</span>(x)  <span class="co"># number of FALSE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x) <span class="sc">-</span> <span class="fu">sum</span>(x)  <span class="co"># number of FALSE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">mean</span>(x)  <span class="co"># proportion of FALSE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">mean</span>(x)  <span class="co"># proportion of FALSE elements in x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6</code></pre>
 </div>
@@ -818,12 +815,12 @@ Akira Horiguchi
 <li>Example: proportion of flights delayed &gt; 1 hour on departure, and number of flights delayed on arrival by &gt; 5 hours:</li>
 </ul>
 <div class="cell" data-output.lines="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb81-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
-<span id="cb81-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb81-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb81-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb81-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb85-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb85-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb85-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb85-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb85-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
 # Groups:   year, month [12]
@@ -844,13 +841,13 @@ Akira Horiguchi
 </ul>
 <!-- #| code-line-numbers: "6" -->
 <div class="cell" data-output.lines="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb83-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
-<span id="cb83-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb83-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb83-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb83-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span>  <span class="co"># Output is no longer grouped</span></span>
-<span id="cb83-7"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb87-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb87-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb87-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_delayed_1hour =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">60</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb87-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_long_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">300</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb87-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span>  <span class="co"># Output is no longer grouped</span></span>
+<span id="cb87-7"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 5
     year month   day prop_delayed_1hour num_long_delay
@@ -863,54 +860,36 @@ Akira Horiguchi
 ...</code></pre>
 </div>
 </div>
-</section>
-<section id="logical-subsetting" class="slide level2">
-<h2>Logical subsetting</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<!-- * Can use logical vectors for subsetting -->
-<!-- * Subset operator: `[]`  -->
-<p>Average delay for delayed flights:</p>
-<div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb85-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb85-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
-<span id="cb85-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb85-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay),</span>
-<span id="cb85-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_flight =</span> <span class="fu">n</span>(),</span>
-<span id="cb85-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb85-8"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 365 × 5
-    year month   day behind n_flight
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;    &lt;int&gt;
- 1  2013     1     1   32.5      461
- 2  2013     1     2   32.0      535
-...</code></pre>
-</div>
-</div>
-<p><code>n()</code> gives number of delayed flights per group.</p>
-</div><div class="column" style="width:50%;">
-<p>Another way is to subset using logical vectors and the subset operator <code>[]</code>:</p>
-<div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
-<span id="cb87-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
-<span id="cb87-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb87-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">behind =</span> <span class="fu">mean</span>(arr_delay[arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb87-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_flight =</span> <span class="fu">n</span>(),</span>
-<span id="cb87-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
-<span id="cb87-7"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 365 × 5
-    year month   day behind n_flight
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;    &lt;int&gt;
- 1  2013     1     1   32.5      842
- 2  2013     1     2   32.0      943
-...</code></pre>
-</div>
-</div>
-<p><code>n()</code> gives total <span class="math inline">\(\#\)</span> of flights per group, not ideal.</p>
-</div></div>
+<!-- ## Logical subsetting -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- Average delay for delayed flights: -->
+<!-- ```{r, output.lines=5} -->
+<!-- flights |>  -->
+<!--   filter(arr_delay > 0) |>  -->
+<!--   group_by(year, month, day) |>  -->
+<!--   summarize( -->
+<!--     behind = mean(arr_delay), -->
+<!--     n_flight = n(), -->
+<!--     .groups = 'drop' -->
+<!--   ) -->
+<!-- ``` -->
+<!-- `n()` gives number of delayed flights per group. -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- Another way is to subset using logical vectors and the subset operator `[]`: -->
+<!-- ```{r, output.lines=5} -->
+<!-- flights |>  -->
+<!--   group_by(year, month, day) |>  -->
+<!--   summarize( -->
+<!--     behind = mean(arr_delay[arr_delay > 0], na.rm=TRUE), -->
+<!--     n_flight = n(), -->
+<!--     .groups = 'drop' -->
+<!--   ) -->
+<!-- ``` -->
+<!-- `n()` gives total $\#$ of flights per group, not ideal. -->
+<!-- ::: -->
+<!-- ::::: -->
 </section></section>
 <section>
 <section id="conditional-transformations" class="title-slide slide level1 center">
@@ -977,8 +956,7 @@ Akira Horiguchi
 </ul>
 <p>Weird, but pretty readable:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>, <span class="cn">NA</span>)</span>
-<span id="cb97-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>, <span class="cn">NA</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -3 -2 -1  0  1  2  3 NA</code></pre>
 </div>
@@ -996,8 +974,7 @@ Akira Horiguchi
 <section id="conditional-transformations-case_when-2" class="slide level2">
 <h2>Conditional transformations: <code>case_when()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>)</span>
-<span id="cb101-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1  0  1  2 NA</code></pre>
 </div>
