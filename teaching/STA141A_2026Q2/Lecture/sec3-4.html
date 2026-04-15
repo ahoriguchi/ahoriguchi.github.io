@@ -213,6 +213,7 @@ Akira Horiguchi
 <li><a href="#/joins" id="/toc-joins">Joins</a></li>
 <li><a href="#/basic-joins" id="/toc-basic-joins">Basic joins</a></li>
 <li><a href="#/non-equi-joins" id="/toc-non-equi-joins">Non-equi joins</a></li>
+<li><a href="#/beyond-this-course" id="/toc-beyond-this-course">Beyond this course</a></li>
 </ul>
 </nav>
 </section>
@@ -712,10 +713,36 @@ Akira Horiguchi
 <section id="filtering-joins-semi_join" class="slide level2">
 <h2>Filtering joins: <code>semi_join()</code></h2>
 <p>The primary action of a <strong>filtering join</strong> is to filter the rows.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># return all rows in exams_a that have a match in info_b; </span></span>
-<span id="cb58-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># find which students in exams_a are also in info_b</span></span>
-<span id="cb58-3"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">semi_join</span>(info_b)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  student exam1 exam2
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Ant        80    85
+2 Bug        70    90
+3 Cat        85    70</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  student major   gpa
+  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+1 Ant     Math    3.5
+2 Bug     CS      2.5
+3 Dog     Math    2  </code></pre>
+</div>
+</div>
+</div></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># return all rows in exams_a that have a match in info_b; </span></span>
+<span id="cb62-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># find which students in exams_a are also in info_b</span></span>
+<span id="cb62-3"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">semi_join</span>(info_b)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   student exam1 exam2
@@ -728,10 +755,36 @@ Akira Horiguchi
 <section id="filtering-joins-anti_join" class="slide level2">
 <h2>Filtering joins: <code>anti_join()</code></h2>
 <p>The primary action of a <strong>filtering join</strong> is to filter the rows.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># return all rows in exams_a that don't have a match in info_b; </span></span>
-<span id="cb60-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># find which students are missing from info_b</span></span>
-<span id="cb60-3"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(info_b)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  student exam1 exam2
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Ant        80    85
+2 Bug        70    90
+3 Cat        85    70</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  student major   gpa
+  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+1 Ant     Math    3.5
+2 Bug     CS      2.5
+3 Dog     Math    2  </code></pre>
+</div>
+</div>
+</div></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># return all rows in exams_a that don't have a match in info_b; </span></span>
+<span id="cb68-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># find which students are missing from info_b</span></span>
+<span id="cb68-3"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(info_b)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   student exam1 exam2
@@ -751,17 +804,17 @@ Akira Horiguchi
 <!-- airlines |> semi_join(flights) -->
 <!-- ``` -->
 </section>
-<section id="specifying-join-keys" class="slide level2">
-<h2>Specifying join keys</h2>
+<section id="specifying-join-keys-scenario-1" class="slide level2">
+<h2>Specifying join keys: scenario 1</h2>
 <p>In all cases we’ve seen so far, we didn’t need to specify the keys when joining.</p>
 <ul>
 <li>By default, these join methods will use keys that share the same name.</li>
 <li>But sometimes we need to specify the key columns when joining. <!-- - One scenario is when the key columns have different names in the two tables. --></li>
 </ul>
 <div class="columns">
-<div class="column" style="width:30%;">
+<div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   student exam1 exam2
@@ -770,7 +823,10 @@ Akira Horiguchi
 2 Bug        70    90
 3 Cat        85    70</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   name  major   gpa
@@ -779,30 +835,29 @@ Akira Horiguchi
 2 Bug   CS      2.5
 3 Cat   EE      1.5</code></pre>
 </div>
-</div>
-</div><div class="column" style="width:70%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_c)</span>
-<span id="cb66-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">left_join()</span><span class="st">`</span><span class="sc">:</span></span>
-<span id="cb66-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span> <span class="st">`</span><span class="at">by</span><span class="st">`</span> must be supplied when <span class="st">`</span><span class="at">x</span><span class="st">`</span> and</span>
-<span id="cb66-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">y</span><span class="st">`</span> have no common variables.</span>
-<span id="cb66-6"><a href="" aria-hidden="true" tabindex="-1"></a>ℹ Use <span class="st">`</span><span class="at">cross_join()</span><span class="st">`</span> to perform a cross<span class="sc">-</span>join.</span>
-<span id="cb66-7"><a href="" aria-hidden="true" tabindex="-1"></a>Run <span class="st">`</span><span class="at">rlang::last_trace()</span><span class="st">`</span> to see where the error occurred.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_c)</span>
+<span id="cb74-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">left_join()</span><span class="st">`</span><span class="sc">:</span></span>
+<span id="cb74-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span> <span class="st">`</span><span class="at">by</span><span class="st">`</span> must be supplied when <span class="st">`</span><span class="at">x</span><span class="st">`</span> and</span>
+<span id="cb74-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">y</span><span class="st">`</span> have no common variables.</span>
+<span id="cb74-6"><a href="" aria-hidden="true" tabindex="-1"></a>ℹ Use <span class="st">`</span><span class="at">cross_join()</span><span class="st">`</span> to perform a cross<span class="sc">-</span>join.</span>
+<span id="cb74-7"><a href="" aria-hidden="true" tabindex="-1"></a>Run <span class="st">`</span><span class="at">rlang::last_trace()</span><span class="st">`</span> to see where the error occurred.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="specifying-join-keys-1" class="slide level2">
-<h2>Specifying join keys</h2>
+<section id="specifying-join-keys-scenario-1-1" class="slide level2">
+<h2>Specifying join keys: scenario 1</h2>
 <p>In all cases we’ve seen so far, we didn’t need to specify the keys when joining.</p>
 <ul>
 <li>By default, these join methods will use keys that share the same name.</li>
 <li>But sometimes we need to specify the key columns when joining. <!-- - One scenario is when the key columns have different names in the two tables. --></li>
 </ul>
 <div class="columns">
-<div class="column" style="width:30%;">
+<div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   student exam1 exam2
@@ -811,7 +866,10 @@ Akira Horiguchi
 2 Bug        70    90
 3 Cat        85    70</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   name  major   gpa
@@ -821,9 +879,9 @@ Akira Horiguchi
 3 Cat   EE      1.5</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:70%;">
+</div></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_c, <span class="fu">join_by</span>(student<span class="sc">==</span>name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_c, <span class="fu">join_by</span>(student<span class="sc">==</span>name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   student exam1 exam2 major   gpa
@@ -833,51 +891,97 @@ Akira Horiguchi
 3 Cat        85    70 EE      1.5</code></pre>
 </div>
 </div>
+</section>
+<section id="specifying-join-keys-scenario-2" class="slide level2">
+<h2>Specifying join keys: scenario 2</h2>
+<p>An example where <code>join_by()</code> could be applied to two possible variables in <code>info_d</code>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  student exam1 exam2
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Ant        80    85
+2 Bug        70    90
+3 Cat        85    70</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  n1    major   gpa n2   
+  &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+1 Ant   Math    3.5 Bug  
+2 Bug   CS      2.5 Ant  </code></pre>
+</div>
+</div>
+</div></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> </span>
+<span id="cb85-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(info_d, <span class="fu">join_by</span>(student <span class="sc">==</span> n1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  student exam1 exam2 major   gpa n2   
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+1 Ant        80    85 Math    3.5 Bug  
+2 Bug        70    90 CS      2.5 Ant  
+3 Cat        85    70 &lt;NA&gt;   NA   &lt;NA&gt; </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> </span>
+<span id="cb87-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(info_d, <span class="fu">join_by</span>(student <span class="sc">==</span> n2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  student exam1 exam2 n1    major   gpa
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+1 Ant        80    85 Bug   CS      2.5
+2 Bug        70    90 Ant   Math    3.5
+3 Cat        85    70 &lt;NA&gt;  &lt;NA&gt;   NA  </code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="specifying-join-keys-scenario-3" class="slide level2">
+<h2>Specifying join keys: scenario 3</h2>
+<p>Tables share a same column name but the column values mean different things.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="" aria-hidden="true" tabindex="-1"></a>info_c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name  major   gpa
+  &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+1 Ant   Math    3.5
+2 Bug   CS      2.5
+3 Cat   EE      1.5</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="" aria-hidden="true" tabindex="-1"></a>animals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name   year species
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  
+1 Ant    2000 Insect 
+2 Bug    2001 Insect 
+3 Cat    2002 Mammal </code></pre>
+</div>
+</div>
 </div></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># An example where join_by() could be applied to two possible variables in info_d</span></span>
-<span id="cb73-2"><a href="" aria-hidden="true" tabindex="-1"></a>info_d <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb73-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name_start, <span class="sc">~</span>major, <span class="sc">~</span>gpa, <span class="sc">~</span>name_end, </span>
-<span id="cb73-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ant"</span>, <span class="st">"Math"</span>, <span class="fl">3.5</span>, <span class="st">"Ant"</span>, </span>
-<span id="cb73-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bug"</span>, <span class="st">"CS"</span>,   <span class="fl">2.5</span>, <span class="st">"Bug"</span>, </span>
-<span id="cb73-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cat"</span>, <span class="st">"EE"</span>,   <span class="fl">1.5</span>, <span class="st">"Dog"</span>,</span>
-<span id="cb73-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dog"</span>, <span class="st">"Math"</span>, <span class="fl">2.0</span>, <span class="st">"Cat"</span>,</span>
-<span id="cb73-8"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb73-9"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_d, <span class="fu">join_by</span>(student <span class="sc">==</span> name_start))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 6
-  student exam1 exam2 major   gpa name_end
-  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   
-1 Ant        80    85 Math    3.5 Ant     
-2 Bug        70    90 CS      2.5 Bug     
-3 Cat        85    70 EE      1.5 Dog     </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_a <span class="sc">|&gt;</span> <span class="fu">left_join</span>(info_d, <span class="fu">join_by</span>(student <span class="sc">==</span> name_end))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 6
-  student exam1 exam2 name_start major   gpa
-  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt;
-1 Ant        80    85 Ant        Math    3.5
-2 Bug        70    90 Bug        CS      2.5
-3 Cat        85    70 Dog        Math    2  </code></pre>
-</div>
-</div>
-<p>Another scenario is when the two tables share a same column name but the column values mean different things.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb77-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>year, <span class="sc">~</span>species,</span>
-<span id="cb77-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ant"</span>, <span class="dv">2000</span>, <span class="st">"Insect"</span>,</span>
-<span id="cb77-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bug"</span>, <span class="dv">2001</span>, <span class="st">"Insect"</span>,</span>
-<span id="cb77-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cat"</span>, <span class="dv">2002</span>, <span class="st">"Mammal"</span>,</span>
-<span id="cb77-6"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb77-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># info_e &lt;- tribble(</span></span>
-<span id="cb77-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#   ~name_start, ~major, ~gpa, ~name_end, </span></span>
-<span id="cb77-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Ant", "Math", 3.5, "Ant", </span></span>
-<span id="cb77-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Bug", "CS",   2.5, "Bug", </span></span>
-<span id="cb77-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Cat", "EE",   1.5, "Dog",</span></span>
-<span id="cb77-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Dog", "Math", 2.0, "Cat",</span></span>
-<span id="cb77-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb77-14"><a href="" aria-hidden="true" tabindex="-1"></a>info_c <span class="sc">|&gt;</span> <span class="fu">left_join</span>(animals)  <span class="co"># What variables are being used as keys here?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># What variables are being used as keys here?</span></span>
+<span id="cb93-2"><a href="" aria-hidden="true" tabindex="-1"></a>info_c <span class="sc">|&gt;</span> </span>
+<span id="cb93-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(animals)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name  major   gpa  year species
@@ -886,49 +990,95 @@ Akira Horiguchi
 2 Bug   CS      2.5  2001 Insect 
 3 Cat   EE      1.5  2002 Mammal </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># exams_e refers to scores in STA 141A; exams_f refers to scores in STA 141B</span></span>
-<span id="cb79-2"><a href="" aria-hidden="true" tabindex="-1"></a>exams_e <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb79-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student, <span class="sc">~</span>exam1, <span class="sc">~</span>exam2,</span>
-<span id="cb79-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ant"</span>, <span class="dv">80</span>, <span class="dv">85</span>,</span>
-<span id="cb79-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bug"</span>, <span class="dv">70</span>, <span class="dv">90</span>,</span>
-<span id="cb79-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cat"</span>, <span class="dv">85</span>, <span class="dv">70</span>,</span>
-<span id="cb79-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dog"</span>, <span class="dv">24</span>, <span class="dv">10</span>,</span>
-<span id="cb79-8"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-9"><a href="" aria-hidden="true" tabindex="-1"></a>exams_f <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb79-10"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student, <span class="sc">~</span>exam1, <span class="sc">~</span>exam2,</span>
-<span id="cb79-11"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ant"</span>, <span class="dv">50</span>, <span class="dv">60</span>,</span>
-<span id="cb79-12"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bug"</span>, <span class="dv">35</span>, <span class="dv">60</span>,</span>
-<span id="cb79-13"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cat"</span>, <span class="dv">22</span>, <span class="dv">90</span>,</span>
-<span id="cb79-14"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-15"><a href="" aria-hidden="true" tabindex="-1"></a>exams_e <span class="sc">|&gt;</span> <span class="fu">left_join</span>(exams_f, <span class="fu">join_by</span>(student))  <span class="co"># How are the exam1 and exam2 variables disambiguated?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 5
-  student exam1.x exam2.x exam1.y exam2.y
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Ant          80      85      50      60
-2 Bug          70      90      35      60
-3 Cat          85      70      22      90
-4 Dog          24      10      NA      NA</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as exams_e |&gt; left_join(exams_f, join_by(student==student))</span></span>
-<span id="cb81-2"><a href="" aria-hidden="true" tabindex="-1"></a>exams_e <span class="sc">|&gt;</span> <span class="fu">left_join</span>(exams_f, <span class="fu">join_by</span>(student), <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">'.141A'</span>, <span class="st">'.141B'</span>))  <span class="co"># How are the exam1 and exam2 variables disambiguated?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="specifying-join-keys-scenario-4" class="slide level2">
+<h2>Specifying join keys: scenario 4</h2>
+<p>Non-key columns share same name.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_141a  <span class="co"># scores in STA 141A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 5
-  student exam1.141A exam2.141A exam1.141B exam2.141B
-  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-1 Ant             80         85         50         60
-2 Bug             70         90         35         60
-3 Cat             85         70         22         90
-4 Dog             24         10         NA         NA</code></pre>
+<pre><code># A tibble: 3 × 3
+  stu     me1   me2
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Ant      80    85
+2 Bug      70    90
+3 Cat      85    70</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="" aria-hidden="true" tabindex="-1"></a>exams_141b  <span class="co"># scores in STA 141B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  stu     me1   me2   me3
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Ant      50    60    70
+2 Bug      35    60    30</code></pre>
+</div>
+</div>
+</div></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># How are the me1 and me2 variables disambiguated?</span></span>
+<span id="cb99-2"><a href="" aria-hidden="true" tabindex="-1"></a>exams_141a <span class="sc">|&gt;</span> </span>
+<span id="cb99-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(exams_141b, <span class="fu">join_by</span>(stu))  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  stu   me1.x me2.x me1.y me2.y   me3
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Ant      80    85    50    60    70
+2 Bug      70    90    35    60    30
+3 Cat      85    70    NA    NA    NA</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># How are the me1 and me2 variables disambiguated?</span></span>
+<span id="cb101-2"><a href="" aria-hidden="true" tabindex="-1"></a>exams_141a <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(exams_141b, <span class="fu">join_by</span>(stu), <span class="at">suffix=</span><span class="fu">c</span>(<span class="st">'.141A'</span>, <span class="st">'.141B'</span>))  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  stu   me1.141A me2.141A me1.141B me2.141B   me3
+  &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+1 Ant         80       85       50       60    70
+2 Bug         70       90       35       60    30
+3 Cat         85       70       NA       NA    NA</code></pre>
 </div>
 </div>
 </section></section>
 <section id="non-equi-joins" class="title-slide slide level1 center">
 <h1>Non-equi joins</h1>
 <p>So far we’ve only seen equi joins (joins where the rows match if the x key equals the y key). Non-equi joins relax that restriction and discuss other ways of combining data. See Section 19.5 of R4DS 2e for more information.</p>
-<!-- # XX Check -->
+</section>
+
+<section>
+<section id="beyond-this-course" class="title-slide slide level1 center">
+<h1>Beyond this course</h1>
 
 </section>
+<section id="small-and-locally-stored-data-sets" class="slide level2">
+<h2>Small and locally stored data sets</h2>
+<p>So far we have worked with data sets that are:</p>
+<ul>
+<li>smallish (fewer than 1 million rows),</li>
+<li>locally stored on our computer.</li>
+</ul>
+<p>After this course, you may need to go beyond this.</p>
+</section>
+<section id="bigger-and-external-data-sets" class="slide level2">
+<h2>Bigger and external data sets</h2>
+<p>The tidyverse approach can be slow if working with <strong>larger</strong> datasets.</p>
+<ul>
+<li>Posit team continually works to improve code.</li>
+<li><code>dtplyr</code> or <code>tidytable</code> package can get closer to data.table-level speed.</li>
+</ul>
+<p>In a job, we will often work with data in <strong>external</strong> databases.</p>
+<ul>
+<li>SQL allows you to access/manipluate data in databases and hence is a core tool in a data scientist’s toolkit.</li>
+<li>Unfortunately, we will not cover it in this class.</li>
+<li>In the meantime, you can use the <a href="https://dbplyr.tidyverse.org/articles/dbplyr.html"><code>dbplyr</code> package</a>, which allows you to work with data in external databases without having to write any SQL code. You can state your desired functionality by writing R code with tidyverse syntax; <code>dbplyr</code> will then run the equivalent SQL code behind the scenes.</li>
+</ul>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
