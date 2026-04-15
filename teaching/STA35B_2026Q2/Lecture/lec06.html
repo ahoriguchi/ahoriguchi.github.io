@@ -222,7 +222,6 @@ Akira Horiguchi
 <li><a href="#/str_count-counting-matches" id="/toc-str_count-counting-matches"><code>str_count()</code>: Counting matches</a></li>
 <li><a href="#/str_count-counting-vowels-and-constants-in-baby-names" id="/toc-str_count-counting-vowels-and-constants-in-baby-names"><code>str_count()</code>: Counting vowels and constants in baby names</a></li>
 <li><a href="#/str_replace-replace-and-remove-values" id="/toc-str_replace-replace-and-remove-values"><code>str_replace()</code>: Replace and remove values</a></li>
-<li><a href="#/str_replace-replacing-characters-and" id="/toc-str_replace-replacing-characters-and"><code>str_replace()</code>: Replacing characters and <code>?</code>, <code>*</code>, <code>+</code></a></li>
 <li><a href="#/ranges-of-characters" id="/toc-ranges-of-characters">Ranges of characters</a></li>
 <li><a href="#/extracting-variables" id="/toc-extracting-variables">Extracting variables</a></li>
 <li><a href="#/escaping" id="/toc-escaping">Escaping</a></li>
@@ -684,58 +683,33 @@ Akira Horiguchi
 </div>
 </div>
 </div></div>
-</section>
-<section id="str_replace-replacing-characters-and" class="slide level2">
-<h2><code>str_replace()</code>: Replacing characters and <code>?</code>, <code>*</code>, <code>+</code></h2>
-<ul>
-<li>The question mark <code>?</code> matches the preceding element zero OR ONE time, then iterates to rest of string.</li>
-<li>Plus sign <code>+</code> matches AT LEAST once</li>
-<li>The asterisk <code>*</code> matches the preceding element zero OR MORE times, then iterates to rest of string.</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'aardvark'</span>, <span class="st">'happy'</span>, <span class="st">'haaaha'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "aardvark" "happy"    "haaaha"  </code></pre>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:33%;">
-<!-- x |> str_view('a*') -->
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove</span>(<span class="st">'a*'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "rdvark" "happy"  "haaaha"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove_all</span>(<span class="st">'a*'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "rdvrk" "hppy"  "hh"   </code></pre>
-</div>
-</div>
-</div><div class="column" style="width:33%;">
-<!-- x |> str_view('a?') -->
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove</span>(<span class="st">'a?'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "ardvark" "happy"   "haaaha" </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove_all</span>(<span class="st">'a?'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "rdvrk" "hppy"  "hh"   </code></pre>
-</div>
-</div>
-</div><div class="column" style="width:33%;">
-<!-- x |> str_view('a?') -->
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove</span>(<span class="st">'a+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "rdvark" "hppy"   "hha"   </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_remove_all</span>(<span class="st">'a+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "rdvrk" "hppy"  "hh"   </code></pre>
-</div>
-</div>
-</div></div>
+<!-- ## `str_replace()`: Replacing characters and `?`, `*`, `+` -->
+<!-- * The question mark `?` matches the preceding element zero OR ONE time, then iterates to rest of string. -->
+<!-- * Plus sign `+` matches AT LEAST once -->
+<!-- * The asterisk `*` matches the preceding element zero OR MORE times, then iterates to rest of string. -->
+<!-- ```{r} -->
+<!-- (x <- c('aardvark', 'happy', 'haaaha')) -->
+<!-- ``` -->
+<!-- ::::: columns  -->
+<!-- ::: {.column width='33%'} -->
+<!-- ```{r} -->
+<!-- x |> str_remove('a*') -->
+<!-- x |> str_remove_all('a*') -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width='33%'} -->
+<!-- ```{r} -->
+<!-- x |> str_remove('a?') -->
+<!-- x |> str_remove_all('a?') -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width='33%'} -->
+<!-- ```{r} -->
+<!-- x |> str_remove('a+') -->
+<!-- x |> str_remove_all('a+') -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::::: -->
 <!-- ## Replacing characters and `?`, `*`, `+` -->
 <!-- Compare `?`, `+`, and `*` -->
 <!-- ::::: columns  -->
@@ -765,12 +739,12 @@ Akira Horiguchi
 <!-- x |> str_view('[a-u]') -->
 <p>The above example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'happy'</span>, <span class="st">'ab'</span>, <span class="st">'zap'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'happy'</span>, <span class="st">'ab'</span>, <span class="st">'zap'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "happy" "ab"    "zap"  </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># replace each letter between a and u with z</span></span>
-<span id="cb88-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_replace_all</span>(<span class="st">'[a-u]'</span>, <span class="st">'z'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># replace each letter between a and u with z</span></span>
+<span id="cb74-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_replace_all</span>(<span class="st">'[a-u]'</span>, <span class="st">'z'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "zzzzy" "zz"    "zzz"  </code></pre>
 </div>
@@ -779,12 +753,12 @@ Akira Horiguchi
 <!-- x |> str_view('[0-5]') -->
 <p>An example with numbers:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'code9202'</span>, <span class="st">'apple2850'</span>, <span class="st">'0352'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'code9202'</span>, <span class="st">'apple2850'</span>, <span class="st">'0352'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "code9202"  "apple2850" "0352"     </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># replace each number between 0 and 5 with z</span></span>
-<span id="cb92-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_replace_all</span>(<span class="st">'[0-5]'</span>, <span class="st">'z'</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># replace each number between 0 and 5 with z</span></span>
+<span id="cb78-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_replace_all</span>(<span class="st">'[0-5]'</span>, <span class="st">'z'</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "code9zzz"  "applez8zz" "zzzz"     </code></pre>
 </div>
@@ -792,8 +766,8 @@ Akira Horiguchi
 </div></div>
 <p>Very useful to use ranges in conjunction with <code>?</code>, <code>*</code>, <code>+</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all words with at least three consecutive vowels.</span></span>
-<span id="cb94-2"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou][aeiou][aeiou]+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all words with at least three consecutive vowels.</span></span>
+<span id="cb80-2"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou][aeiou][aeiou]+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [79] │ b&lt;eau&gt;ty
 [565] │ obv&lt;iou&gt;s
@@ -805,13 +779,13 @@ Akira Horiguchi
 </div>
 <p>Useful for parsing strings which are partitioned by letters/numbers</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="" aria-hidden="true" tabindex="-1"></a>(name_score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Mary_92'</span>, <span class="st">'Pat_35'</span>, <span class="st">'Will_85'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="" aria-hidden="true" tabindex="-1"></a>(name_score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Mary_92'</span>, <span class="st">'Pat_35'</span>, <span class="st">'Will_85'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mary_92" "Pat_35"  "Will_85"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="" aria-hidden="true" tabindex="-1"></a>name_score <span class="sc">|&gt;</span> </span>
-<span id="cb98-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">'[a-zA-Z]+'</span>, <span class="st">'John'</span>) <span class="sc">|&gt;</span>  <span class="co"># replace all names with John</span></span>
-<span id="cb98-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">'[0-9]+'</span>, <span class="st">'100'</span>)  <span class="co"># replace all scores with 100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="" aria-hidden="true" tabindex="-1"></a>name_score <span class="sc">|&gt;</span> </span>
+<span id="cb84-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">'[a-zA-Z]+'</span>, <span class="st">'John'</span>) <span class="sc">|&gt;</span>  <span class="co"># replace all names with John</span></span>
+<span id="cb84-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="st">'[0-9]+'</span>, <span class="st">'100'</span>)  <span class="co"># replace all scores with 100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "John_100" "John_100" "John_100"</code></pre>
 </div>
@@ -823,16 +797,16 @@ Akira Horiguchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb100-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>str,</span>
-<span id="cb100-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Sheryl&gt;-F_34'</span>,</span>
-<span id="cb100-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Kisha&gt;-F_45'</span>,</span>
-<span id="cb100-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Pat&gt;-X_33'</span>,</span>
-<span id="cb100-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Sharon&gt;-F_38'</span>,</span>
-<span id="cb100-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Penny&gt;-F_58'</span>,</span>
-<span id="cb100-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Justin&gt;-M_41'</span>,</span>
-<span id="cb100-9"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Patricia&gt;-F_84'</span>,</span>
-<span id="cb100-10"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb86-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>str,</span>
+<span id="cb86-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Sheryl&gt;-F_34'</span>,</span>
+<span id="cb86-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Kisha&gt;-F_45'</span>,</span>
+<span id="cb86-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Pat&gt;-X_33'</span>,</span>
+<span id="cb86-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Sharon&gt;-F_38'</span>,</span>
+<span id="cb86-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Penny&gt;-F_58'</span>,</span>
+<span id="cb86-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Justin&gt;-M_41'</span>,</span>
+<span id="cb86-9"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">'&lt;Patricia&gt;-F_84'</span>,</span>
+<span id="cb86-10"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>To extract data, construct sequence of regex that match each piece.</li>
@@ -840,15 +814,15 @@ Akira Horiguchi
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">separate_wider_regex</span>(</span>
-<span id="cb101-2"><a href="" aria-hidden="true" tabindex="-1"></a>    str,</span>
-<span id="cb101-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">patterns =</span> <span class="fu">c</span>(</span>
-<span id="cb101-4"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'&lt;'</span>,</span>
-<span id="cb101-5"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">'[A-Za-z]+'</span>,</span>
-<span id="cb101-6"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'&gt;-'</span>,</span>
-<span id="cb101-7"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">gender =</span> <span class="st">'.'</span>,</span>
-<span id="cb101-8"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'_'</span>,</span>
-<span id="cb101-9"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">age =</span> <span class="st">'[0-9]+'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">separate_wider_regex</span>(</span>
+<span id="cb87-2"><a href="" aria-hidden="true" tabindex="-1"></a>    str,</span>
+<span id="cb87-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">patterns =</span> <span class="fu">c</span>(</span>
+<span id="cb87-4"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'&lt;'</span>,</span>
+<span id="cb87-5"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">'[A-Za-z]+'</span>,</span>
+<span id="cb87-6"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'&gt;-'</span>,</span>
+<span id="cb87-7"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">gender =</span> <span class="st">'.'</span>,</span>
+<span id="cb87-8"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">'_'</span>,</span>
+<span id="cb87-9"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">age =</span> <span class="st">'[0-9]+'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 3
   name     gender age  
@@ -874,13 +848,13 @@ Akira Horiguchi
 <li>To create a string with a literal <code>\</code>, we must use an escape, so double <code>\\</code>:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'abc'</span>, <span class="st">'a.c'</span>, <span class="st">'bef'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a</span><span class="sc">\\</span><span class="st">.c'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'abc'</span>, <span class="st">'a.c'</span>, <span class="st">'bef'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a</span><span class="sc">\\</span><span class="st">.c'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[2] │ &lt;a.c&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'a*rdvark'</span>, <span class="st">'*pple'</span>, <span class="st">'m*n'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'a*rdvark'</span>, <span class="st">'*pple'</span>, <span class="st">'m*n'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ a&lt;*&gt;rdvark
 [2] │ &lt;*&gt;pple
@@ -892,7 +866,7 @@ Akira Horiguchi
 <li>Recall that to represent backslash in a string, need to escape:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="st">'a</span><span class="sc">\\</span><span class="st">b'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="st">'a</span><span class="sc">\\</span><span class="st">b'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ a\b</code></pre>
 </div>
@@ -902,14 +876,20 @@ Akira Horiguchi
 <li>The escape requires double backslash, and the string <code>\</code> also requires double backslash.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'a</span><span class="sc">\\</span><span class="st">b'</span> <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\\\</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'a</span><span class="sc">\\</span><span class="st">b'</span> <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\\\</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ a&lt;\&gt;b</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'mary.elizabeth'</span> <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'\.'</span>, <span class="st">'-'</span>)</span>
-<span id="cb111-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: '\.' is an unrecognized escape in character string (&lt;input&gt;:1:33)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'mary.elizabeth'</span> <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'\.'</span>, <span class="st">'-'</span>)</span>
+<span id="cb97-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: '\.' is an unrecognized escape in character string (&lt;input&gt;:1:33)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'mary.elizabeth'</span> <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>, <span class="st">'-'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "mary-elizabeth"</code></pre>
+</div>
 </div>
 </div></div>
 </section>
@@ -920,13 +900,13 @@ Akira Horiguchi
 <li>To match only at beginning or end, you need to <strong>anchor</strong>:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^a'</span>)  <span class="co"># `^` indicates 'starts with'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^a'</span>)  <span class="co"># `^` indicates 'starts with'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;a&gt;pple
 [2] │ &lt;a&gt;pricot
 [3] │ &lt;a&gt;vocado</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a$'</span>)  <span class="co"># `$` indicates 'ends with'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a$'</span>)  <span class="co"># `$` indicates 'ends with'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [4] │ banan&lt;a&gt;
 [15] │ cherimoy&lt;a&gt;
@@ -940,7 +920,7 @@ Akira Horiguchi
 <li>Example: replace every fruit name which starts with <code>'a'</code> with an <code>'o'</code></li>
 </ul>
 <div class="cell" data-output.lines="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'^a'</span>, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'^a'</span>, <span class="st">'o'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "opple"             "opricot"           "ovocado"          
  [4] "banana"            "bell pepper"       "bilberry"         
@@ -960,12 +940,12 @@ Akira Horiguchi
 <li>To match only the full string, not subsets, anchor it with both <code>^</code> and <code>$</code>:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'apple'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'apple'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] │ &lt;apple&gt;
 [62] │ pine&lt;apple&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^apple$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^apple$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;apple&gt;</code></pre>
 </div>
@@ -980,15 +960,15 @@ Akira Horiguchi
 </ul></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'summary(x)'</span>, <span class="st">'summarize(df)'</span>, <span class="st">'rowsum(x)'</span>, <span class="st">'sum(x)'</span>)</span>
-<span id="cb122-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'sum'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'summary(x)'</span>, <span class="st">'summarize(df)'</span>, <span class="st">'rowsum(x)'</span>, <span class="st">'sum(x)'</span>)</span>
+<span id="cb110-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'sum'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;sum&gt;mary(x)
 [2] │ &lt;sum&gt;marize(df)
 [3] │ row&lt;sum&gt;(x)
 [4] │ &lt;sum&gt;(x)</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">bsum</span><span class="sc">\\</span><span class="st">b'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">bsum</span><span class="sc">\\</span><span class="st">b'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[4] │ &lt;sum&gt;(x)</code></pre>
 </div>
@@ -1002,7 +982,7 @@ Akira Horiguchi
 </ul>
 <p>Some others:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="st">'abcd ABCD 12345 -!@#%.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="st">'abcd ABCD 12345 -!@#%.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "abcd ABCD 12345 -!@#%."</code></pre>
 </div>
@@ -1014,14 +994,14 @@ Akira Horiguchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">d+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">d+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ abcd ABCD &lt;12345&gt; -!@#%.</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">D+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">D+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;abcd ABCD &gt;12345&lt; -!@#%.&gt;</code></pre>
 </div>
@@ -1034,14 +1014,14 @@ Akira Horiguchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">s+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">s+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ abcd&lt; &gt;ABCD&lt; &gt;12345&lt; &gt;-!@#%.</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">S+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">S+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;abcd&gt; &lt;ABCD&gt; &lt;12345&gt; &lt;-!@#%.&gt;</code></pre>
 </div>
@@ -1054,14 +1034,14 @@ Akira Horiguchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">w+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">w+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;abcd&gt; &lt;ABCD&gt; &lt;12345&gt; -!@#%.</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">W+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">W+'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ abcd&lt; &gt;ABCD&lt; &gt;12345&lt; -!@#%.&gt;</code></pre>
 </div>
@@ -1120,7 +1100,7 @@ Akira Horiguchi
 </div><div class="column" style="width:50%;">
 <p>Words with &gt;= 3 consecutive vowels?</p>
 <div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou]{3,}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou]{3,}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [79] │ b&lt;eau&gt;ty
 [565] │ obv&lt;iou&gt;s
@@ -1132,7 +1112,7 @@ Akira Horiguchi
 </div>
 <p>Words with between 4 and 6 consecutive consonants:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[^aeiou]{4,6}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[^aeiou]{4,6}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [45] │ a&lt;pply&gt;
 [198] │ cou&lt;ntry&gt;
@@ -1158,7 +1138,7 @@ Akira Horiguchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a(b+)'</span>) <span class="co"># same as `ab+`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a(b+)'</span>) <span class="co"># same as `ab+`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [2] │ &lt;ab&gt;le
   [3] │ &lt;ab&gt;out
@@ -1172,7 +1152,7 @@ Akira Horiguchi
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-output.lines="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'(^a)|(b$)'</span>) <span class="co"># same as `^a|b$`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'(^a)|(b$)'</span>) <span class="co"># same as `^a|b$`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] │ &lt;a&gt;
  [2] │ &lt;a&gt;ble
@@ -1200,7 +1180,7 @@ Akira Horiguchi
 <li>Pair of letters = <code>'(..)'</code>; back-ref: <code>'\\1'</code></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'(..)</span><span class="sc">\\</span><span class="st">1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'(..)</span><span class="sc">\\</span><span class="st">1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [4] │ b&lt;anan&gt;a
 [20] │ &lt;coco&gt;nut
@@ -1215,10 +1195,10 @@ Akira Horiguchi
 <li>Words that start and end with same pair of letters:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># 'starts with' a pair: ^(..)</span></span>
-<span id="cb150-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># 'ends with': need to end regex with \\1$</span></span>
-<span id="cb150-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># to allow any chars between, put .* in middle</span></span>
-<span id="cb150-4"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^(..).*</span><span class="sc">\\</span><span class="st">1$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># 'starts with' a pair: ^(..)</span></span>
+<span id="cb138-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># 'ends with': need to end regex with \\1$</span></span>
+<span id="cb138-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># to allow any chars between, put .* in middle</span></span>
+<span id="cb138-4"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^(..).*</span><span class="sc">\\</span><span class="st">1$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[152] │ &lt;church&gt;
 [217] │ &lt;decide&gt;
@@ -1231,7 +1211,7 @@ Akira Horiguchi
 <li>Words that are repetitions of the same pair of letters:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'haha'</span>, <span class="st">'miumiu'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^(..)+</span><span class="sc">\\</span><span class="st">1$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'haha'</span>, <span class="st">'miumiu'</span>) <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^(..)+</span><span class="sc">\\</span><span class="st">1$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;haha&gt;</code></pre>
 </div>
@@ -1242,7 +1222,7 @@ Akira Horiguchi
 <h2>Order of operations in regex: parenthesis 3</h2>
 <p>Can back-reference in <code>str_replace()</code>. E.g. swap 2nd and 3rd words in sentence</p>
 <div class="cell" data-output.lines="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="" aria-hidden="true" tabindex="-1"></a>sentences</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="" aria-hidden="true" tabindex="-1"></a>sentences</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "The birch canoe slid on the smooth planks."               
   [2] "Glue the sheet to the dark blue background."              
@@ -1251,7 +1231,7 @@ Akira Horiguchi
 </div>
 </div>
 <div class="cell" data-output.lines="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="" aria-hidden="true" tabindex="-1"></a>sentences <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'(</span><span class="sc">\\</span><span class="st">w+) (</span><span class="sc">\\</span><span class="st">w+) (</span><span class="sc">\\</span><span class="st">w+)'</span>, <span class="st">'</span><span class="sc">\\</span><span class="st">1 </span><span class="sc">\\</span><span class="st">3 </span><span class="sc">\\</span><span class="st">2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="" aria-hidden="true" tabindex="-1"></a>sentences <span class="sc">|&gt;</span> <span class="fu">str_replace</span>(<span class="st">'(</span><span class="sc">\\</span><span class="st">w+) (</span><span class="sc">\\</span><span class="st">w+) (</span><span class="sc">\\</span><span class="st">w+)'</span>, <span class="st">'</span><span class="sc">\\</span><span class="st">1 </span><span class="sc">\\</span><span class="st">3 </span><span class="sc">\\</span><span class="st">2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "The canoe birch slid on the smooth planks."               
   [2] "Glue sheet the to the dark blue background."              
@@ -1276,7 +1256,7 @@ Akira Horiguchi
 <div class="column" style="width:43%;">
 <p>Words that start with <code>'y'</code>:</p>
 <div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^y'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^y'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[975] │ &lt;y&gt;ear
 [976] │ &lt;y&gt;es
@@ -1288,7 +1268,7 @@ Akira Horiguchi
 </div>
 <p>Words that don’t start with <code>'y'</code>:</p>
 <div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^[^y]'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^[^y]'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] │ &lt;a&gt;
  [2] │ &lt;a&gt;ble
@@ -1301,7 +1281,7 @@ Akira Horiguchi
 </div><div class="column" style="width:57%;">
 <p>Ends with a vowel-vowel-consonant triplet:</p>
 <div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou]{2}[^aeiou]$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[aeiou]{2}[^aeiou]$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [3] │ ab&lt;out&gt;
  [11] │ act&lt;ual&gt;
@@ -1313,7 +1293,7 @@ Akira Horiguchi
 </div>
 <p>Has 7 or more letters:</p>
 <div class="cell" data-output.lines="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[a-z]{7,}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'[a-z]{7,}'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [4] │ &lt;absolute&gt;
  [6] │ &lt;account&gt;
@@ -1329,7 +1309,7 @@ Akira Horiguchi
 <h2>Boolean operations</h2>
 <p>We have seen how <code>^</code> inside <code>[]</code> negates the set, i.e.&nbsp;words with no vowels:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^[^aeiou]+$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'^[^aeiou]+$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[123] │ &lt;by&gt;
 [249] │ &lt;dry&gt;
@@ -1344,7 +1324,7 @@ Akira Horiguchi
 <li>Another way: return logical vector indicating presence of vowels, then negate:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[<span class="sc">!</span><span class="fu">str_detect</span>(words, <span class="st">'[aeiou]'</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[<span class="sc">!</span><span class="fu">str_detect</span>(words, <span class="st">'[aeiou]'</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "by"  "dry" "fly" "mrs" "try" "why"</code></pre>
 </div>
@@ -1356,8 +1336,8 @@ Akira Horiguchi
 <div class="column" style="width:50%;">
 <p>Find all words containing an <code>'a'</code> and <code>'b'</code></p>
 <div class="cell" data-output.lines="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Trickier in standard regex</span></span>
-<span id="cb170-2"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a.*b|b.*a'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Trickier in standard regex</span></span>
+<span id="cb158-2"><a href="" aria-hidden="true" tabindex="-1"></a>words <span class="sc">|&gt;</span> <span class="fu">str_view</span>(<span class="st">'a.*b|b.*a'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [2] │ &lt;ab&gt;le
   [3] │ &lt;ab&gt;out
@@ -1370,10 +1350,10 @@ Akira Horiguchi
 <li>Easier with <code>str_detect()</code> and <code>&amp;</code>:</li>
 </ul>
 <div class="cell" data-output.lines="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[</span>
-<span id="cb172-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(words, <span class="st">'a'</span>) <span class="sc">&amp;</span> </span>
-<span id="cb172-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(words, <span class="st">'b'</span>)</span>
-<span id="cb172-4"><a href="" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[</span>
+<span id="cb160-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(words, <span class="st">'a'</span>) <span class="sc">&amp;</span> </span>
+<span id="cb160-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(words, <span class="st">'b'</span>)</span>
+<span id="cb160-4"><a href="" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "able"      "about"     "absolute"  "available" "baby"      "back"     
  [7] "bad"       "bag"       "balance"   "ball"      "bank"      "bar"      
@@ -1388,12 +1368,12 @@ Akira Horiguchi
 <li>Much easier using <code>str_detect()</code> and <code>&amp;</code>:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[</span>
-<span id="cb174-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'a'</span>) <span class="sc">&amp;</span></span>
-<span id="cb174-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'e'</span>) <span class="sc">&amp;</span></span>
-<span id="cb174-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'i'</span>) <span class="sc">&amp;</span></span>
-<span id="cb174-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'o'</span>)</span>
-<span id="cb174-6"><a href="" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="" aria-hidden="true" tabindex="-1"></a>words[</span>
+<span id="cb162-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'a'</span>) <span class="sc">&amp;</span></span>
+<span id="cb162-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'e'</span>) <span class="sc">&amp;</span></span>
+<span id="cb162-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'i'</span>) <span class="sc">&amp;</span></span>
+<span id="cb162-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_detect</span>(words, <span class="st">'o'</span>)</span>
+<span id="cb162-6"><a href="" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "appropriate" "associate"   "organize"    "relation"   </code></pre>
 </div>
