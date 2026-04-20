@@ -425,8 +425,12 @@ Akira Horiguchi
 <span id="cb20-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
-<li>For specifics, see <a href="https://style.tidyverse.org/syntax.html#spacing">https://style.tidyverse.org/syntax.html#spacing</a>.</li>
-<li>In RStudio, the keyboard shortcut <code>Ctrl + I</code> on a given line will indent it correctly (usually).</li>
+<li>For specifics, see <a href="https://style.tidyverse.org/syntax.html#spacing">Tidyverse style guide</a>.</li>
+<li>The keyboard shortcut <code>Ctrl + I</code> will “correctly” auto-indent the given line.
+<ul>
+<li>Select text then <code>Ctrl + I</code> to “correctly” auto-indent the selected text.</li>
+<li><code>Ctrl + A</code> then <code>Ctrl + I</code> to “correctly” auto-indent the entire file.</li>
+</ul></li>
 </ul>
 <!-- ::::: columns -->
 <!-- ::: {.column width="100%"} -->
@@ -1130,7 +1134,7 @@ Akira Horiguchi
 </section>
 <section id="non-embrace-examples" class="slide level2">
 <h2>Non-embrace examples</h2>
-<p>Notice the difference between functions using embracing vs not using embracing.</p>
+<p>See the difference between functions using embracing vs not using embracing.</p>
 <ul>
 <li>For <code>flights</code> tibble, create a function called <code>filter_severe()</code> to find all flights that were cancelled (<code>is.na(arr_time)</code>) or delayed by more than an hour.</li>
 </ul>
