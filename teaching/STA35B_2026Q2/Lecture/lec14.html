@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="lec14_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lec14_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lec14_files/libs/quarto-html/popper.min.js"></script>
+<script src="lec14_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lec14_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lec14_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="lec14_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="Akira Horiguchi">
+  <title>Hypothesis testing with randomization</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="lec14_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lec14_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="lec14_files/libs/revealjs/dist/theme/quarto-bc04c9eadee1ae23fee73f0862817eb7.css">
+  <link href="lec14_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lec14_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lec14_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lec14_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="lec14_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="lec14_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Hypothesis testing with randomization</h1>
+  <p class="subtitle">STA35B: Statistical Data Science 2</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Akira Horiguchi 
+</div>
+</div>
+</div>
+
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/plan-for-remainder-of-quarter" id="/toc-plan-for-remainder-of-quarter">Plan for remainder of quarter</a></li>
+<li><a href="#/statistical-inference" id="/toc-statistical-inference">Statistical inference</a></li>
+<li><a href="#/example-1-sex-discrimination-study" id="/toc-example-1-sex-discrimination-study">Example 1: Sex Discrimination Study</a></li>
+<li><a href="#/example-2-student-savings" id="/toc-example-2-student-savings">Example 2: Student Savings</a></li>
+</ul>
+</nav>
+</section>
+<section>
+<section id="plan-for-remainder-of-quarter" class="title-slide slide level1 center">
+<h1>Plan for remainder of quarter</h1>
+
+</section>
+<section id="part-iv-foundations-of-inference-next-few-decks" class="slide level2 scrollable">
+<h2>Part IV: Foundations of inference (next few decks)</h2>
+<p><strong>Statistical inference</strong>: making conclusions about a population using information in a sample. Different ways to quantify variability seen from dataset to dataset:</p>
+<ol type="1">
+<li>Ch 11: randomization which involves repeatedly permuting observations to represent scenarios in which there is no association between two variables of interest. [this slide deck]</li>
+<li>Ch 12: bootstrapping which involves repeatedly sampling (with replacement) from the observed data in order to produce many samples which are similar to, but different from, the original data.</li>
+<li>Ch 13: Central Limit Theorem which is a theoretical approximation to the variability in data seen through randomization and bootstrapping.</li>
+</ol>
+<p>There is almost never a single “correct” approach, and often these methods give similar results.</p>
+</section>
+<section id="part-v-statistical-inference" class="slide level2 scrollable">
+<h2>Part V: Statistical inference</h2>
+<p>Inference for [scenario]</p>
+<ol type="1">
+<li>Randomization test for [something].</li>
+<li>Bootstrapping confidence interval for [something].</li>
+<li>Mathematical model(s) for [something].</li>
+</ol>
+<p>Apply Part IV (tools) to Part V (settings)</p>
+</section></section>
+<section>
+<section id="statistical-inference" class="title-slide slide level1 center">
+<h1>Statistical inference</h1>
+<p><strong>Based on Ch 11 of IMS</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">pillar.print_min =</span> <span class="dv">9</span>)  <span class="co"># to avoid annoying scroll behavior</span></span>
+<span id="cb1-11"><a href="" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">out.height =</span> <span class="st">"100%"</span>)</span>
+<span id="cb1-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="statistical-inference-1" class="slide level2">
+<h2>Statistical inference</h2>
+<p><em>Statistical inference</em> is concerned with understanding and quantifying <em>uncertainty</em> in parameter estimates.</p>
+<ul>
+<li>Learn about a <em>population</em> of interest.</li>
+<li>Often infeasible to collect data on the entire population.</li>
+<li>We can collect data on a <em>sample</em> of the population to answer a research question about the population.</li>
+</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Examples</th>
+<th>Sample</th>
+<th>Population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Polls</td>
+<td>voters who were polled</td>
+<td>all voters</td>
+</tr>
+<tr class="even">
+<td>Clinical trials</td>
+<td>a study’s subjects</td>
+<td>all who have a particular disease</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>We can then learn/<em>infer</em> about the sample, but will those takeaways generalize to the population?</li>
+</ul>
+</section>
+<section id="how-representative-of-the-population-is-the-data" class="slide level2">
+<h2>How representative of the population is the data?</h2>
+<ul>
+<li>Consider two datasets from the same population using the same (randomized) methods.</li>
+<li>These two datasets will typically not be identical; this is due to <em>randomness</em>.</li>
+<li>Not easy to quantify the variability in the data.
+<ul>
+<li>i.e., it is not trivial to answer the question “how different is one dataset from another?”</li>
+</ul></li>
+<li>Studying randomness of this form is a key focus of statistics.</li>
+</ul>
+</section>
+<section id="why-inference" class="slide level2">
+<h2>Why Inference?</h2>
+<p>The goal of inference is to quantify how likely certain outcomes are due to random chance vs.&nbsp;due to real differences.</p>
+<ul>
+<li>Think through what would happen if we repeatedly took different surveys of people’s opinions on support for some policy.</li>
+<li>There will be some natural sample-to-sample variation, but if there is a big difference in support for vs.&nbsp;against the policy, this randomness will be drowned out by the true difference in the population preference.</li>
+<li>The coming lectures will discuss the <em>hypothesis testing</em> framework: allows for formally evaluating claims about populations.</li>
+</ul>
+<p>Let’s look at two motivating examples.</p>
+</section>
+<section id="notation" class="slide level2">
+<h2>Notation:</h2>
+<ul>
+<li><span class="math inline">\(p\)</span> to denote <em>population</em> proportion
+<ul>
+<li>e.g.&nbsp;proportion of population supporting some policy</li>
+</ul></li>
+<li><span class="math inline">\(\hat p\)</span> to denote <em>sample</em> proportion
+<ul>
+<li>e.g.&nbsp;a survey of 1,000 people on whether they support a policy</li>
+</ul></li>
+</ul>
+<p>The “hat” notation is used to denote a statistic computed from a sample, and the non-hat version is used to denote the corresponding parameter in the population.</p>
+</section></section>
+<section>
+<section id="example-1-sex-discrimination-study" class="title-slide slide level1 center">
+<h1>Example 1: Sex Discrimination Study</h1>
+
+</section>
+<section id="question-and-data-collection" class="slide level2">
+<h2>Question and data collection</h2>
+<p><strong>Are female employees discriminated against in promotion decisions made by male managers?</strong></p>
+<h3 id="study-1970s">Study (1970s)</h3>
+<ul>
+<li>48 male bank supervisors were asked to assume the role of the personnel director of a bank.</li>
+<li>Each supervisor was given a personnel file to judge whether the person should be promoted to a branch manager position.</li>
+<li>The files given to the supervisor were identical, except that half of the files indicated the candidate identified as male and the other half indicated the candidate identified as female.</li>
+<li>These files were randomly assigned to the bank managers.</li>
+</ul>
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>sex_discrimination</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 2
+  sex   decision
+  &lt;fct&gt; &lt;fct&gt;   
+1 male  promoted
+2 male  promoted
+3 male  promoted
+4 male  promoted
+5 male  promoted
+6 male  promoted
+7 male  promoted
+8 male  promoted
+9 male  promoted
+# ℹ 39 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sex_discrimination)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        decision
+sex      promoted not promoted
+  male         21            3
+  female       14           10</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sex_discrimination) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        decision
+sex      promoted not promoted Sum
+  male         21            3  24
+  female       14           10  24
+  Sum          35           13  48</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sex_discrimination) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">promoted</th>
+<th style="text-align: right;">not promoted</th>
+<th style="text-align: right;">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">48</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>24 male candidates, 24 female candidates.</li>
+<li>Proportion of promoted males is <span class="math inline">\(\hat{p}_M = 21 / 24\)</span>.</li>
+<li>Proportion of promoted females is <span class="math inline">\(\hat{p}_F = 14 / 24\)</span>.</li>
+<li>Difference of proportions is <span class="math inline">\(\hat{p}_M - \hat{p}_F = 7/24 \approx 0.292\)</span>.</li>
+</ul>
+<p><span class="math inline">\(\hat{p}_M - \hat{p}_F\)</span> is a <strong>point estimate</strong> of the population difference <span class="math inline">\(p_M - p_F\)</span>.</p>
+<!-- - Proportion of promoted males: $\hat{p}_M =$ 24/48 -->
+</section>
+<section id="hypotheses" class="slide level2">
+<h2>Hypotheses</h2>
+<p>We can formulate two competing claims (hypotheses) about the relationship between sex and promotions:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>, <strong>Null</strong>: <code>sex</code> and <code>decision</code> are <em>independent</em>. Observed differences in proportions promoted are due to natural variability.
+<ul>
+<li>E.g.: <span class="math inline">\(p_M = p_F\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(H_A\)</span>, <strong>Alternative</strong>: <code>sex</code> and <code>decision</code> are <em>dependent</em>. Observed differences in proportions are due to dependence between the two variables.
+<ul>
+<li>E.g.: <span class="math inline">\(p_M &gt; p_F\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="variability-of-the-statistic-under-the-null-hypothesis" class="slide level2">
+<h2>Variability of the statistic under the null hypothesis</h2>
+<p>We can use a <strong>permutation test</strong> to examine whether <span class="math inline">\(H_0\)</span> is true. <!-- Examine whether the null hypothesis $H_0$ is true by using a **permutation test**. --></p>
+<!-- - 35 bank supervisors recommended promotion and 13 did not.  -->
+<ul>
+<li>Suppose the bankers’ decisions were independent of the sex of the candidate.</li>
+<li>Then if we randomly shuffled all of the labels of “male” and “female”, any difference in promotion rates would be due to chance.</li>
+<li>Let’s now shuffle the labels of male / female among the 48 study subjects.
+<ul>
+<li>How to code a random shuffle? <code>sample(x)</code> permutes the values in a vector <code>x</code>.</li>
+</ul></li>
+</ul>
+<!-- - Then, if we reran the experiment but now with a random assignment of sex to the files, differences in promotion rates would be based only on random fluctuation in promotion decisions.  -->
+<!-- - Let us then see the distribution of promotion differences if we perform many shuffles of the values in `sex`. -->
+<!-- -   If `sex` and `decision` were independent, then if we shuffled all of the labels of "male" and "female", then the proportion with each `decision` would be roughly the same. -->
+<!-- -   If the proportion within each decision are very different than in the sample that we saw, then there is evidence that $H_0$ is *not* true. -->
+<!-- Let's now shuffle the labels of male / female among the 48 study subjects, but keep fixed the number of males, females, number of promoted / not promoted. -->
+<!-- ```{r} -->
+<!-- sex_3_3 <- c(rep("male", 3), rep("female", 3)) -->
+<!-- sex_3_3 -->
+<!-- sample(sex_3_3) -->
+<!-- sample(sex_3_3) -->
+<!-- sample(sex_3_3) -->
+<!-- sample(sex_3_3) -->
+<!-- ``` -->
+<!-- ## A single shuffle -->
+<!-- Let's now create our shuffled data set: -->
+<!-- sex_24_24 <- c(rep("male", 24), rep("female", 24)) -->
+<!-- decision_35_13 <- c(rep("promoted", 35), rep("not promoted", 13)) -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">37</span>)  <span class="co"># to enable reproducibility of "random" outcomes</span></span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>sex_disc_rand_1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">sample</span>(sex_discrimination<span class="sc">$</span>sex),  <span class="co"># shuffled version of `sex` column in `sex_discrimination`</span></span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">decision =</span> sex_discrimination<span class="sc">$</span>decision</span>
+<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>sex_disc_rand_1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 2
+  sex    decision
+  &lt;fct&gt;  &lt;fct&gt;   
+1 female promoted
+2 male   promoted
+3 male   promoted
+4 female promoted
+5 female promoted
+6 female promoted
+7 female promoted
+8 male   promoted
+9 male   promoted
+# ℹ 39 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>sex_disc_rand_1 <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">addmargins</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-sex-discrimination-rand-1-v2" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sex-discrimination-rand-1-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Simulation results, where the difference in promotion rates between male and female is purely due to random chance.
+</figcaption>
+<div aria-describedby="tbl-sex-discrimination-rand-1-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">promoted</th>
+<th style="text-align: right;">not promoted</th>
+<th style="text-align: right;">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">48</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>We can compute the point estimate <span class="math inline">\(\hat{p}_M^{(1)} - \hat{p}_F^{(1)}\)</span> for this shuffle <code>#1</code>.</p>
+<!-- -   $\hat{p}_M^{(1)} = \_\_ / 24$ and $\hat{p}_F^{(1)} = \_\_ / 24$, so $\hat{p}_M^{(1)} - \hat{p}_F^{(1)} = \_\_ / 24$. -->
+</section>
+<section id="distribution-of-the-statistic-under-the-null-hypothesis" class="slide level2">
+<h2>Distribution of the statistic under the null hypothesis</h2>
+<p>We can perform multiple shuffles to get a sense of the distribution of the promotion-rate differences under the null hypothesis <span class="math inline">\(H_0\)</span>.</p>
+<ul>
+<li>In theory, one could do all <span class="math inline">\(48!\)</span> possible shuffles to get the <strong>exact</strong> distribution of promotion-rate differences under <span class="math inline">\(H_0\)</span>.</li>
+<li>We will instead randomly draw 10,000 of these <span class="math inline">\(48!\)</span> possible shuffles to get an <strong>approximate</strong> distribution of promotion-rate differences under <span class="math inline">\(H_0\)</span>:
+<ul>
+<li>For <span class="math inline">\(j=1,2,3,\ldots,10000\)</span>:
+<ul>
+<li>Shuffle the data; call it the <span class="math inline">\(j\)</span>th shuffle.</li>
+<li>Compute the difference <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)}\)</span> for this shuffle <span class="math inline">\(j\)</span>.</li>
+</ul></li>
+</ul></li>
+<li>(This distribution of 10,000 differences will approximate the exact distribution closely enough.)</li>
+<li>We could code this procedure ourselves, but let’s use <code>openintro</code> functions:</li>
+</ul>
+<!-- -   Show distribution (e.g., histogram) of these 10000 difference values. -->
+<div class="cell" data-max-lines="7" data-pillar.print_min="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">37</span>)</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>shuff_df <span class="ot">&lt;-</span> sex_discrimination <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(decision <span class="sc">~</span> sex, <span class="at">success =</span> <span class="st">"promoted"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in props"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>))</span>
+<span id="cb12-7"><a href="" aria-hidden="true" tabindex="-1"></a>shuff_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: decision (factor)
+Explanatory: sex (factor)
+Null Hypothesis: indepe...
+# A tibble: 10,000 × 2
+  replicate    stat
+      &lt;int&gt;   &lt;dbl&gt;
+1         1 -0.0417
+2         2  0.0417
+3         3 -0.125 
+4         4 -0.208 
+5         5  0.0417
+6         6 -0.125 
+7         7  0.0417
+8         8 -0.292 
+9         9  0.125 
+# ℹ 9,991 more rows</code></pre>
+</div>
+</div>
+<!-- ## tmp -->
+<ul>
+<li>Visualize the distribution of these 10,000 difference (<code>stat</code>) values.</li>
+</ul>
+<!-- -   There are only a few unique values of the statistic, so set `binwidth = 0.01` -->
+<!-- ```{r} -->
+<!-- shuff_df$stat |> unique() |> length()  # number of unique values in `stat` column -->
+<!-- ``` -->
+<!-- ## Visualize shuffing distribution -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>p_shuff <span class="ot">&lt;-</span> shuff_df <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span>  <span class="co"># set `binwidth = 0.01` to emphasize that there are only a few unique values</span></span>
+<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by=</span><span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">dup_axis</span>()) <span class="sc">+</span>  <span class="co"># Mirrors the left axis on the right</span></span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"10,000 differences in randomized proportions"</span>,</span>
+<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Differences in promotion rates (male - female) across 10000 shuffles"</span></span>
+<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a>p_shuff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-sex-rand-dot-plot-v2" class="quarto-float quarto-figure quarto-figure-center" alt="A histogram plot of proportion differences from 10000 simulations produced under the null hypothesis, $H_0,$ where the simulated sex and decision are independent.">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-sex-rand-dot-plot-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="lec14_files/figure-revealjs/fig-sex-rand-dot-plot-v2-1.png" style="height:100.0%" alt="A histogram plot of proportion differences from 10000 simulations produced under the null hypothesis, $H_0,$ where the simulated sex and decision are independent." width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-rand-dot-plot-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles produced under the null hypothesis, <span class="math inline">\(H_0,\)</span> where the simulated sex and decision are independent.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>(Why are there so few unique difference values?)</li>
+</ul>
+<!-- ```{r} -->
+<!-- #| label: fig-sex-rand-dot-plot -->
+<!-- #| fig-cap: | -->
+<!-- #|   A stacked dot plot of proportion differences from 100 simulations produced under -->
+<!-- #|   the null hypothesis, $H_0,$ where the simulated sex and decision are -->
+<!-- #|   independent. Two of the 100 simulations had a difference of at least -->
+<!-- #|   29.2%, the difference observed in the study, and are shown as solid dots. -->
+<!-- #| fig-alt: A stacked dot plot of the 100 simulated differences between the -->
+<!-- #|   proportion of male and female files recommended for promotion. -->
+<!-- set.seed(37) -->
+<!-- sex_discrimination |> -->
+<!--   specify(decision ~ sex, success = "promoted") |> -->
+<!--   hypothesize(null = "independence") |> -->
+<!--   generate(reps = 100, type = "permute") |> -->
+<!--   calculate(stat = "diff in props", order = c("male", "female")) |> -->
+<!--   mutate(stat = round(stat, 3)) |> -->
+<!--   ggplot(aes(x = stat)) + -->
+<!--   geom_dotplot(binwidth = 0.01) + -->
+<!--   gghighlight(stat >= 0.292) + -->
+<!--   scale_y_continuous(breaks = seq(0, 1, by = .2)) + -->
+<!--   theme( -->
+<!--     axis.ticks.y = element_blank(), -->
+<!--     axis.text.y = element_blank() -->
+<!--   ) + -->
+<!--   labs( -->
+<!--     x = "Differences in promotion rates (male - female) across many shuffles", -->
+<!--     y = NULL -->
+<!--   ) -->
+<!-- ``` -->
+<!-- * Under null hypothesis, expect average of 0 diff. -->
+<!-- * The 0.292 observed is unlikely, suggests that hiring and sex were *not* independent. -->
+</section>
+<section id="how-does-the-observed-statistic-compare" class="slide level2">
+<h2>How does the observed statistic compare?</h2>
+<p>Recall the proportion difference in the observed (unshuffled) data: <span class="math inline">\(\frac{7}{24}\)</span>.</p>
+<ul>
+<li>How many <span class="math inline">\(j=1,2,\ldots,10000\)</span> produced <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}\)</span>?</li>
+</ul>
+<!-- How many of the 10000 difference values $\geq$ the observed difference value? -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>obs_prop_diff <span class="ot">&lt;-</span> <span class="dv">21</span><span class="sc">/</span><span class="dv">24</span> <span class="sc">-</span> <span class="dv">14</span><span class="sc">/</span><span class="dv">24</span>  <span class="co"># difference of proportions in the "true" observed data</span></span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>n_at_least_as_large <span class="ot">&lt;-</span> <span class="fu">sum</span>(shuff_df<span class="sc">$</span>stat <span class="sc">&gt;</span> obs_prop_diff)</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>n_at_least_as_large</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32</code></pre>
+</div>
+</div>
+<p>Visualize how the observed value compares to the distribution under <span class="math inline">\(H_0\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a>p_shuff <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>obs_prop_diff, <span class="at">linetype=</span><span class="st">'dashed'</span>) <span class="sc">+</span>  <span class="co"># dashed vertical line</span></span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gghighlight</span>(stat <span class="sc">&gt;=</span> obs_prop_diff) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="lec14_files/figure-revealjs/unnamed-chunk-6-1.png" style="height:100.0%" alt="Same histogram plot, but now highlighting which shuffles produce a proportion difference is at least as large as the observed proportion difference." width="960"></p>
+<figcaption>Same histogram plot, but now highlighting which shuffles produce a proportion difference is at least as large as the observed proportion difference.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Only 32 of the 10,000 shuffles had <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}\)</span>.</li>
+<li>Hence the observed difference <span class="math inline">\(\frac{7}{24} \approx 0.292\)</span> is unlikely to have occurred simply by chance under <span class="math inline">\(H_0\)</span>.</li>
+<li>Suggests that hiring and sex were <em>not</em> independent.</li>
+</ul>
+<!-- (0.32%)  -->
+<!-- * Under null hypothesis, we expect average of 0 diff. -->
+<!-- #| fig-width: 50 -->
+<!-- * This is only  of the 10000 shuffles. -->
+<!-- ## old -->
+<!-- - See figures on right: 35 red cards ("promoted") and 13 white cards ("not promoted") get shuffled; resulting card deck then split in half. -->
+<!-- ```{r} -->
+<!-- #| out-width: 100% -->
+<!-- # knitr::include_graphics("sex-rand-02-shuffle-1.png") -->
+<!-- knitr::include_graphics("sex-rand-03-shuffle-1-sort.png") -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #| label: tbl-sex-discrimination-rand-1 -->
+<!-- #| tbl-cap: | -->
+<!-- #|   Simulation results, where the difference in promotion rates between male -->
+<!-- #|   and female is purely due to random chance. -->
+<!-- sex_discrimination_rand_1 <- tibble( -->
+<!--   sex = c(rep("male", 24), rep("female", 24)), -->
+<!--   decision = c( -->
+<!--     rep("promoted", 18), rep("not promoted", 6), -->
+<!--     rep("promoted", 17), rep("not promoted", 7) -->
+<!--   ) -->
+<!-- ) |> -->
+<!--   mutate( -->
+<!--     sex = fct_relevel(sex, "male", "female"), -->
+<!--     decision = fct_relevel(decision, "promoted", "not promoted") -->
+<!--   ) -->
+<!-- sex_discrimination_rand_1 |> -->
+<!--   count(decision, sex) |> -->
+<!--   pivot_wider(names_from = decision, values_from = n) |> -->
+<!--   janitor::adorn_totals(where = c("col", "row")) |> -->
+<!--   kbl(linesep = "", booktabs = TRUE) |> -->
+<!--   kable_styling( -->
+<!--     bootstrap_options = c("striped", "condensed"), -->
+<!--     full_width = FALSE -->
+<!--   ) |> -->
+<!--   add_header_above(c(" " = 1, "decision" = 2, " " = 1)) |> -->
+<!--   column_spec(1:4, width = "7em") -->
+<!-- ``` -->
+<!-- ## old Observed Statistic vs. Null Statistics -->
+<!-- ```{r} -->
+<!-- #| out-width: 100% -->
+<!-- knitr::include_graphics("sex-rand-03-shuffle-1-sort.png") -->
+<!-- ``` -->
+<!-- - Shuffle `#1` results in proportion difference of $\hat{p}_{M,1} - \hat{p}_{F,1} = 0.042$. -->
+<!-- - We can perform multiple shuffles to see the distribution of the proportion differences under the null hypothesis $H_0$. -->
+<!-- ```{r} -->
+<!-- #| label: fig-sex-rand-dot-plot -->
+<!-- #| fig-cap: | -->
+<!-- #|   A stacked dot plot of proportion differences from 100 simulations produced under -->
+<!-- #|   the null hypothesis, $H_0,$ where the simulated sex and decision are -->
+<!-- #|   independent. Two of the 100 simulations had a difference of at least -->
+<!-- #|   29.2%, the difference observed in the study, and are shown as solid dots. -->
+<!-- #| fig-alt: A stacked dot plot of the 100 simulated differences between the -->
+<!-- #|   proportion of male and female files recommended for promotion. -->
+<!-- set.seed(37) -->
+<!-- sex_discrimination |> -->
+<!--   specify(decision ~ sex, success = "promoted") |> -->
+<!--   hypothesize(null = "independence") |> -->
+<!--   generate(reps = 100, type = "permute") |> -->
+<!--   calculate(stat = "diff in props", order = c("male", "female")) |> -->
+<!--   mutate(stat = round(stat, 3)) |> -->
+<!--   ggplot(aes(x = stat)) + -->
+<!--   geom_dotplot(binwidth = 0.01) + -->
+<!--   gghighlight(stat >= 0.292) + -->
+<!--   scale_y_continuous(breaks = seq(0, 1, by = .2)) + -->
+<!--   theme( -->
+<!--     axis.ticks.y = element_blank(), -->
+<!--     axis.text.y = element_blank() -->
+<!--   ) + -->
+<!--   labs( -->
+<!--     x = "Differences in promotion rates (male - female) across many shuffles", -->
+<!--     y = NULL -->
+<!--   ) -->
+<!-- ``` -->
+<!-- * Under null hypothesis, expect average of 0 diff. -->
+<!-- * The 0.292 observed is unlikely, suggests that hiring and sex were *not* independent. -->
+<!-- # Hypothesis Testing -->
+</section>
+<section id="hypothesis-testing" class="slide level2">
+<h2>Hypothesis testing</h2>
+<!-- In previous problems, we described a *hypothesis test*: -->
+<p>Earlier we described a <em>hypothesis test</em>:</p>
+<ul>
+<li><strong>Null hypothesis</strong>: belief that things could have happened due to chance</li>
+<li><strong>Alternative hypothesis</strong>: there is some relationship between variables</li>
+</ul>
+<p>Way to think about it: trial by jury</p>
+<ul>
+<li>Null hypothesis: not guilty.</li>
+<li>Alternative hypothesis: guilty.</li>
+<li>We might reject the null in favor of the alternative <em>if</em> there is discernible evidence in favor of this claim.</li>
+<li>Failure to reject the null does <strong>not</strong> mean null is true, just that we don’t have enough evidence to reject the null.</li>
+</ul>
+<!-- ### p-values and statistical significance -->
+<!-- Recall example about sex discrimination: only 2 of the 100 randomizations resulted in promotion rates as extreme as what we observed in the original data. -->
+<!-- ```{r} -->
+<!-- #| fig-width: 7 -->
+<!-- sex_discrimination |> -->
+<!--   specify(decision ~ sex, success = "promoted") |> -->
+<!--   hypothesize(null = "independence") |> -->
+<!--   generate(reps = 100, type = "permute") |> -->
+<!--   calculate(stat = "diff in props", order = c("male", "female")) |> -->
+<!--   mutate(stat = round(stat, 3)) |> -->
+<!--   ggplot(aes(x = stat)) + -->
+<!--   geom_dotplot(binwidth = 0.01) + -->
+<!--   gghighlight(stat >= 0.292) + -->
+<!--   theme( -->
+<!--     axis.ticks.y = element_blank(), -->
+<!--     axis.text.y = element_blank() -->
+<!--   ) + -->
+<!--   labs( -->
+<!--     x = "Diff. in promotion rates (M-F) across shuffles", -->
+<!--     y = NULL -->
+<!--   ) -->
+<!-- ``` -->
+</section>
+<section id="p-values-and-statistical-discernibility" class="slide level2">
+<h2>p-values and statistical discernibility</h2>
+<p>A <span class="math inline">\(p\)</span>-value represents the probability that, if the null hypothesis is true, we would obtain data that is at least as extreme as the result actually observed.</p>
+<ul>
+<li>When the <span class="math inline">\(p\)</span>-value is smaller than a threshold <span class="math inline">\(\alpha\)</span> (called a <strong>discernibility level</strong>), then we say that the results are <strong>statistically discernible at level</strong> <span class="math inline">\(\alpha\)</span>, and we reject the null hypothesis in favor of the alternative.
+<ul>
+<li>Often use <span class="math inline">\(\alpha=0.1\)</span> or <span class="math inline">\(\alpha=0.05\)</span> or <span class="math inline">\(\alpha=0.01\)</span>, but depends on context.</li>
+</ul></li>
+<li>Example 1: in sex-discrimination study,
+<ul>
+<li>Only 32 of 10,000 had a larger value, so the <span class="math inline">\(p\)</span>-value is <span class="math inline">\(\approx 0.0032\)</span>.</li>
+<li>Results are statistically discernible at level <span class="math inline">\(\alpha=0.01\)</span>.
+<ul>
+<li>I.e., there is discernible evidence at level <span class="math inline">\(\alpha=0.01\)</span> to reject <span class="math inline">\(H_0\)</span>.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="discernibility-vs-significance" class="slide level2">
+<h2>Discernibility vs significance</h2>
+<ul>
+<li>You may have heard the phrase “statistically significant”.
+<ul>
+<li>“Significant” can be misleading; in everyday language “significant” would indicate that a difference is large or meaningful.</li>
+<li>Recent push toward switching to “discernible”.</li>
+</ul></li>
+</ul>
+</section>
+<section id="interpretating-discernible-evidence" class="slide level2">
+<h2>Interpretating discernible evidence</h2>
+<p>How to interpret statistically discernible evidence?</p>
+<ul>
+<li>How the data was produced/collected? By <em>experiment</em> or by <em>observation</em>?</li>
+</ul>
+<p>Example 1: the sex-discrimination study is an experiment: subjects were randomly assigned a “male” file or a “female” file (remember, all the files were actually identical in content).</p>
+<ul>
+<li>Because this is an experiment, the results can be used to evaluate a <em>causal</em> relationship between the sex of a candidate and the promotion decision.</li>
+<li>Conclusion: “The data provide statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.003\)</span>) that <strong>female employees are discriminated against in promotion decisions made by male managers.</strong>”</li>
+</ul>
+<p>But suppose instead that the data had been observational.</p>
+<ul>
+<li>We cannot say that sex <em>caused</em> difference in hiring outcomes.</li>
+<li>Correlation does not imply causation!</li>
+<li>There could be confounding variables: e.g., age, experience, pedigree.</li>
+<li>Always ask ourselves: “Of what population is this a random sample?”</li>
+<li>(Weaker) conclusion: “The data provide statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.003\)</span>) that <strong>female employees in this population are promoted less often than male employees in this population.</strong>”</li>
+</ul>
+<!-- - To infer causality, would need a randomized study, with care taken to ensure that the two groups (here: male/female) are equal among other characteristics (e.g. seniority, number of years worked, etc.). -->
+</section>
+<section id="randomization-tests-summary" class="slide level2">
+<h2>Randomization tests summary</h2>
+<ul>
+<li>Frame research question in terms of hypotheses.
+<ul>
+<li>Null hypothesis <span class="math inline">\(H_0\)</span>: skeptical of any relationship between variables.</li>
+<li>Alternative hypothesis <span class="math inline">\(H_A\)</span>: posits a relationship between variables.</li>
+</ul></li>
+<li>Collect data.</li>
+<li>Model randomness that would occur if null hypothesis were true.
+<ul>
+<li>Randomize treatments.</li>
+</ul></li>
+<li>Analyze data and identify <span class="math inline">\(p\)</span>-value.</li>
+<li>Form conclusion about hypotheses using <span class="math inline">\(p\)</span>-value.</li>
+</ul>
+</section></section>
+<section>
+<section id="example-2-student-savings" class="title-slide slide level1 center">
+<h1>Example 2: Student Savings</h1>
+
+</section>
+<section id="question-and-data-collection-1" class="slide level2 scrollable">
+<h2>Question and data collection</h2>
+<p>Let’s consider a study where we ask whether telling a college student that they can save money for later purchases will make them spend less now.</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: reminding students that they can save money for later purchases will not have any impact on students’ spending decisions.</li>
+<li><span class="math inline">\(H_A\)</span>: reminding students that they can save money for later purchases will reduce the chance they will continue with a purchase.</li>
+</ul>
+<p><em>“Imagine that you have been saving some extra money on the side to make some purchases…”</em></p>
+<p>Half of the 150 students were randomized into a control group and given the following options:</p>
+<ol type="a">
+<li>Buy this entertaining video.</li>
+<li>Not buy this entertaining video.</li>
+</ol>
+<!-- > (A) Buy this entertaining video. -->
+<!-- > -->
+<!-- > (B) Not buy this entertaining video. -->
+<p>Remaining 75 students were placed in treatment group, they saw:</p>
+<ol type="a">
+<li>Buy this entertaining video.</li>
+<li>Not buy this entertaining video. Keep the $14.99 for other purchases.</li>
+</ol>
+</section>
+<section id="data-1" class="slide level2">
+<h2>Data</h2>
+<p>Dataset: <code>opportunity_cost</code> in <em>openintro</em></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 2
+  group   decision 
+  &lt;fct&gt;   &lt;fct&gt;    
+1 control buy video
+2 control buy video
+3 control buy video
+4 control buy video
+5 control buy video
+6 control buy video
+7 control buy video
+8 control buy video
+9 control buy video
+# ℹ 141 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">addmargins</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">buy video</th>
+<th style="text-align: right;">not buy video</th>
+<th style="text-align: right;">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">control</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatment</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">150</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- ```{r} -->
+<!-- opportunity_cost |> -->
+<!--   janitor::tabyl(group, decision) |> -->
+<!--   janitor::adorn_percentages("row") |> -->
+<!--   janitor::adorn_pct_formatting(digits = 2) |> -->
+<!--   janitor::adorn_ns() |> -->
+<!--   knitr::kable() -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- opportunity_cost |>  -->
+<!--   ggplot(aes(y = fct_rev(group), fill = fct_rev(decision))) + -->
+<!--   geom_bar(position = "fill") + -->
+<!--   scale_fill_openintro("two") + -->
+<!--   scale_x_continuous(labels = scales::label_percent()) + -->
+<!--   labs( -->
+<!--     x = "Proportion", -->
+<!--     y = "Group", -->
+<!--     fill = "Decision" -->
+<!--   ) -->
+<!-- ``` -->
+<p><span class="math display">\[\hat{p}_{T} - \hat{p}_{C} = \frac{34}{75} - \frac{19}{75} = \frac{15}{75} = 0.2\]</span></p>
+<ul>
+<li><p>Under treatment, 20 percentage points higher choose to not buy the video.</p></li>
+<li><p>How much variability would one expect if the treatment had no effect?</p></li>
+<li><p>We can do the same type of analysis from the previous example.</p>
+<!-- - Assume we have 53 people labeled "not buy video", 97 labeled "buy video". -->
+<!-- - Imagine we have index cards with these labels, then we shuffle them and divide into two stacks of 75 people each. -->
+<!-- - We imagine each stack is a new "control" and "treatment" group. -->
+<!-- - Any difference between proportions of "buy" and "not buy" cards will be due entirely to random chance. -->
+<!-- - We should generally expect each stack to have `$\approx 53/2 = 26.5$` "not buy" cards each. --></li>
+</ul>
+</section>
+<section id="how-likely-is-the-observed-difference-under-the-null-hypothesis" class="slide level2">
+<h2>How likely is the observed difference under the null hypothesis?</h2>
+<ul>
+<li>Let’s first look at a single shuffle</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost_rand_1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"control"</span>, <span class="dv">75</span>), <span class="fu">rep</span>(<span class="st">"treatment"</span>, <span class="dv">75</span>)),</span>
+<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">decision =</span> <span class="fu">c</span>(</span>
+<span id="cb21-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"buy video"</span>, <span class="dv">46</span>), <span class="fu">rep</span>(<span class="st">"not buy video"</span>, <span class="dv">29</span>),</span>
+<span id="cb21-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"buy video"</span>, <span class="dv">51</span>), <span class="fu">rep</span>(<span class="st">"not buy video"</span>, <span class="dv">24</span>)</span>
+<span id="cb21-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-7"><a href="" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(group),</span>
+<span id="cb21-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">decision =</span> <span class="fu">as.factor</span>(decision)</span>
+<span id="cb21-11"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-12"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost_rand_1 <span class="sc">|&gt;</span></span>
+<span id="cb21-14"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(group, decision) <span class="sc">|&gt;</span></span>
+<span id="cb21-15"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> decision, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span></span>
+<span id="cb21-16"><a href="" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>(<span class="at">where =</span> <span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-17"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">linesep =</span> <span class="st">""</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-18"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb21-19"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb21-20"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-21"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-22"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"decision"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-23"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">width =</span> <span class="st">"7em"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="table table-striped table-condensed caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+decision
+</div></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide; border-bottom: hidden;"></th>
+</tr>
+<tr class="even">
+<th style="text-align: left;" data-quarto-table-cell-role="th">group</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">buy video</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">not buy video</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 7em;">control</td>
+<td style="text-align: right; width: 7em;">46</td>
+<td style="text-align: right; width: 7em;">29</td>
+<td style="text-align: right; width: 7em;">75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 7em;">treatment</td>
+<td style="text-align: right; width: 7em;">51</td>
+<td style="text-align: right; width: 7em;">24</td>
+<td style="text-align: right; width: 7em;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 7em;">Total</td>
+<td style="text-align: right; width: 7em;">97</td>
+<td style="text-align: right; width: 7em;">53</td>
+<td style="text-align: right; width: 7em;">150</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can compute a difference that occurred from the first shuffle of the data:</p>
+<p><span class="math display">\[\hat{p}_{T}^{(1)} - \hat{p}_{C}^{(1)} = \frac{24}{75} - \frac{29}{75} = - \frac{5}{75} \approx - 0.067\]</span></p>
+<ul>
+<li>Compare this to the 20 percentage points (0.2) that we saw before.</li>
+</ul>
+</section>
+<section id="shuffing-distribution" class="slide level2">
+<h2>Shuffing distribution</h2>
+<p>Now repeat 10000 times; plot results</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
+<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost_rand_dist <span class="ot">&lt;-</span> opportunity_cost <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(decision <span class="sc">~</span> group, <span class="at">success =</span> <span class="st">"not buy video"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in props"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"treatment"</span>, <span class="st">"control"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">stat =</span> <span class="fu">round</span>(stat, <span class="dv">3</span>))</span>
+<span id="cb22-8"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost_rand_dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: decision (factor)
+Explanatory: group (factor)
+Null Hypothesis: inde...
+# A tibble: 10,000 × 2
+  replicate   stat
+      &lt;int&gt;  &lt;dbl&gt;
+1         1  0.04 
+2         2  0.12 
+3         3 -0.013
+4         4 -0.12 
+5         5  0.04 
+6         6 -0.067
+7         7  0.04 
+8         8 -0.04 
+9         9  0.04 
+# ℹ 9,991 more rows</code></pre>
+</div>
+</div>
+<!-- ## Opportunity Cost: One Randomization -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>opportunity_cost_rand_dist <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.20</span>, <span class="at">linetype=</span><span class="st">'dashed'</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gghighlight</span>(stat <span class="sc">&gt;=</span> <span class="fl">0.20</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">dup_axis</span>()) <span class="sc">+</span>  <span class="co"># Mirrors the left axis on the right</span></span>
+<span id="cb24-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"10,000 differences in randomized proportions"</span>,</span>
+<span id="cb24-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Difference in randomized proportions of students who</span><span class="sc">\n</span><span class="st">do not buy the video (treatment - control)"</span>,</span>
+<span id="cb24-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count</span><span class="sc">\n</span><span class="st">(Number of simulated scenarios)"</span></span>
+<span id="cb24-11"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-opportunity-cost-rand-hist" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-opportunity-cost-rand-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="lec14_files/figure-revealjs/fig-opportunity-cost-rand-hist-1.png" style="height:100.0%" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-opportunity-cost-rand-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: A histogram of 10,000 chance differences produced under the null hypothesis.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Only 83 of the 10,000 shuffles had proportion difference <span class="math inline">\(\geq 0.20\)</span>. Then the <span class="math inline">\(p\)</span>-value is <span class="math inline">\(\approx\)</span> 0.0083.</li>
+<li>Statistically discernible at level <span class="math inline">\(\alpha=0.01\)</span>, i.e., there is discernible evidence at level <span class="math inline">\(\alpha=0.01\)</span> to reject <span class="math inline">\(H_0\)</span>.</li>
+<li>“The data provide statistically discernible evidence that US college students were actually influenced by the reminder.”</li>
+</ul>
+<!-- * Thus getting differences of 0.2 are very unlikely if the outcomes were independent of the treatment. -->
+<!-- * Example 2: in video experiment, participants had a 20% drop in likelihood of purchasing if reminded about saving money. -->
+<!--   - Only 6 of 1,000 had a larger value, so the $p$-value is 0.006. -->
+<!-- * Either example, statistically discernible at level $\alpha=0.05$ and at level $\alpha=0.01$. -->
+<!-- # Example 3: Restaurant Calories -->
+<!-- This example has confounder of time and/or 2008 recession -->
+<!-- ## Example: Restaurant Calories -->
+<!-- Let's describe null and alternative hypotheses in words and symbols for the following: -->
+<!-- -   Starting in 2008, chain restaurants in CA have displayed calorie counts for each menu item. -->
+<!-- -   Before 2008, we randomly sampled restaurants and recorded whether a person consumed \> 2000 calories at the chain restaurant. -->
+<!-- -   After 2008, we returned and again randomly sampled restaurants and recorded whether a person consumed \> 2000 calories at the chain restaurant. -->
+<!-- -   We want to see if the data provide convincing evidence of a difference in average calorie intake. -->
+<!-- **Null hypothesis** $H_0$: calorie intake is independent of whether we display number of calories per item. -->
+<!-- **Alternative hypothesis** $H_A$: calorie intake is affected by display of number of calories per item. -->
+<!-- ## Restaurant Calories: Randomization Test -->
+<!-- Let's suppose we had data as follows: -->
+<!-- |            | No cal. display | Cal. display | Total | -->
+<!-- |------------|-----------------|--------------|-------| -->
+<!-- | \>2000 cal | 825             | 350          | 1175  | -->
+<!-- | \<2000 cal | 1605            | 1800         | 3605  | -->
+<!-- | Total      | 2430            | 2150         | 4580  | -->
+<!-- Convert this into proportions: -->
+<!-- |            | No calorie display | Calorie display | -->
+<!-- |------------|--------------------|-----------------| -->
+<!-- | \>2000 cal | 0.339              | 0.163           | -->
+<!-- | \<2000 cal | 0.661              | 0.837           | -->
+<!-- -   *Treatment* here is having calorie display. -->
+<!-- -   We see a difference in proportion eating \>2000 calories as: -->
+<!-- $$ 0.163 - 0.339 = -0.176 $$ -->
+<!-- -   How likely would this have happened if the calorie display did not affect how much people ate? -->
+<!-- -   We simulate below 10000 different randomizations of the data, keeping the total number of \>2000 and \<2000 cal fixed but shuffling "no calorie display" and "display" to the groups. -->
+<!-- ```{r} -->
+<!-- eating <- tibble( -->
+<!--   group = c(rep("no_display", 2430), rep("display", 2150)), -->
+<!--   ate = c( -->
+<!--     rep(">2000cal", 825), -->
+<!--     rep("<2000cal", 1605), -->
+<!--     rep(">2000cal", 350), -->
+<!--     rep("<2000cal", 1800) -->
+<!--   ) -->
+<!-- ) |> -->
+<!--   mutate( -->
+<!--     group = as.factor(group), -->
+<!--     ate = as.factor(ate) -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- eating_shuff <- eating |> -->
+<!--   specify(ate ~ group, success = "<2000cal") |> -->
+<!--   hypothesize(null = "independence") |> -->
+<!--   generate(reps = 10000, type = "permute") |> -->
+<!--   calculate(stat = "diff in props", order = c("no_display", "display")) |> -->
+<!--   mutate(stat = round(stat, 4)) -->
+<!-- eating_shuff -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- eating_shuff |>  -->
+<!--   ggplot(aes(x = stat)) + -->
+<!--   geom_histogram(binwidth = 0.0003) + -->
+<!--   geom_vline(xintercept = -0.176, linetype='dashed') + -->
+<!--   gghighlight(stat < -0.176) + -->
+<!--   scale_y_continuous(sec.axis = dup_axis()) +  # Mirrors the left axis on the right -->
+<!--   labs(x = "Difference in proportions") -->
+<!-- ``` -->
+<!-- -   None of the 10000 shuffles result in a difference `< -0.176`, so the $p$-value is `< 1/10000`. -->
+<!-- -   Statistically discernible at level $\alpha=0.01$, i.e., there is discernible evidence at level $\alpha=0.01$ to reject $H_0$. -->
+<!-- -   "The data provide statistically discernible evidence of a difference in average calorie intake by customers in chain restaurants in CA after they began displaying calorie counts in 2008." -->
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><a href="https://ahoriguchi.github.io/teaching/STA35B_2026Q2/website.html">Course website for STA 35B Spring 2026</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="lec14_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="lec14_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="lec14_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lec14_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
