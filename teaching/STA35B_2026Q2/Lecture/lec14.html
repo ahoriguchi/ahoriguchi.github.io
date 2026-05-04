@@ -218,6 +218,10 @@ Akira Horiguchi
 </ul>
 </nav>
 </section>
+<section class="slide level2">
+
+<!-- https://stirlingcodingclub.github.io/randomisation/randomisation_notes.html -->
+</section>
 <section>
 <section id="plan-for-remainder-of-quarter" class="title-slide slide level1 center">
 <h1>Plan for remainder of quarter</h1>
@@ -816,11 +820,8 @@ Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles pr
 </ul></li>
 <li>Example 1: in sex-discrimination study,
 <ul>
-<li>Only 32 of 10,000 had a larger value, so the <span class="math inline">\(p\)</span>-value is <span class="math inline">\(\approx 0.0032\)</span>.</li>
-<li>Results are statistically discernible at level <span class="math inline">\(\alpha=0.01\)</span>.
-<ul>
-<li>I.e., there is discernible evidence at level <span class="math inline">\(\alpha=0.01\)</span> to reject <span class="math inline">\(H_0\)</span>.</li>
-</ul></li>
+<li>Only 230 of 10,000 had a larger value, so the <span class="math inline">\(p\)</span>-value is <span class="math inline">\(\approx\)</span> 0.023.</li>
+<li>There is discernible evidence at level <span class="math inline">\(\alpha=0.05\)</span> to reject <span class="math inline">\(H_0\)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -843,15 +844,15 @@ Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles pr
 <p>Example 1: the sex-discrimination study is an experiment: subjects were randomly assigned a “male” file or a “female” file (remember, all the files were actually identical in content).</p>
 <ul>
 <li>Because this is an experiment, the results can be used to evaluate a <em>causal</em> relationship between the sex of a candidate and the promotion decision.</li>
-<li>Conclusion: “The data provide statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.003\)</span>) that <strong>female employees are discriminated against in promotion decisions made by male managers.</strong>”</li>
+<li>Conclusion: “There is statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx\)</span> 0.023) that <strong>female employees are discriminated against in promotion decisions made by male managers.</strong>”</li>
 </ul>
 <p>But suppose instead that the data had been observational.</p>
 <ul>
-<li>We cannot say that sex <em>caused</em> difference in hiring outcomes.</li>
+<li>Then no claim that sex <em>caused</em> difference in hiring outcomes.</li>
 <li>Correlation does not imply causation!</li>
 <li>There could be confounding variables: e.g., age, experience, pedigree.</li>
 <li>Always ask ourselves: “Of what population is this a random sample?”</li>
-<li>(Weaker) conclusion: “The data provide statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.003\)</span>) that <strong>female employees in this population are promoted less often than male employees in this population.</strong>”</li>
+<li>(Weaker) conclusion: “There is statistically discernible evidence (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx\)</span> 0.023) that <strong>female employees in this population are promoted less often than male employees in this population.</strong>”</li>
 </ul>
 <!-- - To infer causality, would need a randomized study, with care taken to ensure that the two groups (here: male/female) are equal among other characteristics (e.g. seniority, number of years worked, etc.). -->
 </section>
