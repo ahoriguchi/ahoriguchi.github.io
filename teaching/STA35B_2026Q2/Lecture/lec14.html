@@ -237,11 +237,11 @@ Akira Horiguchi
 <h2>Part V: Statistical inference</h2>
 <p>Inference for [scenario]</p>
 <ol type="1">
-<li>Randomization test for [something].</li>
-<li>Bootstrapping confidence interval for [something].</li>
-<li>Mathematical model(s) for [something].</li>
+<li>Randomization test for [scenario].</li>
+<li>Bootstrapping confidence interval for [scenario].</li>
+<li>Mathematical model(s) for [scenario].</li>
 </ol>
-<p>Apply Part IV (tools) to Part V (settings)</p>
+<p>Apply Part IV (tools) to Part V (scenarios)</p>
 </section></section>
 <section>
 <section id="statistical-inference" class="title-slide slide level1 center">
@@ -424,11 +424,11 @@ sex      promoted not promoted Sum
 </div>
 <ul>
 <li>24 male candidates, 24 female candidates.</li>
-<li>Proportion of promoted males is <span class="math inline">\(\hat{p}_M = 21 / 24\)</span>.</li>
-<li>Proportion of promoted females is <span class="math inline">\(\hat{p}_F = 14 / 24\)</span>.</li>
-<li>Difference of proportions is <span class="math inline">\(\hat{p}_M - \hat{p}_F = 7/24 \approx 0.292\)</span>.</li>
+<li>Proportion of promoted males is <span class="math inline">\(\hat{p}_M^{obs} = 21 / 24\)</span>.</li>
+<li>Proportion of promoted females is <span class="math inline">\(\hat{p}_F^{obs} = 14 / 24\)</span>.</li>
+<li>Difference of proportions is <span class="math inline">\(\hat{p}_M^{obs} - \hat{p}_F^{obs} = 7/24 \approx 0.292\)</span>.</li>
 </ul>
-<p><span class="math inline">\(\hat{p}_M - \hat{p}_F\)</span> is a <strong>point estimate</strong> of the population difference <span class="math inline">\(p_M - p_F\)</span>.</p>
+<p><span class="math inline">\(\hat{p}_M^{obs} - \hat{p}_F^{obs}\)</span> is a <strong>point estimate</strong> of the population difference <span class="math inline">\(p_M - p_F\)</span>.</p>
 <!-- - Proportion of promoted males: $\hat{p}_M =$ 24/48 -->
 </section>
 <section id="hypotheses" class="slide level2">
@@ -437,11 +437,11 @@ sex      promoted not promoted Sum
 <ul>
 <li><span class="math inline">\(H_0\)</span>, <strong>Null</strong>: <code>sex</code> and <code>decision</code> are <em>independent</em>. Observed differences in proportions promoted are due to natural variability.
 <ul>
-<li>E.g.: <span class="math inline">\(p_M = p_F\)</span>.</li>
+<li>E.g.: <span class="math inline">\(p_M = p_F\)</span>. Equivalent to <span class="math inline">\(p_M - p_F = 0\)</span>.</li>
 </ul></li>
 <li><span class="math inline">\(H_A\)</span>, <strong>Alternative</strong>: <code>sex</code> and <code>decision</code> are <em>dependent</em>. Observed differences in proportions are due to dependence between the two variables.
 <ul>
-<li>E.g.: <span class="math inline">\(p_M &gt; p_F\)</span>.</li>
+<li>E.g.: <span class="math inline">\(p_M &gt; p_F\)</span>. Equivalent to <span class="math inline">\(p_M - p_F &gt; 0\)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -555,7 +555,7 @@ Table&nbsp;1: Simulation results, where the difference in promotion rates betwee
 <li>Compute the difference <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)}\)</span> for this shuffle <span class="math inline">\(j\)</span>.</li>
 </ul></li>
 </ul></li>
-<li>(This distribution of 10,000 differences will approximate the exact distribution closely enough.)</li>
+<li>(We’ll assume that this distribution of 10,000 differences will closely approximate the exact distribution of all <span class="math inline">\(48!\)</span> differences.)</li>
 <li>We could code this procedure ourselves, but let’s use <code>openintro</code> functions:</li>
 </ul>
 <!-- -   Show distribution (e.g., histogram) of these 10000 difference values. -->
@@ -600,12 +600,13 @@ Null Hypothesis: indepe...
 <span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span>  <span class="co"># set `binwidth = 0.01` to emphasize that there are only a few unique values</span></span>
 <span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by=</span><span class="fl">0.2</span>)) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">dup_axis</span>()) <span class="sc">+</span>  <span class="co"># Mirrors the left axis on the right</span></span>
-<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"10,000 differences in randomized proportions"</span>,</span>
-<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Differences in promotion rates (male - female) across 10000 shuffles"</span></span>
-<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a>p_shuff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">dup_axis</span>(),  <span class="co"># Mirrors the left axis on the right + </span></span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10000</span>, <span class="at">by=</span><span class="dv">400</span>)) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"10,000 differences in randomized proportions"</span>,</span>
+<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Differences in promotion rates (male - female) across 10000 shuffles"</span></span>
+<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-11"><a href="" aria-hidden="true" tabindex="-1"></a>p_shuff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-sex-rand-dot-plot-v2" class="quarto-float quarto-figure quarto-figure-center" alt="A histogram plot of proportion differences from 10000 simulations produced under the null hypothesis, $H_0,$ where the simulated sex and decision are independent.">
 <figure class="quarto-float quarto-float-fig">
@@ -653,20 +654,20 @@ Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles pr
 <!-- ``` -->
 <!-- * Under null hypothesis, expect average of 0 diff. -->
 <!-- * The 0.292 observed is unlikely, suggests that hiring and sex were *not* independent. -->
+<!-- ## How does the observed $\hat{p}_M^{obs} - \hat{p}_F^{obs} = \frac{7}{24}$ compare? -->
 </section>
-<section id="how-does-the-observed-statistic-compare" class="slide level2">
-<h2>How does the observed statistic compare?</h2>
-<p>Recall the proportion difference in the observed (unshuffled) data: <span class="math inline">\(\frac{7}{24}\)</span>.</p>
-<ul>
-<li>How many <span class="math inline">\(j=1,2,\ldots,10000\)</span> produced <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}\)</span>?</li>
-</ul>
+<section id="how-does-the-observed-value-compare" class="slide level2">
+<h2>How does the observed value compare?</h2>
+<!-- Recall the proportion difference in the observed (unshuffled) data: $\frac{7}{24}$. -->
+<!-- How many $j=1,2,\ldots,10000$ produced $\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}$ -->
+<p>How many of the <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)}\)</span> were <span class="math inline">\(\geq\)</span> the observed <span class="math inline">\(\hat{p}_M^{obs} - \hat{p}_F^{obs} = \frac{7}{24}\)</span>?</p>
 <!-- How many of the 10000 difference values $\geq$ the observed difference value? -->
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>obs_prop_diff <span class="ot">&lt;-</span> <span class="dv">21</span><span class="sc">/</span><span class="dv">24</span> <span class="sc">-</span> <span class="dv">14</span><span class="sc">/</span><span class="dv">24</span>  <span class="co"># difference of proportions in the "true" observed data</span></span>
-<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>n_at_least_as_large <span class="ot">&lt;-</span> <span class="fu">sum</span>(shuff_df<span class="sc">$</span>stat <span class="sc">&gt;</span> obs_prop_diff)</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>n_at_least_as_large <span class="ot">&lt;-</span> <span class="fu">sum</span>(shuff_df<span class="sc">$</span>stat <span class="sc">&gt;=</span> obs_prop_diff)</span>
 <span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>n_at_least_as_large</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 32</code></pre>
+<pre><code>[1] 230</code></pre>
 </div>
 </div>
 <p>Visualize how the observed value compares to the distribution under <span class="math inline">\(H_0\)</span>.</p>
@@ -684,11 +685,11 @@ Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles pr
 </div>
 </div>
 <ul>
-<li>Only 32 of the 10,000 shuffles had <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}\)</span>.</li>
+<li>Only 230 of the 10,000 shuffles had <span class="math inline">\(\hat{p}_M^{(j)} - \hat{p}_F^{(j)} \geq \frac{7}{24}\)</span>.</li>
 <li>Hence the observed difference <span class="math inline">\(\frac{7}{24} \approx 0.292\)</span> is unlikely to have occurred simply by chance under <span class="math inline">\(H_0\)</span>.</li>
 <li>Suggests that hiring and sex were <em>not</em> independent.</li>
 </ul>
-<!-- (0.32%)  -->
+<!-- (2.30%)  -->
 <!-- * Under null hypothesis, we expect average of 0 diff. -->
 <!-- #| fig-width: 50 -->
 <!-- * This is only  of the 10000 shuffles. -->
@@ -833,8 +834,8 @@ Figure&nbsp;1: A histogram plot of proportion differences from 10000 shuffles pr
 </ul></li>
 </ul>
 </section>
-<section id="interpretating-discernible-evidence" class="slide level2">
-<h2>Interpretating discernible evidence</h2>
+<section id="interpreting-discernible-evidence" class="slide level2">
+<h2>Interpreting discernible evidence</h2>
 <p>How to interpret statistically discernible evidence?</p>
 <ul>
 <li>How the data was produced/collected? By <em>experiment</em> or by <em>observation</em>?</li>
