@@ -222,6 +222,7 @@ Akira Horiguchi
 <li><a href="#/randomization-test-interpretation" id="/toc-randomization-test-interpretation">Randomization Test: Interpretation</a></li>
 <li><a href="#/mathematical-model-chi-squared-distribution" id="/toc-mathematical-model-chi-squared-distribution">Mathematical Model: Chi-Squared Distribution</a></li>
 <li><a href="#/mathematical-model-ipod-example" id="/toc-mathematical-model-ipod-example">Mathematical Model: iPod example</a></li>
+<li><a href="#/student-check" id="/toc-student-check">Student Check</a></li>
 </ul>
 </nav>
 </section>
@@ -712,7 +713,24 @@ E_{11} = \frac{73 \times 61}{219} = 20.33
 </ul></li>
 <li>When the null hypothesis is true and conditions above are met,<br> the chi-squared statistic follows a <strong>chi-squared distribution</strong> with <span class="math display">\[df = (R - 1)(C - 1)\]</span> <strong>degrees of freedom</strong> (for a two-way table with <span class="math inline">\(R\)</span> rows and <span class="math inline">\(C\)</span> columns)
 <ul>
-<li><span class="math inline">\(df\)</span> determines shape of the chi-squared distribution</li>
+<li><span class="math inline">\(df\)</span> determines shape of the chi-squared distribution: <span class="math display">\[\frac{1}{2^{k/2} \Gamma(k/2)} x^{(k/2)-1} e^{-k/2}\qquad\text{for }k \text{ degrees of freedom}.\]</span></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="lec20_table_files/figure-revealjs/unnamed-chunk-3-1.png" style="height:100.0%" width="960"></p>
+<figcaption>The chi-squared distribution for differing degrees of freedom. The larger the degrees of freedom, the longer the right tail extends. The smaller the degrees of freedom, the more peaked the mode on the left becomes.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>A chi-squared distribution with <span class="math inline">\(k\)</span> degrees of freedom can be shown to have <span class="math display">\[\text{Mean }= k, \qquad \text{Median } \approx k\left(1-\frac{2}{9k}\right)^3.\]</span>
+<ul>
+<li>Takeaway: mean and median increase with <span class="math inline">\(k\)</span>.</li>
+<li>(Makes sense in context of two-way tables: the number of rows/columns in a table directly corresponds to the number of summands in the corresponding chi-squared statistic.)</li>
 </ul></li>
 </ul>
 <!-- ### Key parameter -->
@@ -737,46 +755,17 @@ df = (3 - 1)(2 - 1) = 2
 </div>
 </div>
 <p>This p-value is essentially zero (same conclusion as in the randomization test).</p>
-<!-- ## A Good Rule for 2x2 Tables -->
-<!-- ### Important note from the chapter -->
-<!-- When both variables are binary, a `2 x 2` table can often be analyzed with the **two-proportion methods** from Chapter 17. -->
-<!-- ### Why? -->
-<!-- In a `2 x 2` table, the inferential question can usually be summarized by a single difference in proportions. -->
-<!-- ### When Chapter 18 becomes essential -->
-<!-- Use the full two-way-table framework when at least one variable has **more than two levels** or when the richer table structure matters. -->
-<!-- ## Guided Practice: Climate Change Table -->
-<!-- ### Practice question -->
-<!-- The chapter review includes a Pew Research table crossing: -->
-<!-- - **Generation**: Gen Z, Millennial, Gen X, Boomer & older -->
-<!-- - **Action**: Took action / Didn't take action -->
-<!-- ### What students should be able to do -->
-<!-- 1. state the null hypothesis of independence -->
-<!-- 2. compute expected counts using row totals, column totals, and the grand total -->
-<!-- 3. explain why differences in raw counts alone are not enough -->
-<!-- ### Teaching move -->
-<!-- Have students compute one expected count by hand before moving on. -->
-<!-- ## Chapter Summary -->
-<!-- ::: {.columns} -->
-<!-- ::: {.column width="52%"} -->
-<!-- ### Workflow -->
-<!-- 1. Organize the data into a two-way table. -->
-<!-- 2. State `H_0` and `H_A`. -->
-<!-- 3. Compute expected counts under independence. -->
-<!-- 4. Compute the chi-squared statistic. -->
-<!-- 5. Get a p-value from a randomization test or chi-squared model. -->
-<!-- 6. Conclude in context. -->
-<!-- ::: -->
-<!-- ::: {.column width="48%"} -->
-<!-- ### Terms to know -->
-<!-- - two-way table -->
-<!-- - independence -->
-<!-- - association -->
-<!-- - expected count -->
-<!-- - chi-squared statistic -->
-<!-- - chi-squared distribution -->
-<!-- - degrees of freedom -->
-<!-- ::: -->
-<!-- ::: -->
+</section>
+<section id="student-check" class="slide level2 scrollable">
+<h2>Student Check</h2>
+<p>Determine if the statements below are true or false. For each false statement, suggest an alternative wording to make it a true statement.</p>
+<ol type="1">
+<li>The Chi-square statistic is always greater than or equal to 0.</li>
+<li>As the degrees of freedom increases, the mean of the Chi-square distribution increases.</li>
+<li>If you found <span class="math inline">\(\chi^2 = 5\)</span> with <span class="math inline">\(df=5\)</span> you would fail to reject <span class="math inline">\(H_0\)</span> at the 5% discernibility level.</li>
+<li>When finding the p-value of a Chi-square test, we always shade the tail areas in both tails.</li>
+<li>As the degrees of freedom increases, the variability of the Chi-square distribution decreases.</li>
+</ol>
 
 </section>
     </div>
