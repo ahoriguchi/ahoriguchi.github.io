@@ -214,7 +214,8 @@ Akira Horiguchi
 
 <li><a href="#/mean" id="/toc-mean">Mean…</a></li>
 <li><a href="#/vs-proportion" id="/toc-vs-proportion">…vs proportion</a></li>
-<li><a href="#/bootstrap-ci-for-a-mean" id="/toc-bootstrap-ci-for-a-mean">Bootstrap CI for a mean</a></li>
+<li><a href="#/bootstrap-ci-for-a-mean-ideal" id="/toc-bootstrap-ci-for-a-mean-ideal">Bootstrap CI for a mean: ideal</a></li>
+<li><a href="#/bootstrap-ci-for-a-mean-in-practice" id="/toc-bootstrap-ci-for-a-mean-in-practice">Bootstrap CI for a mean: in practice</a></li>
 <li><a href="#/bootstrap-ci-for-a-standard-deviation" id="/toc-bootstrap-ci-for-a-standard-deviation">Bootstrap CI for a standard deviation</a></li>
 <li><a href="#/bootstrap-ci-for-a-standard-deviation-car" id="/toc-bootstrap-ci-for-a-standard-deviation-car">Bootstrap CI for a standard deviation: car</a></li>
 <li><a href="#/mathematical-model-for-a-mean" id="/toc-mathematical-model-for-a-mean">Mathematical model for a mean</a></li>
@@ -321,15 +322,15 @@ Akira Horiguchi
 <li>For both, we will employ bootstrap CI and mathematical models.</li>
 </ul>
 </section>
-<section id="bootstrap-ci-for-a-mean" class="slide level2 scrollable">
-<h2>Bootstrap CI for a mean</h2>
+<section id="bootstrap-ci-for-a-mean-ideal" class="slide level2 scrollable">
+<h2>Bootstrap CI for a mean: ideal</h2>
 <!-- ## Car example: sample from population -->
 <p>If we <strong>can</strong> sample more from the population, we can repeatedly:</p>
 <ol type="1">
 <li>sample five cars from the population, then</li>
 <li>compute the sample mean of the five cars.</li>
 </ol>
-<p>This gives a distribution of the sample mean of random samples of size 5, giving us <strong>sample-to-sample variability</strong>.</p>
+<p>This gives a distribution of the sample mean of random samples of size 5, which gives us the sample mean’s <strong>sample-to-sample variability</strong>.</p>
 <!-- ```{r} -->
 <!-- #| label: fig-bootpop1mean -->
 <!-- #| echo: false -->
@@ -339,6 +340,9 @@ Akira Horiguchi
 <!-- ``` -->
 <!-- ## Car example: sample using bootstrap -->
 <!-- Bootstrap Sample Means -->
+</section>
+<section id="bootstrap-ci-for-a-mean-in-practice" class="slide level2">
+<h2>Bootstrap CI for a mean: in practice</h2>
 <p>If we <strong>cannot</strong> sample more from the population, we can estimate this <strong>sample-to-sample variability</strong> by bootstrapping: take <span class="math inline">\(B\)</span> bootstrap samples of size <span class="math inline">\(n\)</span> from the original sample of size <span class="math inline">\(n\)</span>.</p>
 <ul>
 <li>Each bootstrap sample has its own sample mean.</li>
@@ -432,19 +436,26 @@ Figure&nbsp;2: Histogram of 1,000 bootstrapped means from the original sample of
 </div>
 </div>
 <ul>
-<li>We are 90% confident that the true average is between $12140 and $22140. <!-- * We can also see variability across bootstrap samples: --> <!-- ```{r} --> <!-- bs_means_100 <- boot_samp_means(obs, 10000) --> <!-- quantile(bs_means_100, probs = c(0.05, 0.95)) --> <!-- bs_means_10000 <- boot_samp_means(obs, 10000) --> <!-- quantile(bs_means_10000, probs = c(0.05, 0.95)) --> <!-- ``` --></li>
+<li>We are 90% confident that the true average is between $12140 and $22140.</li>
 </ul>
+<!-- * We can also see variability across bootstrap samples: -->
+<!-- ```{r} -->
+<!-- bs_means_100 <- boot_samp_means(obs, 10000) -->
+<!-- quantile(bs_means_100, probs = c(0.05, 0.95)) -->
+<!-- bs_means_10000 <- boot_samp_means(obs, 10000) -->
+<!-- quantile(bs_means_10000, probs = c(0.05, 0.95)) -->
+<!-- ``` -->
 </section>
 <section id="bootstrap-ci-for-a-standard-deviation" class="slide level2">
 <h2>Bootstrap CI for a standard deviation</h2>
 <p>We have so far focused on trying to understand the <strong>mean</strong> of a population.</p>
 <ul>
-<li>Often interested in the <strong>standard deviation</strong> <span class="math inline">\(\sigma\)</span> (Greek letter “sigma”) of the variable</li>
+<li>Often interested in the <strong>standard deviation</strong> <span class="math inline">\(\sigma\)</span> (Greek “sigma”) of the variable.</li>
 <li>This represents the natural variability of the population mean <span class="math inline">\(\mu\)</span>.</li>
 <li>Variance <span class="math inline">\(\sigma^2\)</span> is just the squared value of <span class="math inline">\(\sigma\)</span>.</li>
-<li>We can construct a <strong>point estimate</strong> for <span class="math inline">\(\sigma^2\)</span> using samples via</li>
+<li>We can construct a <strong>point estimate</strong> for the <strong>population variance</strong> <span class="math inline">\(\sigma^2\)</span> via</li>
 </ul>
-<p><span class="math display">\[ s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar x)^2. \]</span></p>
+<p><span class="math display">\[ s^2 \;=\; \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar x)^2. \]</span></p>
 <!-- Car example $n=5$: -->
 <!--   \begin{align} -->
 <!--   s^2 &= \frac{1}{4} \Big( (18300-17140)^2 + (20100-17140)^2 \newline \\ -->
@@ -452,21 +463,20 @@ Figure&nbsp;2: Histogram of 1,000 bootstrapped means from the original sample of
 <!--   &\quad\implies s = \$7,170.29 -->
 <!--   \end{align} -->
 <!-- * Then we have that $s^2$ is a good approximation for $\sigma^2$ -->
-<ul>
-<li>We can construct a <em>confidence interval</em> for <span class="math inline">\(\sigma\)</span> using bootstrapping.</li>
-</ul>
+<!-- * We can construct a **confidence interval** for $\sigma$ using bootstrapping. -->
 <!-- ## Bootstrap CI for a standard deviation: approach -->
 <!-- Recall for constructing confidence interval for **population mean** using bootstrap: -->
 <!-- - Take bootstrap re-samples of dataset -->
 <!-- - Compute **sample mean** for each bootstrap sample -->
 <!-- - Create histogram of **sample means** across each bootstrap sample -->
 <!-- - Use the percentiles of the histogram to get confidence intervals -->
-<p>Same idea to construct a confidence interval for <strong>population variance</strong> <span class="math inline">\(\sigma^2\)</span>:</p>
+<!-- Same idea to construct a confidence interval for **population variance** $\sigma^2$: -->
+<p>We can construct a <strong>confidence interval</strong> for <span class="math inline">\(\sigma^2\)</span> using <em>bootstrapping</em>. Same idea:</p>
 <ul>
-<li>Take bootstrap re-samples of dataset</li>
-<li>Compute <strong>sample variance <span class="math inline">\(s^2\)</span></strong> for each bootstrap sample</li>
-<li>Create histogram of <strong>sample variances</strong> across each bootstrap sample</li>
-<li>Use the percentiles of the histogram to get confidence intervals</li>
+<li>Take bootstrap re-samples of dataset.</li>
+<li>Compute <strong>sample variance <span class="math inline">\(s^2\)</span></strong> for each bootstrap sample.</li>
+<li>Create histogram of <strong>sample variances</strong> across each bootstrap sample.</li>
+<li>Use the percentiles of the histogram to get confidence intervals.</li>
 </ul>
 <p>Confidence interval for <strong>population standard deviation</strong> <span class="math inline">\(\sigma\)</span>:</p>
 <ul>
@@ -519,7 +529,8 @@ Figure&nbsp;3: Histogram of 1,000 bootstrapped standard deviations from the orig
 <!-- approximately **normal** with mean $\mu$ and s.d. $\sigma/\sqrt n$.  -->
 <p>Generally do not know population-level <span class="math inline">\(\sigma\)</span>, so we have to estimate it.</p>
 <ul>
-<li>When you have to estimate <span class="math inline">\(\sigma\)</span>, the sampling distribution of <span class="math inline">\(\bar x_n\)</span> is not approximately normal, but is what’s called a “t distribution”</li>
+<li>Having two parameters to estimate can increase uncertainty in inference for sample mean <span class="math inline">\(\bar x_n\)</span> (compared to for sample proportion <span class="math inline">\(\hat p\)</span>).</li>
+<li>Hence, when you have to estimate <span class="math inline">\(\sigma\)</span>, the sampling distribution of <span class="math inline">\(\bar x_n\)</span> is not approximately normal, but is what’s called a “t distribution”, which accounts for the additional uncertainty.</li>
 </ul>
 </section>
 <section id="t-distribution" class="slide level2">
