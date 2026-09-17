@@ -103,10 +103,24 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#downloading-r" id="toc-downloading-r" class="nav-link active" data-scroll-target="#downloading-r">Downloading <code>R</code></a></li>
+  <li><a href="#a-glorified-calculator" id="toc-a-glorified-calculator" class="nav-link" data-scroll-target="#a-glorified-calculator">A Glorified Calculator</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  <li><a href="#set-algebra-in-r" id="toc-set-algebra-in-r" class="nav-link" data-scroll-target="#set-algebra-in-r">Set Algebra in <code>R</code></a></li>
+  <li><a href="#counting-techniques-in-r" id="toc-counting-techniques-in-r" class="nav-link" data-scroll-target="#counting-techniques-in-r">Counting Techniques in R</a></li>
+  <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling">Random Sampling</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -137,267 +151,546 @@ window.Quarto = {
 <section id="a-glorified-calculator" class="level2">
 <h2 class="anchored" data-anchor-id="a-glorified-calculator">A Glorified Calculator</h2>
 <p>In the command line, you can type a number of numerical calculations for which <code>R</code> will immediately return a response. For instance, try typing the following, being sure to hit “ENTER” or “RETURN” when you have completed each line:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">+</span><span class="dv">4</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3-4</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span><span class="dv">3</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3-4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">/</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.666667</code></pre>
+</div>
+</div>
 <p><code>R</code> follows the standard order of operations using parentheses. So</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (<span class="dv">3</span> <span class="sc">+</span> <span class="dv">10</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">10</span>)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.5</code></pre>
+</div>
+</div>
 <p>will differ from</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">10</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">10</span><span class="sc">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
 <p>It’s important to remember proper parentheses placement!</p>
-<p>Note, do not type the “<code>&gt;</code>” when typing each line. That is only there to show you how your console should look. Note further too that “<code>+</code>”, “<code>-</code>”, “<code>*</code>”, and “<code>/</code>” perform addition, subtraction, multiplication, and division. When you hit “ENTER” after each line <code>R</code> returned the result of the line you entered. <code>R</code> has a number of built-in mathematical functions as well. For example, we may want to take the <span class="math inline">\(\log\)</span> (defaults to base <span class="math inline">\(e\)</span>) of a number:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<!-- Note, do not type the "`>`" when typing each line. That is only there to -->
+<!-- show you how your console should look.  -->
+<p>Note further too that “<code>+</code>”, “<code>-</code>”, “<code>*</code>”, and “<code>/</code>” perform addition, subtraction, multiplication, and division. When you hit “ENTER” after each line <code>R</code> returned the result of the line you entered. <code>R</code> has a number of built-in mathematical functions as well. For example, we may want to take the <span class="math inline">\(\log\)</span> (defaults to base <span class="math inline">\(e\)</span>) of a number:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+</div>
 <p>Or we may wish to exponentiate a number:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20.08554</code></pre>
+</div>
+</div>
 <p>Maybe we want to square a number or raise a number to a power:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1024</code></pre>
+</div>
+</div>
 <p>We can also take the square-root of a number:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sqrt</span>(<span class="dv">27</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">27</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.196152</code></pre>
+</div>
+</div>
 </section>
 <section id="assignments" class="level2">
 <h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
 <p>As we mentioned in the intro, <code>R</code> can act like an object oriented programing language. Let’s see how this works. Say we want to save those ten random variables in <code>R</code>’s memory. Suppose we want to save a particularly complex calculation, we use either lower or upper case letters (or words) to which we assign a value like so</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">3</span>) <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7710854</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">3</span>) <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7710854</code></pre>
+</div>
+</div>
 <p>lower case <code>x</code> is now saved as an object in <code>R</code>’s memory. <code>R</code> will distinguish between lower and upper case so if next define <code>X</code> to be something,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">3</span>) <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">11.67186</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7710854</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">log</span>(<span class="dv">3</span>) <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>X</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.67186</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7710854</code></pre>
+</div>
+</div>
 <p><code>x</code> is still the same. Since <code>x</code> and <code>X</code> aren’t very descriptive, we could use a word to save our object. It’s important to test your candidate word first to make sure you aren’t overwriting some built-in <code>R</code> object. Suppose we wish to define multiple elements of the calculation above. Let’s test out some names first</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> theta</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'theta'</span> not found</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> se</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'se'</span> not found</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lower</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'lower'</span> not found</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> upper</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'upper'</span> not found</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> theta</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'theta'</span> not found</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> se</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'se'</span> not found</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lower</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'lower'</span> not found</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> upper</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'upper'</span> not found</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Each of these “errors” tell us <code>R</code> does not have any objects currently named <code>theta</code>, <code>se</code>, <code>lower</code>, or <code>upper</code> so we are free to assign our values as we wish:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> theta <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">3</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> theta</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.098612</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> se        <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">2</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> se</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.6931472</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(theta <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lower</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.7710854</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(theta <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> upper</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">11.67186</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">3</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>theta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.098612</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>se        <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">2</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>se</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6931472</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(theta <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>lower</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7710854</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(theta <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>upper</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.67186</code></pre>
+</div>
+</div>
 <p>After each assignment, we have printed out the result. We don’t need to do this, but it is nice to check—although use this with caution. When we start working with data, printing out the entire dataset might not be useful. If you use <code>R</code> Studio, there is a viewing GUI where you can look at data. <code>R</code> is most powerful for its probabilistic, statistical, and graphical abilities. We will discuss many of these during the semester, beginning with some ideas from probability.</p>
 </section>
 <section id="set-algebra-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="set-algebra-in-r">Set Algebra in <code>R</code></h2>
 <p>We can use assignments to, for example, construct sample spaces. First check to see if <code>S</code> is already a defined object in <code>R</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'S'</span> not found</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">'S'</span> not found</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Thus we may use <code>S</code> for the name of our sample space. Next, consider the sample space you want to define. The easiest way to do assign to the sample space a number. This approach requires the sample space be finite. If we are rolling a single six sided die, we could define <code>S</code> to be</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>where <code>1:6</code> generates a vector of numbers from 1 to 6, by 1. We can count the elements in <code>S</code> using the function <code>length()</code> like so</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(S)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
 <p>Note: this assumes all the elements of <code>S</code> are unique, i.e.&nbsp;<code>S</code> contains only simple events!</p>
 <p>We can then use <code>R</code> to count the number of elements of <code>S</code> that satisfy a specific criteria. Suppose we’re interested in the proportion of elements less than 3. First, we define the event <code>E3</code> as</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>E3  <span class="ot">&lt;-</span> <span class="fu">which</span>(S <span class="sc">&lt;</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>E3  <span class="ot">&lt;-</span> <span class="fu">which</span>(S <span class="sc">&lt;</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Then we can determine the probability using the <code>length()</code> function:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(E3)<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.3333333</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(E3)<span class="sc">/</span><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3333333</code></pre>
+</div>
+</div>
 <p>In this way, we can think of the <code>length()</code> function as equivalent to the function <span class="math inline">\(\#()\)</span> from the notes. We can use <code>R</code> to calculate other counting-related quantities from the notes.</p>
 <p><code>R</code> can also perform unions and intersections symbolically. Define the following sets:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="st">'a2'</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="st">'a3'</span>, <span class="st">'a5'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="st">'a2'</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="st">'a3'</span>, <span class="st">'a5'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Here we use <code>R</code> to construct sets, or vectors in <code>R</code> parlance, of non-numeric elements. We can then apply the <code>union()</code> and <code>intersect()</code> functions to perform <span class="math inline">\(A \cup B\)</span> and <span class="math inline">\(A \cap B\)</span>, respectively:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">union</span>(A,B)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a1"</span> <span class="st">"a2"</span> <span class="st">"a3"</span> <span class="st">"a5"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">intersect</span>(A,B)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(A,B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a1" "a2" "a3" "a5"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(A,B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a1"</code></pre>
+</div>
+</div>
 <p>If we assign these functions to objects, we can then use <code>R</code> to help us calculate simple probabilities. Consider the roll of a 20-sided die. We first construct the sample space:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">'E'</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">sep =</span> <span class="st">''</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"E1"</span>  <span class="st">"E2"</span>  <span class="st">"E3"</span>  <span class="st">"E4"</span>  <span class="st">"E5"</span>  <span class="st">"E6"</span>  <span class="st">"E7"</span>  <span class="st">"E8"</span>  <span class="st">"E9"</span>  <span class="st">"E10"</span> <span class="st">"E11"</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">12</span>] <span class="st">"E12"</span> <span class="st">"E13"</span> <span class="st">"E14"</span> <span class="st">"E15"</span> <span class="st">"E16"</span> <span class="st">"E17"</span> <span class="st">"E18"</span> <span class="st">"E19"</span> <span class="st">"E20"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">'E'</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">sep =</span> <span class="st">''</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>S</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "E1"  "E2"  "E3"  "E4"  "E5"  "E6"  "E7"  "E8"  "E9"  "E10" "E11" "E12"
+[13] "E13" "E14" "E15" "E16" "E17" "E18" "E19" "E20"</code></pre>
+</div>
+</div>
 <p>In the above code, the <code>paste()</code> function streamlines the construction of the space. It tells <code>R</code> to paste the letter ‘E’ together with each integer in the sequence 1 to 20. Now define two events. First, define the even that a single roll is an odd number:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> O <span class="ot">&lt;-</span> S[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> O</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">"E1"</span>  <span class="st">"E3"</span>  <span class="st">"E5"</span>  <span class="st">"E7"</span>  <span class="st">"E9"</span>  <span class="st">"E11"</span> <span class="st">"E13"</span> <span class="st">"E15"</span> <span class="st">"E17"</span> <span class="st">"E19"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> S[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>O</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "E1"  "E3"  "E5"  "E7"  "E9"  "E11" "E13" "E15" "E17" "E19"</code></pre>
+</div>
+</div>
 <p>Because of how we constructed <span class="math inline">\(S\)</span>, we only need to extract the odd elements to form <span class="math inline">\(O\)</span>. The square brackets, <span class="math inline">\([\ ]\)</span>, perform the extraction while the function <code>seq(1, 20, by = 2)</code> builds a vector of all the odd numbers from between 1 and 20. Next construct the event that the roll is equal to 16 or higher:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> G16 <span class="ot">&lt;-</span> S[<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> G16</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"E16"</span> <span class="st">"E17"</span> <span class="st">"E18"</span> <span class="st">"E19"</span> <span class="st">"E20"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>G16 <span class="ot">&lt;-</span> S[<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>G16</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "E16" "E17" "E18" "E19" "E20"</code></pre>
+</div>
+</div>
 <p>Again, because <span class="math inline">\(S\)</span> is ordered, we can construct <span class="math inline">\(G16\)</span> by selecting the 16th through 20th elements using the subset brackets, <span class="math inline">\([\ ]\)</span>. Now we can ask what the probability of each event is on a single toss. Remember, the <code>length()</code> function is the <code>R</code> equivalent to the <span class="math inline">\(\#(\cdot)\)</span> function from lecture. The probability of rolling an odd number:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(O)<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(O)<span class="sc">/</span><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
 <p>The probability of rolling a number 16 or more:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(G16)<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.25</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(G16)<span class="sc">/</span><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.25</code></pre>
+</div>
+</div>
 <p>The probability of either an odd number, a number 16 or more, or both:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(<span class="fu">union</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.65</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">union</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.65</code></pre>
+</div>
+</div>
 <p>The probability of both an odd number and one that is 16 or more:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(<span class="fu">intersect</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">intersect</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1</code></pre>
+</div>
+</div>
 <p>If we save some of the probabilities from above, we can find the conditional probability of rolling 16 or more given an odd roll:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> POnG16 <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">intersect</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> PO <span class="ot">&lt;-</span> <span class="fu">length</span>(O)<span class="sc">/</span><span class="fu">length</span>(S)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> POnG16<span class="sc">/</span>PO</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>POnG16 <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">intersect</span>(O,G16))<span class="sc">/</span><span class="fu">length</span>(S)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>PO <span class="ot">&lt;-</span> <span class="fu">length</span>(O)<span class="sc">/</span><span class="fu">length</span>(S)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>POnG16<span class="sc">/</span>PO</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+</div>
 </section>
 <section id="counting-techniques-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="counting-techniques-in-r">Counting Techniques in R</h2>
 <p>To do permutations, we can use the function <code>factorial()</code>. Suppose we want to count the number of possible ways of ordering baseball players for a starting lineup (the initial order in which players will bat). There are nine players available. The number of possible orders is</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">factorial</span>(<span class="dv">9</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">362880</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 362880</code></pre>
+</div>
+</div>
 <p>Now suppose we want to select four of the players from the nine for the first four spots in the lineup. The first selected will bat first, second will bat second, and so on. Some might argue the order matters. How many ways are there of selecting four players from nine when order matters? First, to make our code more useable, let’s define two values <code>n</code> and <code>r</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n <span class="ot">&lt;-</span> <span class="dv">9</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> r <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><code>R</code> also has a choose function, <code>choose()</code> which takes two arguments. The first argument is <code>n</code> and the second argument is <code>k</code> (what we have referred to as <code>r</code>). If order doesn’t matter in selecting the first four to bat, the number of ways of selecting four players from nine is</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">choose</span>(n, r)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">126</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(n, r)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 126</code></pre>
+</div>
+</div>
 <p>where <code>n</code> and <code>r</code> are as previously defined.</p>
 <p>We may use the <code>choose()</code> function to calculate, for example, the poker related questions. On the first deal of a game of five card draw, the probability of being dealt a three of a kind is</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (<span class="fu">choose</span>(<span class="dv">13</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">3</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">2</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">1</span>))<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">52</span>,<span class="dv">5</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.02112845</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">choose</span>(<span class="dv">13</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">3</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">2</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">1</span>))<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">52</span>,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02112845</code></pre>
+</div>
+</div>
 <p>Note that the parenthesis placement around the numerator is not, technically, necessary. However, it is good practice.</p>
 </section>
 <section id="random-sampling" class="level2">
 <h2 class="anchored" data-anchor-id="random-sampling">Random Sampling</h2>
 <p><code>R</code> is useful for its ability to pseudo-randomly generate numbers. Using this, we can run probability experiments many times over to empirically determine probabilities.</p>
 <p>Consider our favorite example of rolling a six sided die. We can simulate this in <code>R</code> by first assigning the numbers to a sample space:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>To “randomly” sample from this space, we use the function <code>sample()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(S, <span class="dv">1</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
 <p>Did everyone get a 3? Probably not. In the in-class demonstration we probably won’t get a 3 either. Let’s collect the all the numbers you sampled a create a <em>distribution</em> for the roll of the die. We’ll formalize the meaning of <em>distribution</em> later on, but for now we can think of it as a mathematical representation of the experiment. Everyone now give me the number you sampled and we will create a vector in <code>R</code> (don’t lie!):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>samps   <span class="ot">&lt;-</span> <span class="fu">c</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note: we are overwriting the object <code>S</code> we have saved in the space.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>samps   <span class="ot">&lt;-</span> <span class="fu">c</span>(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>samps   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<!-- Note: we are overwriting the object `S` we have saved in the space. -->
 <p>Once we have our collected sample, we can ask questions about it. For example, we can find the probability that the roll is four or less:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L4    <span class="ot">&lt;-</span> <span class="fu">which</span>(samps <span class="sc">&lt;=</span> <span class="dv">4</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lengtth</span>(L4)<span class="sc">/</span><span class="fu">length</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>L4    <span class="ot">&lt;-</span> <span class="fu">which</span>(samps <span class="sc">&lt;=</span> <span class="dv">4</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(L4)<span class="sc">/</span><span class="fu">length</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7272727</code></pre>
+</div>
+</div>
 <p>We can now try to decipher if some of your were lying. If the sample were truly random, we’d expect each number to appear roughly the same number of times. We can check this with the function <code>table()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps
+1 2 3 4 5 6 
+3 4 5 4 2 4 </code></pre>
+</div>
+</div>
 <p>We could also calculate the probability of getting each roll,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps)<span class="sc">/</span><span class="fu">length</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps)<span class="sc">/</span><span class="fu">length</span>(samps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps
+         1          2          3          4          5          6 
+0.13636364 0.18181818 0.22727273 0.18181818 0.09090909 0.18181818 </code></pre>
+</div>
+</div>
 <p>Do we suspect anyone of being dishonest in what they got for their roll?</p>
 <p>Taking a sample 40 in this fashion can, obviously, be tedious. However, <code>R</code> allows us to randomly sample more than once quite easily. To obtain a sample of size 40, we simply increase the number in the second argument. But we also need to instruct <code>R</code> to sample with replacement, i.e.&nbsp;sampling where the drawn value is put back in and can be re-sampled—effectively it’s what we did together as a class.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 1 5 1 1 1 3 2 2 2 2 1 5 2 2 2 5 5 1 3 4 2 5 4 1 5 3 3 6 6 5 1 4 3 4 2 5 3
+[39] 1 5</code></pre>
+</div>
+</div>
 <p>Note that because the numbers are generated pseudo-randomly, you won’t have the same values. But we can make <code>R</code> tell produce the same values if we want by setting the seed. Let’s set the seed to 27:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">5</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">6</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5 2 6 1 3 1 1 1 1 1 5 3 3 6 1 4 1 6 4 3 1 3 1 1 5 2 4 5 1 4 4 4 1 2 2 1 1 1
+[39] 6 5</code></pre>
+</div>
+</div>
 <p>Now everyone should get the same numbers. And if we were to re-run these two lines of code over and over again on our machines, we’d get the same set of numbers. Let’s investigate our sample in the same way as before. Save this sample using</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> samp27 <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>samps27 <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">40</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>and then use the <code>table()</code> function on it to count the occurrences of the events:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps27)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>samps27</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span> </span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>  <span class="dv">5</span>  <span class="dv">7</span>  <span class="dv">7</span>  <span class="dv">2</span>  <span class="dv">7</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps27)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps27
+ 1  2  3  4  5  6 
+16  4  5  6  5  4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>samps27</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5 2 6 1 3 1 1 1 1 1 5 3 3 6 1 4 1 6 4 3 1 3 1 1 5 2 4 5 1 4 4 4 1 2 2 1 1 1
+[39] 6 5</code></pre>
+</div>
+</div>
 <p>and check the probabilities:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps27)<span class="sc">/</span><span class="fu">length</span>(samps27)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>samps27</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">4</span>     <span class="dv">5</span>     <span class="dv">6</span> </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fl">0.300</span> <span class="fl">0.125</span> <span class="fl">0.175</span> <span class="fl">0.175</span> <span class="fl">0.050</span> <span class="fl">0.175</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps27)<span class="sc">/</span><span class="fu">length</span>(samps27)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps27
+    1     2     3     4     5     6 
+0.400 0.100 0.125 0.150 0.125 0.100 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>samps27</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5 2 6 1 3 1 1 1 1 1 5 3 3 6 1 4 1 6 4 3 1 3 1 1 5 2 4 5 1 4 4 4 1 2 2 1 1 1
+[39] 6 5</code></pre>
+</div>
+</div>
 <p>The ones are a little high and the fives are a little low. This may be due to random chance alone. If we increase the number of samples we take, we might get a clearer picture:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> samps400 <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">400</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps400)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>samps400</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span> </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="dv">67</span> <span class="dv">57</span> <span class="dv">66</span> <span class="dv">67</span> <span class="dv">72</span> <span class="dv">71</span> </span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(samps400)<span class="sc">/</span><span class="fu">length</span>(samps400)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>samps400</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>     <span class="dv">1</span>      <span class="dv">2</span>      <span class="dv">3</span>      <span class="dv">4</span>      <span class="dv">5</span>      <span class="dv">6</span> </span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1675</span> <span class="fl">0.1425</span> <span class="fl">0.1650</span> <span class="fl">0.1675</span> <span class="fl">0.1800</span> <span class="fl">0.1775</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>samps400 <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">400</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps400)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps400
+ 1  2  3  4  5  6 
+74 60 67 67 63 69 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>samps400</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 5 2 6 1 3 1 1 1 1 1 5 3 3 6 1 4 1 6 4 3 1 3 1 1 5 2 4 5 1 4 4 4 1 2 2 1 1
+ [38] 1 6 5 1 4 4 6 3 3 1 5 4 6 3 5 3 3 3 2 4 4 4 5 3 3 4 4 5 3 5 6 4 1 3 5 4 2
+ [75] 3 5 2 5 4 5 2 3 2 5 1 5 5 6 5 2 2 3 1 6 4 1 1 3 6 3 5 1 3 5 6 5 3 4 1 1 4
+[112] 4 1 3 2 1 1 3 5 1 2 2 3 2 4 1 1 2 1 3 5 5 4 6 4 2 2 5 1 2 4 2 2 6 3 5 4 4
+[149] 4 6 6 1 2 4 6 6 5 1 6 4 5 6 3 3 6 6 2 1 6 4 4 3 4 2 6 1 3 5 1 5 3 1 6 2 2
+[186] 3 6 5 3 3 4 1 1 3 6 6 2 3 3 4 5 2 5 4 1 6 2 2 1 5 6 1 1 6 6 4 2 3 6 2 2 6
+[223] 3 2 4 4 5 5 6 6 4 6 6 5 2 4 5 5 4 2 3 5 3 2 2 4 6 5 1 2 4 1 1 4 4 1 2 1 1
+[260] 1 5 3 4 6 3 3 6 4 4 6 6 1 5 3 6 2 1 5 5 6 6 1 1 5 4 4 6 1 2 4 4 6 3 3 1 2
+[297] 2 5 3 6 1 2 5 1 2 4 1 3 6 6 5 1 6 6 6 1 6 5 4 3 6 6 6 4 3 3 3 2 2 3 5 3 5
+[334] 6 6 2 2 1 6 5 1 1 4 2 2 5 2 4 6 3 1 4 2 1 2 5 5 4 6 2 4 5 1 4 5 1 6 5 3 6
+[371] 4 2 3 4 3 3 6 3 5 4 2 4 1 4 6 3 2 3 6 3 5 2 6 3 5 5 6 1 1 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(samps400)<span class="sc">/</span><span class="fu">length</span>(samps400)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>samps400
+     1      2      3      4      5      6 
+0.1850 0.1500 0.1675 0.1675 0.1575 0.1725 </code></pre>
+</div>
+</div>
 <p>This is getting closer! What should we obtain theoretically?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667</code></pre>
+</div>
+</div>
 <p>This function, <code>rep()</code>, repeats the first value the second value number of times.</p>
 <p>How many samples do you need to take to reach this? Try experimenting with larger and larger numbers. For reproducibility, set the set to 27 before each sampling. Try starting with 1000 samples and increase until you get values equal to the theoretical values out to three decimals.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sampsLarge <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(sampsLarge)<span class="sc">/</span><span class="fu">length</span>(sampsLarge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>sampsLarge <span class="ot">&lt;-</span> <span class="fu">sample</span>(S, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sampsLarge)<span class="sc">/</span><span class="fu">length</span>(sampsLarge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sampsLarge
+    1     2     3     4     5     6 
+0.178 0.156 0.147 0.175 0.163 0.181 </code></pre>
+</div>
+</div>
 <p>Once you reach a reasonable approximation of the theoretical values, display the table in your console and compare to what you should get like so:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span> <span class="fl">0.1666667</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(sampsLarge)<span class="sc">/</span><span class="fu">length</span>(sampsLarge)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>sampsLarge</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">4</span>         <span class="dv">5</span>         <span class="dv">6</span> </span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1666642</span> <span class="fl">0.1664997</span> <span class="fl">0.1668501</span> <span class="fl">0.1666401</span> <span class="fl">0.1666379</span> <span class="fl">0.1667080</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sampsLarge)<span class="sc">/</span><span class="fu">length</span>(sampsLarge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sampsLarge
+    1     2     3     4     5     6 
+0.178 0.156 0.147 0.175 0.163 0.181 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>sampsLarge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1] 5 2 6 1 3 1 1 1 1 1 5 3 3 6 1 4 1 6 4 3 1 3 1 1 5 2 4 5 1 4 4 4 1 2 2 1 1
+  [38] 1 6 5 1 4 4 6 3 3 1 5 4 6 3 5 3 3 3 2 4 4 4 5 3 3 4 4 5 3 5 6 4 1 3 5 4 2
+  [75] 3 5 2 5 4 5 2 3 2 5 1 5 5 6 5 2 2 3 1 6 4 1 1 3 6 3 5 1 3 5 6 5 3 4 1 1 4
+ [112] 4 1 3 2 1 1 3 5 1 2 2 3 2 4 1 1 2 1 3 5 5 4 6 4 2 2 5 1 2 4 2 2 6 3 5 4 4
+ [149] 4 6 6 1 2 4 6 6 5 1 6 4 5 6 3 3 6 6 2 1 6 4 4 3 4 2 6 1 3 5 1 5 3 1 6 2 2
+ [186] 3 6 5 3 3 4 1 1 3 6 6 2 3 3 4 5 2 5 4 1 6 2 2 1 5 6 1 1 6 6 4 2 3 6 2 2 6
+ [223] 3 2 4 4 5 5 6 6 4 6 6 5 2 4 5 5 4 2 3 5 3 2 2 4 6 5 1 2 4 1 1 4 4 1 2 1 1
+ [260] 1 5 3 4 6 3 3 6 4 4 6 6 1 5 3 6 2 1 5 5 6 6 1 1 5 4 4 6 1 2 4 4 6 3 3 1 2
+ [297] 2 5 3 6 1 2 5 1 2 4 1 3 6 6 5 1 6 6 6 1 6 5 4 3 6 6 6 4 3 3 3 2 2 3 5 3 5
+ [334] 6 6 2 2 1 6 5 1 1 4 2 2 5 2 4 6 3 1 4 2 1 2 5 5 4 6 2 4 5 1 4 5 1 6 5 3 6
+ [371] 4 2 3 4 3 3 6 3 5 4 2 4 1 4 6 3 2 3 6 3 5 2 6 3 5 5 6 1 1 3 4 5 1 6 3 2 6
+ [408] 4 5 6 2 6 3 6 1 4 6 4 1 1 4 5 2 2 5 6 5 3 4 2 6 4 6 5 6 6 4 1 1 5 4 6 4 4
+ [445] 1 5 3 2 2 2 6 2 2 3 3 5 1 2 6 3 1 2 5 2 5 3 1 1 2 4 6 3 6 6 4 5 5 6 5 1 1
+ [482] 5 5 3 3 3 5 6 1 6 6 3 2 6 1 2 5 6 1 5 4 2 5 6 4 5 5 5 1 1 2 1 5 3 3 4 5 3
+ [519] 4 6 4 3 1 4 2 6 4 6 3 4 6 1 5 4 5 4 6 5 6 6 5 5 4 3 6 4 4 3 6 1 6 2 1 4 3
+ [556] 4 6 4 3 3 1 2 2 2 3 5 5 4 3 3 4 4 1 6 1 5 1 1 3 5 2 2 4 1 6 2 1 2 1 5 3 2
+ [593] 1 4 1 2 6 5 6 5 4 6 2 5 2 4 6 4 6 5 4 2 1 5 5 5 4 6 1 1 3 2 2 3 3 4 3 2 2
+ [630] 4 3 5 2 2 5 2 6 5 5 6 2 1 1 1 6 2 3 3 1 4 4 5 4 4 3 5 5 4 4 4 3 1 5 6 6 1
+ [667] 4 6 5 5 1 3 2 2 3 3 1 5 5 1 2 1 1 1 5 4 4 1 2 6 5 5 5 5 4 1 6 3 5 2 1 4 2
+ [704] 4 1 1 6 1 4 2 2 1 6 2 6 4 5 3 1 3 2 6 4 4 5 6 5 6 6 5 4 5 4 1 3 6 2 5 1 6
+ [741] 1 2 1 1 3 4 3 6 3 4 6 3 5 3 6 1 3 2 4 1 3 3 6 2 3 3 2 4 3 4 2 5 1 2 3 1 2
+ [778] 5 2 2 1 2 5 1 5 5 2 4 2 2 6 6 4 6 5 4 4 3 1 4 1 1 6 6 2 6 4 4 1 6 5 3 5 4
+ [815] 1 6 5 2 6 1 4 1 2 5 2 6 4 1 6 6 4 4 4 2 6 5 5 6 6 2 5 6 6 4 1 4 2 4 3 4 2
+ [852] 5 2 6 6 6 2 4 6 1 6 3 4 4 3 6 6 6 1 1 1 6 3 1 3 5 2 2 5 1 6 3 5 1 6 2 5 5
+ [889] 6 4 4 6 4 6 4 4 1 4 2 4 6 1 3 1 5 4 3 4 4 1 5 5 4 5 1 1 5 3 1 6 3 1 6 5 4
+ [926] 6 3 3 6 2 4 5 1 6 4 4 6 5 3 5 1 6 4 6 1 1 3 6 1 1 2 2 6 1 1 4 2 6 1 6 3 5
+ [963] 1 4 4 2 2 2 5 2 4 2 2 3 6 4 3 5 1 2 6 3 3 2 2 5 3 2 2 3 5 6 1 2 6 2 4 1 4
+[1000] 3</code></pre>
+</div>
+</div>
 <p>The first represents the <em>theoretical</em> distribution while the second represents the <em>empirical</em> or sampled distribution.</p>
 <p>Suppose we wanted to simulate rolls from a weighted die where the five and six are most likely to be rolled, the three and four are next likely, and the one and two are least likely with probabilities, in order, of 3/12, 3/12, 2/12, 2/12, 1/12, 1/12. In <code>R</code>, we can combine these into a single object (called a <em>vector</em>) using the function <code>c()</code> like so:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>wprobs  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>wprobs  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Note that we must make sure the order of the probabilities reflects the order in the sample space, which will be 1 to 6. To simulate the weighted die, we use <code>sample()</code> but feed <code>R</code> the additional argument of <code>prob = wprobs</code> like so:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">16</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(S, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> wprobs)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">5</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">5</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">16</span>)</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> wprobs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 4 5 6 5 2 6 5 4 2 5</code></pre>
+</div>
+</div>
 <p>We can sample from larger sample spaces as well. Suppose we number every student in this class. There are 39 students enrolled, if we number you 1 to 39 alphabetically, we can randomly sample students from the class. Suppose we take a sample of size 10:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">39</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">714</span>)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(S, <span class="dv">10</span>)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">33</span> <span class="dv">14</span>  <span class="dv">7</span> <span class="dv">30</span> <span class="dv">38</span>  <span class="dv">8</span> <span class="dv">13</span>  <span class="dv">2</span> <span class="dv">29</span>  <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">39</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">714</span>)</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(S, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 33 14  7 30 38  8 13  2 29  6</code></pre>
+</div>
+</div>
 <p>We could then measure a variable (or variables) on each student in this sample (say height or major or what your favorite campus spot is).</p>
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>As we mentioned above, <code>R</code> has many packages available. To load a package takes two steps if it hasn’t previously been installed and one step if it has. The function to install a package is <code>install.packages()</code>. Let’s install the package <code>ISwR</code> which is an <code>R</code> package for Intro Statistics with <code>R</code> (hence ISwR). First type the following into the console.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">'ISwR'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">'ISwR'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you are using <code>RStudio</code>, the rest of the work will be done for you. In fact, <code>RStudio</code> when encountering code that requires a certain package you do not have download may prompt you to install the package in a banner across the top. If you are using base <code>R</code>, you will need to select a mirror. It’s best to choose the mirror that is geographically closest to you. There is one in TN which should be good, but any in the US will work, scroll down to them and select one. Once you’ve selected a mirror, the download will begin. If you use <code>RStudio</code>, this selection should be done for you. Either way, the output in the console should look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">'ISwR'</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  There is a binary version available but the source version is later<span class="sc">:</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>     binary source needs_compilation</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>ISwR  <span class="fl">2.0</span><span class="dv">-7</span>  <span class="fl">2.0</span><span class="dv">-8</span>             <span class="cn">FALSE</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>installing the source package <span class="st">`</span><span class="at">ISwR'</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="at">trying URL 'https://cran.rstudio.com/src/contrib/ISwR_2.0-8.tar.gz'</span></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="at">Content type 'application/x-gzip' length 164076 bytes (160 KB)</span></span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="at">==================================================</span></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="at">downloaded 160 KB</span></span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="at">* installing *source* package </span><span class="st">`</span>ISwR<span class="st">' ...</span></span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="st">** package `ISwR'</span> successfully unpacked and MD5 sums checked</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> R</span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> data</span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*</span> moving datasets to lazyload DB</span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> inst</span>
-<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> preparing package <span class="cf">for</span> lazy loading</span>
-<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> help</span>
-<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*</span> installing help indices</span>
-<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> building package indices</span>
-<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> testing <span class="cf">if</span> installed package can be loaded</span>
-<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span> <span class="fu">DONE</span> (ISwR)</span>
-<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>The downloaded source packages are <span class="cf">in</span></span>
-<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">/private/var/folders/qb/vlrpf9pj4mg01dg2zjh_tt140000gn/T/RtmpOnTpwI/downloaded_packages'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">'ISwR'</span>)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>  There is a binary version available but the source version is later<span class="sc">:</span></span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>     binary source needs_compilation</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>ISwR  <span class="fl">2.0</span><span class="dv">-7</span>  <span class="fl">2.0</span><span class="dv">-8</span>             <span class="cn">FALSE</span></span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>installing the source package <span class="st">`</span><span class="at">ISwR'</span></span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="at">trying URL 'https://cran.rstudio.com/src/contrib/ISwR_2.0-8.tar.gz'</span></span>
+<span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="at">Content type 'application/x-gzip' length 164076 bytes (160 KB)</span></span>
+<span id="cb119-11"><a href="#cb119-11" aria-hidden="true" tabindex="-1"></a><span class="at">==================================================</span></span>
+<span id="cb119-12"><a href="#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="at">downloaded 160 KB</span></span>
+<span id="cb119-13"><a href="#cb119-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-14"><a href="#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="at">* installing *source* package </span><span class="st">`</span>ISwR<span class="st">' ...</span></span>
+<span id="cb119-15"><a href="#cb119-15" aria-hidden="true" tabindex="-1"></a><span class="st">** package `ISwR'</span> successfully unpacked and MD5 sums checked</span>
+<span id="cb119-16"><a href="#cb119-16" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> R</span>
+<span id="cb119-17"><a href="#cb119-17" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> data</span>
+<span id="cb119-18"><a href="#cb119-18" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*</span> moving datasets to lazyload DB</span>
+<span id="cb119-19"><a href="#cb119-19" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> inst</span>
+<span id="cb119-20"><a href="#cb119-20" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> preparing package <span class="cf">for</span> lazy loading</span>
+<span id="cb119-21"><a href="#cb119-21" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> help</span>
+<span id="cb119-22"><a href="#cb119-22" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span><span class="er">*</span> installing help indices</span>
+<span id="cb119-23"><a href="#cb119-23" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> building package indices</span>
+<span id="cb119-24"><a href="#cb119-24" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span> testing <span class="cf">if</span> installed package can be loaded</span>
+<span id="cb119-25"><a href="#cb119-25" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span> <span class="fu">DONE</span> (ISwR)</span>
+<span id="cb119-26"><a href="#cb119-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-27"><a href="#cb119-27" aria-hidden="true" tabindex="-1"></a>The downloaded source packages are <span class="cf">in</span></span>
+<span id="cb119-28"><a href="#cb119-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">/private/var/folders/qb/vlrpf9pj4mg01dg2zjh_tt140000gn/T/RtmpOnTpwI/downloaded_packages'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now that we’ve downloaded the package, we need to load it into our console. To do this we will use the function <code>library()</code>. Note that once you’ve downloaded a package, to use it in future sessions all you need to do is run this command (you do not have to install it again). Further, if you don’t close your session of <code>R</code>, all libraries you loaded will remain there. If you do close <code>R</code>, however, you will need to reload, using <code>library()</code> any packages you wish to work with. Now lets load the <code>ISwR</code> package into the console.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(ISwR)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('ISwR')</span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISwR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Loading <code>ISwR</code> should not return anything if it was successful. Among other features, <code>ISwR</code> has a number of interesting (albeit old) datasets. For example, the dataset <code>heart.rate</code> has the heart rates from nine patients with congestive heart failure before and shortly after administration of enalaprilat, an ACE inhibitor and antihypertensive drug. We could generate a histogram of this data using:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">with</span>(heart.rate, <span class="fu">hist</span>(hr, <span class="at">col =</span> <span class="st">'darkblue'</span>, <span class="at">main =</span> <span class="st">'Historgram of Heart Rate'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>which generates the following graph</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(heart.rate, <span class="fu">hist</span>(hr, <span class="at">col =</span> <span class="st">'darkblue'</span>, <span class="at">main =</span> <span class="st">'Histogram of Heart Rate'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><embed src="hrhist.pdf" class="img-fluid"></p>
-<figcaption>Histogram of Heart Rate</figcaption>
+<p><img src="intro_to_R_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Histogram of HR</figcaption>
 </figure>
 </div>
+</div>
+</div>
 <p>Notice we added the argument <code>col = 'darkblue'</code> to change the color of the histogram. Other colors are available, see <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" class="uri">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a>. Alternatively, we could construct a boxplot:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">with</span>(heart.rate, <span class="fu">boxplot</span>(hr, <span class="at">col =</span> <span class="st">'goldenrod'</span>, <span class="at">main =</span> <span class="st">'Boxplot of Heart Rate'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>which generates the following graph</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(heart.rate, <span class="fu">boxplot</span>(hr, <span class="at">col =</span> <span class="st">'goldenrod'</span>, <span class="at">main =</span> <span class="st">'Boxplot of Heart Rate'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><embed src="hrbox.pdf" class="img-fluid"></p>
-<figcaption>Boxplot of Heart Rate</figcaption>
+<p><img src="intro_to_R_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Boxplot of HR</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>In the commands for both figures, we see the function <code>with()</code>. The data is housed in the object <code>hear.rate</code>, the column labeled <code>hr</code> (you can see the full data by entering <code>View(heart.rate)</code> into the console). So we are telling <code>R</code>, <em>with</em> the data frame in the first argument, execute the code in the second argument.</p>
 </section>
